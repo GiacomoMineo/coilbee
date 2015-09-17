@@ -2863,3 +2863,491 @@ Processing by SectionsController#show as HTML
   Rendered layouts/_menu.html.erb (2.7ms)
   Rendered sections/show.html.erb within layouts/application (3.2ms)
 Completed 200 OK in 52ms (Views: 50.4ms | ActiveRecord: 0.4ms)
+  [1m[36m (10.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (4.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateEntries (20150915121308)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "entries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "link" text, "description" text, "rating" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150915121308"]]
+  [1m[35m (6.5ms)[0m  commit transaction
+Migrating to CreateCategories (20150916103200)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/moser/Lalibrary/db/migrate/20150916103200_create_categories.rb:5)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150916103200"]]
+  [1m[35m (4.2ms)[0m  commit transaction
+Migrating to CreateSections (20150916103411)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/moser/Lalibrary/db/migrate/20150916103411_create_sections.rb:6)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "sections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150916103411"]]
+  [1m[35m (4.8ms)[0m  commit transaction
+Migrating to CreateNests (20150917164918)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "nests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "section_id" integer, "entry_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_nests_on_section_id" ON "nests" ("section_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_nests_on_section_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_nests_on_section_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_nests_on_entry_id" ON "nests" ("entry_id")[0m
+  [1m[35mSQL (2.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150917164918"]]
+  [1m[36m (3.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_nests_on_entry_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_nests_on_entry_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_nests_on_section_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_nests_on_section_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Entrepreneurship"], ["created_at", "2015-09-17 17:13:47.861953"], ["updated_at", "2015-09-17 17:13:47.861953"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Getting Started"], ["created_at", "2015-09-17 17:13:47.866666"], ["updated_at", "2015-09-17 17:13:47.866666"]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Team"], ["created_at", "2015-09-17 17:13:47.873640"], ["updated_at", "2015-09-17 17:13:47.873640"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "E-Section 1"], ["category_id", 1], ["created_at", "2015-09-17 17:13:47.897202"], ["updated_at", "2015-09-17 17:13:47.897202"]]
+  [1m[36m (5.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "E-Section 2"], ["category_id", 1], ["created_at", "2015-09-17 17:13:47.906487"], ["updated_at", "2015-09-17 17:13:47.906487"]]
+  [1m[35m (4.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "E-Section 3"], ["category_id", 1], ["created_at", "2015-09-17 17:13:47.912641"], ["updated_at", "2015-09-17 17:13:47.912641"]]
+  [1m[36m (5.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "G-Section 1"], ["category_id", 2], ["created_at", "2015-09-17 17:13:47.919752"], ["updated_at", "2015-09-17 17:13:47.919752"]]
+  [1m[35m (3.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "G-Section 2"], ["category_id", 2], ["created_at", "2015-09-17 17:13:47.924591"], ["updated_at", "2015-09-17 17:13:47.924591"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "G-Section 3"], ["category_id", 2], ["created_at", "2015-09-17 17:13:47.928645"], ["updated_at", "2015-09-17 17:13:47.928645"]]
+  [1m[35m (3.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "T-Section 1"], ["category_id", 3], ["created_at", "2015-09-17 17:13:47.933405"], ["updated_at", "2015-09-17 17:13:47.933405"]]
+  [1m[36m (5.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "T-Section 2"], ["category_id", 3], ["created_at", "2015-09-17 17:13:47.940066"], ["updated_at", "2015-09-17 17:13:47.940066"]]
+  [1m[35m (5.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "T-Section 3"], ["category_id", 3], ["created_at", "2015-09-17 17:13:47.946495"], ["updated_at", "2015-09-17 17:13:47.946495"]]
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "This is link title1"], ["link", "www.example1.com"], ["description", "Example description of link1"], ["rating", 1], ["created_at", "2015-09-17 17:13:47.966972"], ["updated_at", "2015-09-17 17:13:47.966972"]]
+  [1m[35m (4.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "This is link title2"], ["link", "www.example2.com"], ["description", "Example description of link2"], ["rating", 3], ["created_at", "2015-09-17 17:13:47.973039"], ["updated_at", "2015-09-17 17:13:47.973039"]]
+  [1m[36m (3.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "This is link title3"], ["link", "www.example3.com"], ["description", "Example description of link3"], ["rating", 5], ["created_at", "2015-09-17 17:13:47.977734"], ["updated_at", "2015-09-17 17:13:47.977734"]]
+  [1m[35m (5.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "This is link title4"], ["link", "www.example4.com"], ["description", "Example description of link4"], ["rating", 4], ["created_at", "2015-09-17 17:13:47.984710"], ["updated_at", "2015-09-17 17:13:47.984710"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "This is link title5"], ["link", "www.example5.com"], ["description", "Example description of link5"], ["rating", 2], ["created_at", "2015-09-17 17:13:47.989097"], ["updated_at", "2015-09-17 17:13:47.989097"]]
+  [1m[35m (2.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "This is link title6"], ["link", "www.example6.com"], ["description", "Example description of link6"], ["rating", 3], ["created_at", "2015-09-17 17:13:47.993939"], ["updated_at", "2015-09-17 17:13:47.993939"]]
+  [1m[36m (8.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "This is link title7"], ["link", "www.example7.com"], ["description", "Example description of link7"], ["rating", 1], ["created_at", "2015-09-17 17:13:48.004328"], ["updated_at", "2015-09-17 17:13:48.004328"]]
+  [1m[35m (2.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "This is link title8"], ["link", "www.example8.com"], ["description", "Example description of link8"], ["rating", 5], ["created_at", "2015-09-17 17:13:48.009048"], ["updated_at", "2015-09-17 17:13:48.009048"]]
+  [1m[36m (3.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "This is link title9"], ["link", "www.example9.com"], ["description", "Example description of link9"], ["rating", 2], ["created_at", "2015-09-17 17:13:48.014258"], ["updated_at", "2015-09-17 17:13:48.014258"]]
+  [1m[35m (3.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "This is link title10"], ["link", "www.example10.com"], ["description", "Example description of link10"], ["rating", 3], ["created_at", "2015-09-17 17:13:48.019072"], ["updated_at", "2015-09-17 17:13:48.019072"]]
+  [1m[36m (4.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 1], ["entry_id", 1], ["created_at", "2015-09-17 17:13:48.056509"], ["updated_at", "2015-09-17 17:13:48.056509"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 1], ["entry_id", 3], ["created_at", "2015-09-17 17:13:48.059214"], ["updated_at", "2015-09-17 17:13:48.059214"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 1], ["entry_id", 5], ["created_at", "2015-09-17 17:13:48.060832"], ["updated_at", "2015-09-17 17:13:48.060832"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 1], ["entry_id", 10], ["created_at", "2015-09-17 17:13:48.062544"], ["updated_at", "2015-09-17 17:13:48.062544"]]
+  [1m[36m (5.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 2], ["entry_id", 2], ["created_at", "2015-09-17 17:13:48.071970"], ["updated_at", "2015-09-17 17:13:48.071970"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 2], ["entry_id", 3], ["created_at", "2015-09-17 17:13:48.074251"], ["updated_at", "2015-09-17 17:13:48.074251"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 2], ["entry_id", 4], ["created_at", "2015-09-17 17:13:48.077202"], ["updated_at", "2015-09-17 17:13:48.077202"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 2], ["entry_id", 5], ["created_at", "2015-09-17 17:13:48.079168"], ["updated_at", "2015-09-17 17:13:48.079168"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 2], ["entry_id", 6], ["created_at", "2015-09-17 17:13:48.089617"], ["updated_at", "2015-09-17 17:13:48.089617"]]
+  [1m[35m (3.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 3], ["entry_id", 4], ["created_at", "2015-09-17 17:13:48.098842"], ["updated_at", "2015-09-17 17:13:48.098842"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 3], ["entry_id", 5], ["created_at", "2015-09-17 17:13:48.102556"], ["updated_at", "2015-09-17 17:13:48.102556"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 3], ["entry_id", 8], ["created_at", "2015-09-17 17:13:48.103889"], ["updated_at", "2015-09-17 17:13:48.103889"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 3], ["entry_id", 7], ["created_at", "2015-09-17 17:13:48.105034"], ["updated_at", "2015-09-17 17:13:48.105034"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 3], ["entry_id", 9], ["created_at", "2015-09-17 17:13:48.106223"], ["updated_at", "2015-09-17 17:13:48.106223"]]
+  [1m[36m (5.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 4], ["entry_id", 5], ["created_at", "2015-09-17 17:13:48.114656"], ["updated_at", "2015-09-17 17:13:48.114656"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 4], ["entry_id", 3], ["created_at", "2015-09-17 17:13:48.116299"], ["updated_at", "2015-09-17 17:13:48.116299"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 4], ["entry_id", 8], ["created_at", "2015-09-17 17:13:48.117536"], ["updated_at", "2015-09-17 17:13:48.117536"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 4], ["entry_id", 7], ["created_at", "2015-09-17 17:13:48.118689"], ["updated_at", "2015-09-17 17:13:48.118689"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 4], ["entry_id", 9], ["created_at", "2015-09-17 17:13:48.119811"], ["updated_at", "2015-09-17 17:13:48.119811"]]
+  [1m[35m (5.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 5], ["entry_id", 4], ["created_at", "2015-09-17 17:13:48.127183"], ["updated_at", "2015-09-17 17:13:48.127183"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 5], ["entry_id", 5], ["created_at", "2015-09-17 17:13:48.128889"], ["updated_at", "2015-09-17 17:13:48.128889"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 5], ["entry_id", 8], ["created_at", "2015-09-17 17:13:48.130164"], ["updated_at", "2015-09-17 17:13:48.130164"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 5], ["entry_id", 7], ["created_at", "2015-09-17 17:13:48.131280"], ["updated_at", "2015-09-17 17:13:48.131280"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 5], ["entry_id", 9], ["created_at", "2015-09-17 17:13:48.132495"], ["updated_at", "2015-09-17 17:13:48.132495"]]
+  [1m[36m (4.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 6], ["entry_id", 2], ["created_at", "2015-09-17 17:13:48.138725"], ["updated_at", "2015-09-17 17:13:48.138725"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 6], ["entry_id", 4], ["created_at", "2015-09-17 17:13:48.140285"], ["updated_at", "2015-09-17 17:13:48.140285"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 6], ["entry_id", 8], ["created_at", "2015-09-17 17:13:48.141475"], ["updated_at", "2015-09-17 17:13:48.141475"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 6], ["entry_id", 7], ["created_at", "2015-09-17 17:13:48.142612"], ["updated_at", "2015-09-17 17:13:48.142612"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 6], ["entry_id", 9], ["created_at", "2015-09-17 17:13:48.143775"], ["updated_at", "2015-09-17 17:13:48.143775"]]
+  [1m[35m (6.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 7], ["entry_id", 1], ["created_at", "2015-09-17 17:13:48.151963"], ["updated_at", "2015-09-17 17:13:48.151963"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 7], ["entry_id", 3], ["created_at", "2015-09-17 17:13:48.153556"], ["updated_at", "2015-09-17 17:13:48.153556"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 7], ["entry_id", 8], ["created_at", "2015-09-17 17:13:48.154899"], ["updated_at", "2015-09-17 17:13:48.154899"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 7], ["entry_id", 7], ["created_at", "2015-09-17 17:13:48.156058"], ["updated_at", "2015-09-17 17:13:48.156058"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 7], ["entry_id", 9], ["created_at", "2015-09-17 17:13:48.157222"], ["updated_at", "2015-09-17 17:13:48.157222"]]
+  [1m[36m (6.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 8], ["entry_id", 3], ["created_at", "2015-09-17 17:13:48.165361"], ["updated_at", "2015-09-17 17:13:48.165361"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 8], ["entry_id", 6], ["created_at", "2015-09-17 17:13:48.167052"], ["updated_at", "2015-09-17 17:13:48.167052"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 8], ["entry_id", 8], ["created_at", "2015-09-17 17:13:48.168159"], ["updated_at", "2015-09-17 17:13:48.168159"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 8], ["entry_id", 7], ["created_at", "2015-09-17 17:13:48.169364"], ["updated_at", "2015-09-17 17:13:48.169364"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 8], ["entry_id", 9], ["created_at", "2015-09-17 17:13:48.170809"], ["updated_at", "2015-09-17 17:13:48.170809"]]
+  [1m[35m (4.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 9], ["entry_id", 4], ["created_at", "2015-09-17 17:13:48.177894"], ["updated_at", "2015-09-17 17:13:48.177894"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 9], ["entry_id", 7], ["created_at", "2015-09-17 17:13:48.179566"], ["updated_at", "2015-09-17 17:13:48.179566"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 9], ["entry_id", 8], ["created_at", "2015-09-17 17:13:48.180752"], ["updated_at", "2015-09-17 17:13:48.180752"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 9], ["entry_id", 7], ["created_at", "2015-09-17 17:13:48.183052"], ["updated_at", "2015-09-17 17:13:48.183052"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 9], ["entry_id", 9], ["created_at", "2015-09-17 17:13:48.186270"], ["updated_at", "2015-09-17 17:13:48.186270"]]
+  [1m[36m (3.5ms)[0m  [1mcommit transaction[0m
+  [1m[36m (4.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (4.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateEntries (20150915121308)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "entries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "link" text, "description" text, "rating" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150915121308"]]
+  [1m[35m (3.3ms)[0m  commit transaction
+Migrating to CreateCategories (20150916103200)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/moser/Lalibrary/db/migrate/20150916103200_create_categories.rb:5)
+  [1m[35m (1.7ms)[0m  CREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150916103200"]]
+  [1m[35m (4.5ms)[0m  commit transaction
+Migrating to CreateSections (20150916103411)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/moser/Lalibrary/db/migrate/20150916103411_create_sections.rb:6)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "sections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150916103411"]]
+  [1m[35m (9.3ms)[0m  commit transaction
+Migrating to CreateNests (20150917164918)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "nests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "section_id" integer, "entry_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_nests_on_section_id" ON "nests" ("section_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_nests_on_section_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_nests_on_section_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_nests_on_entry_id" ON "nests" ("entry_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150917164918"]]
+  [1m[36m (4.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_nests_on_entry_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_nests_on_entry_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_nests_on_section_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_nests_on_section_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Entrepreneurship"], ["created_at", "2015-09-17 17:14:19.648587"], ["updated_at", "2015-09-17 17:14:19.648587"]]
+  [1m[35m (3.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Getting Started"], ["created_at", "2015-09-17 17:14:19.653732"], ["updated_at", "2015-09-17 17:14:19.653732"]]
+  [1m[36m (9.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Team"], ["created_at", "2015-09-17 17:14:19.664489"], ["updated_at", "2015-09-17 17:14:19.664489"]]
+  [1m[35m (3.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "E-Section 1"], ["category_id", 1], ["created_at", "2015-09-17 17:14:19.675239"], ["updated_at", "2015-09-17 17:14:19.675239"]]
+  [1m[36m (4.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "E-Section 2"], ["category_id", 1], ["created_at", "2015-09-17 17:14:19.681646"], ["updated_at", "2015-09-17 17:14:19.681646"]]
+  [1m[35m (5.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "E-Section 3"], ["category_id", 1], ["created_at", "2015-09-17 17:14:19.688124"], ["updated_at", "2015-09-17 17:14:19.688124"]]
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "G-Section 1"], ["category_id", 2], ["created_at", "2015-09-17 17:14:19.692418"], ["updated_at", "2015-09-17 17:14:19.692418"]]
+  [1m[35m (2.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "G-Section 2"], ["category_id", 2], ["created_at", "2015-09-17 17:14:19.696766"], ["updated_at", "2015-09-17 17:14:19.696766"]]
+  [1m[36m (3.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "G-Section 3"], ["category_id", 2], ["created_at", "2015-09-17 17:14:19.701473"], ["updated_at", "2015-09-17 17:14:19.701473"]]
+  [1m[35m (3.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "T-Section 1"], ["category_id", 3], ["created_at", "2015-09-17 17:14:19.706008"], ["updated_at", "2015-09-17 17:14:19.706008"]]
+  [1m[36m (3.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "T-Section 2"], ["category_id", 3], ["created_at", "2015-09-17 17:14:19.710483"], ["updated_at", "2015-09-17 17:14:19.710483"]]
+  [1m[35m (4.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sections" ("name", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "T-Section 3"], ["category_id", 3], ["created_at", "2015-09-17 17:14:19.715819"], ["updated_at", "2015-09-17 17:14:19.715819"]]
+  [1m[36m (3.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "This is link title1"], ["link", "www.example1.com"], ["description", "Example description of link1"], ["rating", 1], ["created_at", "2015-09-17 17:14:19.726737"], ["updated_at", "2015-09-17 17:14:19.726737"]]
+  [1m[35m (4.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "This is link title2"], ["link", "www.example2.com"], ["description", "Example description of link2"], ["rating", 3], ["created_at", "2015-09-17 17:14:19.732764"], ["updated_at", "2015-09-17 17:14:19.732764"]]
+  [1m[36m (3.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "This is link title3"], ["link", "www.example3.com"], ["description", "Example description of link3"], ["rating", 5], ["created_at", "2015-09-17 17:14:19.737444"], ["updated_at", "2015-09-17 17:14:19.737444"]]
+  [1m[35m (3.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "This is link title4"], ["link", "www.example4.com"], ["description", "Example description of link4"], ["rating", 4], ["created_at", "2015-09-17 17:14:19.741851"], ["updated_at", "2015-09-17 17:14:19.741851"]]
+  [1m[36m (3.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "This is link title5"], ["link", "www.example5.com"], ["description", "Example description of link5"], ["rating", 2], ["created_at", "2015-09-17 17:14:19.746290"], ["updated_at", "2015-09-17 17:14:19.746290"]]
+  [1m[35m (2.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "This is link title6"], ["link", "www.example6.com"], ["description", "Example description of link6"], ["rating", 3], ["created_at", "2015-09-17 17:14:19.750413"], ["updated_at", "2015-09-17 17:14:19.750413"]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "This is link title7"], ["link", "www.example7.com"], ["description", "Example description of link7"], ["rating", 1], ["created_at", "2015-09-17 17:14:19.754589"], ["updated_at", "2015-09-17 17:14:19.754589"]]
+  [1m[35m (3.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "This is link title8"], ["link", "www.example8.com"], ["description", "Example description of link8"], ["rating", 5], ["created_at", "2015-09-17 17:14:19.759879"], ["updated_at", "2015-09-17 17:14:19.759879"]]
+  [1m[36m (4.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "This is link title9"], ["link", "www.example9.com"], ["description", "Example description of link9"], ["rating", 2], ["created_at", "2015-09-17 17:14:19.765649"], ["updated_at", "2015-09-17 17:14:19.765649"]]
+  [1m[35m (3.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "entries" ("title", "link", "description", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "This is link title10"], ["link", "www.example10.com"], ["description", "Example description of link10"], ["rating", 3], ["created_at", "2015-09-17 17:14:19.770291"], ["updated_at", "2015-09-17 17:14:19.770291"]]
+  [1m[36m (3.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 1], ["entry_id", 1], ["created_at", "2015-09-17 17:14:19.790898"], ["updated_at", "2015-09-17 17:14:19.790898"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 1], ["entry_id", 3], ["created_at", "2015-09-17 17:14:19.792841"], ["updated_at", "2015-09-17 17:14:19.792841"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 1], ["entry_id", 5], ["created_at", "2015-09-17 17:14:19.794103"], ["updated_at", "2015-09-17 17:14:19.794103"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 1], ["entry_id", 10], ["created_at", "2015-09-17 17:14:19.795252"], ["updated_at", "2015-09-17 17:14:19.795252"]]
+  [1m[36m (6.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 2], ["entry_id", 2], ["created_at", "2015-09-17 17:14:19.804147"], ["updated_at", "2015-09-17 17:14:19.804147"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 2], ["entry_id", 3], ["created_at", "2015-09-17 17:14:19.805867"], ["updated_at", "2015-09-17 17:14:19.805867"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 2], ["entry_id", 4], ["created_at", "2015-09-17 17:14:19.807101"], ["updated_at", "2015-09-17 17:14:19.807101"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 2], ["entry_id", 5], ["created_at", "2015-09-17 17:14:19.808430"], ["updated_at", "2015-09-17 17:14:19.808430"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 2], ["entry_id", 6], ["created_at", "2015-09-17 17:14:19.809692"], ["updated_at", "2015-09-17 17:14:19.809692"]]
+  [1m[35m (7.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 3], ["entry_id", 4], ["created_at", "2015-09-17 17:14:19.824648"], ["updated_at", "2015-09-17 17:14:19.824648"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 3], ["entry_id", 5], ["created_at", "2015-09-17 17:14:19.826329"], ["updated_at", "2015-09-17 17:14:19.826329"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 3], ["entry_id", 8], ["created_at", "2015-09-17 17:14:19.827488"], ["updated_at", "2015-09-17 17:14:19.827488"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 3], ["entry_id", 7], ["created_at", "2015-09-17 17:14:19.828735"], ["updated_at", "2015-09-17 17:14:19.828735"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 3], ["entry_id", 9], ["created_at", "2015-09-17 17:14:19.829951"], ["updated_at", "2015-09-17 17:14:19.829951"]]
+  [1m[36m (3.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 4], ["entry_id", 5], ["created_at", "2015-09-17 17:14:19.834931"], ["updated_at", "2015-09-17 17:14:19.834931"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 4], ["entry_id", 3], ["created_at", "2015-09-17 17:14:19.836634"], ["updated_at", "2015-09-17 17:14:19.836634"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 4], ["entry_id", 8], ["created_at", "2015-09-17 17:14:19.837939"], ["updated_at", "2015-09-17 17:14:19.837939"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 4], ["entry_id", 7], ["created_at", "2015-09-17 17:14:19.839062"], ["updated_at", "2015-09-17 17:14:19.839062"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 4], ["entry_id", 9], ["created_at", "2015-09-17 17:14:19.840154"], ["updated_at", "2015-09-17 17:14:19.840154"]]
+  [1m[35m (8.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 5], ["entry_id", 4], ["created_at", "2015-09-17 17:14:19.850868"], ["updated_at", "2015-09-17 17:14:19.850868"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 5], ["entry_id", 5], ["created_at", "2015-09-17 17:14:19.852565"], ["updated_at", "2015-09-17 17:14:19.852565"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 5], ["entry_id", 8], ["created_at", "2015-09-17 17:14:19.853784"], ["updated_at", "2015-09-17 17:14:19.853784"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 5], ["entry_id", 7], ["created_at", "2015-09-17 17:14:19.854930"], ["updated_at", "2015-09-17 17:14:19.854930"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 5], ["entry_id", 9], ["created_at", "2015-09-17 17:14:19.856070"], ["updated_at", "2015-09-17 17:14:19.856070"]]
+  [1m[36m (4.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 6], ["entry_id", 2], ["created_at", "2015-09-17 17:14:19.862396"], ["updated_at", "2015-09-17 17:14:19.862396"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 6], ["entry_id", 4], ["created_at", "2015-09-17 17:14:19.864045"], ["updated_at", "2015-09-17 17:14:19.864045"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 6], ["entry_id", 8], ["created_at", "2015-09-17 17:14:19.865200"], ["updated_at", "2015-09-17 17:14:19.865200"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 6], ["entry_id", 7], ["created_at", "2015-09-17 17:14:19.866311"], ["updated_at", "2015-09-17 17:14:19.866311"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 6], ["entry_id", 9], ["created_at", "2015-09-17 17:14:19.867482"], ["updated_at", "2015-09-17 17:14:19.867482"]]
+  [1m[35m (5.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 7], ["entry_id", 1], ["created_at", "2015-09-17 17:14:19.875351"], ["updated_at", "2015-09-17 17:14:19.875351"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 7], ["entry_id", 3], ["created_at", "2015-09-17 17:14:19.877021"], ["updated_at", "2015-09-17 17:14:19.877021"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 7], ["entry_id", 8], ["created_at", "2015-09-17 17:14:19.878378"], ["updated_at", "2015-09-17 17:14:19.878378"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 7], ["entry_id", 7], ["created_at", "2015-09-17 17:14:19.879541"], ["updated_at", "2015-09-17 17:14:19.879541"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 7], ["entry_id", 9], ["created_at", "2015-09-17 17:14:19.880720"], ["updated_at", "2015-09-17 17:14:19.880720"]]
+  [1m[36m (4.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 8], ["entry_id", 3], ["created_at", "2015-09-17 17:14:19.887084"], ["updated_at", "2015-09-17 17:14:19.887084"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 8], ["entry_id", 6], ["created_at", "2015-09-17 17:14:19.888703"], ["updated_at", "2015-09-17 17:14:19.888703"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 8], ["entry_id", 8], ["created_at", "2015-09-17 17:14:19.890047"], ["updated_at", "2015-09-17 17:14:19.890047"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 8], ["entry_id", 7], ["created_at", "2015-09-17 17:14:19.891199"], ["updated_at", "2015-09-17 17:14:19.891199"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["section_id", 8], ["entry_id", 9], ["created_at", "2015-09-17 17:14:19.892584"], ["updated_at", "2015-09-17 17:14:19.892584"]]
+  [1m[35m (6.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "nests" ("section_id", "entry_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["section_id", 9], ["entry_id", 10], ["created_at", "2015-09-17 17:14:19.901297"], ["updated_at", "2015-09-17 17:14:19.901297"]]
+  [1m[36m (5.4ms)[0m  [1mcommit transaction[0m
+  [1m[36mNest Load (1.1ms)[0m  [1mSELECT "nests".* FROM "nests"[0m
+
+
+Started GET "/entries" for 127.0.0.1 at 2015-09-17 19:21:26 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EntriesController#index as HTML
+  [1m[35mEntry Load (0.2ms)[0m  SELECT "entries".* FROM "entries"
+  Rendered entries/index.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 333ms (Views: 294.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/assets/entries.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/assets/sections.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/assets/application.self-3d0a071d0fc580705f88697fbf7991be0bcbfab46328c3efb30541e3875fc92b.css?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/assets/entries.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/assets/sections.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:27 +0200
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-17 19:21:31 +0200
+Processing by CategoriesController#index as HTML
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  [1m[35mSection Load (0.3ms)[0m  SELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?  [["category_id", 1]]
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?[0m  [["category_id", 2]]
+  [1m[35mSection Load (0.5ms)[0m  SELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?  [["category_id", 3]]
+  Rendered layouts/_menu.html.erb (73.3ms)
+  Rendered categories/index.html.erb within layouts/application (85.8ms)
+Completed 200 OK in 170ms (Views: 168.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/section/1" for 127.0.0.1 at 2015-09-17 19:21:34 +0200
+Processing by SectionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSection Load (0.2ms)[0m  [1mSELECT  "sections".* FROM "sections" WHERE "sections"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT "categories".* FROM "categories"
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?[0m  [["category_id", 1]]
+  [1m[35mSection Load (0.1ms)[0m  SELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?  [["category_id", 2]]
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?[0m  [["category_id", 3]]
+  Rendered layouts/_menu.html.erb (6.0ms)
+  [1m[35mEntry Load (0.2ms)[0m  SELECT "entries".* FROM "entries" INNER JOIN "nests" ON "entries"."id" = "nests"."entry_id" WHERE "nests"."section_id" = ?  [["section_id", 1]]
+  Rendered sections/show.html.erb within layouts/application (47.9ms)
+Completed 200 OK in 107ms (Views: 79.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/section/8" for 127.0.0.1 at 2015-09-17 19:21:37 +0200
+Processing by SectionsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT  "sections".* FROM "sections" WHERE "sections"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT "categories".* FROM "categories"
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?[0m  [["category_id", 1]]
+  [1m[35mSection Load (0.1ms)[0m  SELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?  [["category_id", 2]]
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?[0m  [["category_id", 3]]
+  Rendered layouts/_menu.html.erb (2.9ms)
+  [1m[35mEntry Load (0.1ms)[0m  SELECT "entries".* FROM "entries" INNER JOIN "nests" ON "entries"."id" = "nests"."entry_id" WHERE "nests"."section_id" = ?  [["section_id", 8]]
+  Rendered sections/show.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 42ms (Views: 40.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/section/8" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+Processing by SectionsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT  "sections".* FROM "sections" WHERE "sections"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT "categories".* FROM "categories"
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?[0m  [["category_id", 1]]
+  [1m[35mSection Load (0.1ms)[0m  SELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?  [["category_id", 2]]
+  [1m[36mSection Load (0.1ms)[0m  [1mSELECT "sections".* FROM "sections" WHERE "sections"."category_id" = ?[0m  [["category_id", 3]]
+  Rendered layouts/_menu.html.erb (9.3ms)
+  [1m[35mEntry Load (0.1ms)[0m  SELECT "entries".* FROM "entries" INNER JOIN "nests" ON "entries"."id" = "nests"."entry_id" WHERE "nests"."section_id" = ?  [["section_id", 8]]
+  Rendered sections/show.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 56ms (Views: 53.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+
+
+Started GET "/assets/entries.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+
+
+Started GET "/assets/sections.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+
+
+Started GET "/assets/application.self-3d0a071d0fc580705f88697fbf7991be0bcbfab46328c3efb30541e3875fc92b.css?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+
+
+Started GET "/assets/entries.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+
+
+Started GET "/assets/sections.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-17 19:21:57 +0200
