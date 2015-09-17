@@ -1,0 +1,188 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+/* Fonts */
+
+/* General*/
+
+body { 
+	padding-top: 70px;
+	margin-bottom: 30px;
+}
+
+a {
+	color: #268BD2;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #268BD2;
+}
+
+a:active {
+	text-decoration: none;
+	color: #268BD2;
+}
+
+a:focus {
+	text-decoration: none;
+	color: #268BD2;
+}
+
+.caret {
+	-webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.caret-active {
+	-webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.form-control {
+	width: 95%;
+}
+
+/*Navbar*/
+
+.navbar {
+	background-color: rgba(255, 255, 255, 0.85);
+}
+
+#logo {
+	color: #EF4435;
+	font-weight: bold;
+	font-size: 25px;
+	border-radius: 0px;
+	border-bottom: 2px dotted #EF4435;
+}
+
+/*Sidebar*/
+
+.panel-group {
+	position: fixed;
+}
+
+.panel-body {
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.sidebar-header {
+	font-weight: bold;
+	font-size: 19px;
+}
+
+.sidebar-header:hover {
+	color: #EF4435;
+}
+
+.sidebar-header:active, .sidebar-header:focus {
+	color: #000;
+}
+
+.sidebar-text {
+	color: #000;
+}
+
+.sidebar-text:hover {
+	color: #EF4435;
+}
+
+.sidebar-active {
+	font-weight: bold;
+}
+
+.sidebar-text-active {
+	color: #EF4435;
+}
+
+/*Change the appearance of all the panels*/
+
+div #heading1, div #heading2, div #heading3, div #heading4, div #heading5, div #heading6, div #heading7 {
+	background-color: transparent;
+	border-radius: 0px;
+}
+
+div #heading2, div #heading4, div #heading6 {
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+}
+
+.panel-group .panel+.panel {
+	margin: 0px;
+	border: 0px;
+}
+
+.panel-group .panel {
+	border: 0px;
+}
+
+
+/*Change the appearance of the active panel only*/
+
+.panel-default {
+	border-color: transparent;
+}
+
+/*Breadcrumbs*/
+
+.breadcrumb {
+	border-radius: 0px;
+	background-color: #FFF;
+	border-bottom: 1px solid #DDDDDD;
+	padding-left: 0px;
+}
+
+.panel-group {
+	max-width: 250px;
+}
+
+.panel-heading {
+	background-color: transparent;
+}
+
+/*Content*/
+
+.bookmark {
+	font-weight: bold;
+	border-bottom: 1px dotted #DDDDDD;
+}
+
+.bookmark:hover {
+	border-bottom: 1px dotted #268BD2;
+	color: #268BD2;
+	text-decoration: none;
+}
+
+h3 {	
+	font-weight: bold;
+	font-size: 19px;
+	color: #EF4435;
+	margin-bottom: 20px;
+}

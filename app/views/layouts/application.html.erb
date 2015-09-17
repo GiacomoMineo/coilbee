@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lalibrary</title>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
+   	<%= csrf_meta_tags %> 
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top" id="custom-nav">
+	    <div class="container-fluid">
+	      <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
+
+	      <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+
+	        <a href="#" class="navbar-brand"><span id="logo">La Library</span></a>
+
+	        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </button>
+
+	        <div class="collapse navbar-collapse navHeaderCollapse">
+	          <ul class="nav navbar-nav navbar-right">
+	            <li class="dropdown">
+	              <a href="#" class="dropdown-toggle active" data-toggle="dropdown">Sections <b class="caret"></b></a>
+	              <ul class="dropdown-menu">
+	                <li><a href="#">Entrepreneurship</a></li>
+	                <li><a href="#">Getting Started</a></li>
+	                <li role="separator" class="divider"></li>
+	                <li><a href="#">Team</a></li>
+	                <li><a href="#">Product</a></li>
+	                <li><a href="#">Design</a></li>
+	                <li><a href="#">Marketing</a></li>
+	                <li><a href="#">Selling</a></li>
+	              </ul>
+	            </li>
+	            <li><a href="#">Suggest</a></li>
+	            <li>
+	              <form class="navbar-form navbar-left" role="search">
+	                <div class="form-group">
+	                  <input type="text" class="form-control" placeholder="Search for tags">
+	                </div>
+	                <button type="submit" class="btn btn-default">Go</button>
+	              </form>
+	            </li>
+	          </ul>
+	        </div>
+	      </div>
+
+	      <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>   
+	    </div>
+	  </nav>
+		<%= yield %>
+
+</body>
+</html>
