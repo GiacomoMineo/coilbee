@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'categories#index'
   get '/section/:id' => 'sections#show', as: :section
+  get '/sections/new' => 'sections#new'
+  post '/sections' => 'sections#create'
   get '/tag/:id'  => 'tags#show', as: :tag
   get 'entries' => 'entries#index' 
   get 'entries/new' => 'entries#new'
