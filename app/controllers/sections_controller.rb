@@ -1,5 +1,7 @@
 class SectionsController < ApplicationController
 
+	before_action :require_admin, only: [:new, :create]
+
 	def show
 		@section = Section.find(params[:id])
 	end
