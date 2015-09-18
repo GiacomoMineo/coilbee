@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20150918094038) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "nests", force: :cascade do |t|
+    t.integer  "section_id"
+    t.integer  "entry_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "nests", ["entry_id"], name: "index_nests_on_entry_id"
+  add_index "nests", ["section_id"], name: "index_nests_on_section_id"
+
   create_table "references", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "entry_id"
