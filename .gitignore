@@ -2,8 +2,4 @@ tmp/*
 log/*
 *.sqlite3
 *.lock
-<<<<<<< HEAD
 bin/*
-=======
-bin/*
->>>>>>> 8bc60609e0ae0668170160c172f4c83b0b9c3ff0
