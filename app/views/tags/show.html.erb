@@ -1,0 +1,20 @@
+
+    
+    <div class="col-lg-7 col-md-7 col-sm-9 col-xs-12">
+      <h1><%= @tag.name %></h1>
+      <% @tag.entries.each do |entry| %>
+        <div class="entry">
+          <p class="entry-title"><%= entry.title %></p>
+          <a class="entry-link" href="<%= entry.link %>"><%= entry.link %></a>
+          <p class="entry-desc"><%= entry.description %></p>
+          <p class="entry-rating">Rating: <%= entry.rating %></p>
+          <p class="entry-time"><%= entry.created_at %></p>
+          <p>
+            <% entry.tags.each do |t| %>
+              <%= link_to t.name, tag_path(t) %>  
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+    

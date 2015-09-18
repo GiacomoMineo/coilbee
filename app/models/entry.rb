@@ -1,4 +1,8 @@
 class Entry < ActiveRecord::Base
-	has_many :nests
-	has_many :sections, through: :nests
+	
+	acts_as_votable
+
+	belongs_to :section
+	has_many :references
+	has_many :tags, through: :references
 end

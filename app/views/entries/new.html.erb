@@ -1,33 +1,19 @@
 <div class="header">
   <div class="container">
-    <h1>Submit a new link</h1>
+    
   </div>
 </div>
 
 <div class="create">
-  <div class="container">
-    
+  <div class="form">
+    <h1>Submit a new link</h1>
     <!-- Your code here -->
     <%= form_for(@entry) do |f| %>
-    	<div class="field">
-        <%= f.label :entry, 'Title:' %><br>
-        <%= f.text_field :title %>
-      </div>
-      <div class="field">
-        <%= f.label :entry, 'Link:' %><br>
-        <%= f.text_field :link %>
-      </div>
-      <div class="field">
-        <%= f.label :entry, 'Description:' %><br>
-        <%= f.text_field :description %>
-      </div>
-      <div class="field">
-        <%= f.label :entry, 'Rating:' %><br>
-        <%= f.text_field :rating %>
-      </div>
-      <div class="actions">
-        <%= f.submit "Submit" %>
-      </div>
+      <%= f.text_field :title, :placeholder => "Title" %>
+      <%= f.url_field :link, :placeholder => "Link" %>
+      <%= f.email_field :description, :placeholder => "Description" %>
+      <%= f.text_field :rating, :placeholder => "Rating" %>
+      <%= f.submit "Submit", class: "btn-submit" %>
     <% end %>
     
   </div>

@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
   root 'categories#index'
   get '/section/:id' => 'sections#show', as: :section
+  get '/tag/:id'  => 'tags#show', as: :tag
   get 'entries' => 'entries#index' 
   get 'entries/new' => 'entries#new'
   post 'entries' => 'entries#create'
+  get 'signup' => 'users#new'
+  get '/login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+  resources :users
+  resources :entries do
+    member do
+      put "like", to: "entries#upvote"
+      put "dislike", to: "entries#downvote"
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

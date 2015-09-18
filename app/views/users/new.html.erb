@@ -1,0 +1,17 @@
+<div class="login">
+  <div class="container">
+    <div class="form">
+
+    <h1>Sign up</h1>
+      
+      <%= form_for(@user) do |f| %>
+        <%= f.text_field :first_name, :placeholder => "First Name" %>
+        <%= f.text_field :last_name, :placeholder => "Last Name" %>
+        <%= f.text_field :user_name, :placeholder => "User Name" %>
+        <%= f.email_field :email, :placeholder => "Email" %>
+        <%= f.password_field :password, :placeholder => "Password" %>
+        <%= f.submit "Create new account", class: "btn-submit" %>
+      <% end %>
+    </div>
+  </div>
+</div>

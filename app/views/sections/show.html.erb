@@ -1,12 +1,12 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row">
     <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0">
-      <!-- what is this? TODO -->
+      
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-0 hidden-xs">
       <%= render '/layouts/menu', collection: @categories %>
     </div>
-    
+    -->
     <div class="col-lg-7 col-md-7 col-sm-9 col-xs-12">
       <h1><%= @section.name %></h1>
       <% @section.entries.each do |entry| %>
@@ -16,9 +16,17 @@
           <p class="entry-desc"><%= entry.description %></p>
           <p class="entry-rating">Rating: <%= entry.rating %></p>
           <p class="entry-time"><%= entry.created_at %></p>
+          <p>
+            <% entry.tags.each do |t| %>
+              <%= link_to t.name, tag_path(t) %>  
+            <% end %>
+          </p>
+          <p><%= entry.get_likes.size-entry.get_dislikes.size %>
+          <p><%= link_to "upvote", like_entry_path(entry), method: :put %></p>
+          <p><%= link_to "downvote", dislike_entry_path(entry), method: :put %></p>
         </div>
       <% end %>
     </div>
     <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
-  </div>
-</div>
+<!--  </div>
+</div> -->

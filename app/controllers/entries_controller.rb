@@ -1,4 +1,18 @@
 class EntriesController < ApplicationController
+
+
+	def upvote
+		@entry = Entry.find(params[:id])
+		@entry.upvote_by current_user 
+		redirect_to section_path(@entry.section)
+	end
+
+	def downvote
+		@entry = Entry.find(params[:id])
+		@entry.downvote_by current_user 
+		redirect_to section_path(@entry.section)
+	end
+
 	def index
 		@entries = Entry.all
 	end

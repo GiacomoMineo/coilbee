@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917164918) do
+ActiveRecord::Schema.define(version: 20150918094038) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -24,19 +24,20 @@ ActiveRecord::Schema.define(version: 20150917164918) do
     t.text     "link"
     t.text     "description"
     t.integer  "rating"
+    t.integer  "section_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "nests", force: :cascade do |t|
-    t.integer  "section_id"
+  create_table "references", force: :cascade do |t|
+    t.integer  "tag_id"
     t.integer  "entry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "nests", ["entry_id"], name: "index_nests_on_entry_id"
-  add_index "nests", ["section_id"], name: "index_nests_on_section_id"
+  add_index "references", ["entry_id"], name: "index_references_on_entry_id"
+  add_index "references", ["tag_id"], name: "index_references_on_tag_id"
 
   create_table "sections", force: :cascade do |t|
     t.string   "name"
@@ -44,5 +45,37 @@ ActiveRecord::Schema.define(version: 20150917164918) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "user_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "role"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
 
 end
