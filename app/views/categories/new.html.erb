@@ -1,13 +1,10 @@
 <div class="create">
   <div class="form">
-    <h1>Create new section</h1>
+    <h1>Create new category</h1>
     <!-- Your code here -->
-    <%= form_for(@section) do |f| %>
+    <%= form_for(@category) do |f| %>
       <%= f.text_field :name, :placeholder => "Name" %>
-      <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
       <%= f.submit "Submit", class: "btn-submit" %>
     <% end %>
-    
   </div>
 </div>
-
