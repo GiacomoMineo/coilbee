@@ -4,6 +4,7 @@ class SectionsController < ApplicationController
 
 	def show
 		@section = Section.find(params[:id])
+		@entries = @section.entries.sort { |a, b| (b.get_likes.size-b.get_dislikes.size) <=> (a.get_likes.size-a.get_dislikes.size)}
 	end
 	
 	def new
