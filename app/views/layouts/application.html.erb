@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
   <title>Lalibrary</title>
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -10,13 +9,14 @@
    	<%= csrf_meta_tags %> 
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top" id="custom-nav">
-	    <div class="container-fluid">
-	      <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
-
-	      <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-
-	        <a href="#" class="navbar-brand"><span id="logo">La Library</span></a>
+	<nav class="navbar navbar-fixed-top navbar-default" id="custom-nav">
+		<div class="container-fluid">
+		<% if current_user %>
+			<div class="col-lg-10 col-lg-offset-1 col-xs-12">
+		<% else %>
+			<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+		<% end %>
+			<%= link_to "Linkr", '/', class: "navbar-brand" %>
 
 	        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
 	          <span class="icon-bar"></span>
@@ -26,80 +26,48 @@
 
 	        <div class="collapse navbar-collapse navHeaderCollapse">
 	          <ul class="nav navbar-nav navbar-right">
-	          	<li>
-	          		<% if current_user %> 
-					  <ul class="nav navbar-nav navbar-right"> 
-					    <li><%= current_user.email %></li> 
-					    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
-					  </ul> 
-					<% else %> 
-					  <ul class="nav navbar-nav navbar-right"> 
-					    <li><%= link_to "Login", 'login' %></li> 
-					    <li><%= link_to "Signup", 'signup' %></li> 
-					  </ul> 
-					<% end %>
-	          	</li>
-	            <li class="dropdown">
-	              <a href="#" class="dropdown-toggle active" data-toggle="dropdown">Sections <b class="caret"></b></a>
-	              <ul class="dropdown-menu">
-	                <li><a href="#">Entrepreneurship</a></li>
-	                <li><a href="#">Getting Started</a></li>
-	                <li role="separator" class="divider"></li>
-	                <li><a href="#">Team</a></li>
-	                <li><a href="#">Product</a></li>
-	                <li><a href="#">Design</a></li>
-	                <li><a href="#">Marketing</a></li>
-	                <li><a href="#">Selling</a></li>
-	              </ul>
-	            </li>
+				<% if current_user %> 
+					<li><p class="navbar-text"><%= current_user.email %></p></li> 
+					<li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+				<% else %> 
+					<li><%= link_to "Login", 'login' %></li> 
+					<li><%= link_to "Signup", 'signup' %></li> 
+				<% end %>
 	            <% if current_user && (current_user.editor? || current_user.admin?) %> 
     				<li><%= link_to 'Suggest', "/entries/new" %></li>
 				<% end %>
-	            <!--
-	            <li>
-	              <form class="navbar-form navbar-left" role="search">
-	                <div class="form-group">
-	                  <input type="text" class="form-control" placeholder="Search for tags">
-	                </div>
-	                <button type="submit" class="btn btn-default">Go</button>
-	              </form>
-	            </li>
-	        		-->
+				<% if current_user %>
         		<li>
-        			<%= form_tag(tag_search_path, :method => "get", class: "navbar-form", id: "search-form") do %>
-    					<div class="input-append">
-      						<%= text_field_tag :search, params[:search], class: "span2", placeholder: "Search Tag" %>
-     
-  							<button class="btn" type="submit">Go</i></button>
+        			<%= form_tag(tag_search_path, :method => "get", class: "navbar-form navbar-right", id: "search-form", role: "search") do %>
+    					<div class="input-group">
+      						<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Tag" %>
+      						<span class="input-group-btn">
+								<%= submit_tag "Go", class: "btn btn-default" %>
+  							</span>
     					</div>
   					<% end %>
-	        	</li>		
+	        	</li>
+	        	<% end %>
 	          </ul>
 	        </div>
 	      </div>
-
-	      <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>   
 	    </div>
 	  </nav>
 	  <div class="container-fluid">
 
   		<div class="row">
-    		<div class="col-lg-1 col-md-1 col-sm-0 col-xs-0">
-      		<!-- what is this? TODO -->
-			</div>
-	    	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-0 hidden-xs">
-				<% if current_user %> 
+			<% if current_user %> 
+				<div class="col-lg-2 col-lg-offset-1 col-sm-3 col-xs-0 hidden-xs">
 					<%= render '/layouts/menu'%>
-				<% end %>
-	    	</div>
-	  
-			<div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
-				<%= yield %>
-			</div>
-
-			<div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
+				</div>
+				<div class="col-lg-8 col-sm-9 col-xs-12">
+					<%= yield %>
+				</div>
+			<% else %>
+				<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					<%= yield %>
+				</div>
+			<% end %>
 		</div>
 	</div>
-
 </body>
-</html>

@@ -1,17 +1,30 @@
-<div class="login">
-  <div class="container">
-    <div class="form">
-
-    <h1>Sign up</h1>
-      
-      <%= form_for(@user) do |f| %>
-        <%= f.text_field :first_name, :placeholder => "First Name" %>
-        <%= f.text_field :last_name, :placeholder => "Last Name" %>
-        <%= f.text_field :user_name, :placeholder => "User Name" %>
-        <%= f.email_field :email, :placeholder => "Email" %>
-        <%= f.password_field :password, :placeholder => "Password" %>
-        <%= f.submit "Create new account", class: "btn-submit" %>
-      <% end %>
-    </div>
-  </div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Sign up
+	</div>
+	<div class="panel-body">
+		<%= form_for(@user) do |f| %>
+			<div class="form-group">
+				<%= label_tag 'user[first_name]', "First Name"%>
+				<%= f.text_field :first_name, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= label_tag 'user[last_name]', "Last Name"%>
+				<%= f.text_field :last_name, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= label_tag 'user[user_name]', "User Name"%>
+				<%= f.text_field :user_name, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= label_tag 'user[email]', "Email address"%>
+				<%= f.email_field :email, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= label_tag 'user[password]', "Password"%>
+				<%= f.password_field :password, class: "form-control" %>
+			</div>
+			<%= f.submit "Create new account", class: "btn btn-submit" %>
+		<% end %>
+	</div>
 </div>

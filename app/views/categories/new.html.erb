@@ -1,10 +1,8 @@
-<div class="create">
-  <div class="form">
-    <h1>Create new category</h1>
-    <!-- Your code here -->
-    <%= form_for(@category) do |f| %>
-      <%= f.text_field :name, :placeholder => "Name" %>
-      <%= f.submit "Submit", class: "btn-submit" %>
-    <% end %>
-  </div>
-</div>
+<h1>Create new category</h1>
+<%= form_for(@category) do |f| %>
+	<div class="form-group">
+		<%= label_tag 'category[name]', "Name"%>
+		<%= f.text_field :name, :placeholder => "A name for your category", class: "form-control" %>
+	</div>
+	<%= f.submit "Submit", class: "btn btn-submit" %>
+<% end %>
