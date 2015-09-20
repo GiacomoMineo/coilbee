@@ -2,18 +2,23 @@ Rails.application.routes.draw do
   root 'categories#index'
   get '/categories/new' => 'categories#new'
   post '/categories' => 'categories#create'
+  
   get '/section/:id' => 'sections#show', as: :section
   get '/sections/new' => 'sections#new'
   post '/sections' => 'sections#create'
-  get '/tag/:id'  => 'tags#show', as: :tag
+  
   get 'entries' => 'entries#index'
   get 'entries/new' => 'entries#new'
   post 'entries' => 'entries#create'
+  
+  get '/tag/:id'  => 'tags#show', as: :tag
+  get '/tags' => 'tags#index', as: :tag_search
+  
   get 'signup' => 'users#new'
   get '/login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  get '/tags' => 'tags#index', as: :tag_search
+  
   resources :users
   resources :entries do
     member do
