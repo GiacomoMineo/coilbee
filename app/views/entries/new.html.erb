@@ -6,7 +6,7 @@
       <%= f.text_field :title, :placeholder => "Title" %>
       <%= f.url_field :link, :placeholder => "Link" %>
       <%= f.text_field :description, :placeholder => "Description" %>
-      <%= f.collection_select(:section_id, Section.all, :id, Proc.new {|c| "#{c.category.name}/#{c.name}"}, prompt: true) %>
+      <%= f.collection_select(:section_id, Section.all, :id, lambda { |c| "#{c.category.name}/#{c.name}" }, prompt: true) %>
       <%= f.submit "Submit", class: "btn-submit" %>
     <% end %>
     
