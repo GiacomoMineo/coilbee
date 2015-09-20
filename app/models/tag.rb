@@ -1,4 +1,3 @@
 class Tag < ActiveRecord::Base
-	has_many :references
-	has_many :entries, through: :references
+	has_and_belongs_to_many :entries
 end

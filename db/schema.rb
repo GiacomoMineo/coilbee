@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918094038) do
+ActiveRecord::Schema.define(version: 20150920004500) do
+
+  create_table "Entries_Tags", id: false, force: :cascade do |t|
+    t.integer "entry_id", null: false
+    t.integer "tag_id",   null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -28,26 +33,6 @@ ActiveRecord::Schema.define(version: 20150918094038) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  create_table "nests", force: :cascade do |t|
-    t.integer  "section_id"
-    t.integer  "entry_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "nests", ["entry_id"], name: "index_nests_on_entry_id"
-  add_index "nests", ["section_id"], name: "index_nests_on_section_id"
-
-  create_table "references", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.integer  "entry_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "references", ["entry_id"], name: "index_references_on_entry_id"
-  add_index "references", ["tag_id"], name: "index_references_on_tag_id"
 
   create_table "sections", force: :cascade do |t|
     t.string   "name"
