@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20150918094038) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
