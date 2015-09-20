@@ -7,17 +7,17 @@ Rails.application.routes.draw do
   get '/sections/new' => 'sections#new'
   post '/sections' => 'sections#create'
   
-  get 'entries' => 'entries#index'
-  get 'entries/new' => 'entries#new'
-  post 'entries' => 'entries#create'
+  get '/entries' => 'entries#index'
+  get '/entries/new' => 'entries#new'
+  post '/entries' => 'entries#create'
   
   get '/tag/:id'  => 'tags#show', as: :tag
   get '/tags' => 'tags#index', as: :tag_search
   
-  get 'signup' => 'users#new'
+  get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
-  post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
+  post '/login' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
   
   resources :users
   resources :entries do
