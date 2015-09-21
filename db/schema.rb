@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150920004500) do
+ActiveRecord::Schema.define(version: 20150921094548) do
 
   create_table "Entries_Tags", id: false, force: :cascade do |t|
     t.integer "entry_id", null: false
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 20150920004500) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "read_marks", force: :cascade do |t|
+    t.integer  "readable_id"
+    t.string   "readable_type", null: false
+    t.integer  "user_id",       null: false
+    t.datetime "timestamp"
+  end
+
+  add_index "read_marks", ["user_id", "readable_type", "readable_id"], name: "index_read_marks_on_user_id_and_readable_type_and_readable_id"
 
   create_table "sections", force: :cascade do |t|
     t.string   "name"

@@ -29,6 +29,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use acts_as_votable
 gem 'acts_as_votable'
 
+gem 'unread'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

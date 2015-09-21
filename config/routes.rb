@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     member do
       put "like", to: "entries#upvote"
       put "dislike", to: "entries#downvote"
+      put "read", to: "entries#read"
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

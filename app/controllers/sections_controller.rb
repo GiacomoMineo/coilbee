@@ -5,6 +5,9 @@ class SectionsController < ApplicationController
 	def show
 		@section = Section.find(params[:id])
 		@entries = @section.entries.sort { |a, b| (b.get_likes.size-b.get_dislikes.size) <=> (a.get_likes.size-a.get_dislikes.size)}
+		@entries_unread = Entry.unread_by(current_user)
+		@entries_unread = Entry.unread_by(current_user)
+		@entries_read = Entry.read_by(current_user)
 	end
 	
 	def new

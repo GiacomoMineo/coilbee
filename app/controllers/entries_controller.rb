@@ -13,6 +13,12 @@ class EntriesController < ApplicationController
 		redirect_to section_path(@entry.section)
 	end
 
+	def read
+		@entry = Entry.find(params[:id])
+		@entry.mark_as_read! :for => current_user
+		redirect_to section_path(@entry.section)
+	end
+
 	def index
 		@entries = Entry.all
 	end

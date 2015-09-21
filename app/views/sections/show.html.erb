@@ -10,6 +10,13 @@
         <% end %>
       </div>
       <div style="display: inline; position: relative; left: 10px;">
+        <% if @entries_unread.include? entry %> 
+          <%= link_to read_entry_path(entry), method: :put do %>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+          <% end %>         
+        <% end %>
+      </div>
+      <div style="display: inline; position: relative; left: 10px;">
         <%= entry.get_likes.size-entry.get_dislikes.size %> Points
       </div>
       <div style="display: inline; position: relative; left: 15px;">
