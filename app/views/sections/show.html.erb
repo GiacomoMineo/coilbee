@@ -1,7 +1,8 @@
 
 <!-- ONLY PRESTYLED!! -->
 <h1><%= @section.name %></h1>
-<% @entries.each do |entry| %>
+<h2>Read</h2>
+<% @entries_group_read.each do |entry| %>
   <div class="panel panel-default">
     <div class="panel-heading">
       <div style="display: inline; float: left;">
@@ -42,5 +43,135 @@
     </div>
   </div>
 <% end %>
+<h2>Learn</h2>
+<% @entries_group_learn.each do |entry| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div style="display: inline; float: left;">
+        <%= link_to like_entry_path(entry), method: :put do %>
+          <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+        <% end %>
+      </div>
+      <div style="display: inline; position: relative; left: 10px;">
+        <% if @entries_unread.include? entry %> 
+          <%= link_to read_entry_path(entry), method: :put do %>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+          <% end %>         
+        <% end %>
+      </div>
+      <div style="display: inline; position: relative; left: 10px;">
+        <%= entry.get_likes.size-entry.get_dislikes.size %> Points
+      </div>
+      <div style="display: inline; position: relative; left: 15px;">
+        <a href="<%= entry.link %>">
+          <%= entry.title %>
+        </a>
+      </div>      
+      <div style="display: inline; float: right;">
+        <% entry.tags.each do |t| %>
+          <div style="display: inline;"><%= link_to t.name, tag_path(t) %> </div> 
+        <% end %>   
+      </div> 
+    </div>
+    <div class="panel-body">
+      <div style="display: inline; float: left;">
+        <%= link_to dislike_entry_path(entry), method: :put do %>
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        <% end %>
+      </div>
+      <div style="display: inline; position: relative; left: 10px;">
+        <%= entry.description %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<h2>Watch</h2>
+<% @entries_group_watch.each do |entry| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div style="display: inline; float: left;">
+        <%= link_to like_entry_path(entry), method: :put do %>
+          <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+        <% end %>
+      </div>
+      <div style="display: inline; position: relative; left: 10px;">
+        <% if @entries_unread.include? entry %> 
+          <%= link_to read_entry_path(entry), method: :put do %>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+          <% end %>         
+        <% end %>
+      </div>
+      <div style="display: inline; position: relative; left: 10px;">
+        <%= entry.get_likes.size-entry.get_dislikes.size %> Points
+      </div>
+      <div style="display: inline; position: relative; left: 15px;">
+        <a href="<%= entry.link %>">
+          <%= entry.title %>
+        </a>
+      </div>      
+      <div style="display: inline; float: right;">
+        <% entry.tags.each do |t| %>
+          <div style="display: inline;"><%= link_to t.name, tag_path(t) %> </div> 
+        <% end %>   
+      </div> 
+    </div>
+    <div class="panel-body">
+      <div style="display: inline; float: left;">
+        <%= link_to dislike_entry_path(entry), method: :put do %>
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        <% end %>
+      </div>
+      <div style="display: inline; position: relative; left: 10px;">
+        <%= entry.description %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<h2>Make</h2>
+<% @entries_group_make.each do |entry| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div style="display: inline; float: left;">
+        <%= link_to like_entry_path(entry), method: :put do %>
+          <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+        <% end %>
+      </div>
+      <div style="display: inline; position: relative; left: 10px;">
+        <% if @entries_unread.include? entry %> 
+          <%= link_to read_entry_path(entry), method: :put do %>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+          <% end %>         
+        <% end %>
+      </div>
+      <div style="display: inline; position: relative; left: 10px;">
+        <%= entry.get_likes.size-entry.get_dislikes.size %> Points
+      </div>
+      <div style="display: inline; position: relative; left: 15px;">
+        <a href="<%= entry.link %>">
+          <%= entry.title %>
+        </a>
+      </div>      
+      <div style="display: inline; float: right;">
+        <% entry.tags.each do |t| %>
+          <div style="display: inline;"><%= link_to t.name, tag_path(t) %> </div> 
+        <% end %>   
+      </div> 
+    </div>
+    <div class="panel-body">
+      <div style="display: inline; float: left;">
+        <%= link_to dislike_entry_path(entry), method: :put do %>
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        <% end %>
+      </div>
+      <div style="display: inline; position: relative; left: 10px;">
+        <%= entry.description %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+
+
 
          
