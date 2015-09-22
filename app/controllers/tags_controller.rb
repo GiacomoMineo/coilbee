@@ -14,5 +14,6 @@ class TagsController < ApplicationController
 
 	def show
 		@tag = Tag.find(params[:id])
+		@library = @tag.entries.first.section.category.library
 	end
 end

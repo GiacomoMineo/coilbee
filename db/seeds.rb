@@ -6,14 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admin = User.create(first_name: 'admin', last_name: 'admin', user_name: 'admin', email: 'admin@gmail.com', password: 'password', role: 'admin')
-editor = User.create(first_name: 'editor', last_name: 'editor', user_name: 'editor', email: 'editor@gmail.com', password: 'password', role: 'editor')
-admin = User.create(first_name: 'user', last_name: 'user', user_name: 'user', email: 'user@gmail.com', password: 'password')
+admin = User.create(user_name: 'admin', email: 'admin@gmail.com', password: 'password')
+editor = User.create(user_name: 'editor', email: 'editor@gmail.com', password: 'password')
+user = User.create(user_name: 'user', email: 'user@gmail.com', password: 'password')
 
+l1 = Library.create(topic: "Start Up", description: "This is a library about everything regarding start ups!")
+l2 = Library.create(topic: "Cooking", description: "This is a library about everything regarding cooking!")
 
-c1 = Category.create(name: "Entrepreneurship")
-c2 = Category.create(name: "Getting Started")
-c3 = Category.create(name: "Team")
+c1 = Category.create(name: "Entrepreneurship", library_id: l1.id)
+c2 = Category.create(name: "Getting Started", library_id: l1.id)
+c3 = Category.create(name: "Team", library_id: l1.id)
 
 
 s1 = Section.create(name: "E-Section 1", category_id: c1.id)
@@ -84,3 +86,7 @@ e10.tags << [t4]
 #s7.entries << [e1, e3, e8, e7, e9]
 #s8.entries << [e3, e6, e8, e7, e9]
 #s9.entries << [e10]
+
+admin.libraries << [l1,l2]
+editor.libraries << [l1,l2]
+user.libraries << [l1,l2]

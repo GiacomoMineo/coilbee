@@ -31,6 +31,8 @@ gem 'acts_as_votable'
 
 gem 'unread'
 
+gem 'devise'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

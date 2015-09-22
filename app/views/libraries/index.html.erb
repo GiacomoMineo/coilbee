@@ -1,0 +1,30 @@
+<% content_for :header do %>
+  <%= render 'shared/header.html.erb'%>
+<% end %>
+<div class="col-lg-8 col-lg-offset-2 col-md-6">
+  <div class="jumbotron">
+    <h1 class="text-center">Welcome to Linkr!</h1>
+    <% if not @libraries.empty? %>
+      <h3 class="text-center">You are following these libraries: </h3>
+    <% end %>
+  </div>
+</div>
+<div class="col-lg-8 col-lg-offset-2 col-md-6" >
+  <% if @libraries.empty? %>
+  	<p>Currently you are not following any libraries.</p>
+  <% end %>
+
+  <% @libraries.each do |lib| %>
+  	<div class="panel panel-default">
+  		<div class="panel-heading">
+  			<%= link_to lib.topic, library_path(lib) %>
+    	</div>
+      <div class="panel-body">
+        <div style="display: inline; float: left;">
+          <%= lib.description %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

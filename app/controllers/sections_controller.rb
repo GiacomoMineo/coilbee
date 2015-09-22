@@ -4,6 +4,7 @@ class SectionsController < ApplicationController
 
 	def show
 		@section = Section.find(params[:id])
+		@library = @section.category.library
 
 		@entries_unread = Entry.unread_by(current_user)
 		@entries_read = Entry.read_by(current_user)

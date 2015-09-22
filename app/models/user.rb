@@ -1,17 +1,9 @@
 class User < ActiveRecord::Base
-
-	has_secure_password
-	acts_as_reader
-
-	def editor?
-		self.role == 'editor'
-	end
-
-	def admin?
-		self.role == 'admin'
-	end
-
-	validates_presence_of :first_name, :last_name, :user_name, :email, :password_digest	
-	validates_uniqueness_of :user_name, :email, case_sensitive: false 
-	validates_format_of :email, with: /[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ 
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  acts_as_reader
+  has_many :subscriptions
+  has_many :libraries, through: :subscriptions
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 end

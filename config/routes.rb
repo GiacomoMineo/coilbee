@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  root 'categories#index'
+  
+  devise_for :users
+  root 'pages#index'
+  get 'libaries/index' => 'libraries#index', as: :library_index
+  get 'library/:id' => 'libraries#show', as: :library
+
+  get '/categories/index' => 'categories#index' #to be replaced
   get '/categories/new' => 'categories#new'
   post '/categories' => 'categories#create'
   
@@ -14,7 +20,7 @@ Rails.application.routes.draw do
   get '/tag/:id'  => 'tags#show', as: :tag
   get '/tags' => 'tags#index', as: :tag_search
   
-  get '/signup' => 'users#new'
+  #get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
