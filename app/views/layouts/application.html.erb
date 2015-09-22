@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
   <title>Lalibrary</title>
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="https://bootswatch.com/slate/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -9,19 +9,29 @@
    	<%= csrf_meta_tags %> 
 </head>
 <body>
-	<%= yield :header %> 
-	  <div class="container-fluid">
-	  	<div class="row">	
-	  		<% if content_for? :menu %>
-	        <%= yield :menu %>
-		    <% end %>
-		    <% if notice %>
-				  <p class="alert alert-success"><%= notice %></p>
-				<% end %>
-				<% if alert %>
-				  <p class="alert alert-danger"><%= alert %></p>
-				<% end %>
-				<%= yield %>
+	<% if current_user %>
+		<%= render 'shared/header.html.erb'%>
+	<% end %>
+	<div class="container-fluid">
+		<div class="row">
+			<% if @library %>
+				<div class="col-lg-2 col-lg-offset-1 col-sm-3 col-xs-0 hidden-xs">
+					<%= render 'shared/library_menu.html.erb' %>
+				</div>
+				
+				<div class="col-lg-8 col-sm-9 col-xs-12">
+			<% else %>
+				<div class="col-lg-10 col-lg-offset-1 col-xs-12">
+				<!-- div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1" -->
+			<% end %>
+					<% if notice %>
+						<p class="alert alert-success"><%= notice %></p>
+					<% end %>
+					<% if alert %>
+						<p class="alert alert-danger"><%= alert %></p>
+					<% end %>
+					<%= yield %>
+				</div>
 	  	</div>
 	</div>
 </body>

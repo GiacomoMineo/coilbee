@@ -1,12 +1,4 @@
-<% content_for :header do %>
-  <%= render 'shared/library_header.html.erb', locals: {library: @library}%>
-<% end %>
-<% content_for :menu do %>
-  <%= render 'shared/library_menu.html.erb', locals: {library: @library}%>
-<% end %>
-<div class="col-lg-8">
-	<div class="jumbotron">
-		<h1 class="text-center">Welcome to the '<%= @library.topic %>' library</h1>
-		<h3 class="text-center"><%= @library.description %></h3>
-	</div>
+<div class="jumbotron">
+	<h1 class="text-center">Welcome to the '<%= @library.topic %>' library</h1>
+	<h3 class="text-center"><%= @library.description %></h3>
 </div>
