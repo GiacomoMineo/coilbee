@@ -4,10 +4,10 @@
 		<%= label_tag 'section[name]', "Name"%>
 		<%= f.text_field :name, :placeholder => "A name for your section", class: "form-control"  %>
 	</div>
-	<div class="form-group">
+	<!-- div class="form-group">
 		<%= label_tag 'section[category_id]', "Category" %>
 		<%= f.collection_select(:category_id, Category.all, :id, :name, {prompt: true}, {class: "form-control"}) %>
-	</div>
-	<%= f.submit "Submit", class: "btn btn-submit" %>
+	</div -->
+	<%= f.submit "Submit", :name => "cat[#{@category.id}]", class: "btn btn-submit" %>
 <% end %>
 

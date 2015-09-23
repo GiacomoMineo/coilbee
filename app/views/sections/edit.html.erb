@@ -1,0 +1,12 @@
+<h1>Edit section</h1>
+<%= form_for(@section) do |f| %>
+	<div class="form-group">
+		<%= label_tag 'section[name]', "Name"%>
+		<%= f.text_field :name, class: "form-control" %>
+	</div>
+	<div class="form-group">
+		<%= label_tag 'section[category_id]', "Move to category" %>
+		<%= f.collection_select(:category_id, @library.categories, :id, :name, {prompt: true}, {class: "form-control"}) %>
+	</div>
+	<%= f.submit "Submit", class: "btn btn-submit" %>
+<% end %>

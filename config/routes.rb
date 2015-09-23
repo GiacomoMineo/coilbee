@@ -13,13 +13,16 @@ Rails.application.routes.draw do
   get '/categories/index' => 'categories#index' #to be replaced
   get '/categories/new' => 'categories#new'
   post '/categories' => 'categories#create'
-  get '/categories/:id' => 'categories#edit', as: :category_edit_path
+  get '/categories/:id' => 'categories#edit', as: :category_edit
   patch '/category/:id' => 'categories#update', as: :category_update_path
   
   get '/section/:id' => 'sections#show', as: :section
-  get '/sections/new' => 'sections#new'
+  get '/sections/new' => 'sections#new', as: :new_section
   post '/sections' => 'sections#create'
-  
+  delete '/section/:id' => 'sections#delete', as: :delete_section
+  get '/sections/:id' => 'sections#edit', as: :section_edit
+  patch '/section/:id' => 'sections#update', as: :section_update_path
+
   get '/entries' => 'entries#index'
   get '/entries/new' => 'entries#new'
   post '/entries' => 'entries#create'
@@ -32,6 +35,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   
+  resources :sections
   resources :categories
   resources :users
   resources :libraries
