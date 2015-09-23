@@ -1,0 +1,8 @@
+<h1>Edit category</h1>
+<%= form_for(@category) do |f| %>
+	<div class="form-group">
+		<%= label_tag 'category[name]', "Name"%>
+		<%= f.text_field :name, class: "form-control" %>
+	</div>
+	<%= f.submit "Submit", class: "btn btn-submit" %>
+<% end %>

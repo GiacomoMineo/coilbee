@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
 
   def set_categories_for_menu
     @categories = Category.all
-    @currentSection = nil
   end
 
 #  def current_user 

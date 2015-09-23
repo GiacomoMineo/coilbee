@@ -1,0 +1,12 @@
+<h1>Create a new library</h1>
+<%= form_for(@library_new) do |f| %>
+	<div class="form-group">
+		<%= label_tag 'library[topic]', "Topic" %>
+		<%= f.text_field :topic, :placeholder => "Topic of your library", class: "form-control" %>
+	</div>
+	<div class="form-group">
+		<%= label_tag 'library[description]', "Description" %>
+		<%= f.text_area :description, :placeholder => "A good description for your library", class: "form-control"  %>
+	</div>
+	<%= f.submit "Submit", class: "btn btn-submit" %>
+<% end %>

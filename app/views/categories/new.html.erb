@@ -4,5 +4,5 @@
 		<%= label_tag 'category[name]', "Name"%>
 		<%= f.text_field :name, :placeholder => "A name for your category", class: "form-control" %>
 	</div>
-	<%= f.submit "Submit", class: "btn btn-submit" %>
+	<%= f.submit "Submit", :name => "lib[#{@library.id}]", class: "btn btn-submit" %>
 <% end %>

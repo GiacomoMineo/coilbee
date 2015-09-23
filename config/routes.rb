@@ -2,12 +2,19 @@ Rails.application.routes.draw do
   
   devise_for :users
   root 'pages#index'
-  get 'libaries/index' => 'libraries#index', as: :library_index
-  get 'library/:id' => 'libraries#show', as: :library
+  get '/libaries/index' => 'libraries#index', as: :library_index
+  get '/library/:id' => 'libraries#show', as: :library
+  get '/libraries/new' => 'libraries#new', as: :new_library
+  post '/libraries' => 'libraries#create'
+  delete '/library/:id' => 'libraries#delete', as: :delete_library
+  get '/libraries/:id' => 'libraries#edit', as: :library_edit_path
+  patch '/library/:id' => 'libraries#update', as: :library_update_path
 
   get '/categories/index' => 'categories#index' #to be replaced
   get '/categories/new' => 'categories#new'
   post '/categories' => 'categories#create'
+  get '/categories/:id' => 'categories#edit', as: :category_edit_path
+  patch '/category/:id' => 'categories#update', as: :category_update_path
   
   get '/section/:id' => 'sections#show', as: :section
   get '/sections/new' => 'sections#new'
@@ -25,7 +32,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   
+  resources :categories
   resources :users
+  resources :libraries
   resources :entries do
     member do
       put "like", to: "entries#upvote"

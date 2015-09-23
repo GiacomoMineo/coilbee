@@ -1,0 +1,15 @@
+<h2>Edit library</h2>
+
+<%= form_for(@library_to_edit) do |f| %>
+	<div class="form-group">
+		<%= label_tag 'library[topic]', "Topic" %>
+		<%= f.text_field :topic, autofocus: true, :placeholder => "Topic of your library", class: "form-control" %>
+	</div>
+	<div class="form-group">
+		<%= label_tag 'library[description]', "Description" %>
+		<%= f.text_area :description, :placeholder => "", class: "form-control"  %>
+	</div>
+  <div class="actions">
+    <%= f.submit "Save changes" %>
+  </div>
+<% end %>
