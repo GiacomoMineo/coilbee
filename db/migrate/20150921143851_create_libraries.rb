@@ -3,7 +3,8 @@ class CreateLibraries < ActiveRecord::Migration
     create_table :libraries do |t|
       t.string :topic
       t.text :description
+      t.references :creator, index: true
       t.timestamps null: false
-    end
+  	end
   end
 end

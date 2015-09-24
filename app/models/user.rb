@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   acts_as_reader
   has_many :subscriptions
   has_many :libraries, through: :subscriptions
+  has_many :libraries_created, :class_name => "Library", :foreign_key => "created"
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 end

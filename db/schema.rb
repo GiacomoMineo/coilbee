@@ -39,9 +39,12 @@ ActiveRecord::Schema.define(version: 20150922140121) do
   create_table "libraries", force: :cascade do |t|
     t.string   "topic"
     t.text     "description"
+    t.integer  "creator_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "libraries", ["creator_id"], name: "index_libraries_on_creator_id"
 
   create_table "read_marks", force: :cascade do |t|
     t.integer  "readable_id"

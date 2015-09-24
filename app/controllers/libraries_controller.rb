@@ -1,6 +1,7 @@
 class LibrariesController < ApplicationController
 	def index
-		@libraries = Library.all
+		@libraries_own = Library.all.select{ |lib| lib.creator == current_user} 
+		@libraries_followed = Library.all.select{ |lib| lib.users.include? current_user} 
 		#@libraries = current_user
 	end
 
@@ -15,6 +16,7 @@ class LibrariesController < ApplicationController
 
 	def create
 		@library_new = Library.new(library_params) 
+		@library_new.creator = current_user
   		if @library_new.save 
 				redirect_to '/' 
   		else 

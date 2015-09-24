@@ -89,4 +89,4 @@ e10.tags << [t4]
 
 admin.libraries << [l1,l2]
 editor.libraries << [l1,l2]
-user.libraries << [l1,l2]
+user.libraries << [l2]
