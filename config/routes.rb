@@ -2,35 +2,19 @@ Rails.application.routes.draw do
   
   devise_for :users
   root 'pages#index'
-  get '/libaries/index' => 'libraries#index', as: :library_index
-  get '/library/:id' => 'libraries#show', as: :library
-  get '/libraries/new' => 'libraries#new', as: :new_library
-  post '/libraries' => 'libraries#create'
-  delete '/library/:id' => 'libraries#delete', as: :delete_library
-  get '/libraries/:id' => 'libraries#edit', as: :library_edit_path
-  patch '/library/:id' => 'libraries#update', as: :library_update_path
-
-  get '/categories/index' => 'categories#index' #to be replaced
-  get '/categories/new' => 'categories#new'
-  post '/categories' => 'categories#create'
-  get '/categories/:id' => 'categories#edit', as: :category_edit
-  patch '/category/:id' => 'categories#update', as: :category_update_path
   
-  get '/section/:id' => 'sections#show', as: :section
-  get '/sections/new' => 'sections#new', as: :new_section
-  post '/sections' => 'sections#create'
-  delete '/section/:id' => 'sections#delete', as: :delete_section
-  get '/sections/:id' => 'sections#edit', as: :section_edit
-  patch '/section/:id' => 'sections#update', as: :section_update_path
-
-  get '/entries' => 'entries#index'
-  get '/entries/new' => 'entries#new'
-  post '/entries' => 'entries#create'
-
-  get 'suggestion/new' => 'suggestions#new', as: :new_suggestion
-  post '/suggestions' => 'suggestions#create'
-  delete '/suggestion/:id' => 'suggestions#delete', as: :delete_suggestion
-  get '/suggestion/:id' => 'suggestions#accept', as: :accept_suggestion
+  resources :libraries
+  resources :categories
+  resources :sections
+  resources :suggestions
+  
+  resources :entries do
+    member do
+      put "like", to: "entries#upvote"
+      put "dislike", to: "entries#downvote"
+      put "read", to: "entries#read"
+    end
+  end
   
   get '/tag/:id'  => 'tags#show', as: :tag
   get '/tags' => 'tags#index', as: :tag_search
@@ -40,17 +24,6 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   
-  resources :sections
-  resources :categories
-  resources :users
-  resources :libraries
-  resources :entries do
-    member do
-      put "like", to: "entries#upvote"
-      put "dislike", to: "entries#downvote"
-      put "read", to: "entries#read"
-    end
-  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
