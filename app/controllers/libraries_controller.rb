@@ -37,7 +37,7 @@ class LibrariesController < ApplicationController
 		end
 	end
 
-	def delete
+	def destroy
 		@library = Library.find(params[:id])
 		@suggestions = Suggestion.all.select{ |sug| sug.library == @library}
 

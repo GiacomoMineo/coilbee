@@ -1,14 +1,12 @@
 class SectionsController < ApplicationController
-
-	#before_action :require_admin, only: [:new, :create]
+	
 
 	def show
 		@section = Section.find(params[:id])
 		@library = @section.category.library
 
 		@entries_unread = Entry.unread_by(current_user)
-		@entries_read = Entry.read_by(current_user)
-
+	
 		@entries_group_read = @section.entries.read.sort { |a, b| (b.get_likes.size-b.get_dislikes.size) <=> (a.get_likes.size-a.get_dislikes.size)}
 		@entries_group_learn = @section.entries.learn.sort { |a, b| (b.get_likes.size-b.get_dislikes.size) <=> (a.get_likes.size-a.get_dislikes.size)}
 		@entries_group_watch = @section.entries.watch.sort { |a, b| (b.get_likes.size-b.get_dislikes.size) <=> (a.get_likes.size-a.get_dislikes.size)}
@@ -47,7 +45,7 @@ class SectionsController < ApplicationController
 		end
 	end
 
-	def delete
+	def destroy
 		@section = Section.find(params[:id])#TODO delete recursively all entries
 		@library = @section.category.library
 		@section.destroy 
