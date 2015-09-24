@@ -39,6 +39,12 @@ class LibrariesController < ApplicationController
 
 	def delete
 		@library = Library.find(params[:id])
+		@suggestions = Suggestion.all.select{ |sug| sug.library == @library}
+
+		@suggestions.each do |sug|
+			sug.destroy
+		end
+		
     	@library.destroy
     	redirect_to '/', :notice => "The library has been deleted"
 	end

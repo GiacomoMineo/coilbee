@@ -1,8 +1,6 @@
 <div class="jumbotron">
 	<h1 class="text-center">Welcome to Linkr!</h1>
-		<% if not @libraries_followed.empty? %>
-  	<h3 class="text-center">You are following these libraries: </h3>
-	<% end %>
+  	<h3 class="text-center">Create, follow or suggest libraries</h3>
 </div>
 <div class="pull-left">
 	<h2>Your libraries</h3>
@@ -86,7 +84,7 @@
 	  </div>
 	</div>
 <% end %>
-<% if @suggestions %>
+<% unless @suggestions.empty? %>
 	<h2>Suggested libraries</h2>
 	<% @suggestions.each do |sug| %>
 	<div class="panel panel-default">
