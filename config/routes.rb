@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   get '/entries' => 'entries#index'
   get '/entries/new' => 'entries#new'
   post '/entries' => 'entries#create'
+
+  get 'suggestion/new' => 'suggestions#new', as: :new_suggestion
+  post '/suggestions' => 'suggestions#create'
   
   get '/tag/:id'  => 'tags#show', as: :tag
   get '/tags' => 'tags#index', as: :tag_search

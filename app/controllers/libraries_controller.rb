@@ -2,7 +2,7 @@ class LibrariesController < ApplicationController
 	def index
 		@libraries_own = Library.all.select{ |lib| lib.creator == current_user} 
 		@libraries_followed = Library.all.select{ |lib| lib.users.include? current_user} 
-		#@libraries = current_user
+		@suggestions = Suggestion.all.select{ |sug| sug.receiver == current_user}
 	end
 
 	def show

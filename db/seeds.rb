@@ -90,3 +90,5 @@ e10.tags << [t4]
 admin.libraries << [l1,l2]
 editor.libraries << [l1,l2]
 user.libraries << [l2]
+
+sug1 = Suggestion.create(library_id: l1.id, creator_id: admin.id, receiver_id: user.id)
