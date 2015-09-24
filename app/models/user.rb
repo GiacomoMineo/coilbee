@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_and_belongs_to_many :roles
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   acts_as_reader
@@ -9,4 +10,9 @@ class User < ActiveRecord::Base
   has_many :suggestions_received, :class_name => "Suggestion", :foreign_key => "suggestions_received"
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def role_symbols
+    (roles || []).map {|r| r.title.to_sym}
+  end
+
 end

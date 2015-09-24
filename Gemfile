@@ -29,9 +29,14 @@ gem 'bcrypt', '~> 3.1.7'
 # Use acts_as_votable
 gem 'acts_as_votable'
 
+# new posts
 gem 'unread'
 
+# authentication
 gem 'devise'
+
+# authorization
+gem 'declarative_authorization', github: "stffn/declarative_authorization"
 
 # Use Unicorn as the app server
 # gem 'unicorn'

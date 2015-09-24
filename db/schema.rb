@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924113614) do
+ActiveRecord::Schema.define(version: 20150924211441) do
 
   create_table "Entries_Tags", id: false, force: :cascade do |t|
     t.integer "entry_id", null: false
@@ -54,6 +54,17 @@ ActiveRecord::Schema.define(version: 20150924113614) do
   end
 
   add_index "read_marks", ["user_id", "readable_type", "readable_id"], name: "index_read_marks_on_user_id_and_readable_type_and_readable_id"
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles_users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
 
   create_table "sections", force: :cascade do |t|
     t.string   "name"
