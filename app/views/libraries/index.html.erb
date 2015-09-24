@@ -117,10 +117,14 @@
 	        <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
 	      <% end %>
 			</div>
+			<div class="pull-right">
+				<%= link_to "Reject", delete_suggestion_path(sug), data: {confirm: "Are you sure?"}, :method => :delete, :class => 'btn btn-default btn-sm pull-right' %>
+			</div>
+			<div class="pull-right">
+				<%= link_to "Follow", accept_suggestion_path(sug), :class => 'btn btn-default btn-sm pull-right'  %>
+			</div>
 	  </div>
 	</div>
 <% end %>
 
 <% end %>
-
-

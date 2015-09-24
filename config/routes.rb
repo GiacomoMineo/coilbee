@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   get 'suggestion/new' => 'suggestions#new', as: :new_suggestion
   post '/suggestions' => 'suggestions#create'
+  delete '/suggestion/:id' => 'suggestions#delete', as: :delete_suggestion
+  get '/suggestion/:id' => 'suggestions#accept', as: :accept_suggestion
   
   get '/tag/:id'  => 'tags#show', as: :tag
   get '/tags' => 'tags#index', as: :tag_search

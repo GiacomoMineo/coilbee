@@ -23,5 +23,18 @@ class SuggestionsController < ApplicationController
 			render 'new', :notice => "Couldn't find user with this email address!"
 		end 
 	end
+
+	def delete
+		@suggestion = Suggestion.find(params[:id])
+  	@suggestion.destroy
+    	redirect_to root_path
+	end
+
+	def accept
+		@suggestion = Suggestion.find(params[:id])
+		current_user.libraries.push(@suggestion.library)
+		@suggestion.destroy
+			redirect_to '/'
+	end
 end
 
