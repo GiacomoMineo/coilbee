@@ -4,15 +4,9 @@ class SectionsController < ApplicationController
 	def show
 		@section = Section.find(params[:id])
 		@library = @section.category.library
-	
-		@entries = @section.entries
-											 .with_read_marks_for(current_user)
-											 .includes(:tags)
-											 .sort_by { |entry| entry.rating }
-											 .reverse!
-	 	@groups = @library.groups
 
 		@entries = @section.entries.for_user(current_user)
+	 	@groups = @library.groups
 
 	end
 	
