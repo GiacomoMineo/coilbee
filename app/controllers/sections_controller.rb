@@ -4,14 +4,12 @@ class SectionsController < ApplicationController
 	def show
 		@section = Section.find(params[:id])
 		@library = @section.category.library
-
-		@entries_unread = Entry.unread_by(current_user)
 	
-		@entries_group_read = @section.entries.read.sort { |a, b| (b.get_likes.size-b.get_dislikes.size) <=> (a.get_likes.size-a.get_dislikes.size)}
-		@entries_group_learn = @section.entries.learn.sort { |a, b| (b.get_likes.size-b.get_dislikes.size) <=> (a.get_likes.size-a.get_dislikes.size)}
-		@entries_group_watch = @section.entries.watch.sort { |a, b| (b.get_likes.size-b.get_dislikes.size) <=> (a.get_likes.size-a.get_dislikes.size)}
-		@entries_group_make = @section.entries.make.sort { |a, b| (b.get_likes.size-b.get_dislikes.size) <=> (a.get_likes.size-a.get_dislikes.size)}
-		
+		@entries = @section.entries
+											 .with_read_marks_for(current_user)
+											 .includes(:tags)
+											 .sort_by { |entry| entry.rating }
+											 .reverse!
 	end
 	
 	def new

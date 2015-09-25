@@ -4,7 +4,6 @@ class CreateEntries < ActiveRecord::Migration
       t.string :title
       t.text :link
       t.text :description
-      t.integer :rating
       t.references :section
       t.integer :group, default: 0
       t.timestamps null: false

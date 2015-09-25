@@ -1,7 +1,6 @@
 
 <h1><%= @tag.name %></h1>
-<% @tag.entries.each do |entry| %>
-  <% @entries_unread = Entry.unread_by(current_user) %>
+<% @entries.each do |entry| %>
   <div class="panel panel-default">
 	  <div class="panel-heading">
 		<div style="display: inline; float: left;">
@@ -10,14 +9,14 @@
 		  <% end %>
 		</div>
 		<div style="display: inline; position: relative; left: 10px;">
-		  <% if @entries_unread.include? entry %> 
+		  <% if entry.unread? current_user %> 
 			<%= link_to read_entry_path(entry), method: :put do %>
 			  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 			<% end %>         
 		  <% end %>
 		</div>
 		<div style="display: inline; position: relative; left: 10px;">
-		  <%= entry.get_likes.size-entry.get_dislikes.size %> Points
+		  <%= entry.rating %> Points
 		</div>
 		<div style="display: inline; position: relative; left: 15px;">
 		  <a href="<%= entry.link %>">
