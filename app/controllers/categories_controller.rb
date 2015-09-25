@@ -1,8 +1,5 @@
 class CategoriesController < ApplicationController
 	filter_resource_access
-		
-	#before_action :require_user, only: [:index]
-	#before_action :require_admin, only: [:new, :create]
 
 	def index
 	end

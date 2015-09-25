@@ -1,4 +1,11 @@
 class Entry < ActiveRecord::Base
+	# prepares the entry for being shown to current_user
+	scope :for_user, ->(user) {
+		includes(:tags)
+		.with_read_marks_for(user)
+		.order(cached_votes_score: :desc)
+	}
+
 	acts_as_votable
 	acts_as_readable :on => :created_at
 

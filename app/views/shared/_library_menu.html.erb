@@ -1,6 +1,6 @@
   <nav>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <% @library.categories.each_with_index do |c, index| %>
+      <% @library.categories.includes(:sections).each_with_index do |c, index| %>
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="heading1">
             <h4 class="panel-title">

@@ -12,6 +12,8 @@ class SectionsController < ApplicationController
 											 .reverse!
 	 	@groups = @library.groups
 
+		@entries = @section.entries.for_user(current_user)
+
 	end
 	
 	def new

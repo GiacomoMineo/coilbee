@@ -33,7 +33,7 @@ class EntriesController < ApplicationController
 			redirect_to '/entries' 
   		else 
     		render 'new' 
-  		end 
+  		end
 	end
 	
 	private
