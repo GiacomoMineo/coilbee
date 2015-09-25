@@ -1,4 +1,6 @@
 class LibrariesController < ApplicationController
+	filter_resource_access
+
 	def index
 		@libraries_own = Library.all.select{ |lib| lib.creator == current_user} 
 		@libraries_followed = Library.all.select{ |lib| lib.users.include? current_user} 

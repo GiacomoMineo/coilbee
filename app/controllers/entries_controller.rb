@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
-
-
+	filter_resource_access
+	
 	def upvote
 		@entry = Entry.find(params[:id])
 		@entry.upvote_by current_user 

@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
+	filter_resource_access
 	
-
 	def show
 		@section = Section.find(params[:id])
 		@library = @section.category.library
@@ -24,8 +24,8 @@ class SectionsController < ApplicationController
 		@section = Section.new(section_params) 
 		@category = Category.find_by(id: params["cat"].first)
 		@section.category = @category
-  		if @section.save 
-			redirect_to '/section/' + @section.id.to_s
+  		if @section.save
+			redirect_to '/sections/' + @section.id.to_s
   		else 
     		render 'new' 
   		end 

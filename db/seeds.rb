@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require "declarative_authorization/maintenance"
+
+#wrap your whole seed file in this
+Authorization::Maintenance::without_access_control do
+
 roles = Role.create([
   {title: 'admin'},
   {title: 'user'}
@@ -15,8 +20,11 @@ admin = User.create(user_name: 'admin', email: 'admin@gmail.com', password: 'pas
 editor = User.create(user_name: 'editor', email: 'editor@gmail.com', password: 'password')
 user = User.create(user_name: 'user', email: 'user@gmail.com', password: 'password')
 
-l1 = Library.create(topic: "Start Up", description: "This is a library about everything regarding start ups!")
-l2 = Library.create(topic: "Cooking", description: "This is a library about everything regarding cooking!")
+admin.roles << [Role.find_by(title: 'admin')]
+user.roles << [Role.find_by(title: 'user')]
+
+l1 = Library.create(topic: "Start Up", description: "This is a library about everything regarding start ups!", creator_id: admin.id)
+l2 = Library.create(topic: "Cooking", description: "This is a library about everything regarding cooking!", creator_id: admin.id)
 
 c1 = Category.create(name: "Entrepreneurship", library_id: l1.id)
 c2 = Category.create(name: "Getting Started", library_id: l1.id)
@@ -97,3 +105,5 @@ editor.libraries << [l1,l2]
 user.libraries << [l2]
 
 sug1 = Suggestion.create(library_id: l1.id, creator_id: admin.id, receiver_id: user.id)
+
+end

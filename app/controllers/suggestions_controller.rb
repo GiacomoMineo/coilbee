@@ -1,5 +1,6 @@
 class SuggestionsController < ApplicationController
-
+	filter_resource_access
+	
 	def new
 		@suggestion = Suggestion.new
 		@library_to_suggest = Library.find_by(id: params[:lib])

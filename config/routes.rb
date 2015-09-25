@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :libraries
   resources :categories
   resources :sections
-  resources :suggestions
+  resources :suggestions do
+		member do
+			get "accept", to: "suggestions#accept"
+		end
+	end
   
   resources :entries do
     member do

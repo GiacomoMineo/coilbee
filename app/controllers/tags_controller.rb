@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
-	
+	filter_resource_access
+		
 	def index
 		if params[:search]
       		@tags = Tag.search(params[:search])#.order("created_at DESC")

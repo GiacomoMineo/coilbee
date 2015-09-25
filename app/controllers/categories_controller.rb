@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
-	
+	filter_resource_access
+		
 	#before_action :require_user, only: [:index]
 	#before_action :require_admin, only: [:new, :create]
 
@@ -16,12 +17,11 @@ class CategoriesController < ApplicationController
 		@library = Library.find_by(id: params["lib"].first)
 		@category.library = @library
 
-  		if @category.save 
-
+		if @category.save 
 			redirect_to library_path(@library)
-  		else 
-    		render 'new' 
-  		end 
+		else 
+			render 'new' 
+		end 
 	end
 
 	def destroy
