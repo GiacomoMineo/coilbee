@@ -10,6 +10,8 @@ class SectionsController < ApplicationController
 											 .includes(:tags)
 											 .sort_by { |entry| entry.rating }
 											 .reverse!
+	 	@groups = @library.groups
+
 	end
 	
 	def new

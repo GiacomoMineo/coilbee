@@ -5,7 +5,7 @@ class CreateEntries < ActiveRecord::Migration
       t.text :link
       t.text :description
       t.references :section
-      t.integer :group, default: 0
+      t.references :group
       t.timestamps null: false
     end
   end

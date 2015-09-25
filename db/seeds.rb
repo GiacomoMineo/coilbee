@@ -16,6 +16,8 @@ roles = Role.create([
   {title: 'user'}
 ]) if Role.count == 0
 
+
+
 admin = User.create(user_name: 'admin', email: 'admin@gmail.com', password: 'password')
 editor = User.create(user_name: 'editor', email: 'editor@gmail.com', password: 'password')
 user = User.create(user_name: 'user', email: 'user@gmail.com', password: 'password')
@@ -25,6 +27,12 @@ user.roles << [Role.find_by(title: 'user')]
 
 l1 = Library.create(topic: "Start Up", description: "This is a library about everything regarding start ups!", creator_id: admin.id)
 l2 = Library.create(topic: "Cooking", description: "This is a library about everything regarding cooking!", creator_id: admin.id)
+
+g1 = Group.create(name: "read", library_id: l1.id)
+g2 = Group.create(name: "watch", library_id: l1.id)
+g3 = Group.create(name: "learn", library_id: l1.id)
+g4 = Group.create(name: "make", library_id: l1.id)
+
 
 c1 = Category.create(name: "Entrepreneurship", library_id: l1.id)
 c2 = Category.create(name: "Getting Started", library_id: l1.id)
@@ -46,16 +54,16 @@ s8 = Section.create(name: "T-Section 2", category_id: c3.id)
 s9 = Section.create(name: "T-Section 3", category_id: c3.id)
 
 
-e1 = Entry.create(title: "This is link title1", link: "http://www.example1.com", description: "Example description of link1", section_id: s1.id, group: 0)
-e2 = Entry.create(title: "This is link title2", link: "http://www.example2.com", description: "Example description of link2", section_id: s1.id, group: 0)
-e3 = Entry.create(title: "This is link title3", link: "http://www.example3.com", description: "Example description of link3", section_id: s1.id, group: 1)
-e4 = Entry.create(title: "This is link title4", link: "http://www.example4.com", description: "Example description of link4", section_id: s1.id, group: 1)
-e5 = Entry.create(title: "This is link title5", link: "http://www.example5.com", description: "Example description of link5", section_id: s1.id, group: 2)
-e6 = Entry.create(title: "This is link title6", link: "http://www.example6.com", description: "Example description of link6", section_id: s1.id, group: 2)
-e7 = Entry.create(title: "This is link title7", link: "http://www.example7.com", description: "Example description of link7", section_id: s1.id, group: 2)
-e8 = Entry.create(title: "This is link title8", link: "http://www.example8.com", description: "Example description of link8", section_id: s1.id, group: 3)
-e9 = Entry.create(title: "This is link title9", link: "http://www.example9.com", description: "Example description of link9", section_id: s1.id, group: 3)
-e10 = Entry.create(title: "This is link title10", link: "http://www.example10.com", description: "Example description of link10", section_id: s1.id, group: 3)
+e1 = Entry.create(title: "This is link title1", link: "http://www.example1.com", description: "Example description of link1", section_id: s1.id, group_id: g1.id)
+e2 = Entry.create(title: "This is link title2", link: "http://www.example2.com", description: "Example description of link2", section_id: s1.id, group_id: g1.id)
+e3 = Entry.create(title: "This is link title3", link: "http://www.example3.com", description: "Example description of link3", section_id: s1.id, group_id: g1.id)
+e4 = Entry.create(title: "This is link title4", link: "http://www.example4.com", description: "Example description of link4", section_id: s1.id, group_id: g2.id)
+e5 = Entry.create(title: "This is link title5", link: "http://www.example5.com", description: "Example description of link5", section_id: s1.id, group_id: g2.id)
+e6 = Entry.create(title: "This is link title6", link: "http://www.example6.com", description: "Example description of link6", section_id: s1.id, group_id: g2.id)
+e7 = Entry.create(title: "This is link title7", link: "http://www.example7.com", description: "Example description of link7", section_id: s1.id, group_id: g3.id)
+e8 = Entry.create(title: "This is link title8", link: "http://www.example8.com", description: "Example description of link8", section_id: s1.id, group_id: g3.id)
+e9 = Entry.create(title: "This is link title9", link: "http://www.example9.com", description: "Example description of link9", section_id: s1.id, group_id: g4.id)
+e10 = Entry.create(title: "This is link title10", link: "http://www.example10.com", description: "Example description of link10", section_id: s1.id, group_id: g4.id)
 
 #e1 = Entry.create(title: "This is link title1", link: "http://www.example1.com", description: "Example description of link1", section_id: s1.id, group: 1)
 #e2 = Entry.create(title: "This is link title2", link: "http://www.example2.com", description: "Example description of link2", section_id: s1.id, group: 1)
