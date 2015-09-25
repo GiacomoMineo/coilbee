@@ -1,0 +1,21 @@
+/* Global styles */
+@import 'variables.scss';
+@import 'mixins.scss';
+
+body { 
+	padding-top: 70px;
+	margin-bottom: 30px;
+}
+
+.btn {
+	@include transition(all 0.3s ease);
+}
+
+.icon-small {
+	color: #008cba;
+	margin-left: 6px;
+	@include transition(all 0.3s ease);
+	&:hover {
+		color: #00C0FF;
+	}
+}

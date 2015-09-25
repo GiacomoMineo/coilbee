@@ -4,11 +4,11 @@
 		<div class="col-lg-10 col-lg-offset-1 col-xs-12">
 	<% else %>
 		<div class="col-lg-10 col-lg-offset-1 col-xs-12">
-		<!-- div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1" -->
 	<% end %>
-		<%= link_to "Linkr", '/', class: "navbar-brand" %>
+		
+	<%= link_to "Linkr", '/', class: "navbar-brand logo" %>
 	<% if @library && @library.topic %>
-		<%= link_to @library.topic, library_path(@library), class: "navbar-brand text-center block" %>
+		<%= link_to @library.topic, library_path(@library), class: "navbar-brand text-center block library-topic" %>
 	<% end %>
       <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
         <span class="icon-bar"></span>
