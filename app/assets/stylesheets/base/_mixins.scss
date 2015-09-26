@@ -12,3 +12,11 @@
        -o-animation: $animation;
           animation: $animation;
 }
+
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

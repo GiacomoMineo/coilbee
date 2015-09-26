@@ -1,21 +1,41 @@
 /* Global styles */
-@import 'variables.scss';
-@import 'mixins.scss';
 
 body { 
 	padding-top: 70px;
-	margin-bottom: 30px;
+	margin-bottom: 70px;
 }
 
+// Anchor reset
+a {
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+// Button transitions
 .btn {
 	@include transition(all 0.3s ease);
 }
 
+// Icons
 .icon-small {
-	color: #008cba;
-	margin-left: 6px;
+	color: $color-accent;
+	margin-left: 8px;
 	@include transition(all 0.3s ease);
 	&:hover {
-		color: #00C0FF;
+		color: $color-accent-light;
 	}
+}
+
+// Tooltips
+/*.tooltip {
+	.tooltip-arrow {
+	}
+	.tooltip-inner {
+	}
+}*/
+
+// Nav items transitions
+nav li a {
+	@include transition(all 0.3s ease);
 }

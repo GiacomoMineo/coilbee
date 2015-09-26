@@ -1,41 +1,35 @@
 <nav class="navbar navbar-fixed-top navbar-default" id="custom-nav">
 	<div class="container-fluid">
-	<% if @library %>
-		<div class="col-lg-10 col-lg-offset-1 col-xs-12">
-	<% else %>
-		<div class="col-lg-10 col-lg-offset-1 col-xs-12">
-	<% end %>
-		
+	<div class="col-lg-10 col-lg-offset-1 col-xs-12">
 	<%= link_to "Linkr", '/', class: "navbar-brand logo" %>
 	<% if @library && @library.topic %>
-		<%= link_to @library.topic, library_path(@library), class: "navbar-brand text-center block library-topic" %>
+		<%= link_to @library.topic, library_path(@library), class: "navbar-brand library-topic" %>
 	<% end %>
-      <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+    <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
-      <div class="collapse navbar-collapse navHeaderCollapse">
+    </button>
+    <div class="collapse navbar-collapse navHeaderCollapse">
         <ul class="nav navbar-nav navbar-right">
-			<li><%= link_to current_user.email, edit_user_registration_path  %></li> 
-			<li><%= link_to "Log out", destroy_user_session_path, method: "delete" %></li> 
-
+			<li class="user-btn"><%= link_to current_user.email, edit_user_registration_path %>
+				<div class="user-dropdown"><%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %></div>
+			</li>
 			<% if @library %>
-				<li><%= link_to 'Suggest', "/entries/new" %></li>
-
+				<li><%= link_to 'Suggest', "/entries/new", class: "suggest-btn" %></li>
 				<li>
 				<%= form_tag(tag_search_path, :method => "get", class: "navbar-form navbar-right", id: "search-form", role: "search") do %>
-						<div class="input-group">
-						<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Tag" %>
-						<span class="input-group-btn">
-							<%= submit_tag "Go", class: "btn btn-default" %>
-							</span>
-						</div>
-					<% end %>
+					<div class="input-group">
+					<%= text_field_tag :search, params[:search], class: "form-control search-input", placeholder: "Search Tag" %>
+					<span class="input-group-btn">
+						<%= submit_tag "Go", class: "btn btn-default search-btn" %>
+						</span>
+					</div>
+				<% end %>
 				</li>
 			<% end %>
         </ul>
-      </div>
+    </div>
     </div>
 	</div>
 </nav>

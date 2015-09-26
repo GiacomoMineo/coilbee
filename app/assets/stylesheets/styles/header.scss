@@ -1,12 +1,70 @@
 /* Header */
 
+// Logo
 a.navbar-brand.logo {
+	@include transition(all 0.3s ease);
+	color: #fff;
 	font-weight: 900;
 	&:hover {
-		color: #5CFF9D;
+		color: $color-main;
 	}
 }
 
+// Library topic
 .library-topic {
 	font-weight: 300;
+	margin-left: 0 !important;
+	border-left: 1px solid $color-fade;
+	@include transition(all 0.3s ease);
+	&:hover {
+   		color: $color-accent !important;
+   	}
+}
+
+// Username and dropdown
+.user-btn {
+	position: relative;
+	&:hover {
+		.user-dropdown {
+			display: block;
+		}
+	}
+	.user-dropdown {
+		display: none;
+		position: absolute;
+		right: 0;
+		@extend %clearfix;
+		a {
+			display: block;
+			@include transition(all 0.3s ease);
+			padding: 12px 15px;
+			font-size: 13px;
+   			font-weight: 300;
+   			line-height: 21px;
+   			color: #fff;
+   			background-color: $color-dark;
+   			&:hover {
+   				background-color: $color-dark-2;
+   			}
+		}
+		.user-logout {
+			
+		}
+	}
+}
+
+// Search
+.search-input {
+
+}
+.search-btn {
+	padding-top: 4px !important;
+	padding-bottom: 4px !important;
+}
+
+// Links
+.suggest-btn {
+	border-left: 1px solid $color-fade !important;
+	border-right: 1px solid $color-fade !important;
+	color: $color-main !important;
 }

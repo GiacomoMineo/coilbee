@@ -3,21 +3,62 @@
 .find-btn, .new-btn {
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 17px;
     letter-spacing: 1.3px;
-    padding: 16px 40px;
+    padding: 14px 36px;
     text-decoration: none;
     text-transform: uppercase;
-}
-.new-btn {
-	font-weight: 400;
+    border-radius: 20px;
 }
 .find-btn {
 	margin-right: 4px;
 }
 
 .library-header {
-	margin-bottom: 12px;
+	margin-bottom: -14px;
+}
+.library-title {
+	font-weight: normal;
+	font-size: 19px;
+	@include transition(color 0.3s ease);
+	&:hover {
+		color: $color-accent-light;
+	}
+}
+.library-tabs {
+	text-align: center;
+	li {
+		display: inline-block;
+		float: none;
+		a {
+			font-family: 'Raleway', sans-serif;
+			font-weight: 300;
+		    font-size: 15px;
+		    letter-spacing: 1.2px;
+		    padding: 14px 32px;
+		    text-decoration: none;
+		    text-transform: uppercase;
+		    @include transition(all 0.3s ease);
+		    > i {
+		    	line-height: 0;
+		    	font-size: 16px;
+		    	margin-left: 12px;
+		    	vertical-align: -2px;
+		    }
+		}
+		&.active {
+			a {
+			}
+		}
+	}
+}
+.library-tab-content {
+	padding: 16px;
+	border: 1px solid $color-fade-light;
+	border-top: none;
+}
+.tab-pane > div:last-child {
+	margin-bottom: 0 !important;
 }
 
 .open-btn {

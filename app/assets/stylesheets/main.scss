@@ -1,4 +1,7 @@
-@import "base/globals.scss";
 
-@import "styles/libraries.scss";
-@import "styles/header.scss";
+@import "base/variables";
+@import "base/mixins";
+@import "base/globals";
+
+@import "styles/libraries";
+@import "styles/header";

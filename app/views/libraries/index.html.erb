@@ -2,113 +2,131 @@
 	<h1 class="text-center">Welcome to Linkr!</h1>
   	<h3 class="text-center">Create, follow or suggest libraries</h3>
 </div>
+
 <div class="clearfix library-header">
-	<h2 class="pull-left">Your libraries</h3>
-	<%= link_to "New Library", new_library_path, :class => 'btn btn-success pull-right new-btn'  %>
-	<%= link_to "Find Library", '', :class => 'btn btn-default pull-right find-btn'  %>
+	<%= link_to "New", new_library_path, class: "btn btn-success pull-left new-btn" %>
+	<%= link_to "Browse", '', class: "btn btn-default pull-right find-btn" %>
 </div>
+
 <% if @libraries_own.empty? %>
-	<p>Currently you don't have any libraries.</p>
-	<% end %>
-	<% @libraries_own.each do |lib| %>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="panel-title">
-				<em><%= lib.topic %></em>
-					<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
-		      	<span class="glyphicon icon-small glyphicon-remove" aria-hidden="true"></span>
-		      <% end %>
-					<%= link_to edit_library_path(lib), class: "pull-right" do %>
-		        <span class="glyphicon icon-small glyphicon-pencil" aria-hidden="true"></span>
-		      <% end %>
-					<%= link_to new_suggestion_path(:lib => lib), class: "pull-right"  do %>
-		        <span class="glyphicon icon-small glyphicon-share-alt" aria-hidden="true"></span>
-		      <% end %>
-			</div>
-		</div>
-	  <div class="panel-body">
-		<%= lib.description %>
-		<%= link_to library_path(lib), class: "pull-right" do %>
-	    	<button type="button" class="btn btn-primary open-btn">Open</button>
+	<p>Currently you don't have any libraries. CREATE or FOLLOW libraries!</p>
+<% else %>
+	<ul class="nav nav-tabs library-tabs" role="tablist">
+		<% unless @libraries_own.empty? %>
+	    	<li role="presentation" class="active"><a href="#created" aria-controls="created" role="tab" data-toggle="tab">Created<i class="glyphicon glyphicon-pencil"></i></a></li>
 	    <% end %>
-	  </div>
-	</div>
-<% end %>
-<h2>Followed libraries</h2>
-<% if @libraries_followed.empty? %>
-	<p>Currently you are not following any libraries.</p>
-	<% end %>
-	<% @libraries_followed.each do |lib| %>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="panel-title">
-				<em><%= lib.topic %></em>
-				<div class="pull-right">
-					<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete do %>
-		      	<span class="glyphicon icon-small glyphicon-remove" aria-hidden="true"></span>
-		      <% end %>
-				</div>
-				<div class="pull-right">
-					<%= link_to edit_library_path(lib) do %>
-		        <span class="glyphicon icon-small glyphicon-pencil" aria-hidden="true"></span>
-		      <% end %>
-				</div>
-				<div class="pull-right">
-					<%= link_to new_suggestion_path(:lib => lib) do %>
-		        <span class="glyphicon icon-small glyphicon-plus" aria-hidden="true"></span>
-		      <% end %>
-				</div>
-			</div>
-		</div>
-	  <div class="panel-body">
-		  <%= lib.description %>
-		  <div class="pull-right">
-				<%= link_to library_path(lib) do %>
-	        <span class="glyphicon icon-small glyphicon-share-alt" aria-hidden="true"></span>
-	      <% end %>
-			</div>
-	  </div>
-	</div>
-<% end %>
-<% unless @suggestions.empty? %>
-	<h2>Suggested libraries</h2>
-	<% @suggestions.each do |sug| %>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="panel-title">
-				<em><%= sug.library.topic %> (Invitation by: <%= sug.creator.email %>)</em>
-				<div class="pull-right">
-					<%= link_to library_path(sug.library), data: {confirm: "Are you sure?"}, :method => :delete do %>
-		      	<span class="glyphicon icon-small glyphicon-remove" aria-hidden="true"></span>
-		      <% end %>
-				</div>
-				<div class="pull-right">
-					<%= link_to edit_library_path(sug.library) do %>
-		        <span class="glyphicon icon-small glyphicon-pencil" aria-hidden="true"></span>
-		      <% end %>
-				</div>
-				<div class="pull-right">
-					<%= link_to "" do %>
-		        <span class="glyphicon icon-small glyphicon-plus" aria-hidden="true"></span>
-		      <% end %>
-				</div>
-			</div>
-		</div>
-	  <div class="panel-body">
-		  <%= sug.library.description %>
-		  <div class="pull-right">
-				<%= link_to library_path(sug.library) do %>
-	        <span class="glyphicon icon-small glyphicon-share-alt" aria-hidden="true"></span>
-	      <% end %>
-			</div>
-			<div class="pull-right">
-				<%= link_to "Reject", suggestion_path(sug), data: {confirm: "Are you sure?"}, :method => :delete, :class => 'btn btn-default btn-sm pull-right' %>
-			</div>
-			<div class="pull-right">
-				<%= link_to "Follow", accept_suggestion_path(sug), :class => 'btn btn-default btn-sm pull-right'  %>
-			</div>
-	  </div>
-	</div>
+	    <% unless @libraries_followed.empty? %>
+	    	<li role="presentation"><a href="#followed" aria-controls="followed" role="tab" data-toggle="tab">Followed<i class="glyphicon glyphicon-sunglasses"></i></a></li>
+	    <% end %>
+	    <% unless @suggestions.empty? %>
+	    	<li role="presentation"><a href="#suggested" aria-controls="suggested" role="tab" data-toggle="tab">Suggested<i class="glyphicon glyphicon-link"></i></a></li>
+	    <% end %>
+	</ul>
 <% end %>
 
-<% end %>
+<div class="tab-content library-tab-content">
+	<!-- Created tab -->
+	<div role="tabpanel" class="tab-pane fade in active" id="created">
+		<% @libraries_own.each do |lib| %>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<span class="library-title"><%= link_to lib.topic, library_path(lib), class: "library-title" %></span>
+					<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
+			      		<span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+			        <% end %>
+					<%= link_to edit_library_path(lib), class: "pull-right" do %>
+			        	<span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+			        <% end %>
+					<%= link_to new_suggestion_path(:lib => lib), class: "pull-right"  do %>
+			        	<span class="glyphicon icon-small glyphicon-share-alt" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"></span>
+			        <% end %>
+				</div>
+			</div>
+			<div class="panel-body">
+				<%= lib.description %>
+				<%= link_to library_path(lib), class: "pull-right" do %>
+				    <button type="button" class="btn btn-primary open-btn">Open</button>
+				<% end %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<!-- Followed tab -->
+	<div role="tabpanel" class="tab-pane fade" id="followed">
+		<% @libraries_followed.each do |lib| %>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<em><%= lib.topic %></em>
+					<div class="pull-right">
+						<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete do %>
+			      	<span class="glyphicon icon-small glyphicon-remove" aria-hidden="true"></span>
+			      <% end %>
+					</div>
+					<div class="pull-right">
+						<%= link_to edit_library_path(lib) do %>
+			        <span class="glyphicon icon-small glyphicon-pencil" aria-hidden="true"></span>
+			      <% end %>
+					</div>
+					<div class="pull-right">
+						<%= link_to new_suggestion_path(:lib => lib) do %>
+			        <span class="glyphicon icon-small glyphicon-plus" aria-hidden="true"></span>
+			      <% end %>
+					</div>
+				</div>
+			</div>
+		  <div class="panel-body">
+			  <%= lib.description %>
+			  <div class="pull-right">
+					<%= link_to library_path(lib) do %>
+		        <span class="glyphicon icon-small glyphicon-share-alt" aria-hidden="true"></span>
+		      <% end %>
+				</div>
+		  </div>
+		</div>
+		<% end %>
+	</div>
+	<!-- Suggested tab -->
+	<div role="tabpanel" class="tab-pane fade" id="suggested">
+		<% @suggestions.each do |sug| %>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<em><%= sug.library.topic %> (Invitation by: <%= sug.creator.email %>)</em>
+					<div class="pull-right">
+						<%= link_to library_path(sug.library), data: {confirm: "Are you sure?"}, :method => :delete do %>
+			      	<span class="glyphicon icon-small glyphicon-remove" aria-hidden="true"></span>
+			      <% end %>
+					</div>
+					<div class="pull-right">
+						<%= link_to edit_library_path(sug.library) do %>
+			        <span class="glyphicon icon-small glyphicon-pencil" aria-hidden="true"></span>
+			      <% end %>
+					</div>
+					<div class="pull-right">
+						<%= link_to "" do %>
+			        <span class="glyphicon icon-small glyphicon-plus" aria-hidden="true"></span>
+			      <% end %>
+					</div>
+				</div>
+			</div>
+		<div class="panel-body">
+			<%= sug.library.description %>
+			<div class="pull-right">
+				<%= link_to library_path(sug.library) do %>
+		        	<span class="glyphicon icon-small glyphicon-share-alt" aria-hidden="true"></span>
+		    	<% end %>
+			</div>
+			<div class="pull-right">
+				<%= link_to "Reject", suggestion_path(sug), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-default btn-sm pull-right' %>
+			</div>
+			<div class="pull-right">
+				<%= link_to "Follow", accept_suggestion_path(sug), class: 'btn btn-default btn-sm pull-right'  %>
+			</div>
+		  </div>
+		</div>
+		<% end %>
+	</div>
+</div>
+
