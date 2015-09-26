@@ -1,35 +1,36 @@
 <nav class="navbar navbar-fixed-top navbar-default" id="custom-nav">
 	<div class="container-fluid">
 	<div class="col-lg-10 col-lg-offset-1 col-xs-12">
-	<%= link_to "Linkr", '/', class: "navbar-brand logo" %>
-	<% if @library && @library.topic %>
-		<%= link_to @library.topic, library_path(@library), class: "navbar-brand library-topic" %>
-	<% end %>
-    <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </button>
-    <div class="collapse navbar-collapse navHeaderCollapse">
-        <ul class="nav navbar-nav navbar-right">
-			<li class="user-btn"><%= link_to current_user.email, edit_user_registration_path %>
-				<div class="user-dropdown"><%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %></div>
-			</li>
-			<% if @library %>
-				<li><%= link_to 'Suggest', "/entries/new", class: "suggest-btn" %></li>
-				<li>
-				<%= form_tag(tag_search_path, :method => "get", class: "navbar-form navbar-right", id: "search-form", role: "search") do %>
-					<div class="input-group">
-					<%= text_field_tag :search, params[:search], class: "form-control search-input", placeholder: "Search Tag" %>
-					<span class="input-group-btn">
-						<%= submit_tag "Go", class: "btn btn-default search-btn" %>
-						</span>
-					</div>
-				<% end %>
-				</li>
+		<div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main-collapse" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		    </button>
+		    <%= link_to "Linkr", '/', class: "navbar-brand logo" %></li>
+			<% if @library && @library.topic %>
+				<%= link_to @library.topic, library_path(@library), class: "navbar-brand library-topic" %>
 			<% end %>
-        </ul>
-    </div>
+    	</div>
+	    <div class="collapse navbar-collapse" id="navbar-main-collapse">
+	        <ul class="nav navbar-nav navbar-right">
+				<li class="user-btn"><%= link_to current_user.email, edit_user_registration_path %>
+					<div class="user-dropdown"><%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %></div>
+				</li>
+				<% if @library %>
+					<li><%= link_to 'Suggest', "/entries/new", class: "suggest-btn" %></li>
+					<li>
+					<%= form_tag(tag_search_path, :method => "get", class: "navbar-form navbar-right", id: "search-form", role: "search") do %>
+						<div class="form-group">
+						<%= text_field_tag :search, params[:search], class: "form-control search-input", placeholder: "Search Tag" %>
+						</div>
+						<%= submit_tag "Go", class: "btn btn-default search-btn" %>
+					<% end %>
+					</li>
+				<% end %>
+	        </ul>
+	    </div>
     </div>
 	</div>
 </nav>

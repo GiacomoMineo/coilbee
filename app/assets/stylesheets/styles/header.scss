@@ -64,7 +64,9 @@ a.navbar-brand.logo {
 
 // Links
 .suggest-btn {
-	border-left: 1px solid $color-fade !important;
-	border-right: 1px solid $color-fade !important;
-	color: $color-main !important;
+	@include tablet {
+		border-left: 1px solid $color-fade !important;
+		border-right: 1px solid $color-fade !important;
+		color: $color-main !important;
+	}
 }

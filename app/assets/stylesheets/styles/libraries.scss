@@ -9,13 +9,30 @@
     text-decoration: none;
     text-transform: uppercase;
     border-radius: 20px;
+    @include tablet {
+    	position: absolute;
+    }
 }
 .find-btn {
-	margin-right: 4px;
+	float: right;
+	@include tablet {
+		right: 0;
+		top: 0;	
+	}
+}
+.new-btn {
+	@include tablet {
+		left: 0;
+		top: 0;
+	}
 }
 
 .library-header {
-	margin-bottom: -14px;
+	position: relative;
+	margin-bottom: 21px;
+	.libraries-text {
+		text-align: center;
+	}
 }
 .library-title {
 	font-weight: normal;
