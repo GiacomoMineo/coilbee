@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def role_symbols
-    (roles || []).map {|r| r.title.to_sym}
+    (roles || []).map{|r| r.title.to_sym}.append(:user)
   end
 
 end
