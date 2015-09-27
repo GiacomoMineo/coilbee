@@ -5,10 +5,10 @@
           <div class="panel-heading" role="tab" id="heading<%= index %>">
             <h4 class="panel-title">
               <div class="row">
-                <a href="#collapse<%= index %>" class="sidebar-header col-xs-7 menu-category-link" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse<%= index %>">
+                <a href="#collapse<%= index %>" class="sidebar-header col-xs-8 menu-category-link" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse<%= index %>">
                   <%= c.name %>
                 </a>
-                <div class="col-xs-5 menu-icon-wrapper">
+                <div class="col-xs-4 menu-icon-wrapper">
                   <%= link_to new_section_path(:cat => c), class: "menu-icon" do %>
                     <span class="glyphicon glyphicon-plus icon-small" aria-hidden="true"></span>
                   <% end %>
@@ -26,8 +26,8 @@
             <% c.sections.each do |s| %>
               <div class="panel-body menu-section">
                 <div class="row">
-                  <%= link_to s.name, section_path(s), class: "menu-section-link col-xs-8" %>
-                  <div class="col-xs-4 menu-icon-wrapper">         
+                  <%= link_to s.name, section_path(s), class: "menu-section-link col-xs-9" %>
+                  <div class="col-xs-3 menu-icon-wrapper">         
                     <%= link_to section_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
                       <span class="glyphicon glyphicon-remove icon-small" aria-hidden="true"></span>
                     <% end %>
@@ -46,7 +46,7 @@
         <div class="panel-heading" role="tab" id="heading-new">
           <h4 class="panel-title">
             <%= link_to new_category_path(:lib => @library), class: "menu-new-category" do %>
-              <span>Add Category</span>
+              <span>New Category</span>
               <span class="glyphicon glyphicon-plus pull-right icon-small" aria-hidden="true"></span>
             <% end %>
           </h4>

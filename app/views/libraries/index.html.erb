@@ -5,8 +5,14 @@
 
 <div class="library-header">
 	<h2 class="libraries-text">Libraries</h2>
-	<%= link_to "New", new_library_path, class: "btn btn-success new-btn" %>
-	<%= link_to "Browse", '', class: "btn btn-default browse-btn" %>
+	<%= link_to new_library_path, class: "btn btn-success new-btn" do %>
+		<i class="glyphicon glyphicon-plus"></i>
+		<span>New</span>
+	<% end %>
+	<%= link_to '', class: "btn btn-default browse-btn" do %>
+		<i class="glyphicon glyphicon-th"></i>
+		<span>Browse</span>
+	<% end %>
 </div>
 
 <% if @libraries_own.empty? and @libraries_followed.empty? and @suggestions.empty? %>

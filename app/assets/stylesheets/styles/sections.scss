@@ -1,6 +1,9 @@
 /* Sections */
 
 // Side Menu
+$category-line-height: 30px;
+$section-line-height: 24px;
+
 .menu-category-link , .menu-section-link {
 	display: inline-block;
 	text-overflow: ellipsis;
@@ -25,17 +28,44 @@
 	overflow: hidden;
 }
 .menu-category {
+	> .panel-heading {
+		@include transition(all 0.3s ease);
+		&:hover {
+			background-color: #fff;
+		}
+	}
+	.menu-icon-wrapper { line-height: $category-line-height; }
 	.menu-category-link {
-
+		font-size: 17px;
+		font-weight: normal;
+		color: #000;
+		text-decoration: none;
+		line-height: $category-line-height;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	&:last-child {
+		margin-top: 12px !important;
 	}
 }
 .menu-section {
+	@include transition(all 0.3s ease);
+	&:hover {
+		background-color: $color-light;
+	}
+	.menu-icon-wrapper { line-height: $section-line-height; }
 	.menu-section-link {
-
+		font-size: 15px;
+		font-weight: 300;
+		color: #000;
+		text-decoration: none;
+		line-height: $section-line-height;
 	}
 }
 .menu-new-category {
 	display: block;
+	font-size: 15px;
 	&:hover {
 
 	}
