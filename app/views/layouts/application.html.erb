@@ -15,14 +15,12 @@
 	<div class="container-fluid">
 		<div class="row">
 			<% if @library %>
-				<div class="col-lg-2 col-lg-offset-1 col-sm-3 col-xs-0 hidden-xs">
+				<div class="col-lg-2 col-lg-offset-1 col-sm-3 col-xs-0">
 					<%= render 'shared/library_menu.html.erb' %>
 				</div>
-				
 				<div class="col-lg-8 col-sm-9 col-xs-12">
 			<% else %>
 				<div class="col-lg-10 col-lg-offset-1 col-xs-12">
-				<!-- div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1" -->
 			<% end %>
 					<% if notice %>
 						<p class="alert alert-success"><%= notice %></p>

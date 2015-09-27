@@ -17,7 +17,7 @@ a.navbar-brand.logo {
 	border-left: 1px solid $color-fade;
 	@include transition(all 0.3s ease);
 	&:hover {
-   		color: $color-accent !important;
+   		color: $color-accent-light !important;
    	}
 }
 
@@ -67,6 +67,6 @@ a.navbar-brand.logo {
 	@include tablet {
 		border-left: 1px solid $color-fade !important;
 		border-right: 1px solid $color-fade !important;
-		color: $color-main !important;
+		//color: $color-main !important;
 	}
 }

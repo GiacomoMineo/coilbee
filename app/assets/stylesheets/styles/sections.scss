@@ -1,0 +1,45 @@
+/* Sections */
+
+// Side Menu
+.menu-category-link , .menu-section-link {
+	display: inline-block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding-right: 0;
+}
+.menu-icon-wrapper {
+	padding-left: 0;
+}
+.menu-icon {
+	float: right;
+	font-size: 15px;
+	padding-top: 2px;
+	.icon-small {
+		margin-left: 4px;
+	}
+}
+.menu-text-wrapper {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.menu-category {
+	.menu-category-link {
+
+	}
+}
+.menu-section {
+	.menu-section-link {
+
+	}
+}
+.menu-new-category {
+	display: block;
+	&:hover {
+
+	}
+	.icon-small:hover {
+		color: $color-accent;
+	}
+}
