@@ -9,7 +9,7 @@
 	<%= link_to "Browse", '', class: "btn btn-default browse-btn" %>
 </div>
 
-<% if @libraries_own.empty? %>
+<% if @libraries_own.empty? and @libraries_followed.empty? and @suggestions.empty? %>
 <div class="empty">
 	<p class="empty-text">You don't have any libraries.</p>
 	<p class="empty-suggestion"><%= link_to "Create", new_library_path, class: "empty-link" %> or <%= link_to "Browse", '', class: "empty-link" %> libraries!</p>
@@ -17,18 +17,24 @@
 <% else %>
 <ul class="nav nav-tabs library-tabs" role="tablist">
 	<% unless @libraries_own.empty? %>
-    	<li role="presentation" class="active"><a href="#created" aria-controls="created" role="tab" data-toggle="tab">Created<i class="glyphicon glyphicon-pencil"></i></a></li>
-    <% end %>
-    <% unless @libraries_followed.empty? %>
-    	<li role="presentation"><a href="#followed" aria-controls="followed" role="tab" data-toggle="tab">Followed<i class="glyphicon glyphicon-sunglasses"></i></a></li>
-    <% end %>
-    <% unless @suggestions.empty? %>
-    	<li role="presentation"><a href="#suggested" aria-controls="suggested" role="tab" data-toggle="tab">Suggested<i class="glyphicon glyphicon-link"></i></a></li>
-    <% end %>
+		<li role="presentation" class="active" >
+			<a href="#created" aria-controls="created" role="tab" data-toggle="tab">Created<i class="glyphicon glyphicon-pencil"></i></a>
+		</li>
+	<% end %>
+	<% unless @libraries_followed.empty? %>
+		<li role="presentation" <% if @libraries_own.empty? %> class="active"<% end %> >
+			<a href="#followed" aria-controls="followed" role="tab" data-toggle="tab">Followed<i class="glyphicon glyphicon-sunglasses"></i></a>
+		</li>
+	<% end %>
+	<% unless @suggestions.empty? %>
+		<li role="presentation" <% if @libraries_own.empty? and @suggestions.empty? %> class="active"<% end %> >
+			<a href="#suggested" aria-controls="suggested" role="tab" data-toggle="tab">Suggested<i class="glyphicon glyphicon-link"></i></a>
+		</li>
+	<% end %>
 </ul>
 <div class="tab-content library-tab-content">
 	<!-- Created tab -->
-	<div role="tabpanel" class="tab-pane fade in active" id="created">
+	<div role="tabpanel" class="tab-pane fade <% unless @libraries_own.empty? %>in active <%end %>" id="created">
 		<% @libraries_own.each do |lib| %>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -55,7 +61,7 @@
 		<% end %>
 	</div>
 	<!-- Followed tab -->
-	<div role="tabpanel" class="tab-pane fade" id="followed">
+	<div role="tabpanel" class="tab-pane fade <% if @libraries_own.empty? %>in active<%end%>" id="followed">
 		<% @libraries_followed.each do |lib| %>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -80,7 +86,7 @@
 		<% end %>
 	</div>
 	<!-- Suggested tab -->
-	<div role="tabpanel" class="tab-pane fade" id="suggested">
+	<div role="tabpanel" class="tab-pane fade <% if @libraries_own.empty? and @libraries_followed.empty? %>in active <%end%>" id="suggested">
 		<% @suggestions.each do |sug| %>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -99,4 +105,3 @@
 	</div>
 </div>
 <% end %>
-

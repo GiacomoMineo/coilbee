@@ -2,9 +2,9 @@ class LibrariesController < ApplicationController
 	filter_resource_access
 
 	def index
-		@libraries_own = Library.all.select{ |lib| lib.creator == current_user} 
-		@libraries_followed = Library.all.select{ |lib| lib.users.include? current_user} 
-		@suggestions = Suggestion.all.select{ |sug| sug.receiver == current_user}
+		@libraries_own = current_user.libraries_created
+		@libraries_followed = current_user.libraries
+		@suggestions = current_user.suggestions_received
 	end
 
 	def show
