@@ -2,12 +2,12 @@ class TagsController < ApplicationController
 	filter_resource_access
 		
 	def index
-		if params[:search]
-      		@tags = Tag.search(params[:search])#.order("created_at DESC")
-	    else
-	        @tags = Tag.order("created_at DESC")
-	    end
-
+		if params[:library_id] and params[:search]
+				@library = Library.find(params[:library_id])
+				@tags = @library.tags.search(params[:search])
+		else
+				redirect_to(request.referer || '/', alert: "Request invalid.")
+		end
 	end
 
 	def show

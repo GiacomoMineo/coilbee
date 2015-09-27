@@ -23,6 +23,7 @@
 					<li>
 					<%= form_tag(tag_search_path, :method => "get", class: "navbar-form navbar-right", id: "search-form", role: "search") do %>
 						<div class="form-group">
+						<%= hidden_field_tag :library_id, @library.id %>
 						<%= text_field_tag :search, params[:search], class: "form-control search-input", placeholder: "Search Tag" %>
 						</div>
 						<%= submit_tag "Go", class: "btn btn-default search-btn" %>

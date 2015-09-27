@@ -64,16 +64,16 @@ e8 = Entry.create(title: "This is link title8", link: "http://www.example8.com",
 e9 = Entry.create(title: "This is link title9", link: "http://www.example9.com", description: "Example description of link9", section_id: s1.id, group_id: g4.id)
 e10 = Entry.create(title: "This is link title10", link: "http://www.example10.com", description: "Example description of link10", section_id: s1.id, group_id: g4.id)
 
-t1 = Tag.create(name: "Tag1")
-t2 = Tag.create(name: "Tag2")
-t3 = Tag.create(name: "Tag3")
-t4 = Tag.create(name: "Tag4")
-t5 = Tag.create(name: "Tag5")
-t6 = Tag.create(name: "Tag6")
-t7 = Tag.create(name: "Tag7")
-t8 = Tag.create(name: "Tag8")
-t9 = Tag.create(name: "Tag9")
-t10 = Tag.create(name: "Tag10")
+t1 = Tag.create(name: "Tag1", library: l1)
+t2 = Tag.create(name: "Tag2", library: l1)
+t3 = Tag.create(name: "Tag3", library: l1)
+t4 = Tag.create(name: "Tag4", library: l1)
+t5 = Tag.create(name: "Tag5", library: l1)
+t6 = Tag.create(name: "Tag6", library: l1)
+t7 = Tag.create(name: "Tag7", library: l1)
+t8 = Tag.create(name: "Tag8", library: l1)
+t9 = Tag.create(name: "Tag9", library: l1)
+t10 = Tag.create(name: "Tag10", library: l1)
 
 e1.tags << [t1, t2, t3, t4]
 e2.tags << [t4, t5, t6, t7]

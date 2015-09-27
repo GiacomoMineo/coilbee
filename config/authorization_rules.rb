@@ -16,6 +16,10 @@ authorization do
 		has_permission_on :sections, :to => :read do
 			if_permitted_to :read, :category
 		end
+		# ... and tags
+		has_permission_on :tags, :to => :read do
+			if_permitted_to :read, :library
+		end
 		
 		# may accept or decline suggestions he received
 		has_permission_on :suggestions, :to => [:accept, :destroy] do 
