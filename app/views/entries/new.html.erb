@@ -14,7 +14,11 @@
 	</div>
 	<div class="form-group">
 		<%= label_tag 'entry[section_id]', "Section" %>
-		<%= f.collection_select(:section_id, Section.all, :id, lambda { |c| "#{c.category.name}/#{c.name}" }, {prompt: true}, {class: "form-control"}) %>
+		<%= f.collection_select(:section_id, @sections, :id, lambda { |c| "#{c.category.name}/#{c.name}" }, {prompt: true}, {class: "form-control"}) %>
+	</div>
+	<div class="form-group">
+		<%= label_tag 'entry[group_id]', "Type" %>
+		<%= f.collection_select(:group_id, @groups, :id, :name, {prompt: true}, {class: "form-control"}) %>
 	</div>
 	<%= f.submit "Submit", class: "btn btn-submit" %>
 <% end %>

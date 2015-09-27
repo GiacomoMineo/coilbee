@@ -24,13 +24,22 @@ class EntriesController < ApplicationController
 	end
 
 	def new
+		@library = Library.find_by(id: params[:lib])
+		
+		@sections = []
+		@library.categories.each do |cat|
+			@sections.push(cat.sections)
+		end
+		@sections = @sections.flatten
+		
+		@groups = @library.groups
 		@entry = Entry.new
 	end
 
 	def create
 		@entry = Entry.new(entry_params) 
-  		if @entry.save 
-			redirect_to '/entries' 
+  		if @entry.save
+			redirect_to section_path(entry_params[:section_id]) 
   		else 
     		render 'new' 
   		end
@@ -38,6 +47,6 @@ class EntriesController < ApplicationController
 	
 	private
 		def entry_params
-			params.require(:entry).permit(:title, :link, :description, :section_id)
+			params.require(:entry).permit(:title, :link, :description, :section_id, :group_id)
 		end
 end
