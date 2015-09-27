@@ -1,7 +1,7 @@
 class Entry < ActiveRecord::Base
 	# prepares the entry for being shown to current_user
 	scope :for_user, ->(user) {
-		includes(:tags)
+		includes(:tags, :group)
 		.with_read_marks_for(user)
 		.order(cached_votes_score: :desc, updated_at: :desc, created_at: :asc)
 	}
