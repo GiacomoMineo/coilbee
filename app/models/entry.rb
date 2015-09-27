@@ -3,7 +3,7 @@ class Entry < ActiveRecord::Base
 	scope :for_user, ->(user) {
 		includes(:tags)
 		.with_read_marks_for(user)
-		.order(cached_votes_score: :desc)
+		.order(cached_votes_score: :desc, updated_at: :desc, created_at: :asc)
 	}
 
 	acts_as_votable
