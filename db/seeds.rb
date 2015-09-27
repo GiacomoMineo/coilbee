@@ -54,7 +54,8 @@ s8 = Section.create(name: "T-Section 2", category_id: c3.id)
 s9 = Section.create(name: "T-Section 3", category_id: c3.id)
 
 
-e1 = Entry.create(title: "This is link title1", link: "http://www.example1.com", description: "Example description of link1", section_id: s1.id, group_id: g1.id)
+e1 = Entry.create(title: "How to Write a Git Commit Message", link: "http://chris.beams.io/posts/git-commit/", description: "A project's long-term success rests (among other things) on its maintainability, and a maintainer has few tools more powerful than his project's log. It's worth taking the time to learn how to care for one properly. What may be a hassle at first soon becomes habit, and eventually a source of pride and productivity for all involved.", section_id: s1.id, group_id: g1.id)
+User.all.each {|u| e1.upvote_by u} # this is a really popular link!
 e2 = Entry.create(title: "This is link title2", link: "http://www.example2.com", description: "Example description of link2", section_id: s1.id, group_id: g1.id)
 e3 = Entry.create(title: "This is link title3", link: "http://www.example3.com", description: "Example description of link3", section_id: s1.id, group_id: g1.id)
 e4 = Entry.create(title: "This is link title4", link: "http://www.example4.com", description: "Example description of link4", section_id: s1.id, group_id: g2.id)
@@ -64,17 +65,6 @@ e7 = Entry.create(title: "This is link title7", link: "http://www.example7.com",
 e8 = Entry.create(title: "This is link title8", link: "http://www.example8.com", description: "Example description of link8", section_id: s1.id, group_id: g3.id)
 e9 = Entry.create(title: "This is link title9", link: "http://www.example9.com", description: "Example description of link9", section_id: s1.id, group_id: g4.id)
 e10 = Entry.create(title: "This is link title10", link: "http://www.example10.com", description: "Example description of link10", section_id: s1.id, group_id: g4.id)
-
-#e1 = Entry.create(title: "This is link title1", link: "http://www.example1.com", description: "Example description of link1", section_id: s1.id, group: 1)
-#e2 = Entry.create(title: "This is link title2", link: "http://www.example2.com", description: "Example description of link2", section_id: s1.id, group: 1)
-#e3 = Entry.create(title: "This is link title3", link: "http://www.example3.com", description: "Example description of link3", section_id: s2.id, group: 2)
-#e4 = Entry.create(title: "This is link title4", link: "http://www.example4.com", description: "Example description of link4", section_id: s2.id, group: 2)
-#e5 = Entry.create(title: "This is link title5", link: "http://www.example5.com", description: "Example description of link5", section_id: s3.id, group: 3)
-#e6 = Entry.create(title: "This is link title6", link: "http://www.example6.com", description: "Example description of link6", section_id: s3.id, group: 3)
-#e7 = Entry.create(title: "This is link title7", link: "http://www.example7.com", description: "Example description of link7", section_id: s4.id, group: 3)
-#e8 = Entry.create(title: "This is link title8", link: "http://www.example8.com", description: "Example description of link8", section_id: s5.id, group: 4)
-#e9 = Entry.create(title: "This is link title9", link: "http://www.example9.com", description: "Example description of link9", section_id: s6.id, group: 4)
-#e10 = Entry.create(title: "This is link title10", link: "http://www.example10.com", description: "Example description of link10", section_id: s7.id, group: 4)
 
 t1 = Tag.create(name: "Tag1")
 t2 = Tag.create(name: "Tag2")
@@ -97,16 +87,6 @@ e7.tags << [t10]
 e8.tags << [t1, t4]
 e9.tags << [t1, t2, t3, t4]
 e10.tags << [t4]
-
-#s1.entries << [e1, e3, e5, e10]
-#s2.entries << [e2, e3, e4, e5, e6]
-#s3.entries << [e4, e5, e8, e7, e9]
-#s4.entries << [e5, e3, e8, e7, e9]
-#s5.entries << [e4, e5, e8, e7, e9]
-#s6.entries << [e2, e4, e8, e7, e9]
-#s7.entries << [e1, e3, e8, e7, e9]
-#s8.entries << [e3, e6, e8, e7, e9]
-#s9.entries << [e10]
 
 admin.libraries << [l1,l2]
 editor.libraries << [l1,l2]
