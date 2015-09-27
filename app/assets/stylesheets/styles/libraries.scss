@@ -1,6 +1,6 @@
 /* Libraries */
 
-.find-btn, .new-btn {
+.browse-btn, .new-btn {
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
     font-size: 17px;
@@ -13,7 +13,7 @@
     	position: absolute;
     }
 }
-.find-btn {
+.browse-btn {
 	float: right;
 	@include tablet {
 		right: 0;
@@ -35,8 +35,8 @@
 	}
 }
 .library-title {
-	font-weight: normal;
-	font-size: 19px;
+	font-weight: 300;
+	font-size: 21px;
 	@include transition(color 0.3s ease);
 	&:hover {
 		color: $color-accent-light;
@@ -81,5 +81,42 @@
 .open-btn {
 	font-size: 14px;
 	padding: 6px 10px;
+	margin-left: 6px;
+}
+.follow-btn, .reject-btn {
+	font-size: 13px;
+	line-height: 19px;
+	padding: 4px 16px;
+	margin-left: 4px;
+	color: #fff !important;
 }
 
+.suggested-by {
+	font-size: 12px;
+	padding-left: 16px;
+	> span {
+		font-weight: bold;
+	}
+}
+
+.empty {
+	padding: 24px 38px;
+	margin: 56px 0;
+	background-color: $color-light;
+	text-align: center;
+	.empty-text {
+		font-size: 19px;
+		font-weight: 300;
+	}
+	.empty-suggestion {
+		font-size: 24px;
+		font-weight: 300;
+	}
+	.empty-link {
+		font-weight: bold;
+		@include transition(color 0.3s ease);
+		&:hover {
+			color: $color-accent-light;
+		}
+	}
+}
