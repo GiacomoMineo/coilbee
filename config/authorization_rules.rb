@@ -1,9 +1,5 @@
 authorization do
   role :guest do
-    # add permissions for guests here, e.g.
-    # has_permission_on :conferences, :to => :read
-    has_permission_on :authorization_rules, :to => :read
-    has_permission_on :authorization_usages, :to => :read
   end
   
   role :user do
@@ -25,6 +21,20 @@ authorization do
 		has_permission_on :suggestions, :to => [:accept, :destroy] do 
 			if_attribute :receiver => is {user}
 		end
+		
+		# may edit libraries he created...
+		has_permission_on :libraries, :to => :manage do
+			if_attribute :creator => is {user}
+		end
+		# ... and all their categories
+		has_permission_on :categories, :to => :manage do
+			if_permitted_to :edit, :library
+		end
+		# ... and sections
+		has_permission_on :sections, :to => :manage do
+			if_permitted_to :edit, :category
+		end
+		
 	end
   
   role :admin do

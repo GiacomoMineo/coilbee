@@ -17,16 +17,14 @@ roles = Role.create([
 ]) if Role.count == 0
 
 
-
 admin = User.create(user_name: 'admin', email: 'admin@gmail.com', password: 'password')
 editor = User.create(user_name: 'editor', email: 'editor@gmail.com', password: 'password')
 user = User.create(user_name: 'user', email: 'user@gmail.com', password: 'password')
 
 admin.roles << [Role.find_by(title: 'admin')]
-user.roles << [Role.find_by(title: 'user')]
 
-l1 = Library.create(topic: "Start Up", description: "This is a library about everything regarding start ups!", creator_id: admin.id)
-l2 = Library.create(topic: "Cooking", description: "This is a library about everything regarding cooking!", creator_id: admin.id)
+l1 = Library.create(topic: "Start Up", description: "This is a library about everything regarding start ups!", creator_id: editor.id)
+l2 = Library.create(topic: "Cooking", description: "This is a library about everything regarding cooking!", creator_id: editor.id)
 
 g1 = Group.create(name: "read", library_id: l1.id)
 g2 = Group.create(name: "watch", library_id: l1.id)
