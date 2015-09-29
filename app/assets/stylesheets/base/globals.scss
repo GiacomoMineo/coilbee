@@ -1,7 +1,7 @@
 /* Global styles */
 
 body { 
-	padding-top: 70px;
+	padding-top: 80px;
 	margin-bottom: 70px;
 }
 
@@ -39,3 +39,167 @@ a {
 nav li a {
 	@include transition(all 0.3s ease);
 }
+
+
+// Inputs
+.in-row {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	margin: 24px 0 8px;
+	max-width: 350px;
+	width: 100%;
+	vertical-align: top;
+	.in-field {
+		position: relative;
+		display: block;
+		float: right;
+		padding: 12px;
+		border-radius: 0;
+		color: $color-accent;
+		font-family: 'Open Sans', sans-serif;
+		-webkit-appearance: none;
+
+		width: 100%;
+		background-color: $color-fade-alt;
+		border: 2px solid transparent;
+		-webkit-transition: background-color 0.25s, border-color 0.25s;
+		transition: background-color 0.25s, border-color 0.25s;
+		&:focus {
+			outline: none;
+		}
+	}
+	.in-label {
+		display: inline-block;
+		float: right;
+		color: $color-text-light;
+		font-weight: bold;
+		font-size: 14px;
+		-webkit-font-smoothing: antialiased;
+	    -moz-osx-font-smoothing: grayscale;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+
+		width: 100%;
+		text-align: left;
+		position: absolute;
+		bottom: 100%;
+		pointer-events: none;
+		overflow: hidden;
+		padding: 0 12px;
+		margin: 0;
+		-webkit-transform: translate3d(0, 35px, 0);
+		transform: translate3d(0, 35px, 0);
+		-webkit-transition: -webkit-transform 0.25s;
+		transition: transform 0.25s ;
+		-webkit-transition-timing-function: ease-in-out;
+		transition-timing-function: ease-in-out;
+		.in-label-content {
+			position: relative;
+			display: block;
+			width: 100%;
+
+			color: $color-text-light-medium;
+			padding: 2px 0;
+			-webkit-transition: -webkit-transform 0.25s;
+			transition: transform 0.25s;
+			-webkit-transition-timing-function: ease-in-out;
+			transition-timing-function: ease-in-out;
+			&::after {
+				content: attr(data-content);
+				position: absolute;
+				font-weight: 900;
+				bottom: 100%;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				color: $color-accent;
+				padding: 2px 0;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-size: 13px;
+			}
+		}
+	}
+}
+.in-field:focus + .in-label,
+.in-filled .in-label {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.in-field:focus + .in-label .in-label-content,
+.in-filled .in-label .in-label-content {
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+}
+.in-field:focus,
+.in-filled .in-field {
+	background-color: transparent;
+	border-color: $color-accent;
+}
+
+.in-submit {
+	display: block;
+	max-width: 350px;
+	width: 100%;
+	padding: 12px;
+	margin: 24px auto 8px;
+	font-weight: bold;
+}
+
+.in-remember {
+	margin: 4px 0;
+}
+
+// Checkboxes
+
+$size: 19px;
+$font: 13px;
+$offset: 2px;
+
+input[type=checkbox]:not(old),
+input[type=radio]:not(old){
+	width: $size;
+	height: $size;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+}
+//position label
+input[type=checkbox]:not(old) + label,
+input[type=radio]:not(old) + label{
+	display: inline-block;
+	margin-left: - ($size * 2);
+	line-height: $size;
+	font-size: $font;
+}
+//unchecked graphics
+input[type=checkbox]:not(old) + label > span,
+input[type=radio]:not(old) + label > span{
+  display: inline-block;
+  width: $size;
+  height: $size;
+  margin-right: 8px;
+  border: $offset solid transparent;
+  border-radius: 1px;
+  background: $color-fade-light;
+  vertical-align: bottom;
+}
+input[type=checkbox]:not(old):checked + label > span:before{
+	content: '✓';
+	display: block;
+	width: $size;
+	color: $color-accent;
+	font-size: $size;
+	line-height: $size - ($offset * 2);
+	text-align: left;
+	font-weight: bold;
+}
+input[type=checkbox]:not(old):checked + label > span {
+	border-color: $color-accent;
+}
+

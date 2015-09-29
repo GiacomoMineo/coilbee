@@ -2,11 +2,16 @@
 
 // Logo
 a.navbar-brand.logo {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 900;
+	font-size: 29px;
+	line-height: 19px;
+	letter-spacing: -px;
 	@include transition(all 0.3s ease);
 	color: #fff;
 	font-weight: 900;
 	&:hover {
-		color: $color-main-light;
+		color: $color-main;
 	}
 }
 

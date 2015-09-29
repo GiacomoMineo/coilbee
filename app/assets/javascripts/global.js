@@ -1,7 +1,43 @@
 /* Global */
 
 // Doc ready
+$(function() {
+	// Signup panel
+	$('#signup-btn').click(function(e) {
+		e.preventDefault();
+		$(this).toggleClass('clicked');
+		$(this).blur();
+		$('#signup').slideToggle(300);
+		$('#login').slideUp(300);
+    if($(this).hasClass('clicked')) {
+      $('html, body').animate({
+        scrollTop: $(this).offset().top - 88
+      }, 300);
+    };
+	});
+	// Login panel
+	$('#login-btn').click(function(e) {
+		e.preventDefault();
+		$('#login').slideToggle(300);
+		$('#signup').slideUp(300);
+		$('#signup-btn').removeClass('clicked');
+	});
+  // Inputs
+  $('.in-field').val() != '' ? $('.in-field').parent().addClass('in-filled') : $('.in-field').parent().removeClass('in-filled')
+  $('.in-field').bind("propertychange change click keyup input paste", function(event) {
+    $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
+  });
+});
+  
+
+// Page change event
 $(document).on('page:change', function(event) {
-	// Enable tooltips
+
+	// Initialization
+
+	//reset login and signup
+	$('#signup, #login').hide();
+	$('#signup-btn').removeClass('clicked');
+	//enable tooltips
   	$('[data-toggle="tooltip"]').tooltip();
 });
