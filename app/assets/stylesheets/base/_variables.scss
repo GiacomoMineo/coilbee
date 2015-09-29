@@ -5,6 +5,7 @@
 //main
 $color-main: #43AC6A;
 $color-main-dark: #358753;
+$color-main-dark-extra: #1E5F37;
 $color-main-light: #58E58C;
 //accent
 $color-accent: #008CBA;
@@ -20,15 +21,21 @@ $color-light-dark: #A5A5A5;
 //gray
 $color-fade: #6E6E6E;
 $color-fade-light: #ddd;
-$color-fade-alt: #d0d1d0;
+$color-fade-medium: #d0d1d0;
+//red
+$color-red-dark: #B90A0A;
+$color-red-light: #E68282;
 
 // Text colors
 
 //light
 $color-text-light-alt: #aaa;
-$color-text-light-medium: #8B8C8B;
+$color-text-medium: #8B8C8B;
 $color-text-light: #47525D;
 $color-text-dark: #222;
+
+$color-text-red-dark: $color-red-dark;
+$color-text-red-light: $color-red-light;
 
 // Media queries
 $tablet-width: 768px;

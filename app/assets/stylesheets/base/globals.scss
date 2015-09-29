@@ -7,7 +7,11 @@ body {
 
 // Anchor reset
 a {
+	text-decoration: none;
 	&:hover {
+		text-decoration: none;
+	}
+	&:focus {
 		text-decoration: none;
 	}
 }
@@ -61,7 +65,7 @@ nav li a {
 		-webkit-appearance: none;
 
 		width: 100%;
-		background-color: $color-fade-alt;
+		background-color: $color-fade-medium;
 		border: 2px solid transparent;
 		-webkit-transition: background-color 0.25s, border-color 0.25s;
 		transition: background-color 0.25s, border-color 0.25s;
@@ -103,7 +107,7 @@ nav li a {
 			display: block;
 			width: 100%;
 
-			color: $color-text-light-medium;
+			color: $color-text-medium;
 			padding: 2px 0;
 			-webkit-transition: -webkit-transform 0.25s;
 			transition: transform 0.25s;

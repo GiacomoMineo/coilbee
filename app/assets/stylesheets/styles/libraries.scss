@@ -1,7 +1,25 @@
 /* Libraries */
 
+// Headings
+.library-header {
+	position: relative;
+	margin-bottom: 21px;
+	.libraries-text {
+		text-align: center;
+	}
+}
+.library-title {
+	font-weight: 300;
+	font-size: 21px;
+	@include transition(color 0.3s ease);
+	&:hover {
+		color: $color-accent-light;
+	}
+}
+
+// Buttons
 .browse-btn, .new-btn {
-	display: block;
+	display: inline-block;
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
     font-size: 17px;
@@ -61,21 +79,6 @@
 	}
 }
 
-.library-header {
-	position: relative;
-	margin-bottom: 21px;
-	.libraries-text {
-		text-align: center;
-	}
-}
-.library-title {
-	font-weight: 300;
-	font-size: 21px;
-	@include transition(color 0.3s ease);
-	&:hover {
-		color: $color-accent-light;
-	}
-}
 .library-tabs {
 	text-align: center;
 	li {

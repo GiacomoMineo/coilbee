@@ -73,3 +73,50 @@ $section-line-height: 24px;
 		color: $color-accent;
 	}
 }
+
+// Content
+
+// Nav
+.section-title {
+	margin: 0 0 12px;
+}
+
+.group-nav {
+	padding: 12px 5px 0;
+	margin-bottom: 6px;
+	.group-nav-item {
+		display: inline-block;
+		font-size: 15px;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: -1px;
+		margin-right: 2px;
+		transform: skewX(-14deg);
+		@include transition(all 0.3s ease);
+		a {
+			display: block;
+			padding: 4px 12px;
+			color: $color-text-medium;
+			background-color: $color-fade-light;
+			@include transition(all 0.3s ease);
+			&:hover {
+				padding: 4px 18px;
+				color: $color-text-dark;
+				background-color: $color-fade-medium;
+			}
+		}
+		span {
+			display: block;
+			transform: skewX(14deg);
+		}
+		&.group-nav-current {
+			a {
+				cursor: default;
+				padding: 4px 24px;
+				color: $color-main-dark-extra;
+				background-color: $color-main-light;
+			}
+		}
+
+	}
+}

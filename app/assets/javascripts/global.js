@@ -1,5 +1,10 @@
 /* Global */
 
+// Scrolling function
+function scrollToAnchor(id_selector){
+  $('html,body').animate({ scrollTop: id_selector.offset().top - 52 }, 300);
+}
+
 // Doc ready
 $(function() {
 	// Signup panel
@@ -28,7 +33,6 @@ $(function() {
     $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
   });
 });
-  
 
 // Page change event
 $(document).on('page:change', function(event) {
@@ -39,5 +43,12 @@ $(document).on('page:change', function(event) {
 	$('#signup, #login').hide();
 	$('#signup-btn').removeClass('clicked');
 	//enable tooltips
-  	$('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip"]').tooltip();
+  //bind scrolling anchors
+  $('.group-nav-item a').click(function(e) {
+    e.preventDefault();
+    if(!($(this).parent().hasClass('group-nav-current'))) {
+      scrollToAnchor($($(this).attr('href')));
+    }
+  });
 });

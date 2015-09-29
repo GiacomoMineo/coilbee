@@ -1,7 +1,11 @@
-<h1><%= @section.name %></h1>
+<h2 class="section-title"><%= @section.name %></h2>
 <% @groups.each do |group| %>
-  <div class="entry-group">
-    <h2><%= group.name %></h2>
+  <div id="group<%= group.name %>" class="entry-group">
+    <ul class="group-nav">
+      <% @groups.each do |group_nav| %>
+        <li class="group-nav-item <%= "group-nav-current" if group_nav == group %>"><a href="#group<%= group_nav.name %>"><span><%= group_nav.name %></span></a></li>
+      <% end %>
+    </ul>
     <% entries_group = @entries.select{|e| e.group == group} %>
     <% if entries_group.empty? %>
       <p>Currently there are no links to <%= group.name %></p>

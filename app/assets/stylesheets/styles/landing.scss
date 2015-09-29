@@ -1,4 +1,4 @@
-/* Landing page and Login */
+/* Landing page, Login, Sign up */
 
 // Jumbotron
 .linkr-jumbotron {
@@ -74,7 +74,7 @@
 		display: inline-block;
 		font-size: 18px;
 		color: $color-main;
-		padding: 4px 8px;
+		padding: 4px 8px 0;
 		&:after {
 			content: "";
 			position: absolute;
@@ -93,6 +93,9 @@
 			-webkit-transform: scaleX(1);
   			transform: scaleX(1);
 		}
+	}
+	.forgot-psw {
+		font-size: 13px;
 	}
 }
 .landing-panel {
