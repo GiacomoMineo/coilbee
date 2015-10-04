@@ -19,7 +19,7 @@
 					<div class="user-dropdown"><%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %></div>
 				</li>
 				<% if @library %>
-					<li><%= link_to 'Suggest', new_entry_path(:lib => @library), class: "suggest-btn" %></li>
+					<li><%= link_to 'Suggestions', entry_index_path(lib: @library), class: "suggest-btn" %></li>
 					<li>
 					<%= form_tag(tag_search_path, :method => "get", class: "navbar-form navbar-right", id: "search-form", role: "search") do %>
 						<div class="form-group">

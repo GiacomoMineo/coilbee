@@ -20,7 +20,8 @@ class EntriesController < ApplicationController
 	end
 
 	def index
-		@entries = Entry.all
+		@library = Library.find_by(id: params[:lib])
+		@entries = Entry.where(accepted: false)
 	end
 
 	def new

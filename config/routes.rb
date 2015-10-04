@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
   end
   
+  get '/sug' => 'entries#index', as: :entry_index
   get '/tag/:id'  => 'tags#show', as: :tag
   get '/tags' => 'tags#index', as: :tag_search
   
