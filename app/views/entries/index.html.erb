@@ -1,15 +1,6 @@
 
 <div class="entries">
-    <h1>Entries</h1>
+    <h1>Suggestions</h1>
   
-    <% @entries.each do |entry| %>
-    <div class="entry">
-      <p class="entry-title"><%= entry.title %></p>
-      <a class="entry-link" href="<%= entry.link %>"><%= entry.link %></a>
-      <p class="entry-desc"><%= entry.description %></p>
-      <p class="entry-rating">Rating: <%= entry.rating %></p>
-      <p class="entry-time"><%= entry.created_at %></p>
-    </div>
-    <% end %>
-    <%= link_to 'New Link', "entries/new" %>
+    <%= render "shared/render_entries" %>
 </div>

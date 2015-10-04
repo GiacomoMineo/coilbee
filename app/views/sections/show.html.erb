@@ -1,57 +1,11 @@
 <h2 class="section-title"><%= @section.name %></h2>
-<% @groups.each do |group| %>
-  <div id="group<%= group.name %>" class="entry-group">
-    <ul class="group-nav">
-      <% @groups.each do |group_nav| %>
-        <li class="group-nav-item <%= "group-nav-current" if group_nav == group %>"><a href="#group<%= group_nav.name %>"><span><%= group_nav.name %></span></a></li>
-      <% end %>
-    </ul>
-    <% entries_group = @entries.select{|e| e.group == group} %>
-    <% if entries_group.empty? %>
-      <p>Currently there are no links to <%= group.name %></p>
-    <% end %>
-    <% entries_group.each do |entry| %>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div style="display: inline; float: left;">
-            <%= link_to like_entry_path(entry), method: :put do %>
-              <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-            <% end %>
-          </div>
-          <div style="display: inline; position: relative; left: 10px;">
-            <% if entry.unread? current_user %> 
-              <%= link_to read_entry_path(entry), method: :put do %>
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              <% end %>         
-            <% end %>
-          </div>
-          <div style="display: inline; position: relative; left: 10px;">
-            <%= entry.rating %> Points
-          </div>
-          <div style="display: inline; position: relative; left: 15px;">
-            <a href="<%= entry.link %>">
-              <%= entry.title %>
-            </a>
-          </div>      
-          <div style="display: inline; float: right;">
-            <% entry.tags.each do |t| %>
-              <div style="display: inline;"><%= link_to t.name, tag_path(t) %> </div> 
-            <% end %>   
-          </div> 
-        </div>
-        <div class="panel-body">
-          <div style="display: inline; float: left;">
-            <%= link_to dislike_entry_path(entry), method: :put do %>
-              <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-            <% end %>
-          </div>
-          <div style="display: inline; position: relative; left: 10px;">
-            <%= entry.description %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+
+  <div class="entry-group">
+
+    <%= render "shared/render_entries" %>
+
+    
   </div>
-<% end %>
+
 
          
