@@ -1,57 +1,45 @@
 <h2 class="section-title"><%= @section.name %></h2>
+<% if @entries.empty? %>
+    <div>There seems to be nothing here.</div>
+  <% end %>
 <% @groups.each do |group| %>
+  <% entries_group = @entries.select{|e| e.group == group} %>
+  <% unless entries_group.empty? %>
   <div id="group<%= group.name %>" class="entry-group">
     <ul class="group-nav">
       <% @groups.each do |group_nav| %>
         <li class="group-nav-item <%= "group-nav-current" if group_nav == group %>"><a href="#group<%= group_nav.name %>"><span><%= group_nav.name %></span></a></li>
       <% end %>
     </ul>
-    <% entries_group = @entries.select{|e| e.group == group} %>
-    <% if entries_group.empty? %>
-      <p>Currently there are no links to <%= group.name %></p>
-    <% end %>
     <% entries_group.each do |entry| %>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div style="display: inline; float: left;">
-            <%= link_to like_entry_path(entry), method: :put do %>
-              <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+      <div class="panel panel-default entry">
+        <div class="panel-heading entry-header">
+          <div class="entry-vote">
+            <%= link_to like_entry_path(entry), method: :put, class: "upvote" do %>
+              <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
             <% end %>
-          </div>
-          <div style="display: inline; position: relative; left: 10px;">
-            <% if entry.unread? current_user %> 
-              <%= link_to read_entry_path(entry), method: :put do %>
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              <% end %>         
+            <%= link_to dislike_entry_path(entry), method: :put, class: "downvote" do %>
+              <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
             <% end %>
+            <span class="entry-points"><%= entry.rating %></span>
           </div>
-          <div style="display: inline; position: relative; left: 10px;">
-            <%= entry.rating %> Points
-          </div>
-          <div style="display: inline; position: relative; left: 15px;">
-            <a href="<%= entry.link %>">
-              <%= entry.title %>
-            </a>
-          </div>      
-          <div style="display: inline; float: right;">
-            <% entry.tags.each do |t| %>
-              <div style="display: inline;"><%= link_to t.name, tag_path(t) %> </div> 
-            <% end %>   
-          </div> 
+          <a href="<%= entry.link %>" class="panel-title entry-title"><%= entry.title %></a>
+          <%= link_to read_entry_path(entry), method: :put, class: "entry-read" do %>
+            <span class="glyphicon glyphicon-unchecked" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
+          <% end %>   
         </div>
-        <div class="panel-body">
-          <div style="display: inline; float: left;">
-            <%= link_to dislike_entry_path(entry), method: :put do %>
-              <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-            <% end %>
-          </div>
-          <div style="display: inline; position: relative; left: 10px;">
+        <div class="panel-body entry-description">
             <%= entry.description %>
-          </div>
         </div>
+        <div class="tag-list">
+          <% entry.tags.each do |t| %>
+            <%= link_to t.name, tag_path(t), class: "tag" %>
+          <% end %>   
+        </div> 
       </div>
     <% end %>
   </div>
+  <% end %>
 <% end %>
 
          

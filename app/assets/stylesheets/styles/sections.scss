@@ -29,16 +29,17 @@ $section-line-height: 24px;
 }
 .menu-category {
 	> .panel-heading {
+		background-color: $color-fade-light;
 		@include transition(all 0.3s ease);
 		&:hover {
-			background-color: #fff;
+			background-color: $color-fade-medium;
 		}
 	}
 	.menu-icon-wrapper { line-height: $category-line-height; }
 	.menu-category-link {
 		font-size: 17px;
 		font-weight: normal;
-		color: #000;
+		color: $color-text-dark;
 		text-decoration: none;
 		line-height: $category-line-height;
 		&:hover {
@@ -58,7 +59,7 @@ $section-line-height: 24px;
 	.menu-section-link {
 		font-size: 15px;
 		font-weight: 300;
-		color: #000;
+		color: $color-text-dark;
 		text-decoration: none;
 		line-height: $section-line-height;
 	}
@@ -71,6 +72,24 @@ $section-line-height: 24px;
 	}
 	.icon-small:hover {
 		color: $color-accent;
+	}
+}
+
+// Library intro page
+.library-intro {
+	text-align: center;
+	> h1 {
+		font-size: 36px;
+		margin-top: 12px;
+	}
+	.library-intro-desc {
+		font-size: 23px;
+	}
+	.library-intro-suggestion {
+		font-weight: bold;
+		font-size: 13px;
+		font-style: italic;
+		color: $color-main;
 	}
 }
 
@@ -118,5 +137,97 @@ $section-line-height: 24px;
 			}
 		}
 
+	}
+}
+
+// Entries
+
+.entry {
+	.entry-header {
+		height: 56px;
+		padding: 0;
+		.entry-vote {
+			position: relative;
+			float: left;
+			width: 64px;
+			height: 56px;
+			padding: 8px 16px;
+			border-right: 1px solid $color-fade-medium;
+			.upvote, .downvote {
+				position: absolute;
+				height: 15px;
+				@include transition(color 0.3s ease);
+				&:hover {
+					color: $color-accent-light;
+				}
+			}
+			.upvote { top: 6px; }
+			.downvote { bottom: 8px; }
+			 .entry-points {
+			 	margin-top: 7px;
+				float: right;
+				line-height: 22px;
+				font-size: 15px;
+				font-weight: bold;
+				color: $color-accent;
+				cursor: default;
+			}
+		}
+		.entry-title {
+			float: left;
+			height: 56px;
+			margin-left: 16px;
+			line-height: 56px;
+		}
+		.entry-read {
+			float: right;
+			height: 56px;
+			line-height: 56px;
+			margin-right: 16px;
+		}
+	}
+	.tag-list {
+		padding: 0 6px 6px 0;
+		@extend %clearfix;
+		$triangle-size: 12px;
+		.tag {
+			float: right;
+			position: relative;
+			padding: 3px 9px;
+			margin-left: $triangle-size + 4px;
+			font-size: 12px;
+			color: #fff;
+			background-color: $color-fade-medium;
+			@include transition(all 0.3s ease);
+			&::before {
+				position: absolute;
+				left: -$triangle-size;
+				top: 0;
+				content: '';
+				width: 0; 
+				height: 0; 
+				border-top: 11px solid transparent;
+				border-bottom: 11px solid transparent; 
+				border-right: $triangle-size solid $color-fade-medium;
+				@include transition(all 0.3s ease);
+			}
+			&::after {
+				content: '.';
+				position: absolute;
+				left: -2px;
+				top: 4px;
+				color: #fff;
+				font-weight: bold;
+				font-size: 22px;
+				line-height: 0px;
+				vertical-align: middle;
+			}
+			&:hover {
+				background-color: $color-accent-dark;
+				&::before {
+					border-right: $triangle-size solid $color-accent-dark;
+				}
+			}
+		}
 	}
 }

@@ -44,6 +44,30 @@ nav li a {
 	@include transition(all 0.3s ease);
 }
 
+// Panels
+
+//header
+.panel-heading {
+	.panel-title {
+		font-size: 21px;
+		font-weight: 300;
+		color: $color-accent;
+		@include transition(color 0.3s ease);
+		&:hover {
+			color: $color-accent-light;
+		}
+	}
+	> a {
+		line-height: 35px;
+	}
+}
+//body
+.panel-body {
+	color: $color-text-medium-alt;
+	font-weight: 300;
+	font-size: 14px;
+}
+
 
 // Inputs
 .in-row {
