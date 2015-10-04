@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927141745) do
+ActiveRecord::Schema.define(version: 20151004103450) do
 
   create_table "Entries_Tags", id: false, force: :cascade do |t|
     t.integer "entry_id", null: false
@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(version: 20150927141745) do
     t.text     "description"
     t.integer  "section_id"
     t.integer  "group_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "accepted",           default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "cached_votes_total", default: 0
     t.integer  "cached_votes_score", default: 0
     t.integer  "cached_votes_up",    default: 0
@@ -43,6 +44,11 @@ ActiveRecord::Schema.define(version: 20150927141745) do
   add_index "entries", ["cached_votes_score"], name: "index_entries_on_cached_votes_score"
   add_index "entries", ["cached_votes_total"], name: "index_entries_on_cached_votes_total"
   add_index "entries", ["cached_votes_up"], name: "index_entries_on_cached_votes_up"
+
+  create_table "esuggestions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"

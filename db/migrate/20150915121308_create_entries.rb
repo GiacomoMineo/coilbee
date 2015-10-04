@@ -6,6 +6,7 @@ class CreateEntries < ActiveRecord::Migration
       t.text :description
       t.references :section
       t.references :group
+      t.boolean :accepted, :default => false
       t.timestamps null: false
     end
   end

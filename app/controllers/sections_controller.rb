@@ -5,7 +5,7 @@ class SectionsController < ApplicationController
 		@section = Section.find(params[:id])
 		@library = @section.category.library
 
-		@entries = @section.entries.for_user(current_user)
+		@entries = @section.entries.for_user(current_user).select { |e| e.accepted == true }
 	 	@groups = @library.groups
 
 	end
