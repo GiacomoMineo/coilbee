@@ -1,0 +1,46 @@
+<% if @entries.empty? %>
+  <div>There seems to be nothing here.</div>
+<% end %>
+<% @entries.each do |entry| %>
+  <div class="panel panel-default entry">
+    <div class="panel-heading entry-header">
+      <div class="entry-vote">
+        <%= link_to like_entry_path(entry), method: :put, class: "upvote" do %>
+          <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
+        <% end %>
+        <%= link_to dislike_entry_path(entry), method: :put, class: "downvote" do %>
+          <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
+        <% end %>
+        <span class="entry-points"><%= entry.rating %></span>
+      </div>
+      <a href="<%= entry.link %>" class="panel-title entry-title"><%= entry.title %></a>
+      <% if entry.accepted %>
+        <% read_class = (entry.unread? current_user) ? "glyphicon-unchecked" : "glyphicon-check" %>
+        <%= link_to read_entry_path(entry), method: :put, class: "entry-read" do %>
+          <span class="glyphicon <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
+        <% end %> 
+      <% end %>
+      <%= entry.group.name %>
+      <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
+        <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+      <% end %>         
+      <%= link_to edit_entry_path(entry), class: "pull-right" do %>
+        <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+      <% end %>
+    </div>
+    <div class="panel-body entry-description">      
+      <%= entry.description %>
+      <% if !entry.accepted %>
+        <div class="pull-right">
+          <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
+          <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right follow-btn',method: :put   %>
+        </div>
+      <% end %>
+    </div>
+    <div class="tag-list">
+      <% entry.tags.each do |t| %>
+        <%= link_to t.name, tag_path(t), class: "tag" %>
+      <% end %>   
+    </div> 
+  </div>
+<% end %>

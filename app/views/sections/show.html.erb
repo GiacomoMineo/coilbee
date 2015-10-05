@@ -1,46 +1,9 @@
 <h2 class="section-title"><%= @section.name %></h2>
-<% if @entries.empty? %>
-    <div>There seems to be nothing here.</div>
-  <% end %>
-<% @groups.each do |group| %>
-  <% entries_group = @entries.select{|e| e.group == group} %>
-  <% unless entries_group.empty? %>
-  <div id="group<%= group.name %>" class="entry-group">
-    <ul class="group-nav">
-      <% @groups.each do |group_nav| %>
-        <li class="group-nav-item <%= "group-nav-current" if group_nav == group %>"><a href="#group<%= group_nav.name %>"><span><%= group_nav.name %></span></a></li>
-      <% end %>
-    </ul>
-    <% entries_group.each do |entry| %>
-      <div class="panel panel-default entry">
-        <div class="panel-heading entry-header">
-          <div class="entry-vote">
-            <%= link_to like_entry_path(entry), method: :put, class: "upvote" do %>
-              <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
-            <% end %>
-            <%= link_to dislike_entry_path(entry), method: :put, class: "downvote" do %>
-              <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
-            <% end %>
-            <span class="entry-points"><%= entry.rating %></span>
-          </div>
-          <a href="<%= entry.link %>" class="panel-title entry-title"><%= entry.title %></a>
-          <% read_class = (entry.unread? current_user) ? "glyphicon-unchecked" : "glyphicon-check" %>
-          <%= link_to read_entry_path(entry), method: :put, class: "entry-read" do %>
-            <span class="glyphicon <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
-          <% end %>  
-        </div>
-        <div class="panel-body entry-description">
-            <%= entry.description %>
-        </div>
-        <div class="tag-list">
-          <% entry.tags.each do |t| %>
-            <%= link_to t.name, tag_path(t), class: "tag" %>
-          <% end %>   
-        </div> 
-      </div>
-    <% end %>
-  </div>
-  <% end %>
-<% end %>
+<div class="empty">
+	<%= link_to "New Entry", new_entry_path(lib: @library, sec: @section), class: 'btn btn-success pull-right follow-btn'  %>
+</div>
+<div class="entry-group">
+  <%= render "shared/render_entries" %>
+</div>
 
          

@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(version: 20150927141745) do
     t.text     "description"
     t.integer  "section_id"
     t.integer  "group_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "accepted",           default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "cached_votes_total", default: 0
     t.integer  "cached_votes_score", default: 0
     t.integer  "cached_votes_up",    default: 0
