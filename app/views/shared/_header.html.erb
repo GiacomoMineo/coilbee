@@ -18,7 +18,7 @@
 				<li class="user-btn"><%= link_to current_user.email, edit_user_registration_path %>
 					<div class="user-dropdown"><%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %></div>
 				</li>
-				<% if @library %>
+				<% if @library && @library.topic %>
 					<li><%= link_to 'Suggestions', entry_index_path(lib: @library), class: "suggest-btn" %></li>
 					<li>
 					<%= form_tag(tag_search_path, :method => "get", class: "navbar-form navbar-right", id: "search-form", role: "search") do %>
