@@ -1,4 +1,4 @@
-<h1>Add a new link</h1>
+<h1>Edit entry</h1>
 <%= form_for(@entry) do |f| %>
 	<div class="form-group">
 		<%= label_tag 'entry[title]', "Title" %>
@@ -16,7 +16,5 @@
 		<%= label_tag 'entry[group_id]', "Type" %>
 		<%= f.collection_select(:group_id, @groups, :id, :name, {prompt: true}, {class: "form-control"}) %>
 	</div>
-	<%= f.hidden_field :accepted, :value => false %>
-	<%= f.hidden_field :section_id, :value => @section.id %>
 	<%= f.submit "Submit", class: "btn btn-submit" %>
 <% end %>

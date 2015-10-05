@@ -16,7 +16,15 @@
       </div>    
       <div style="display: inline; position: relative; left: 15px;">
           <%= entry.group.name %>
-      </div>     
+      </div>
+      
+      <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
+        <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Unfollow" aria-hidden="true"></span>
+      <% end %>   
+       
+      <%= link_to edit_entry_path(entry), class: "pull-right" do %>
+        <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+      <% end %>    
       <div style="display: inline; float: right;">
         <% entry.tags.each do |t| %>
           <div style="display: inline;"><%= link_to t.name, tag_path(t) %> </div> 

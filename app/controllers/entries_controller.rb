@@ -70,6 +70,25 @@ class EntriesController < ApplicationController
   		end
 	end
 
+	def edit
+		@entry = Entry.find(params[:id])
+		@library = @entry.section.category.library
+		@groups = @library.groups
+	end
+
+	def update
+		@entry = Entry.find(params[:id])
+
+		if @entry.update_attributes(entry_params)
+			if @entry.accepted
+				redirect_to section_path(@entry.section), :notice => "The entry has been edited"
+			else
+				redirect_to entry_index_path(lib: @entry.section.category.library.id) , :notice => "The entry has been edited"
+			end
+		else
+			render 'edit', :notice => "Could not edit entry" 
+		end
+	end
 	def destroy
 		@entry = Entry.find(params[:id])
   		@entry.destroy
