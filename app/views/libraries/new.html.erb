@@ -1,12 +1,16 @@
-<h1>Create a new library</h1>
-<%= form_for(@library_new) do |f| %>
-	<div class="form-group">
-		<%= label_tag 'library[topic]', "Topic" %>
-		<%= f.text_field :topic, :placeholder => "Topic of your library", class: "form-control" %>
+<h1 class="in-form-title">Create a new library</h1>
+<%= form_for(@library_new, :html => {:class => 'in-form'}) do |f| %>
+	<div class="in-row">
+		<%= f.text_field :topic, class: "in-field", id: "lib-topic" %>
+		<label class="in-label" for="lib-topic">
+	      <span class="in-label-content" data-content="Topic">Topic</span>
+	    </label>
 	</div>
-	<div class="form-group">
-		<%= label_tag 'library[description]', "Description" %>
-		<%= f.text_area :description, :placeholder => "A good description for your library", class: "form-control"  %>
+	<div class="in-row">
+		<%= f.text_area :description, class: "in-field", id:"lib-desc" %>
+		<label class="in-label" for="lib-desc">
+	      <span class="in-label-content" data-content="Description">Description</span>
+	    </label>
 	</div>
-	<%= f.submit "Submit", class: "btn btn-submit" %>
+	<%= f.submit "Create", class: "btn btn-primary in-submit" %>
 <% end %>

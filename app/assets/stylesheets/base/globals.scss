@@ -179,8 +179,32 @@ nav li a {
 	font-weight: bold;
 }
 
-.in-remember {
-	margin: 4px 0;
+.in-form {
+	padding: 12px 0;
+	.in-row {
+		display: block;
+		max-width: 420px;
+		@extend %clearfix;
+		margin-left: auto;
+		margin-right: auto;
+		@include tablet {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+	.in-submit {
+		max-width: 420px;
+		@include tablet {
+			display: inline-block;
+		}
+	}
+}
+
+.in-form-title {
+	text-align: center;
+	@include tablet {
+		text-align: left;
+	}
 }
 
 // Checkboxes
