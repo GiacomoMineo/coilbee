@@ -26,5 +26,5 @@
 		<%= label_tag 'entry[group_id]', "Type" %>
 		<%= f.collection_select(:group_id, @groups, :id, :name, {prompt: true}, {class: "form-control"}) %>
 	</div>
-	<%= f.submit "Submit", class: "btn btn-submit" %>
+	<%= f.submit "Submit", class: "btn btn-primary in-submit" %>
 <% end %>

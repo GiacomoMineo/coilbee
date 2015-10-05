@@ -35,7 +35,6 @@ $(document).on('page:change', function(event) {
 
 	// Initialization
 
-
 	//inputs
 	$('.in-field').val() != '' ? $('.in-field').parent().addClass('in-filled') : $('.in-field').parent().removeClass('in-filled')
 	$('.in-field').bind("propertychange change click keyup input paste", function(event) {
@@ -45,12 +44,12 @@ $(document).on('page:change', function(event) {
 	$('#signup, #login').hide();
 	$('#signup-btn').removeClass('clicked');
 	//enable tooltips
-  $('[data-toggle="tooltip"]').tooltip();
-  //bind scrolling anchors
-  $('.group-nav-item a').click(function(e) {
-    e.preventDefault();
-    if(!($(this).parent().hasClass('group-nav-current'))) {
-      scrollToAnchor($($(this).attr('href')));
-    }
-  });
+	$('[data-toggle="tooltip"]').tooltip();
+	//bind scrolling anchors
+	$('.group-nav-item a').click(function(e) {
+	  e.preventDefault();
+	  if(!($(this).parent().hasClass('group-nav-current'))) {
+	    scrollToAnchor($($(this).attr('href')));
+	  }
+	});
 });
