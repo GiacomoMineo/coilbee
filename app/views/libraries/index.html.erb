@@ -39,18 +39,16 @@
 		<% @libraries_own.each do |lib| %>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="panel-title">
-					<span class="library-title"><%= link_to lib.topic, library_path(lib), class: "library-title" %></span>
-					<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
-			      		<span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
-			        <% end %>
-					<%= link_to edit_library_path(lib), class: "pull-right" do %>
-			        	<span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
-			        <% end %>
-					<%= link_to new_suggestion_path(:lib => lib), class: "pull-right"  do %>
-			        	<span class="glyphicon icon-small glyphicon-share-alt" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"></span>
-			        <% end %>
-				</div>
+				<%= link_to lib.topic, library_path(lib), class: "panel-title library-title" %>
+				<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
+		      		<span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+		        <% end %>
+				<%= link_to edit_library_path(lib), class: "pull-right" do %>
+		        	<span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+		        <% end %>
+				<%= link_to new_suggestion_path(:lib => lib), class: "pull-right"  do %>
+		        	<span class="glyphicon icon-small glyphicon-share-alt" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"></span>
+		        <% end %>
 			</div>
 			<div class="panel-body">
 				<%= lib.description %>
@@ -66,18 +64,16 @@
 		<% @libraries_followed.each do |lib| %>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="panel-title">
-					<span class="library-title"><%= link_to lib.topic, library_path(lib), class: "library-title" %></span>
-					<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
-		      			<span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Unfollow" aria-hidden="true"></span>
-			        <% end %>
-					<%= link_to edit_library_path(lib), class: "pull-right" do %>
-			        	<span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
-			        <% end %>
-					<%= link_to new_suggestion_path(:lib => lib), class: "pull-right" do %>
-			        	<span class="glyphicon icon-small glyphicon-share-alt" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"></span>
-			        <% end %>
-				</div>
+				<%= link_to lib.topic, library_path(lib), class: "panel-title library-title" %></span>
+				<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
+	      			<span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Unfollow" aria-hidden="true"></span>
+		        <% end %>
+				<%= link_to edit_library_path(lib), class: "pull-right" do %>
+		        	<span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+		        <% end %>
+				<%= link_to new_suggestion_path(:lib => lib), class: "pull-right" do %>
+		        	<span class="glyphicon icon-small glyphicon-share-alt" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"></span>
+		        <% end %>
 			</div>
 			<div class="panel-body">
 				<%= lib.description %>
@@ -91,11 +87,9 @@
 		<% @suggestions.each do |sug| %>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="panel-title">
-					<span class="library-title"><%= link_to sug.library.topic, library_path(sug.library), class: "library-title" %></span><span class="suggested-by">suggested by: <span><%= sug.creator.email %></span></span>
-					<%= link_to "Reject", suggestion_path(sug), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
-					<%= link_to "Follow", accept_suggestion_path(sug), class: 'btn btn-success pull-right follow-btn'  %>
-				</div>
+				<%= link_to sug.library.topic, library_path(sug.library), class: "panel-title library-title" %><span class="suggested-by">suggested by: <span><%= sug.creator.email %></span></span>
+				<%= link_to "Reject", suggestion_path(sug), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
+				<%= link_to "Follow", accept_suggestion_path(sug), class: 'btn btn-success pull-right follow-btn'  %>
 			</div>
 			<div class="panel-body">
 				<%= sug.library.description %>

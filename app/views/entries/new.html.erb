@@ -16,7 +16,7 @@
 		<%= label_tag 'entry[group_id]', "Type" %>
 		<%= f.collection_select(:group_id, @groups, :id, :name, {prompt: true}, {class: "form-control"}) %>
 	</div>
-	<%= f.hidden_field :accepted, :value => false %>
+	<%= f.hidden_field :accepted, :value => true %>
 	<%= f.hidden_field :section_id, :value => @section.id %>
 	<%= f.submit "Submit", class: "btn btn-submit" %>
 <% end %>

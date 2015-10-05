@@ -7,9 +7,9 @@ a.navbar-brand.logo {
 	font-size: 29px;
 	line-height: 19px;
 	letter-spacing: -px;
-	@include transition(all 0.3s ease);
 	color: #fff;
 	font-weight: 900;
+	@include transition(all 0.3s ease);
 	&:hover {
 		color: $color-main;
 	}
@@ -17,7 +17,8 @@ a.navbar-brand.logo {
 
 // Library topic
 .library-topic {
-	font-weight: 300;
+	font-weight: 900;
+	font-size: 19px;
 	margin-left: 0 !important;
 	border-left: 1px solid $color-fade;
 	@include transition(all 0.3s ease);
