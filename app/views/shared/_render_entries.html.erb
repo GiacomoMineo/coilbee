@@ -7,20 +7,16 @@
         <% end %>
       </div>
       <div style="display: inline; position: relative; left: 10px;">
-        <% if entry.unread? current_user %> 
-          <%= link_to read_entry_path(entry), method: :put do %>
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-          <% end %>         
-        <% end %>
-      </div>
-      <div style="display: inline; position: relative; left: 10px;">
         <%= entry.rating %> Points
       </div>
       <div style="display: inline; position: relative; left: 15px;">
         <a href="<%= entry.link %>">
           <%= entry.title %>
         </a>
-      </div>      
+      </div>    
+      <div style="display: inline; position: relative; left: 15px;">
+          <%= entry.group.name %>
+      </div>     
       <div style="display: inline; float: right;">
         <% entry.tags.each do |t| %>
           <div style="display: inline;"><%= link_to t.name, tag_path(t) %> </div> 
@@ -36,6 +32,12 @@
       <div style="display: inline; position: relative; left: 10px;">
         <%= entry.description %>
       </div>
+      <% if !entry.accepted %>
+      <div class="pull-right">
+        <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
+        <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right follow-btn',method: :put   %>
+      </div>
+      <% end %>
     </div>
   </div>
 <% end %>

@@ -17,10 +17,13 @@ Rails.application.routes.draw do
       put "like", to: "entries#upvote"
       put "dislike", to: "entries#downvote"
       put "read", to: "entries#read"
+      put "accept", to: "entries#accept"
     end
   end
   
   get '/sug' => 'entries#index', as: :entry_index
+  get '/entry/suggest' => 'entries#suggest', as: :suggest_entry
+
   get '/tag/:id'  => 'tags#show', as: :tag
   get '/tags' => 'tags#index', as: :tag_search
   

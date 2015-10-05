@@ -1,4 +1,4 @@
-<h1>Add a new link</h1>
+<h1>Suggest a new link</h1>
 <%= form_for(@entry) do |f| %>
 	<div class="form-group">
 		<%= label_tag 'entry[title]', "Title" %>
@@ -13,10 +13,12 @@
 		<%= f.text_area :description, :placeholder => "A good description for your link", class: "form-control"  %>
 	</div>
 	<div class="form-group">
+		<%= label_tag 'entry[section_id]', "Section" %>
+		<%= f.collection_select(:section_id, @sections, :id, lambda { |c| "#{c.category.name}/#{c.name}" }, {prompt: true}, {class: "form-control"}) %>
+	</div>
+	<div class="form-group">
 		<%= label_tag 'entry[group_id]', "Type" %>
 		<%= f.collection_select(:group_id, @groups, :id, :name, {prompt: true}, {class: "form-control"}) %>
 	</div>
-	<%= f.hidden_field :accepted, :value => true %>
-	<%= f.hidden_field :section_id, :value => @section.id %>
 	<%= f.submit "Submit", class: "btn btn-submit" %>
 <% end %>

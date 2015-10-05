@@ -1,4 +1,7 @@
 <h2 class="section-title"><%= @section.name %></h2>
+<div class="empty">
+	<%= link_to "New Entry", new_entry_path(lib: @library, sec: @section), class: 'btn btn-success pull-right follow-btn'  %>
+</div>
 
   <div class="entry-group">
 

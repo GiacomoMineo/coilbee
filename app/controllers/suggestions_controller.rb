@@ -27,7 +27,7 @@ class SuggestionsController < ApplicationController
 
 	def destroy
 		@suggestion = Suggestion.find(params[:id])
-  	@suggestion.destroy
+  		@suggestion.destroy
     	redirect_to root_path
 	end
 
