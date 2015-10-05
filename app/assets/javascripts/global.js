@@ -27,11 +27,7 @@ $(function() {
 		$('#signup').slideUp(300);
 		$('#signup-btn').removeClass('clicked');
 	});
-  // Inputs
-  $('.in-field').val() != '' ? $('.in-field').parent().addClass('in-filled') : $('.in-field').parent().removeClass('in-filled')
-  $('.in-field').bind("propertychange change click keyup input paste", function(event) {
-    $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
-  });
+  
 });
 
 // Page change event
@@ -39,6 +35,12 @@ $(document).on('page:change', function(event) {
 
 	// Initialization
 
+
+	//inputs
+	$('.in-field').val() != '' ? $('.in-field').parent().addClass('in-filled') : $('.in-field').parent().removeClass('in-filled')
+	$('.in-field').bind("propertychange change click keyup input paste", function(event) {
+	  $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
+	});
 	//reset login and signup
 	$('#signup, #login').hide();
 	$('#signup-btn').removeClass('clicked');

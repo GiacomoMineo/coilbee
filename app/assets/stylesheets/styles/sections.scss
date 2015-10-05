@@ -184,6 +184,12 @@ $section-line-height: 24px;
 			height: 56px;
 			line-height: 56px;
 			margin-right: 16px;
+			> span {
+				@include transition(color 0.3s ease);
+				&:hover {
+					color: $color-accent-light;
+				}
+			}
 		}
 	}
 	.tag-list {
