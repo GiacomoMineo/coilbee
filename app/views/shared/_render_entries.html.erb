@@ -21,11 +21,15 @@
         <% end %> 
       <% end %>
       <%= entry.group.name %>
-      <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
-        <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
-      <% end %>         
-      <%= link_to edit_entry_path(entry), class: "pull-right" do %>
-        <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+      <% if current_user && current_user.edit? %>
+        <div class="menu-icon-wrapper">
+          <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
+            <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+          <% end %>         
+          <%= link_to edit_entry_path(entry), class: "pull-right" do %>
+            <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+          <% end %>
+        </div>
       <% end %>
     </div>
     <div class="panel-body entry-description">      

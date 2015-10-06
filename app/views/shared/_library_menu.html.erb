@@ -8,17 +8,19 @@
                 <a href="#collapse<%= index %>" class="sidebar-header col-xs-8 menu-category-link" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse<%= index %>">
                   <%= c.name %>
                 </a>
-                <div class="col-xs-4 menu-icon-wrapper">
-                  <%= link_to category_path(c), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
-                    <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
-                  <% end %>
-                  <%= link_to edit_category_path(c), class: "menu-icon" do %>
-                    <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
-                  <% end %>
-                  <%= link_to new_section_path(:cat => c), class: "menu-icon" do %>
-                    <span class="glyphicon glyphicon-plus icon-small" data-toggle="tooltip" data-placement="top" title="New" aria-hidden="true"></span>
-                  <% end %>
-                </div>
+                <% if current_user && current_user.edit? %>
+                  <div class="col-xs-4 menu-icon-wrapper">
+                    <%= link_to category_path(c), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
+                      <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+                    <% end %>
+                    <%= link_to edit_category_path(c), class: "menu-icon" do %>
+                      <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+                    <% end %>
+                    <%= link_to new_section_path(:cat => c), class: "menu-icon" do %>
+                      <span class="glyphicon glyphicon-plus icon-small" data-toggle="tooltip" data-placement="top" title="New" aria-hidden="true"></span>
+                    <% end %>
+                  </div>
+                <% end %>
               </div>
             </h4>
           </div>
@@ -27,14 +29,16 @@
               <div class="panel-body menu-section">
                 <div class="row">
                   <%= link_to s.name, section_path(s), class: "menu-section-link col-xs-9" %>
-                  <div class="col-xs-3 menu-icon-wrapper">         
-                    <%= link_to section_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
-                      <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
-                    <% end %>
-                    <%= link_to edit_section_path(s), class: "menu-icon" do %>
-                      <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
-                    <% end %>
-                  </div> 
+                  <% if current_user && current_user.edit? %>
+                    <div class="col-xs-3 menu-icon-wrapper">         
+                      <%= link_to section_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
+                        <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+                      <% end %>
+                      <%= link_to edit_section_path(s), class: "menu-icon" do %>
+                        <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+                      <% end %>
+                    </div> 
+                  <% end %>
                 </div> 
               </div>
             <% end %> 
@@ -42,16 +46,18 @@
         </div>
       <% end %>
       <!-- NEW CATEGORY MENU ITEM -->
-      <div class="panel panel-default menu-category">
-        <div class="panel-heading" role="tab" id="heading-new">
-          <h4 class="panel-title">
-            <%= link_to new_category_path(:lib => @library), class: "menu-new-category" do %>
-              <span>New Category</span>
-              <span class="glyphicon glyphicon-plus pull-right icon-small" aria-hidden="true"></span>
-            <% end %>
-          </h4>
+      <% if current_user && current_user.edit? %>
+        <div class="panel panel-default menu-category">
+          <div class="panel-heading" role="tab" id="heading-new">
+            <h4 class="panel-title">
+              <%= link_to new_category_path(:lib => @library), class: "menu-new-category" do %>
+                <span>New Category</span>
+                <span class="glyphicon glyphicon-plus pull-right icon-small" aria-hidden="true"></span>
+              <% end %>
+            </h4>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </aside>
       
