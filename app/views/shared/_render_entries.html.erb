@@ -14,17 +14,17 @@
         <span class="entry-points"><%= entry.rating %></span>
       </div>
       <a href="<%= entry.link %>" class="panel-title entry-title"><%= entry.title %></a>
+      <span class="entry-group"><%= entry.group.name %></span>
       <% if entry.accepted %>
         <% read_class = (entry.unread? current_user) ? "glyphicon-unchecked" : "glyphicon-check" %>
-        <%= link_to read_entry_path(entry), method: :put, class: "entry-read" do %>
-          <span class="glyphicon <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
+        <%= link_to read_entry_path(entry), method: :put, class: "entry-icon" do %>
+          <span class="glyphicon icon-small <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
         <% end %> 
       <% end %>
-      <%= entry.group.name %>
-      <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
+      <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon pull-right" do %>
         <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
       <% end %>         
-      <%= link_to edit_entry_path(entry), class: "pull-right" do %>
+      <%= link_to edit_entry_path(entry), class: "entry-icon pull-right" do %>
         <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
       <% end %>
     </div>

@@ -1,45 +1,4 @@
-
-<h1><%= @tag.name %></h1>
-<% @entries.each do |entry| %>
-  <div class="panel panel-default">
-	  <div class="panel-heading">
-		<div style="display: inline; float: left;">
-		  <%= link_to like_entry_path(entry), method: :put do %>
-			<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-		  <% end %>
-		</div>
-		<div style="display: inline; position: relative; left: 10px;">
-		  <% if entry.unread? current_user %> 
-			<%= link_to read_entry_path(entry), method: :put do %>
-			  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-			<% end %>         
-		  <% end %>
-		</div>
-		<div style="display: inline; position: relative; left: 10px;">
-		  <%= entry.rating %> Points
-		</div>
-		<div style="display: inline; position: relative; left: 15px;">
-		  <a href="<%= entry.link %>">
-			<%= entry.title %>
-		  </a>
-		</div>      
-		<div style="display: inline; float: right;">
-		  <% entry.tags.each do |t| %>
-			<div style="display: inline;"><%= link_to t.name, tag_path(t) %> </div> 
-		  <% end %>   
-		</div> 
-	  </div>
-	  <div class="panel-body">
-		<div style="display: inline; float: left;">
-		  <%= link_to dislike_entry_path(entry), method: :put do %>
-			<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-		  <% end %>
-		</div>
-		<div style="display: inline; position: relative; left: 10px;">
-		  <%= entry.description %>
-		</div>
-	  </div>
-	</div>
-<% end %>
+<h2 class="section-title"><%= @tag.name %></h2>
+<div class="entry-group">
+  <%= render "shared/render_entries" %>
 </div>
-    

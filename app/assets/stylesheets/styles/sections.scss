@@ -145,7 +145,7 @@ $section-line-height: 24px;
 .entry {
 	.entry-header {
 		height: 56px;
-		padding: 0;
+		padding: 0 16px 0 0;
 		.entry-vote {
 			position: relative;
 			float: left;
@@ -179,17 +179,18 @@ $section-line-height: 24px;
 			margin-left: 16px;
 			line-height: 56px;
 		}
-		.entry-read {
+		.entry-group {
+			line-height: 56px;
+			font-size: 11px;
+			font-weight: bold;
+			color: $color-text-red-dark;
+			padding-left: 16px;
+			text-transform: uppercase;
+		}
+		.entry-icon {
 			float: right;
 			height: 56px;
 			line-height: 56px;
-			margin-right: 16px;
-			> span {
-				@include transition(color 0.3s ease);
-				&:hover {
-					color: $color-accent-light;
-				}
-			}
 		}
 	}
 	.tag-list {
@@ -236,4 +237,18 @@ $section-line-height: 24px;
 			}
 		}
 	}
+}
+
+.new-entry-btn {
+	display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 1.3px;
+    padding: 8px 24px 8px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 20px;
+    overflow: hidden;
 }
