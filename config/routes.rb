@@ -21,8 +21,10 @@ Rails.application.routes.draw do
     end
   end
 
+
   put 'toggle_edit' => 'toggles#toggle_edit', as: :toggle_edit
   put 'toggle_read' => 'toggles#toggle_read', as: :toggle_read
+
 
   get '/sug' => 'entries#index', as: :entry_index
   get '/entry/suggest' => 'entries#suggest', as: :suggest_entry
