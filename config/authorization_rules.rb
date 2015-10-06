@@ -1,5 +1,8 @@
 authorization do
   role :guest do
+  	has_permission_on :libraries, :to => :read
+  	has_permission_on :sections, :to => :read
+  	has_permission_on :tags, :to => :read
   end
   
   role :user do

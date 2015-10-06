@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-	#filter_resource_access
+	filter_resource_access
 		
 	def index
 		if params[:library_id] and params[:search]
@@ -12,7 +12,7 @@ class TagsController < ApplicationController
 
 	def show
 		@tag = Tag.find(params[:id])
-		@entries = @tag.entries.for_user(current_user)
+		@entries = @tag.entries#.for_user(current_user)
 		@library = @entries.first.section.category.library
 	end
 end

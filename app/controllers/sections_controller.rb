@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-	#filter_resource_access
+	filter_resource_access
 	
 	def show
 		@section = Section.find(params[:id])
