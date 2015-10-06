@@ -15,22 +15,25 @@
     	</div>
 	    <div class="collapse navbar-collapse" id="navbar-main-collapse">
 	        <ul class="nav navbar-nav navbar-right">
+				<% if current_user %>
 				<li class="user-btn"><%= link_to current_user.email, edit_user_registration_path %>
 					<div class="user-dropdown"><%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %></div>
 				</li>
-				<% if current_user %>
 					<% if current_user.read? %>
 						<li><%= link_to 'Edit mode', toggle_edit_path, class: "suggest-btn", method: :put %></li>
 					<% else%>
 						<li><%= link_to 'Read mode', toggle_read_path, class: "suggest-btn", method: :put %></li>
 					<% end %>
-				<% end %>
-				<% if @library && @library.topic %>
-					<% if current_user %>
-						<li><%= link_to 'Suggestions', entry_index_path(lib: @library), class: "suggest-btn" %></li>
-					<% else %>
-						<li><%= link_to 'Suggest', suggest_entry_path(lib: @library), class: "suggest-btn" %></li>
+					<% if @library && @library.topic %>
+						<% if current_user %> <!-- add admin restriction here -->
+							<li><%= link_to 'Suggestions', entry_index_path(lib: @library), class: "suggest-btn" %></li>
+						<% else %>
+							<li><%= link_to 'Suggest', suggest_entry_path(lib: @library), class: "suggest-btn" %></li>
+						<% end %>
 					<% end %>
+				<% end %>
+				
+				<% if @library && @library.topic %>
 					<li>
 					<%= form_tag(tag_search_path, :method => "get", class: "navbar-form navbar-right", id: "search-form", role: "search") do %>
 						<div class="form-group">

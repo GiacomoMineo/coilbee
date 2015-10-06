@@ -1,5 +1,5 @@
 class LibrariesController < ApplicationController
-	filter_resource_access
+	#filter_resource_access
 
 	def index
 		@libraries_own = current_user.libraries_created

@@ -5,16 +5,18 @@
   <div class="panel panel-default entry">
     <div class="panel-heading entry-header">
       <div class="entry-vote">
-        <%= link_to like_entry_path(entry), method: :put, class: "upvote" do %>
-          <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
-        <% end %>
-        <%= link_to dislike_entry_path(entry), method: :put, class: "downvote" do %>
-          <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
+        <% if current_user %>
+          <%= link_to like_entry_path(entry), method: :put, class: "upvote" do %>
+            <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
+          <% end %>
+          <%= link_to dislike_entry_path(entry), method: :put, class: "downvote" do %>
+            <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
+          <% end %>
         <% end %>
         <span class="entry-points"><%= entry.rating %></span>
       </div>
       <a href="<%= entry.link %>" class="panel-title entry-title"><%= entry.title %></a>
-      <% if entry.accepted %>
+      <% if current_user && entry.accepted %>
         <% read_class = (entry.unread? current_user) ? "glyphicon-unchecked" : "glyphicon-check" %>
         <%= link_to read_entry_path(entry), method: :put, class: "entry-read" do %>
           <span class="glyphicon <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>

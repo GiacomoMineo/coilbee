@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-	filter_resource_access
+	#filter_resource_access
 		
 	def index
 		if params[:library_id] and params[:search]
