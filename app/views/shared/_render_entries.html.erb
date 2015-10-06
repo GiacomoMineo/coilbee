@@ -1,8 +1,18 @@
 <% if @entries.empty? %>
   <div>There seems to be nothing here.</div>
 <% end %>
+<% unless @entries.empty? %>
+  <div class="entry-group">
+    <ul class="group-nav">
+      <% @groups.each do |group_nav| %>
+        <li class="group-nav-item" id="group_<%= group_nav.id %>"><div class="group-name"><span><%= group_nav.name %></span></div></li>
+      <% end %>
+    </ul>
+    <div class="group-reset"></div>
+  </div>
+<% end %>
 <% @entries.each do |entry| %>
-  <div class="panel panel-default entry">
+  <div class="panel panel-default entry group_<%= entry.group.id %>">
     <div class="panel-heading entry-header">
       <div class="entry-vote">
         <% if current_user %>
@@ -40,8 +50,10 @@
     <div class="panel-body entry-description">      
       <%= entry.description %>
       <% if !entry.accepted %>
-        <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
-        <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right follow-btn',method: :put   %>
+        <div class="entry-options">
+          <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
+          <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right follow-btn',method: :put   %>
+        </div>
       <% end %>
     </div>
     <div class="tag-list">
