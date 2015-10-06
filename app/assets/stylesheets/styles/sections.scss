@@ -13,6 +13,7 @@ $section-line-height: 24px;
 }
 .menu-icon-wrapper {
 	padding-left: 0;
+	float: right;
 }
 .menu-icon {
 	float: right;
@@ -46,9 +47,6 @@ $section-line-height: 24px;
 			text-decoration: none;
 		}
 	}
-	&:last-child {
-		margin-top: 12px !important;
-	}
 }
 .menu-section {
 	@include transition(all 0.3s ease);
@@ -67,11 +65,27 @@ $section-line-height: 24px;
 .menu-new-category {
 	display: block;
 	font-size: 15px;
-	&:hover {
-
+	margin-top: 12px !important;
+	.panel-heading {
+		padding: 0;
 	}
-	.icon-small:hover {
-		color: $color-accent;
+	a {
+		display: block;
+		padding: 10px 15px;
+		line-height: 16px;
+		&:hover {
+			color: $color-accent-dark;
+			.icon-small {
+				color: $color-accent-light;
+			}
+			> span {
+				color: $color-accent;
+			}
+		}
+		> span {
+			font-size: 14px;
+			vertical-align: middle;
+		}
 	}
 }
 
@@ -130,7 +144,6 @@ $section-line-height: 24px;
 		}
 		&.group-nav-current {
 			a {
-				cursor: default;
 				padding: 4px 24px;
 				color: $color-main-dark-extra;
 				background-color: $color-main-light;
@@ -247,6 +260,7 @@ $section-line-height: 24px;
     line-height: 20px;
     letter-spacing: 1.3px;
     padding: 8px 24px 8px 24px;
+    margin: 8px 0;
     text-decoration: none;
     text-transform: uppercase;
     border-radius: 20px;

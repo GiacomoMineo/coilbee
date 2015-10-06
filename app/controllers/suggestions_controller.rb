@@ -1,5 +1,5 @@
 class SuggestionsController < ApplicationController
-	filter_resource_access
+	#filter_resource_access
 	
 	def new
 		@suggestion = Suggestion.new

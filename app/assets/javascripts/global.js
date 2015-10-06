@@ -7,7 +7,15 @@ function scrollToAnchor(id_selector){
 
 // Doc ready
 $(function() {
-	// Signup panel
+	
+});
+
+// Page change event
+$(document).on('page:change', function(event) {
+
+	// Initialization
+
+	//signup panel
 	$('#signup-btn').click(function(e) {
 		e.preventDefault();
 		$(this).toggleClass('clicked');
@@ -20,21 +28,13 @@ $(function() {
       }, 300);
     };
 	});
-	// Login panel
+	//login panel
 	$('#login-btn').click(function(e) {
 		e.preventDefault();
 		$('#login').slideToggle(300);
 		$('#signup').slideUp(300);
 		$('#signup-btn').removeClass('clicked');
 	});
-  
-});
-
-// Page change event
-$(document).on('page:change', function(event) {
-
-	// Initialization
-
 	//inputs
 	$('.in-field').val() != '' ? $('.in-field').parent().addClass('in-filled') : $('.in-field').parent().removeClass('in-filled')
 	$('.in-field').bind("propertychange change click keyup input paste", function(event) {

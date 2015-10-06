@@ -5,36 +5,43 @@
   <div class="panel panel-default entry">
     <div class="panel-heading entry-header">
       <div class="entry-vote">
-        <%= link_to like_entry_path(entry), method: :put, class: "upvote" do %>
-          <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
-        <% end %>
-        <%= link_to dislike_entry_path(entry), method: :put, class: "downvote" do %>
-          <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
+        <% if current_user %>
+          <%= link_to like_entry_path(entry), method: :put, class: "upvote" do %>
+            <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
+          <% end %>
+          <%= link_to dislike_entry_path(entry), method: :put, class: "downvote" do %>
+            <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
+          <% end %>
         <% end %>
         <span class="entry-points"><%= entry.rating %></span>
       </div>
       <a href="<%= entry.link %>" class="panel-title entry-title"><%= entry.title %></a>
+      
       <span class="entry-group"><%= entry.group.name %></span>
-      <% if entry.accepted %>
-        <% read_class = (entry.unread? current_user) ? "glyphicon-unchecked" : "glyphicon-check" %>
-        <%= link_to read_entry_path(entry), method: :put, class: "entry-icon" do %>
-          <span class="glyphicon icon-small <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
-        <% end %> 
-      <% end %>
-      <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon pull-right" do %>
-        <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
-      <% end %>         
-      <%= link_to edit_entry_path(entry), class: "entry-icon pull-right" do %>
-        <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+      <% if current_user %>
+        <div class="menu-icon-wrapper">
+          <% if entry.accepted %>
+            <% read_class = (entry.unread? current_user) ? "glyphicon-unchecked" : "glyphicon-check" %>
+            <%= link_to read_entry_path(entry), method: :put, class: "entry-icon" do %>
+              <span class="glyphicon icon-small <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
+            <% end %> 
+          <% end %>
+          <% if current_user.edit? %>
+            <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon" do %>
+              <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+            <% end %>         
+            <%= link_to edit_entry_path(entry), class: "entry-icon" do %>
+              <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
     <div class="panel-body entry-description">      
       <%= entry.description %>
       <% if !entry.accepted %>
-        <div class="pull-right">
-          <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
-          <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right follow-btn',method: :put   %>
-        </div>
+        <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
+        <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right follow-btn',method: :put   %>
       <% end %>
     </div>
     <div class="tag-list">

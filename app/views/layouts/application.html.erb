@@ -8,13 +8,10 @@
   	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
    	<%= csrf_meta_tags %> 
 </head>
-<body>
-	<% if current_user %>
-		<%= render 'shared/header.html.erb'%>
-	<% end %>
+	<%= render 'shared/header.html.erb'%>
 	<div class="container-fluid">
 		<div class="row">
-			<% if @library %>
+			<% if @library && @library.topic %>
 				<div class="col-lg-3 col-lg-offset-1 col-sm-3 col-xs-0">
 					<%= render 'shared/library_menu.html.erb' %>
 				</div>
