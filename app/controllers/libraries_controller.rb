@@ -51,10 +51,9 @@ class LibrariesController < ApplicationController
     	redirect_to '/', :notice => "The library has been deleted"
 	end
 
-	private 
+	private
 		def library_params
 			params.require(:library).permit(:topic, :description)
 		end
-
 
 end

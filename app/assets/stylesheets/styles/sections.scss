@@ -60,6 +60,12 @@ $section-line-height: 24px;
 		text-decoration: none;
 		line-height: $section-line-height;
 	}
+	&.current {
+		background-color: $color-accent-lightest;
+		&:hover {
+			background-color: $color-accent-lighter;
+		}
+	}
 }
 .menu-new-category {
 	display: block;
@@ -116,40 +122,53 @@ $section-line-height: 24px;
 .group-nav {
 	padding: 12px 5px 0;
 	margin-bottom: 6px;
-	.group-nav-item {
-		display: inline-block;
-		font-size: 15px;
-		font-weight: bold;
-		text-transform: uppercase;
-		letter-spacing: -1px;
-		margin-right: 2px;
-		transform: skewX(-14deg);
-		@include transition(all 0.3s ease);
+}
+.group-nav-item {
+	display: inline-block;
+	font-size: 15px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	margin-right: 2px;
+	vertical-align: middle;
+	transform: skewX(-14deg);
+	@include transition(all 0.3s ease);
+	span {
+		display: block;
+		transform: skewX(14deg);
+	}
+	&.group-nav-current {
 		.group-name {
-			display: block;
-			padding: 4px 12px;
-			color: $color-text-medium;
-			background-color: $color-fade-light;
-			cursor: pointer;
-			@include transition(all 0.3s ease);
-			&:hover {
-				padding: 4px 18px;
-				color: $color-text-dark;
-				background-color: $color-fade-medium;
-			}
+			cursor: default;
+			padding: 4px 24px;
+			color: $color-main-dark-extra;
+			background-color: $color-main-light;
+		}
+	}
+}
+.group-name {
+	display: block;
+	padding: 4px 12px;
+	color: $color-text-medium;
+	background-color: $color-fade-light;
+	cursor: pointer;
+	@include transition(all 0.3s ease);
+	&:hover {
+		padding: 4px 18px;
+		color: $color-text-dark;
+		background-color: $color-fade-medium;
+	}
+}
+.group-all span { line-height: 21px; }
+.group-all:not(.group-nav-current) {
+	.group-name {
+		&:hover {
+			color: $color-accent-dark;
+			background-color: $color-accent-light;
 		}
 		span {
-			display: block;
-			transform: skewX(14deg);
+			
 		}
-		&.group-nav-current {
-			.group-name {
-				padding: 4px 24px;
-				color: $color-main-dark-extra;
-				background-color: $color-main-light;
-			}
-		}
-
 	}
 }
 
