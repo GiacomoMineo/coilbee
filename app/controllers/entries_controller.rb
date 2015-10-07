@@ -1,6 +1,7 @@
 class EntriesController < ApplicationController
-	#filter_resource_access
-	filter_access_to :all
+	before_action :new_entry, :only => [:new, :index, :create, :accept, :suggest]
+	#filter_access_to :all#, :attribute_check => true
+	filter_resource_access
 
 
 	def upvote
@@ -36,7 +37,7 @@ class EntriesController < ApplicationController
 
 		@entries = []
 		@sections.each {|sec| @entries.push(sec.entries) }
-
+		@groups = @library.groups
 		@entries = @entries.flatten.select{|e| e.accepted == false}
 
 	end
@@ -99,5 +100,9 @@ class EntriesController < ApplicationController
 	private
 		def entry_params
 			params.require(:entry).permit(:title, :link, :description, :section_id, :group_id, :accepted)
+		end
+		def new_entry
+			@entry = Entry.new
+			@entry.section = Section.find_by(id: params[:sec])
 		end
 end

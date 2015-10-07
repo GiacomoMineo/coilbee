@@ -19,6 +19,18 @@ class LibrariesController < ApplicationController
 	def create
 		@library_new = Library.new(library_params) 
 		@library_new.creator = current_user
+
+		@group_read	 = Group.new(:name => "Read")
+		@group_watch = Group.new(:name => "Watch")
+		@group_learn = Group.new(:name => "Learn")
+		@group_make = Group.new(:name => "Make")
+
+		@library_new.groups.push(@group_read)
+		@library_new.groups.push(@group_watch)
+		@library_new.groups.push(@group_learn)
+		@library_new.groups.push(@group_make)
+
+
   		if @library_new.save 
 				redirect_to '/' 
   		else 
