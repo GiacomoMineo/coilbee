@@ -5,7 +5,8 @@
           <div class="panel-heading" role="tab" id="heading<%= index %>">
             <h4 class="panel-title">
               <div class="row">
-                <a href="#collapse<%= index %>" class="sidebar-header col-xs-8 menu-category-link" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse<%= index %>">
+                <% if defined? @section then @section.category == c ? category_id = "collapse_current" : "" end %>
+                <a href="#collapse<%= index %>" id="<%= category_id %>" class="sidebar-header col-xs-8 menu-category-link" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse<%= index %>">
                   <%= c.name %>
                 </a>
                 <% if current_user && current_user.edit? %>

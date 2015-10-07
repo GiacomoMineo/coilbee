@@ -31,7 +31,7 @@ function filter_by_group(group_element) {
 
 function menu_selection() {
 	if($('#accordion').length) {
-		var $accordion = $("#accordion");
+		$($('#collapse_current').attr('href')).collapse();
 	};
 };
 
