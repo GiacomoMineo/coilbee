@@ -1,7 +1,6 @@
 <% if @entries.empty? %>
   <div>There seems to be nothing here.</div>
-<% end %>
-<% unless @entries.empty? %>
+<% else %>
   <div class="entry-group">
     <ul class="group-nav">
       <li class="group-nav-item group-all group-nav-current"><div class="group-name"><span>All</span></div></li>
@@ -12,8 +11,8 @@
   </div>
 <% end %>
 <% @entries.each do |entry| %>
-  <div class="panel panel-default entry group_<%= entry.group.id %>">
-    <div class="panel-heading entry-header">
+  <div class="entry group_<%= entry.group.id %>">
+    <div class="entry-header">
       <div class="entry-vote">
         <% if current_user %>
           <%= link_to like_entry_path(entry), method: :put, class: "upvote" do %>
@@ -25,7 +24,7 @@
         <% end %>
         <span class="entry-points"><%= entry.rating %></span>
       </div>
-      <a href="<%= entry.link %>" class="panel-title entry-title"><%= entry.title %></a>
+      <a href="<%= entry.link %>" class="entry-title"><%= entry.title %></a>
       
       <span class="entry-group"><%= entry.group.name %></span>
       <% if current_user %>
@@ -46,8 +45,13 @@
           <% end %>
         </div>
       <% end %>
+      <div class="tag-list">
+        <% entry.tags.each do |t| %>
+          <%= link_to t.name, tag_path(t), class: "tag" %>
+        <% end %>   
+      </div> 
     </div>
-    <div class="panel-body entry-description">      
+    <div class="entry-description">      
       <%= entry.description %>
       <% if !entry.accepted %>
         <div class="entry-options">
@@ -56,10 +60,5 @@
         </div>
       <% end %>
     </div>
-    <div class="tag-list">
-      <% entry.tags.each do |t| %>
-        <%= link_to t.name, tag_path(t), class: "tag" %>
-      <% end %>   
-    </div> 
   </div>
 <% end %>
