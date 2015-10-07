@@ -1,4 +1,5 @@
 authorization do
+
   role :guest do
   	has_permission_on :libraries, :to => :show
   	has_permission_on :sections, :to => :read
@@ -56,13 +57,9 @@ authorization do
 		# ... and entries
 		has_permission_on :entries, :to => :manage do
 			if_permitted_to :edit, :section
-		end
-
-		
-			
-
-
-		
+		end		
+		has_permission_on :entries, :to => :suggest do
+		end		
 	end
 
 	role :moderator do
