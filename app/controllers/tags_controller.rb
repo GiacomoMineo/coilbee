@@ -14,5 +14,6 @@ class TagsController < ApplicationController
 		@tag = Tag.find(params[:id])
 		@entries = @tag.entries#.for_user(current_user)
 		@library = @entries.first.section.category.library
+		@groups = @library.groups
 	end
 end
