@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-	#filter_resource_access
+	filter_resource_access
 
 	def index
 	end

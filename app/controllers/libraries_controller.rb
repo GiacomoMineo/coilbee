@@ -3,7 +3,7 @@ class LibrariesController < ApplicationController
 
 	def index
 		@libraries_own = current_user.libraries_created
-		@libraries_followed = current_user.libraries
+		@libraries_followed = current_user.libraries.select { |lib| lib.creator != current_user}
 		@suggestions = current_user.suggestions_received
 	end
 

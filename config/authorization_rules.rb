@@ -7,6 +7,10 @@ authorization do
   
   role :user do
 		includes :guest
+
+		#may create new libraries
+		has_permission_on :libraries, :to => :create
+
 		# may view libraries he is subscribed to...
 		has_permission_on :libraries, :to => :read do
 			if_attribute :users => contains {user}
@@ -23,6 +27,8 @@ authorization do
 		has_permission_on :tags, :to => :read do
 			if_permitted_to :read, :library
 		end
+
+
 		
 		# may accept or decline suggestions he received
 		has_permission_on :suggestions, :to => [:accept, :destroy] do 
@@ -47,11 +53,19 @@ authorization do
 		has_permission_on :sections, :to => :manage do
 			if_permitted_to :edit, :category
 		end
+
+
 		
+	end
+
+	role :moderator do
+		includes :user
+
 	end
   
   role :admin do
 		includes :user
+		has_permission_on :toggles, :to => [:toggle_edit, :toggle_read]
 		has_permission_on [:libraries, :categories, :sections, :entries, :tags, :suggestions], :to => :manage
 	end
 	

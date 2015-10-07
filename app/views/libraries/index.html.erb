@@ -64,26 +64,29 @@
 	<!-- Followed tab -->
 	<div role="tabpanel" class="tab-pane fade <% if @libraries_own.empty? %>in active<%end%>" id="followed">
 		<% @libraries_followed.each do |lib| %>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<%= link_to lib.topic, library_path(lib), class: "panel-title library-title" %></span>
-				<% if current_user && current_user.edit? %>
-					<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
-		      			<span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Unfollow" aria-hidden="true"></span>
-			        <% end %>
-					<%= link_to edit_library_path(lib), class: "pull-right" do %>
-			        	<span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
-			        <% end %>
-					<%= link_to new_suggestion_path(:lib => lib), class: "pull-right" do %>
-			        	<span class="glyphicon icon-small glyphicon-share-alt" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"></span>
-			        <% end %>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<%= link_to lib.topic, library_path(lib), class: "panel-title library-title" %>	
+					<% if current_user && current_user.edit? %>
+						<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
+	      			<span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Unfollow" aria-hidden="true"></span>
 		        <% end %>
+				    <% if permitted_to? :edit, lib %>
+				    	<%= link_to edit_library_path(lib), class: "pull-right" do %>
+			        	<span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+				      <% end %>
+				    <% end %>
+						
+						<%= link_to new_suggestion_path(:lib => lib), class: "pull-right" do %>
+				        	<span class="glyphicon icon-small glyphicon-share-alt" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"></span>
+				        <% end %>
+			        <% end %>
+				</div>
+				<div class="panel-body">
+					<%= lib.description %>
+					<%= link_to "Open", library_path(lib), class: "btn btn-primary pull-right open-btn" %>
+				</div>
 			</div>
-			<div class="panel-body">
-				<%= lib.description %>
-				<%= link_to "Open", library_path(lib), class: "btn btn-primary pull-right open-btn" %>
-			</div>
-		</div>
 		<% end %>
 	</div>
 	<!-- Suggested tab -->
