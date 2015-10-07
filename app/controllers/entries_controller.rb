@@ -36,7 +36,7 @@ class EntriesController < ApplicationController
 
 		@entries = []
 		@sections.each {|sec| @entries.push(sec.entries) }
-
+		@groups = @library.groups
 		@entries = @entries.flatten.select{|e| e.accepted == false}
 
 	end
