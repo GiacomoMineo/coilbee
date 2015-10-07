@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
-	#filter_resource_access
-	filter_access_to :all
+	before_action :new_entry, :only => :new
+	filter_access_to :all, :attribute_check => true
 
 
 	def upvote
@@ -99,5 +99,9 @@ class EntriesController < ApplicationController
 	private
 		def entry_params
 			params.require(:entry).permit(:title, :link, :description, :section_id, :group_id, :accepted)
+		end
+		def new_entry
+			@entry = Entry.new
+			@entry.section = Section.find_by(id: params[:sec])
 		end
 end

@@ -1,5 +1,5 @@
 <h2 class="section-title"><%= @section.name %></h2>
-<% if current_user && current_user.edit? %> <!-- add permission stuff -->
+<% if current_user && current_user.edit? && (permitted_to? :edit, Entry.new(section: @section)) %>
 	<%= link_to "New Entry", new_entry_path(lib: @library, sec: @section), class: 'btn btn-success btn-success new-entry-btn'  %>
 <% end %>
 <div class="entry-group">
