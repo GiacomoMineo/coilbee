@@ -1,6 +1,7 @@
 class EntriesController < ApplicationController
-	before_action :new_entry, :only => :new
-	filter_access_to :all, :attribute_check => true
+	before_action :new_entry, :only => [:new, :index, :create, :accept]
+	#filter_access_to :all, :attribute_check => true
+	filter_resource_access
 
 
 	def upvote

@@ -36,7 +36,7 @@
               <span class="glyphicon icon-small <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
             <% end %> 
           <% end %>
-          <% if current_user.edit? %>
+          <% if current_user.edit? && (permitted_to? :edit, entry) %>
             <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon" do %>
               <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
             <% end %>         
