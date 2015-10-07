@@ -56,7 +56,7 @@
         </div>
       <% end %>
       <!-- NEW CATEGORY MENU ITEM -->
-      <% if current_user && current_user.edit? && (permitted_to? :create, Category.new) %>
+      <% if current_user && (permitted_to? :create, @library.categories) %>
         <div class="panel panel-default menu-category menu-new-category">
 
           <div class="panel-heading" role="tab" id="heading-new">
