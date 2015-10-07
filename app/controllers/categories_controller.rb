@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
-	filter_resource_access
 	before_action :new_category, :only => :new
+	filter_resource_access
 
 	def index
 	end
