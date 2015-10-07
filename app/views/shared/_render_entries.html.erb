@@ -1,8 +1,18 @@
 <% if @entries.empty? %>
   <div>There seems to be nothing here.</div>
 <% end %>
+<% unless @entries.empty? %>
+  <div class="entry-group">
+    <ul class="group-nav">
+      <% @groups.each do |group_nav| %>
+        <li class="group-nav-item" id="group_<%= group_nav.id %>"><div class="group-name"><span><%= group_nav.name %></span></div></li>
+      <% end %>
+    </ul>
+    <div class="group-reset"></div>
+  </div>
+<% end %>
 <% @entries.each do |entry| %>
-  <div class="panel panel-default entry">
+  <div class="panel panel-default entry group_<%= entry.group.id %>">
     <div class="panel-heading entry-header">
       <div class="entry-vote">
         <% if current_user %>
@@ -16,20 +26,23 @@
         <span class="entry-points"><%= entry.rating %></span>
       </div>
       <a href="<%= entry.link %>" class="panel-title entry-title"><%= entry.title %></a>
-      <% if current_user && entry.accepted %>
-        <% read_class = (entry.unread? current_user) ? "glyphicon-unchecked" : "glyphicon-check" %>
-        <%= link_to read_entry_path(entry), method: :put, class: "entry-read" do %>
-          <span class="glyphicon <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
-        <% end %> 
-      <% end %>
-      <%= entry.group.name %>
-      <% if current_user && current_user.edit? %>
+      
+      <span class="entry-group"><%= entry.group.name %></span>
+      <% if current_user %>
         <div class="menu-icon-wrapper">
-          <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
-            <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
-          <% end %>         
-          <%= link_to edit_entry_path(entry), class: "pull-right" do %>
-            <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+          <% if entry.accepted %>
+            <% read_class = (entry.unread? current_user) ? "glyphicon-unchecked" : "glyphicon-check" %>
+            <%= link_to read_entry_path(entry), method: :put, class: "entry-icon" do %>
+              <span class="glyphicon icon-small <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
+            <% end %> 
+          <% end %>
+          <% if current_user.edit? %>
+            <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon" do %>
+              <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+            <% end %>         
+            <%= link_to edit_entry_path(entry), class: "entry-icon" do %>
+              <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+            <% end %>
           <% end %>
         </div>
       <% end %>
@@ -37,7 +50,7 @@
     <div class="panel-body entry-description">      
       <%= entry.description %>
       <% if !entry.accepted %>
-        <div class="pull-right">
+        <div class="entry-options">
           <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
           <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right follow-btn',method: :put   %>
         </div>

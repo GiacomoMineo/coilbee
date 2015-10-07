@@ -13,11 +13,11 @@ $section-line-height: 24px;
 }
 .menu-icon-wrapper {
 	padding-left: 0;
+	float: right;
 }
 .menu-icon {
 	float: right;
 	font-size: 15px;
-	padding-top: 2px;
 	.icon-small {
 		margin-left: 4px;
 	}
@@ -46,9 +46,6 @@ $section-line-height: 24px;
 			text-decoration: none;
 		}
 	}
-	&:last-child {
-		margin-top: 12px !important;
-	}
 }
 .menu-section {
 	@include transition(all 0.3s ease);
@@ -67,11 +64,27 @@ $section-line-height: 24px;
 .menu-new-category {
 	display: block;
 	font-size: 15px;
-	&:hover {
-
+	margin-top: 12px !important;
+	.panel-heading {
+		padding: 0;
 	}
-	.icon-small:hover {
-		color: $color-accent;
+	a {
+		display: block;
+		padding: 10px 15px;
+		line-height: 16px;
+		&:hover {
+			color: $color-accent-dark;
+			.icon-small {
+				color: $color-accent-light;
+			}
+			> span {
+				color: $color-accent;
+			}
+		}
+		> span {
+			font-size: 14px;
+			vertical-align: middle;
+		}
 	}
 }
 
@@ -112,11 +125,12 @@ $section-line-height: 24px;
 		margin-right: 2px;
 		transform: skewX(-14deg);
 		@include transition(all 0.3s ease);
-		a {
+		.group-name {
 			display: block;
 			padding: 4px 12px;
 			color: $color-text-medium;
 			background-color: $color-fade-light;
+			cursor: pointer;
 			@include transition(all 0.3s ease);
 			&:hover {
 				padding: 4px 18px;
@@ -129,8 +143,7 @@ $section-line-height: 24px;
 			transform: skewX(14deg);
 		}
 		&.group-nav-current {
-			a {
-				cursor: default;
+			.group-name {
 				padding: 4px 24px;
 				color: $color-main-dark-extra;
 				background-color: $color-main-light;
@@ -145,7 +158,7 @@ $section-line-height: 24px;
 .entry {
 	.entry-header {
 		height: 56px;
-		padding: 0;
+		padding: 0 16px 0 0;
 		.entry-vote {
 			position: relative;
 			float: left;
@@ -179,17 +192,18 @@ $section-line-height: 24px;
 			margin-left: 16px;
 			line-height: 56px;
 		}
-		.entry-read {
+		.entry-group {
+			line-height: 56px;
+			font-size: 11px;
+			font-weight: bold;
+			color: $color-text-red-dark;
+			padding-left: 16px;
+			text-transform: uppercase;
+		}
+		.entry-icon {
 			float: right;
 			height: 56px;
 			line-height: 56px;
-			margin-right: 16px;
-			> span {
-				@include transition(color 0.3s ease);
-				&:hover {
-					color: $color-accent-light;
-				}
-			}
 		}
 	}
 	.tag-list {
@@ -236,4 +250,23 @@ $section-line-height: 24px;
 			}
 		}
 	}
+	.entry-options {
+		margin-top: 8px;
+		float: right;
+	}
+}
+
+.new-entry-btn {
+	display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 1.3px;
+    padding: 8px 24px 8px 24px;
+    margin: 8px 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 20px;
+    overflow: hidden;
 }

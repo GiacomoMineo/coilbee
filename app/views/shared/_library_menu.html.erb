@@ -57,10 +57,11 @@
       <% end %>
       <!-- NEW CATEGORY MENU ITEM -->
       <% if current_user && current_user.edit? && (permitted_to? :create, Category.new) %>
-        <div class="panel panel-default menu-category">
+        <div class="panel panel-default menu-category menu-new-category">
+
           <div class="panel-heading" role="tab" id="heading-new">
             <h4 class="panel-title">
-              <%= link_to new_category_path(:lib => @library), class: "menu-new-category" do %>
+              <%= link_to new_category_path(:lib => @library) do %>
                 <span>New Category</span>
                 <span class="glyphicon glyphicon-plus pull-right icon-small" aria-hidden="true"></span>
               <% end %>
