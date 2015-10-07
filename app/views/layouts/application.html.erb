@@ -12,12 +12,12 @@
 	<div class="container-fluid">
 		<div class="row">
 			<% if @library && @library.topic %>
-				<div class="col-lg-3 col-lg-offset-1 col-sm-3 col-xs-0">
+				<div class="col-lg-3 col-lg-offset-1 col-sm-3 col-xs-0 aside-content">
 					<%= render 'shared/library_menu.html.erb' %>
 				</div>
-				<div class="col-lg-7 col-sm-9 col-xs-12">
+				<div class="col-lg-7 col-sm-9 col-xs-12 main-content">
 			<% else %>
-				<div class="col-lg-10 col-lg-offset-1 col-xs-12">
+				<div class="col-lg-10 col-lg-offset-1 col-xs-12 main-content">
 			<% end %>
 					<% if notice %>
 						<p class="alert alert-success"><%= notice %></p>

@@ -32,7 +32,8 @@
           </div>
           <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
             <% c.sections.each do |s| %>
-              <div class="panel-body menu-section">
+              <% @section == s ? section_class = "current" : section_class = "" %>
+              <div class="panel-body menu-section <%= section_class %>">
                 <div class="row">
                   <%= link_to s.name, section_path(s), class: "menu-section-link col-xs-9" %>
                   <% if current_user && current_user.edit? %>

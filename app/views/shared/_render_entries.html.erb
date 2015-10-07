@@ -4,11 +4,11 @@
 <% unless @entries.empty? %>
   <div class="entry-group">
     <ul class="group-nav">
+      <li class="group-nav-item group-all group-nav-current"><div class="group-name"><span>All</span></div></li>
       <% @groups.each do |group_nav| %>
         <li class="group-nav-item" id="group_<%= group_nav.id %>"><div class="group-name"><span><%= group_nav.name %></span></div></li>
       <% end %>
     </ul>
-    <div class="group-reset"></div>
   </div>
 <% end %>
 <% @entries.each do |entry| %>

@@ -4,7 +4,6 @@ class SectionsController < ApplicationController
 	def show
 		@section = Section.find(params[:id])
 		@library = @section.category.library
-#
 
 		#@entries = @section.enurrent_user).select { |e| e.accepted == true }
 		@entries = @section.entries.select { |e| e.accepted == true }
