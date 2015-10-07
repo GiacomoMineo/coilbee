@@ -31,8 +31,8 @@ function filter_by_group(group_element) {
 
 function menu_selection() {
 	if($('#accordion').length) {
-		$('.panel-group').find('.panel-heading a[data-toggle="collapse"]').addClass('actives');
-	}
+		var $accordion = $("#accordion");
+	};
 };
 
 // Doc ready

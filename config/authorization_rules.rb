@@ -34,7 +34,7 @@ authorization do
 		has_permission_on :suggestions, :to => [:accept, :destroy] do 
 			if_attribute :receiver => is {user}
 		end
-		# may try to create invites
+		# may try to create invites (TODO: Fix, as this allows everyone to invite)
 		has_permission_on :suggestions, :to => :new
 		# may invite users to libraries he created
 		has_permission_on :suggestions, :to => :create do

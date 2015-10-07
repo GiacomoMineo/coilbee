@@ -1,4 +1,5 @@
 class SectionsController < ApplicationController
+	before_action :new_section, :only => :new
 	filter_resource_access
 	
 	def show
@@ -52,5 +53,9 @@ class SectionsController < ApplicationController
 	private
 		def section_params
 			params.require(:section).permit(:name, :category_id)
+		end
+		def new_section
+			@section = Section.new
+			@section.category = Category.find_by(id: params[:cat])
 		end
 end

@@ -1,12 +1,12 @@
 class CategoriesController < ApplicationController
+	before_action :new_category, :only => :new
 	filter_resource_access
 
 	def index
 	end
 	
 	def new
-		@category = Category.new
-		@library = Library.find_by(id: params[:lib])
+		@library = @category.library
 	end
 	
 	def create
@@ -23,9 +23,9 @@ class CategoriesController < ApplicationController
 
 	def destroy
 		@category = Category.find(params[:id]) #TODO delete recursively all sections and entries
-    	@library = @category.library
-    	@category.destroy
-    	redirect_to library_path(@library), :notice => "The category has been deleted"
+		@library = @category.library
+		@category.destroy
+		redirect_to library_path(@library), :notice => "The category has been deleted"
 	end
 
 	def edit
@@ -46,6 +46,10 @@ class CategoriesController < ApplicationController
 		def category_params
 			params.require(:category).permit(:name)
 		end
-
+		
+		def new_category
+			@category = Category.new
+			@category.library = Library.find_by(id: params[:lib])
+		end
 	
 end

@@ -20,7 +20,7 @@
                         <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
                       <% end %>
                     <% end %>
-                    <% if permitted_to? :create, Section.new %>
+                    <% if permitted_to? :create,  Section.new(category: c) %>
                       <%= link_to new_section_path(:cat => c), class: "menu-icon" do %>
                         <span class="glyphicon glyphicon-plus icon-small" data-toggle="tooltip" data-placement="top" title="New" aria-hidden="true"></span>
                       <% end %>   
@@ -57,7 +57,7 @@
         </div>
       <% end %>
       <!-- NEW CATEGORY MENU ITEM -->
-      <% if current_user && current_user.edit? && (permitted_to? :create, Category.new) %>
+      <% if current_user && current_user.edit? && (permitted_to? :create, @library.categories) %>
         <div class="panel panel-default menu-category menu-new-category">
 
           <div class="panel-heading" role="tab" id="heading-new">
