@@ -22,14 +22,12 @@ Rails.application.routes.draw do
       put "dislike", to: "entries#downvote"
       put "read", to: "entries#read"
       put "accept", to: "entries#accept"
+      get "suggest", to: "entries#suggest"
     end
   end
 
-
   put 'toggle_edit' => 'toggles#toggle_edit', as: :toggle_edit
   put 'toggle_read' => 'toggles#toggle_read', as: :toggle_read
-
-  get '/entry/suggest' => 'entries#suggest', as: :suggest_entry
 
   get '/tag/:id'  => 'tags#show', as: :tag
   get '/tags' => 'tags#index', as: :tag_search
