@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :libraries
   resources :categories
   resources :sections
-  resources :suggestions do
+  resources :invitations do
 		member do
-			get "accept", to: "suggestions#accept"
+			get "accept", to: "invitations#accept"
 		end
 	end
   

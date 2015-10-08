@@ -32,13 +32,13 @@ authorization do
 
 		
 		# may accept or decline suggestions he received
-		has_permission_on :suggestions, :to => [:accept, :destroy] do 
+		has_permission_on :invitations, :to => [:accept, :destroy] do 
 			if_attribute :receiver => is {user}
 		end
 		# may try to create invites (TODO: Fix, as this allows everyone to invite)
-		has_permission_on :suggestions, :to => :new
+		has_permission_on :invitations, :to => :new
 		# may invite users to libraries he created
-		has_permission_on :suggestions, :to => :create do
+		has_permission_on :invitations, :to => :create do
 			if_permitted_to :edit, :library
 		end
 		
@@ -70,7 +70,7 @@ authorization do
   role :admin do
 		includes :user
 		has_permission_on :toggles, :to => [:toggle_edit, :toggle_read]
-		has_permission_on [:libraries, :categories, :sections, :entries, :tags, :suggestions], :to => :manage
+		has_permission_on [:libraries, :categories, :sections, :entries, :tags, :invitations], :to => :manage
 	end
 	
   # permissions on other roles, such as

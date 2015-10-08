@@ -5,7 +5,7 @@ class LibrariesController < ApplicationController
 	def index
 		@libraries_own = current_user.libraries_created
 		@libraries_followed = current_user.libraries.select { |lib| lib.creator != current_user}
-		@suggestions = current_user.suggestions_received
+		@invitations = current_user.invitations_received
 	end
 
 	def show
@@ -54,10 +54,10 @@ class LibrariesController < ApplicationController
 
 	def destroy
 		@library = Library.find(params[:id])
-		@suggestions = Suggestion.all.select{ |sug| sug.library == @library}
+		@invitations = Invitation.all.select{ |sug| sug.library == @library}
 
-		@suggestions.each do |sug|
-			sug.destroy
+		@invitations.each do |invite|
+			invite.destroy
 		end
 		
     	@library.destroy
