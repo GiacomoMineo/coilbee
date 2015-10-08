@@ -94,6 +94,37 @@ $section-line-height: 24px;
 	}
 }
 
+// Advert
+.adv-wrapper {
+	text-align: center;
+	.adv {
+		.adv-light {
+			font-weight: 300;
+			font-size: 14px;
+			color: $color-text-medium;
+		}
+		.adv-content {
+			font-weight: 300;
+			font-size: 16px;
+			color: $color-text-medium-alt;
+		}
+		.adv-cta {
+			> span {
+				font-size: 11px;
+				color: $color-text-light-alt;
+				vertical-align: middle;
+			}
+			> a {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			> div {
+				margin-bottom: 2px;
+			}
+		}
+	}
+}
+
 // Library intro page
 .library-intro {
 	text-align: center;
@@ -175,31 +206,32 @@ $section-line-height: 24px;
 // Entries
 
 .entry {
+	$entry-h: 42px;
 	.entry-header {
-		height: 56px;
+		height: $entry-h;
 		padding: 0 16px 0 0;
 		.entry-vote {
 			position: relative;
 			float: left;
 			width: 64px;
-			height: 56px;
+			height: $entry-h;
 			padding: 8px 16px;
-			border-right: 1px solid $color-fade-medium;
 			.upvote, .downvote {
 				position: absolute;
 				height: 15px;
+				font-size: 13px;
 				@include transition(color 0.3s ease);
 				&:hover {
 					color: $color-accent-light;
 				}
 			}
-			.upvote { top: 6px; }
-			.downvote { bottom: 8px; }
+			.upvote { top: 4px; }
+			.downvote { bottom: 6px; }
 			 .entry-points {
-			 	margin-top: 7px;
 				float: right;
-				line-height: 22px;
-				font-size: 15px;
+				margin-top: 3px;
+				line-height: 20px;
+				font-size: 14px;
 				font-weight: bold;
 				color: $color-accent;
 				cursor: default;
@@ -207,23 +239,36 @@ $section-line-height: 24px;
 		}
 		.entry-title {
 			float: left;
-			height: 56px;
-			margin-left: 16px;
-			line-height: 56px;
+			height: $entry-h;
+			line-height: $entry-h;
+			font-size: 21px;
+			font-weight: 300;
+			color: $color-accent;
+			@include transition(color 0.3s ease);
+			&:hover {
+				color: $color-accent-light;
+			}
 		}
 		.entry-group {
-			line-height: 56px;
+			line-height: $entry-h;
 			font-size: 11px;
-			font-weight: bold;
-			color: $color-text-red-dark;
+			font-weight: 300;
+			color: $color-text-light;
 			padding-left: 16px;
 			text-transform: uppercase;
 		}
 		.entry-icon {
 			float: right;
-			height: 56px;
-			line-height: 56px;
+			height: $entry-h;
+			line-height: $entry-h;
 		}
+	}
+	.entry-description {
+		color: $color-text-medium-alt;
+		font-weight: 300;
+		font-size: 14px;
+		padding: 0 16px 8px;
+		border-bottom: 1px solid $color-fade-light;
 	}
 	.tag-list {
 		padding: 0 6px 6px 0;
@@ -232,7 +277,7 @@ $section-line-height: 24px;
 		.tag {
 			float: right;
 			position: relative;
-			padding: 3px 9px;
+			padding: 2px 8px;
 			margin-left: $triangle-size + 4px;
 			font-size: 12px;
 			color: #fff;
@@ -245,8 +290,8 @@ $section-line-height: 24px;
 				content: '';
 				width: 0; 
 				height: 0; 
-				border-top: 11px solid transparent;
-				border-bottom: 11px solid transparent; 
+				border-top: 10px solid transparent;
+				border-bottom: 10px solid transparent;
 				border-right: $triangle-size solid $color-fade-medium;
 				@include transition(all 0.3s ease);
 			}
@@ -254,7 +299,7 @@ $section-line-height: 24px;
 				content: '.';
 				position: absolute;
 				left: -2px;
-				top: 4px;
+				top: 3px;
 				color: #fff;
 				font-weight: bold;
 				font-size: 22px;

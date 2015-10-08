@@ -33,26 +33,28 @@
           </div>
           <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
             <% c.sections.each do |s| %>
-              <% @section == s ? section_class = "current" : section_class = "" %>
-              <div class="panel-body menu-section <%= section_class %>">
-                <div class="row">
-                  <%= link_to s.name, section_path(s), class: "menu-section-link col-xs-9" %>
-                  <% if current_user && current_user.edit? %>
-                    <div class="col-xs-3 menu-icon-wrapper"> 
-                      <% if permitted_to? :destroy, s %>        
-                        <%= link_to section_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
-                          <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+              <% unless s.entries.empty? && !(current_user && current_user.edit?) %>
+                <% @section == s ? section_class = "current" : section_class = "" %>
+                <div class="panel-body menu-section <%= section_class %>">
+                  <div class="row">
+                    <%= link_to s.name, section_path(s), class: "menu-section-link col-xs-9" %>
+                    <% if current_user && current_user.edit? %>
+                      <div class="col-xs-3 menu-icon-wrapper"> 
+                        <% if permitted_to? :destroy, s %>        
+                          <%= link_to section_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
+                            <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+                          <% end %>
                         <% end %>
-                      <% end %>
-                      <% if permitted_to? :edit, s %>      
-                        <%= link_to edit_section_path(s), class: "menu-icon" do %>
-                          <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+                        <% if permitted_to? :edit, s %>      
+                          <%= link_to edit_section_path(s), class: "menu-icon" do %>
+                            <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+                          <% end %>
                         <% end %>
-                      <% end %>
-                    </div> 
-                  <% end %>
-                </div> 
-              </div>
+                      </div> 
+                    <% end %>
+                  </div> 
+                </div>
+              <% end %>
             <% end %> 
           </div>  
         </div>
@@ -72,6 +74,18 @@
         </div>
       <% end %>
     </div>
+    <% unless current_user %>
+      <div class="adv-wrapper">
+        <div class="adv">
+          <p class="adv-light">Created with Linkr</p>
+          <p class="adv-content">Make your own library and suggest links!</p>
+          <div class="adv-cta">
+            <div><%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-success signup-btn small', id: "signup-btn" %></div>
+            <span>Already have account?</span><%= link_to "Login", new_user_session_path, :class => 'btn login-btn small', id: "login-btn" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </aside>
       
 
