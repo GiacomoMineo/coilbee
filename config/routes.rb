@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :sections
   resources :invitations do
 		member do
-			get "accept", to: "invitations#accept"
+			put "accept", to: "invitations#accept"
 		end
 	end
   

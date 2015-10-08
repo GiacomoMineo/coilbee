@@ -96,7 +96,7 @@
 			<div class="panel-heading">
 			<%= link_to invitation.library.topic, library_path(invitation.library), class: "panel-title library-title" %><span class="invited-by">invited by: <span><%= invitation.creator.email %></span></span>
 				<%= link_to "Reject", invitation_path(invitation), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
-				<%= link_to "Follow", accept_invitation_path(invitation), class: 'btn btn-success pull-right follow-btn'  %>
+				<%= link_to "Follow", accept_invitation_path(invitation), method: :put, class: 'btn btn-success pull-right follow-btn'  %>
 			</div>
 			<div class="panel-body">
 				<%= invitation.library.description %>
