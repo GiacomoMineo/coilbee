@@ -1,10 +1,11 @@
 class LibrariesController < ApplicationController
+	before_action :new_library, :only => :approve
 	filter_resource_access
 
 	def index
 		@libraries_own = current_user.libraries_created
 		@libraries_followed = current_user.libraries.select { |lib| lib.creator != current_user}
-		@suggestions = current_user.suggestions_received
+		@invitations = current_user.invitations_received
 	end
 
 	def show
@@ -53,19 +54,35 @@ class LibrariesController < ApplicationController
 
 	def destroy
 		@library = Library.find(params[:id])
-		@suggestions = Suggestion.all.select{ |sug| sug.library == @library}
+		@invitations = Invitation.all.select{ |sug| sug.library == @library}
 
-		@suggestions.each do |sug|
-			sug.destroy
+		@invitations.each do |invite|
+			invite.destroy
 		end
 		
     	@library.destroy
     	redirect_to '/', :notice => "The library has been deleted"
 	end
 
+	def show_suggestions
+		@library = Library.find(params[:id])
+
+		@sections = []
+		@library.categories.each {|cat| @sections.push(cat.sections)}
+		@sections.flatten!
+
+		@entries = []
+		@sections.each {|sec| @entries.push(sec.entries) }
+		@groups = @library.groups
+		@entries = @entries.flatten.select{|e| e.accepted == false}
+	end
+
 	private
 		def library_params
 			params.require(:library).permit(:topic, :description)
+		end
+		def new_library
+			@library = Library.new
 		end
 
 end
