@@ -1,5 +1,5 @@
 class LibrariesController < ApplicationController
-	before_action :new_library, :only => :approve
+	before_action :new_library, :only => [:approve, :edit]
 	filter_resource_access
 
 	def index
@@ -45,6 +45,7 @@ class LibrariesController < ApplicationController
 
 	def update
 		@library_to_edit = Library.find(params[:id])
+		@library_to_edit.update_attributes(moderator_ids: params[:library][:moderator_ids])
 		if @library_to_edit.update_attributes(library_params)
 			redirect_to '/', :notice => "The library has been edited"
 		else
@@ -79,7 +80,7 @@ class LibrariesController < ApplicationController
 
 	private
 		def library_params
-			params.require(:library).permit(:topic, :description)
+			params.require(:library).permit(:topic, :description, :moderator_ids)
 		end
 		def new_library
 			@library = Library.new

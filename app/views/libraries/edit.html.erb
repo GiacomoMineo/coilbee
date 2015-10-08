@@ -9,6 +9,17 @@
 		<%= label_tag 'library[description]', "Description" %>
 		<%= f.text_area :description, :placeholder => "", class: "form-control"  %>
 	</div>
+	<div>
+		<div>
+			<% hidden_field_tag "library[moderator_ids][]", nil %>
+		</div>
+		<% @library_to_edit.subscriptions.each do |subscription| %>			
+			<div>
+				<%= check_box_tag "library[moderator_ids][]", subscription.user.id, @library_to_edit.moderators.include?(subscription.user), id: "mod_" + subscription.user.id.to_s %>
+				<label for="mod_<%= subscription.user.id %>"><span><span></span></span><%= subscription.user.user_name %></label>
+			</div>
+		<% end %>
+	</div>
   <div class="actions">
     <%= f.submit "Save changes" %>
   </div>

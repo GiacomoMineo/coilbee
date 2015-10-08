@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
-  has_and_belongs_to_many :moderated_libraries, :class_name => "Library", :foreign_key => "moderated_id"
+  has_and_belongs_to_many :moderated_libraries, :class_name => "Library"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   acts_as_reader

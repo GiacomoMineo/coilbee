@@ -26,6 +26,8 @@ admin.roles << [Role.find_by(title: 'admin')]
 l1 = Library.create(topic: "Start Up", description: "This is a library about everything regarding start ups!", creator_id: editor.id)
 l2 = Library.create(topic: "Cooking", description: "This is a library about everything regarding cooking!", creator_id: editor.id)
 
+l1.moderators << [admin, user]
+
 g1 = Group.create(name: "read", library_id: l1.id)
 g2 = Group.create(name: "watch", library_id: l1.id)
 g3 = Group.create(name: "learn", library_id: l1.id)

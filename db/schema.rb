@@ -11,11 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151004103450) do
+ActiveRecord::Schema.define(version: 20151008205842) do
 
   create_table "Entries_Tags", id: false, force: :cascade do |t|
     t.integer "entry_id", null: false
     t.integer "tag_id",   null: false
+  end
+
+  create_table "Libraries_Users", id: false, force: :cascade do |t|
+    t.integer "library_id", null: false
+    t.integer "user_id",    null: false
   end
 
   create_table "categories", force: :cascade do |t|
