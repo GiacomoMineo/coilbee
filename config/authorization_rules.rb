@@ -47,7 +47,7 @@ authorization do
 			if_attribute :creator => is {user}
 		end
 		# ... and all their categories
-		has_permission_on :categories, :to => :manage do
+		has_permission_on :categories, :to => [:manage, :approve] do
 			if_permitted_to :edit, :library
 		end
 		# ... and sections

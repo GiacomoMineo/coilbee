@@ -1,4 +1,5 @@
 class LibrariesController < ApplicationController
+	before_action :new_library, :only => :approve
 	filter_resource_access
 
 	def index
@@ -63,9 +64,25 @@ class LibrariesController < ApplicationController
     	redirect_to '/', :notice => "The library has been deleted"
 	end
 
+	def approve
+		@library = Library.find_by(id: params[:lib])
+
+		@sections = []
+		@library.categories.each {|cat| @sections.push(cat.sections)}
+		@sections.flatten!
+
+		@entries = []
+		@sections.each {|sec| @entries.push(sec.entries) }
+		@groups = @library.groups
+		@entries = @entries.flatten.select{|e| e.accepted == false}
+	end
+
 	private
 		def library_params
 			params.require(:library).permit(:topic, :description)
+		end
+		def new_library
+			@library = Library.new
 		end
 
 end

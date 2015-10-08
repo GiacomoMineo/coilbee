@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   put 'toggle_read' => 'toggles#toggle_read', as: :toggle_read
 
 
-  get '/sug' => 'entries#index', as: :entry_index
+  #get '/sug' => 'entries#index', as: :entry_index
+  get '/sug' => 'libraries#approve', as: :suggestion_index
   get '/entry/suggest' => 'entries#suggest', as: :suggest_entry
 
   get '/tag/:id'  => 'tags#show', as: :tag
