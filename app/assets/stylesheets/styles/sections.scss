@@ -4,6 +4,15 @@
 $category-line-height: 30px;
 $section-line-height: 24px;
 
+/*.aside-content {
+	position: relative;
+	aside {
+		position: fixed;
+		display: block;
+		width: inherit;
+	}
+}*/
+
 .menu-category-link , .menu-section-link {
 	display: inline-block;
 	text-overflow: ellipsis;
@@ -210,6 +219,7 @@ $section-line-height: 24px;
 	.entry-header {
 		height: $entry-h;
 		padding: 0 16px 0 0;
+		@extend %clearfix;
 		.entry-vote {
 			position: relative;
 			float: left;
@@ -264,24 +274,29 @@ $section-line-height: 24px;
 		}
 	}
 	.entry-description {
+		@extend %clearfix;
 		color: $color-text-medium-alt;
 		font-weight: 300;
 		font-size: 14px;
 		padding: 0 16px 8px;
 		border-bottom: 1px solid $color-fade-light;
+		> p {
+			display: inline-block;
+			margin-bottom: 6px;
+		}
 	}
 	.tag-list {
-		padding: 0 6px 6px 0;
-		@extend %clearfix;
+		float: right;
 		$triangle-size: 12px;
 		.tag {
-			float: right;
+			display: inline-block;
 			position: relative;
 			padding: 2px 8px;
 			margin-left: $triangle-size + 4px;
 			font-size: 12px;
 			color: #fff;
 			background-color: $color-fade-medium;
+			vertical-align: middle;
 			@include transition(all 0.3s ease);
 			&::before {
 				position: absolute;
@@ -315,8 +330,18 @@ $section-line-height: 24px;
 		}
 	}
 	.entry-options {
-		margin-top: 8px;
 		float: right;
+		padding-left: 6px;
+		.accept-entry-btn, .reject-entry-btn {
+			margin-top: 5px;
+			padding: 2px 14px;
+		}
+		.accept-entry-btn {
+			@extend .follow-btn;
+		}
+		.reject-entry-btn {
+			@extend .reject-btn;
+		}
 	}
 }
 

@@ -25,8 +25,13 @@
         <span class="entry-points"><%= entry.rating %></span>
       </div>
       <a href="<%= entry.link %>" class="entry-title"><%= entry.title %></a>
-      
       <span class="entry-group"><%= entry.group.name %></span>
+      <% if !entry.accepted %>
+        <div class="entry-options">
+          <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-entry-btn' %>
+          <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right accept-entry-btn',method: :put   %>
+        </div>
+      <% end %>
       <% if current_user %>
         <div class="menu-icon-wrapper">
           <% if entry.accepted %>
@@ -45,20 +50,14 @@
           <% end %>
         </div>
       <% end %>
+    </div>
+    <div class="entry-description">      
+      <p><%= entry.description %></p>
       <div class="tag-list">
         <% entry.tags.each do |t| %>
           <%= link_to t.name, tag_path(t), class: "tag" %>
         <% end %>   
       </div> 
-    </div>
-    <div class="entry-description">      
-      <%= entry.description %>
-      <% if !entry.accepted %>
-        <div class="entry-options">
-          <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
-          <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right follow-btn',method: :put   %>
-        </div>
-      <% end %>
     </div>
   </div>
 <% end %>
