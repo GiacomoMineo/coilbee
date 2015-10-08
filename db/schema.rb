@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20151008205842) do
+
 
   create_table "Entries_Tags", id: false, force: :cascade do |t|
     t.integer "entry_id", null: false
@@ -62,6 +64,18 @@ ActiveRecord::Schema.define(version: 20151008205842) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invitations", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.integer  "receiver_id"
+    t.integer  "library_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "invitations", ["creator_id"], name: "index_invitations_on_creator_id"
+  add_index "invitations", ["library_id"], name: "index_invitations_on_library_id"
+  add_index "invitations", ["receiver_id"], name: "index_invitations_on_receiver_id"
+
   create_table "libraries", force: :cascade do |t|
     t.string   "topic"
     t.text     "description"
@@ -108,18 +122,6 @@ ActiveRecord::Schema.define(version: 20151008205842) do
 
   add_index "subscriptions", ["library_id"], name: "index_subscriptions_on_library_id"
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
-
-  create_table "suggestions", force: :cascade do |t|
-    t.integer  "creator_id"
-    t.integer  "receiver_id"
-    t.integer  "library_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "suggestions", ["creator_id"], name: "index_suggestions_on_creator_id"
-  add_index "suggestions", ["library_id"], name: "index_suggestions_on_library_id"
-  add_index "suggestions", ["receiver_id"], name: "index_suggestions_on_receiver_id"
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"

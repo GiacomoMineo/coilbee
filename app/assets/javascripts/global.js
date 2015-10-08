@@ -46,7 +46,7 @@ $(document).on('page:change', function(event) {
 	// Initialization
 
 	//signup panel
-	$('#signup-btn').click(function(e) {
+	$('#signup-btn.landing').click(function(e) {
 		e.preventDefault();
 		$(this).toggleClass('clicked');
 		$(this).blur();
@@ -59,7 +59,7 @@ $(document).on('page:change', function(event) {
     };
 	});
 	//login panel
-	$('#login-btn').click(function(e) {
+	$('#login-btn.landing').click(function(e) {
 		e.preventDefault();
 		$('#login').slideToggle(300);
 		$('#signup').slideUp(300);

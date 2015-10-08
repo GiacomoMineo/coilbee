@@ -28,7 +28,7 @@
 					<% end %>
 					<% if @library && @library.topic %>
 						<% if permitted_to? :edit, @library %> <!-- add admin restriction here -->
-							<li><%= link_to 'Suggestions', suggestion_index_path(lib: @library), class: "suggest-btn" %></li>
+							<li><%= link_to 'Suggestions', suggestions_library_path(@library), class: "suggest-btn" %></li>
 						<% else %>
 							<li><%= link_to 'Suggest', suggest_entry_path(lib: @library), class: "suggest-btn" %></li>
 						<% end %>
@@ -51,3 +51,4 @@
     </div>
 	</div>
 </nav>
+<

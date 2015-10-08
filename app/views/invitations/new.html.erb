@@ -1,5 +1,5 @@
 <h1>Send invitation for library '<%= @library_to_suggest.topic %>'</h1>
-<%= form_tag "/suggestions" do %>
+<%= form_tag "/invitations" do %>
   <%= email_field_tag :email, nil , :placeholder => "Send invitation to this email", class: "form-control" %>
   <%= submit_tag "Invite", :name => "lib[#{@library_to_suggest.id}]", class: "btn btn-submit"  %>
 <% end %>

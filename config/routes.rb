@@ -3,12 +3,16 @@ Rails.application.routes.draw do
   devise_for :users
   root 'pages#index'
   
-  resources :libraries
+  resources :libraries do
+		member do
+			get "suggestions", to: "libraries#show_suggestions"
+		end
+	end
   resources :categories
   resources :sections
-  resources :suggestions do
+  resources :invitations do
 		member do
-			get "accept", to: "suggestions#accept"
+			put "accept", to: "invitations#accept"
 		end
 	end
   
@@ -18,17 +22,12 @@ Rails.application.routes.draw do
       put "dislike", to: "entries#downvote"
       put "read", to: "entries#read"
       put "accept", to: "entries#accept"
+      get "suggest", to: "entries#suggest"
     end
   end
 
-
   put 'toggle_edit' => 'toggles#toggle_edit', as: :toggle_edit
   put 'toggle_read' => 'toggles#toggle_read', as: :toggle_read
-
-
-  #get '/sug' => 'entries#index', as: :entry_index
-  get '/sug' => 'libraries#approve', as: :suggestion_index
-  get '/entry/suggest' => 'entries#suggest', as: :suggest_entry
 
   get '/tag/:id'  => 'tags#show', as: :tag
   get '/tags' => 'tags#index', as: :tag_search

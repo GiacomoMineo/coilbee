@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :libraries, through: :subscriptions
   has_many :libraries_created, :class_name => "Library", :foreign_key => "creator_id"
-  has_many :suggestions_created, :class_name => "Suggestion", :foreign_key => "creator_id"
-  has_many :suggestions_received, :class_name => "Suggestion", :foreign_key => "receiver_id"
+  has_many :invitations_created, :class_name => "Invitation", :foreign_key => "creator_id"
+  has_many :invitations_received, :class_name => "Invitation", :foreign_key => "receiver_id"
   enum mode: [:read, :edit] #read: 0, edit: 1
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

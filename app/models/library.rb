@@ -1,7 +1,7 @@
 class Library < ActiveRecord::Base
 	has_many :categories
 	has_many :groups
-	has_many :suggestions
+	has_many :invitations
 	has_many :tags
 	has_many :subscriptions
   	has_many :users, through: :subscriptions

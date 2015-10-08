@@ -15,7 +15,7 @@
 </div>
 <div class="row linkr-account">
 	<div class="signup-block">
-		<%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-success signup-btn', id: "signup-btn" %>
+		<%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-success signup-btn landing', id: "signup-btn" %>
 		<div id="signup">
 			<div class="landing-panel">
 				<%= render 'devise/registrations/new' %>
@@ -24,7 +24,7 @@
 	</div>
 	<div class="login-block">
 		<span class="login-text">Already have an account?</span>
-		<%= link_to "Login", new_user_session_path, :class => 'btn login-btn', id: "login-btn" %>
+		<%= link_to "Login", new_user_session_path, :class => 'btn login-btn landing', id: "login-btn" %>
 		<div id="login">
 			<div class="landing-panel">
 				<%= render 'devise/sessions/new' %>
