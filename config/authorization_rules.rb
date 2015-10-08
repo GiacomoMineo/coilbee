@@ -28,6 +28,12 @@ authorization do
 		has_permission_on :tags, :to => :read do
 			if_permitted_to :read, :library
 		end
+		# may rate entries and mark them as read
+		has_permission_on :entries, :to => [:rate, :read] do
+			if_permitted_to :read, :section
+		end
+		# may suggest new entries
+		has_permission_on :entries, :to => :suggest
 
 
 		
@@ -42,12 +48,12 @@ authorization do
 			if_permitted_to :edit, :library
 		end
 		
-		# may edit libraries he created...
-		has_permission_on :libraries, :to => :manage do
+		# may manage libraries he created...
+		has_permission_on :libraries, :to => [:manage, :show_suggestions] do
 			if_attribute :creator => is {user}
 		end
 		# ... and all their categories
-		has_permission_on :categories, :to => [:manage, :approve] do
+		has_permission_on :categories, :to => :manage do
 			if_permitted_to :edit, :library
 		end
 		# ... and sections
@@ -55,11 +61,9 @@ authorization do
 			if_permitted_to :edit, :category
 		end
 		# ... and entries
-		has_permission_on :entries, :to => :manage do
+		has_permission_on :entries, :to => [:manage, :accept, :rate] do
 			if_permitted_to :edit, :section
-		end		
-		has_permission_on :entries, :to => :suggest do
-		end		
+		end	
 	end
 
 	role :moderator do
@@ -71,6 +75,8 @@ authorization do
 		includes :user
 		has_permission_on :toggles, :to => [:toggle_edit, :toggle_read]
 		has_permission_on [:libraries, :categories, :sections, :entries, :tags, :invitations], :to => :manage
+		has_permission_on :libraries, :to => [:show_suggestions]
+		has_permission_on :entries, :to => [:accept, :rate]
 	end
 	
   # permissions on other roles, such as
@@ -88,7 +94,7 @@ end
 
 privileges do
   # default privilege hierarchies to facilitate RESTful Rails apps
-  privilege :manage, :includes => [:create, :read, :update, :delete, :rate]
+  privilege :manage, :includes => [:create, :read, :update, :delete]
   privilege :rate, :includes => [:upvote, :downvote]
   privilege :read, :includes => [:index, :show]
   privilege :create, :includes => :new

@@ -64,8 +64,8 @@ class LibrariesController < ApplicationController
     	redirect_to '/', :notice => "The library has been deleted"
 	end
 
-	def approve
-		@library = Library.find_by(id: params[:lib])
+	def show_suggestions
+		@library = Library.find(params[:id])
 
 		@sections = []
 		@library.categories.each {|cat| @sections.push(cat.sections)}

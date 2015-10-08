@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   root 'pages#index'
   
-  resources :libraries
+  resources :libraries do
+		member do
+			get "suggestions", to: "libraries#show_suggestions"
+		end
+	end
   resources :categories
   resources :sections
   resources :invitations do
@@ -25,9 +29,6 @@ Rails.application.routes.draw do
   put 'toggle_edit' => 'toggles#toggle_edit', as: :toggle_edit
   put 'toggle_read' => 'toggles#toggle_read', as: :toggle_read
 
-
-  #get '/sug' => 'entries#index', as: :entry_index
-  get '/sug' => 'libraries#approve', as: :suggestion_index
   get '/entry/suggest' => 'entries#suggest', as: :suggest_entry
 
   get '/tag/:id'  => 'tags#show', as: :tag
