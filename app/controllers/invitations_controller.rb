@@ -17,7 +17,7 @@ class InvitationsController < ApplicationController
 			if @invitation.save
 				redirect_to '/'
 			else
-				render 'new'
+				render 'new', :notice => "Couldn't find user with this email address!"
 			end
 		else
 			@library_to_suggest = Library.find_by(id: params["lib"].first)
