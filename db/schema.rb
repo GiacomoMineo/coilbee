@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20151008205842) do
-
 
   create_table "Entries_Tags", id: false, force: :cascade do |t|
     t.integer "entry_id", null: false

@@ -12,6 +12,10 @@ authorization do
 		#may create new libraries
 		has_permission_on :libraries, :to => :create
 
+		has_permission_on :libraries, :to => [:manage, :show_suggestions] do
+			if_attribute :moderators => contains {user}
+		end 
+
 		# may view libraries he is subscribed to...
 		has_permission_on :libraries, :to => :read do
 			if_attribute :users => contains {user}

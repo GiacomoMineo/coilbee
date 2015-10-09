@@ -18,15 +18,17 @@ roles = Role.create([
 
 
 admin = User.create(user_name: 'admin', email: 'admin@gmail.com', password: 'password')
-editor = User.create(user_name: 'editor', email: 'editor@gmail.com', password: 'password')
-user = User.create(user_name: 'user', email: 'user@gmail.com', password: 'password')
+user1 = User.create(user_name: 'user1', email: 'user1@gmail.com', password: 'password')
+user2 = User.create(user_name: 'user2', email: 'user2@gmail.com', password: 'password')
 
 admin.roles << [Role.find_by(title: 'admin')]
+user1.roles << [Role.find_by(title: 'user')]
+user2.roles << [Role.find_by(title: 'user')]
 
-l1 = Library.create(topic: "Start Up", description: "This is a library about everything regarding start ups!", creator_id: editor.id)
-l2 = Library.create(topic: "Cooking", description: "This is a library about everything regarding cooking!", creator_id: editor.id)
+l1 = Library.create(topic: "Start Up", description: "This is a library about everything regarding start ups!", creator_id:user1.id)
+l2 = Library.create(topic: "Cooking", description: "This is a library about everything regarding cooking!", creator_id: user1.id)
 
-l1.moderators << [admin, user]
+#l1.moderators << [admin, user]
 
 g1 = Group.create(name: "read", library_id: l1.id)
 g2 = Group.create(name: "watch", library_id: l1.id)
@@ -88,10 +90,10 @@ e8.tags << [t1, t4]
 e9.tags << [t1, t2, t3, t4]
 e10.tags << [t4]
 
-admin.libraries << [l1,l2]
-editor.libraries << [l1,l2]
-user.libraries << [l2]
+#admin.libraries << [l1,l2]
+#editor.libraries << [l1,l2]
+#user.libraries << [l2]
 
-inv1 = Invitation.create(library_id: l1.id, creator_id: admin.id, receiver_id: user.id)
+#inv1 = Invitation.create(library_id: l1.id, creator_id: admin.id, receiver_id: user.id)
 
 end
