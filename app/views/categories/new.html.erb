@@ -1,8 +1,10 @@
-<h1>Create new category</h1>
-<%= form_for(@category) do |f| %>
-	<div class="form-group">
-		<%= label_tag 'category[name]', "Name"%>
-		<%= f.text_field :name, :placeholder => "A name for your category", class: "form-control" %>
+<h2 class="in-form-title">Create category</h2>
+<%= form_for(@category, :html => {:class => 'in-form'}) do |f| %>
+	<div class="in-row">
+		<%= f.text_field :name, class: "in-field", id: "cat-title" %>
+		<label class="in-label" for="cat-title">
+	      <span class="in-label-content" data-content="Title">Title</span>
+	    </label>
 	</div>
-	<%= f.submit "Submit", :name => "lib[#{@library.id}]", class: "btn btn-submit" %>
+	<%= f.submit "Submit", :name => "lib[#{@library.id}]", class: "btn btn-primary in-submit" %>
 <% end %>

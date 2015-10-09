@@ -7,25 +7,25 @@ class EntriesController < ApplicationController
 	def upvote
 		@entry = Entry.find(params[:id])
 		@entry.upvote_by current_user 
-		redirect_to request.referer #go back where we came from
+		redirect_to request.referer || '/'  #go back where we came from
 	end
 
 	def downvote
 		@entry = Entry.find(params[:id])
 		@entry.downvote_by current_user 
-		redirect_to request.referer #go back where we came from
+		redirect_to request.referer || '/'  #go back where we came from
 	end
 
 	def accept
 		@entry = Entry.find(params[:id])
 		@entry.update_attributes(accepted: true)
-		redirect_to request.referer #go back where we came from
+		redirect_to request.referer || '/' #go back where we came from
 	end
 
 	def read
 		@entry = Entry.find(params[:id])
 		@entry.mark_as_read! :for => current_user
-		redirect_to request.referer #go back where we came from
+		redirect_to request.referer || '/' #go back where we came from
 	end
 
 	def suggest
@@ -70,7 +70,7 @@ class EntriesController < ApplicationController
 			if @entry.accepted
 				redirect_to section_path(@entry.section), :notice => "The entry has been edited"
 			else
-				redirect_to entry_index_path(lib: @entry.section.category.library.id) , :notice => "The entry has been edited"
+				redirect_to suggestions_library_path(@entry.section.category.library) , :notice => "The entry has been edited"
 			end
 		else
 			render 'edit', :notice => "Could not edit entry" 
@@ -79,7 +79,7 @@ class EntriesController < ApplicationController
 	def destroy
 		@entry = Entry.find(params[:id])
   		@entry.destroy
-    	redirect_to request.referer #go back where we came from
+    	redirect_to request.referer || '/' #go back where we came from
 	end
 
 	

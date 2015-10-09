@@ -1,20 +1,26 @@
-<h1>Edit entry</h1>
-<%= form_for(@entry) do |f| %>
-	<div class="form-group">
-		<%= label_tag 'entry[title]', "Title" %>
-		<%= f.text_field :title, :placeholder => "Title of your link", class: "form-control" %>
+<h2 class="in-form-title">Edit entry</h2>
+<%= form_for(@entry, :html => {:class => 'in-form'}) do |f| %>
+	<div class="in-row">
+		<%= f.text_field :title, class: "in-field", id: "ent-title" %>
+		<label class="in-label" for="ent-title">
+	      <span class="in-label-content" data-content="Title">Title</span>
+	    </label>
 	</div>
-	<div class="form-group">
-		<%= label_tag 'entry[link]', "Link" %>
-		<%= f.url_field :link, :placeholder => "http://example.com", class: "form-control"  %>
+	<div class="in-row">
+		<%= f.url_field :link, class: "in-field", id: "ent-link" %>
+		<label class="in-label" for="ent-link">
+	      <span class="in-label-content" data-content="Link">Link</span>
+	    </label>
 	</div>
-	<div class="form-group">
-		<%= label_tag 'entry[description]', "Description" %>
-		<%= f.text_area :description, :placeholder => "A good description for your link", class: "form-control"  %>
+	<div class="in-row">
+		<%= f.text_area :description, class: "in-field" %>
+		<label class="in-label" for="ent-title">
+	      <span class="in-label-content" data-content="Description">Description</span>
+	    </label>
 	</div>
-	<div class="form-group">
+	<div class="in-row">
 		<%= label_tag 'entry[group_id]', "Type" %>
 		<%= f.collection_select(:group_id, @groups, :id, :name, {prompt: true}, {class: "form-control"}) %>
 	</div>
-	<%= f.submit "Submit", class: "btn btn-submit" %>
+	<%= f.submit "Save changes", class: "btn btn-primary in-submit" %>
 <% end %>

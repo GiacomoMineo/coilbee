@@ -139,13 +139,16 @@ nav li a {
 	max-width: 350px;
 	width: 100%;
 	vertical-align: top;
+	&.small {
+		margin: 8px 0 2px;
+	}
 	.in-field {
 		position: relative;
 		display: block;
 		float: right;
 		padding: 12px;
 		border-radius: 0;
-		color: $color-accent;
+		color: $color-text-dark;
 		font-family: 'Open Sans', sans-serif;
 		-webkit-appearance: none;
 
@@ -286,9 +289,9 @@ input[type=radio]:not(old){
 input[type=checkbox]:not(old) + label,
 input[type=radio]:not(old) + label{
 	display: inline-block;
-	margin-left: - ($size * 2);
 	line-height: $size;
 	font-size: $font;
+	text-transform: capitalize;
 }
 //unchecked graphics
 input[type=checkbox]:not(old) + label > span,
@@ -296,6 +299,7 @@ input[type=radio]:not(old) + label > span{
   display: inline-block;
   width: $size;
   height: $size;
+  margin-left: -$size;
   margin-right: 8px;
   border: $offset solid transparent;
   border-radius: 1px;
