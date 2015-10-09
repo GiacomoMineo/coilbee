@@ -1,11 +1,14 @@
 class LibrariesController < ApplicationController
-	before_action :new_library, :only => [:approve, :edit]
+	before_action :new_library, :only => [:approve, :edit, :browse]
 	filter_resource_access
 
 	def index
 		@libraries_own = current_user.libraries_created
 		@libraries_followed = current_user.libraries.select { |lib| lib.creator != current_user}
 		@invitations = current_user.invitations_received
+	end
+
+	def browse
 	end
 
 	def show

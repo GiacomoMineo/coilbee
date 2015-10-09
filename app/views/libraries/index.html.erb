@@ -4,7 +4,7 @@
 		<i class="glyphicon glyphicon-plus"></i>
 		<span>New</span>
 	<% end %>
-	<%= link_to '', class: "btn btn-default browse-btn" do %>
+	<%= link_to library_browse_path, class: "btn btn-default browse-btn" do %>
 		<i class="glyphicon glyphicon-th"></i>
 		<span>Browse</span>
 	<% end %>
@@ -92,17 +92,17 @@
 	<!-- Invited tab -->
 	<div role="tabpanel" class="tab-pane fade <% if @libraries_own.empty? and @libraries_followed.empty? %>in active <%end%>" id="invited">
 		<% @invitations.each do |invitation| %>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-			<%= link_to invitation.library.topic, library_path(invitation.library), class: "panel-title library-title" %><span class="invited-by">invited by: <span><%= invitation.creator.email %></span></span>
-				<%= link_to "Reject", invitation_path(invitation), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
-				<%= link_to "Follow", accept_invitation_path(invitation), method: :put, class: 'btn btn-success pull-right follow-btn'  %>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				<%= link_to invitation.library.topic, library_path(invitation.library), class: "panel-title library-title" %><span class="invited-by">invited by: <span><%= invitation.creator.email %></span></span>
+					<%= link_to "Reject", invitation_path(invitation), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-btn' %>
+					<%= link_to "Follow", accept_invitation_path(invitation), method: :put, class: 'btn btn-success pull-right follow-btn'  %>
+				</div>
+				<div class="panel-body">
+					<%= invitation.library.description %>
+					<%= link_to "Open", library_path(invitation.library), class: "btn btn-primary pull-right open-btn" %>
+				</div>
 			</div>
-			<div class="panel-body">
-				<%= invitation.library.description %>
-				<%= link_to "Open", library_path(invitation.library), class: "btn btn-primary pull-right open-btn" %>
-			</div>
-		</div>
 		<% end %>
 	</div>
 </div>

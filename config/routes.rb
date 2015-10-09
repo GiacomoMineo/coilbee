@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :libraries do
 		member do
 			get "suggestions", to: "libraries#show_suggestions"
+      
 		end
 	end
   resources :categories
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get "browse" =>  "libraries#browse", as: :library_browse
   put 'toggle_edit' => 'toggles#toggle_edit', as: :toggle_edit
   put 'toggle_read' => 'toggles#toggle_read', as: :toggle_read
 

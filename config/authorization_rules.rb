@@ -10,7 +10,7 @@ authorization do
 		includes :guest
 
 		#may create new libraries
-		has_permission_on :libraries, :to => :create
+		has_permission_on :libraries, :to => [:create, :browse]
 
 		has_permission_on :libraries, :to => [:manage, :show_suggestions] do
 			if_attribute :moderators => contains {user}

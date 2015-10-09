@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
   	redirect_to '/' unless current_user.admin? 
   end
 
+  def admin
+    current_user.roles.include?(Role.find_by(title: 'admin'))
+  end
+
   def configure_devise_permitted_parameters
     registration_params = [:user_name, :email, :password, :password_confirmation]
 
