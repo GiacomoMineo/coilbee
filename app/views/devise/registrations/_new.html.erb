@@ -3,7 +3,13 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   <div class="in-row">
-    <%= f.email_field :email, autofocus: true, class: "in-field", id: "in-email" %>
+    <%= f.text_field :user_name, autofocus: true, class: "in-field", id: "in-uname" %>
+    <label class="in-label" for="in-uname">
+      <span class="in-label-content" data-content="Username">Username</span>
+    </label>
+  </div>
+  <div class="in-row">
+    <%= f.email_field :email, class: "in-field", id: "in-email" %>
     <label class="in-label" for="in-email">
       <span class="in-label-content" data-content="E-mail">E-mail</span>
     </label>
