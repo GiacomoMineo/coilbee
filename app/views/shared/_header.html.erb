@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-default" id="custom-nav">
+<nav class="navbar navbar-fixed-top navbar-default header" id="custom-nav">
 	<div class="container-fluid">
 	<div class="col-lg-10 col-lg-offset-1 col-xs-12">
 		<div class="navbar-header">
@@ -8,47 +8,37 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		    </button>
-		    <%= link_to "Linkr", '/', class: "navbar-brand logo" %></li>
-			<% if @library && @library.topic %>
-				<%= link_to @library.topic, library_path(@library), class: "navbar-brand library-topic" %>
-			<% end %>
+		    <h1 class="linkr-logo">
+				<a href="/"><span class="logo-glyph"></span><span class="logo-type">Linkr</span></a>
+			</h1>
     	</div>
 	    <div class="collapse navbar-collapse" id="navbar-main-collapse">
 	        <ul class="nav navbar-nav navbar-right">
 				<% if current_user %>
-				<li class="user-btn"><%= link_to current_user.email, edit_user_registration_path %>
-					<div class="user-dropdown"><%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %></div>
-				</li>
-					<% if (@library && (permitted_to? :edit, @library)) || !@library %> 
-						<% if current_user.read? %>
-							<li><%= link_to 'Edit mode', toggle_edit_path, class: "suggest-btn", method: :put %></li>
-						<% else%>
-							<li><%= link_to 'Read mode', toggle_read_path, class: "suggest-btn", method: :put %></li>
-						<% end %>
-					<% end %>
 					<% if @library && @library.topic %>
 						<% if permitted_to? :edit, @library %> 
-							<li><%= link_to 'Suggestions', suggestions_library_path(@library), class: "suggest-btn" %></li>
+							<li><%= link_to suggestions_library_path(@library), class: "suggested-link" do %><span class="glyphicon glyphicon-flash" data-toggle="tooltip" data-placement="bottom" title="Suggestions"></span><% end %></li>
 						<% else %>
-							<li><%= link_to 'Suggest', suggest_entry_path(lib: @library), class: "suggest-btn" %></li>
+							<li><%= link_to suggest_entry_path(lib: @library), class: "suggest-link" do %><span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="Suggest"></span><% end %></li>
 						<% end %>
 					<% end %>
-				<% end %>
-				
-				<% if @library && @library.topic %>
-					<li>
-					<%= form_tag(tag_search_path, :method => "get", class: "navbar-form navbar-right", id: "search-form", role: "search") do %>
-						<div class="form-group">
-						<%= hidden_field_tag :library_id, @library.id %>
-						<%= text_field_tag :search, params[:search], class: "form-control search-input", placeholder: "Search Tag" %>
-						</div>
-						<%= submit_tag "Go", class: "btn btn-default search-btn" %>
+					<% if (@library && (permitted_to? :edit, @library)) || !@library %> 
+						<% if current_user.read? %>
+							<li><%= link_to toggle_edit_path, class: "edit-link", method: :put do %><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="bottom" title="Edit mode"></span><% end %></li>
+						<% else%>
+							<li><%= link_to toggle_read_path, class: "read-link", method: :put do %><span class="glyphicon glyphicon-book" data-toggle="tooltip" data-placement="bottom" title="Read mode"></span><% end %></li>
+						<% end %>
 					<% end %>
+					<li class="user-btn"><%= link_to current_user.email, edit_user_registration_path %>
+						<div class="user-dropdown"><%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %></div>
 					</li>
 				<% end %>
 	        </ul>
 	    </div>
     </div>
 	</div>
+	<% if @library && @library.topic %>
+		<%= render 'shared/library_nav' %>
+	<% end %>
 </nav>
 

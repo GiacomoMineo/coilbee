@@ -1,9 +1,9 @@
   <aside>
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div id="accordion" role="tablist" aria-multiselectable="true">
       <% @library.categories.includes(:sections).each_with_index do |c, index| %>
-        <div class="panel panel-default menu-category">
-          <div class="panel-heading" role="tab" id="heading<%= index %>">
-            <h4 class="panel-title">
+        <div class="menu-category">
+          <div class="menu-category-heading" role="tab" id="heading<%= index %>">
+            <h4 class="menu-category-title">
               <div class="row">
                 <% if defined? @section then @section.category == c ? category_id = "collapse_current" : "" end %>
                 <a href="#collapse<%= index %>" id="<%= category_id %>" class="sidebar-header col-xs-8 menu-category-link" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse<%= index %>">
@@ -35,7 +35,7 @@
             <% c.sections.each do |s| %>
               <% unless s.entries.empty? && !(current_user && current_user.edit?) %>
                 <% @section == s ? section_class = "current" : section_class = "" %>
-                <div class="panel-body menu-section <%= section_class %>">
+                <div class="menu-section <%= section_class %>">
                   <div class="row">
                     <%= link_to s.name, section_path(s), class: "menu-section-link col-xs-9" %>
                     <% if current_user && current_user.edit? %>
@@ -61,10 +61,9 @@
       <% end %>
       <!-- NEW CATEGORY MENU ITEM -->
       <% if current_user && current_user.edit? && (permitted_to? :create, @library.categories) %>
-        <div class="panel panel-default menu-category menu-new-category">
-
-          <div class="panel-heading" role="tab" id="heading-new">
-            <h4 class="panel-title">
+        <div class="menu-category menu-new-category">
+          <div class="new-cat" role="tab" id="heading-new">
+            <h4>
               <%= link_to new_category_path(:lib => @library) do %>
                 <span>New Category</span>
                 <span class="glyphicon glyphicon-plus pull-right icon-small" aria-hidden="true"></span>

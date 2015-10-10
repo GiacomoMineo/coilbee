@@ -1,0 +1,32 @@
+/* Library Nav */
+
+.library-nav {
+	background-color: #fff;
+	border-bottom: 1px solid #d0d4d9;
+    box-shadow: 0px 1px 1px #d0d4d9;
+    @extend %clearfix;
+}
+.library-topic {
+	color: $color-text-dark;
+}
+
+#search-form {
+	float: right;
+	$width: 120px;
+	.search-wrapper {
+		padding: 2px;
+	}
+	.search-field {
+		float: left;
+		padding: 2px;
+	}
+	.search-label {
+		width: $width;
+		display: inline-block;
+	}
+	.in-submit {
+		width: 40px;
+		display: inline-block;
+		margin: 0;
+	}
+}

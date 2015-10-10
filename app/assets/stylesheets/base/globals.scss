@@ -39,10 +39,65 @@ a {
 	}
 }
 
+.aside-content {
+	@include tablet {
+		position: fixed;
+		height: 100%;
+	    overflow: hidden;
+	}
+	aside {
+	    height: 100%;
+	    overflow: auto;
+	    padding-right: 15px;
+	}
+}
+
 // Nav items transitions
 nav li a {
 	@include transition(all 0.3s ease);
 }
+
+// Header
+$height: 45px;
+.header {
+	background-color: #fff;
+	border-bottom: 1px solid #d0d4d9;
+    box-shadow: 0px 1px 1px #d0d4d9;
+    height: 45px;
+}
+.linkr-logo {
+	$size: 32px;
+	height: $size;
+	line-height: $size;
+	margin: 0;
+	a {
+		height: $size;
+		line-height: $size;
+		display: inline-block;
+	}
+	// Logo Icon
+	.logo-glyph {
+		display: inline-block;
+		width: $size;
+		height: $size;
+		margin-right: 2px;
+		background: url('logo.png') no-repeat center center;
+		background-size: 100%;
+		vertical-align: middle;
+		
+	}
+	// Logo name
+	.logo-type {
+		font-family: 'Raleway', sans-serif;
+		display: inline-block;
+		color: $color-main;
+		font-weight: 900;
+		font-size: 26px;
+		letter-spacing: -2px;
+		vertical-align: middle;
+	}
+}
+
 
 // Panels
 

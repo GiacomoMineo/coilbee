@@ -1,30 +1,33 @@
 /* Header */
 
-// Logo
-a.navbar-brand.logo {
-	font-family: 'Raleway', sans-serif;
-	font-weight: 900;
-	font-size: 29px;
-	line-height: 19px;
-	letter-spacing: -px;
-	color: #fff;
-	font-weight: 900;
-	@include transition(all 0.3s ease);
-	&:hover {
-		color: $color-main;
+// Links
+.navbar-nav {
+	li {
+		a {
+			color: $color-main !important;
+			&:hover {
+				background-color: transparent !important;
+				color: $color-main-light !important;
+			}
+			&:focus {
+				background-color: transparent !important;
+			}
+			font-size: 16px;
+		}
 	}
 }
 
-// Library topic
-.library-topic {
-	font-weight: 900;
-	font-size: 19px;
-	margin-left: 0 !important;
-	border-left: 1px solid $color-fade;
-	@include transition(all 0.3s ease);
-	&:hover {
-   		color: $color-accent-light !important;
-   	}
+.suggest-link {
+
+}
+.suggested-link {
+
+}
+.edit-link {
+	
+}
+.read-link {
+
 }
 
 // Username and dropdown
@@ -47,32 +50,12 @@ a.navbar-brand.logo {
 			font-size: 13px;
    			font-weight: 300;
    			line-height: 21px;
-   			color: #fff;
-   			background-color: $color-dark;
-   			&:hover {
-   				background-color: $color-dark-2;
-   			}
+   			color: $color-text-dark;
+   			border: 1px solid $color-fade-light;
+   			border-top: none;
 		}
 		.user-logout {
 			
 		}
-	}
-}
-
-// Search
-.search-input {
-
-}
-.search-btn {
-	padding-top: 4px !important;
-	padding-bottom: 4px !important;
-}
-
-// Links
-.suggest-btn {
-	@include tablet {
-		border-left: 1px solid $color-fade !important;
-		border-right: 1px solid $color-fade !important;
-		//color: $color-main !important;
 	}
 }

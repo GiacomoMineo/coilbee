@@ -93,36 +93,25 @@
 
 // Header
 .landing-header {
-	height: 76px;
-	background-color: #fff;
-	border-bottom: 1px solid #d0d4d9;
-    box-shadow: 0px 1px 1px #d0d4d9;
-}
-.linkr-logo {
-	$height: 48px;
-	margin: 14px 0;
+	$size: 48px;
+	$height: 76px;
 	height: $height;
-	text-align: center;
-	// Logo Icon
-	.logo-glyph {
-		display: inline-block;
-		width: 48px;
-		height: $height;
-		margin-right: 2px;
-		vertical-align: middle;
-		background: url('logo.png') no-repeat center center;
-	}
-	// Logo name
-	.logo-type {
-		font-family: 'Raleway', sans-serif;
-		height: $height;
-		line-height: $height;
-		display: inline-block;
-		color: $color-main;
-		vertical-align: middle;
-		font-weight: 900;
-		font-size: 32px;
-		letter-spacing: -2px;
-		cursor: default;
+	.linkr-logo {
+		margin: 14px 0;
+		text-align: center;
+		height: $size;
+		a {
+			height: $height;
+		}
+		.logo-glyph {
+			width: $size;
+			height: $size;
+		}
+		.logo-type {
+			height: $size;
+			line-height: $size;
+			font-size: 32px;
+			cursor: default;
+		}
 	}
 }

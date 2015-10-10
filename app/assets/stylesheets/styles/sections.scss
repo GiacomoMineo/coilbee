@@ -1,108 +1,5 @@
 /* Sections */
 
-// Side Menu
-$category-line-height: 30px;
-$section-line-height: 24px;
-
-/*.aside-content {
-	position: relative;
-	aside {
-		position: fixed;
-		display: block;
-		width: inherit;
-	}
-}*/
-
-.menu-category-link , .menu-section-link {
-	display: inline-block;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	padding-right: 0;
-}
-.menu-icon-wrapper {
-	padding-left: 0;
-	float: right;
-}
-.menu-icon {
-	float: right;
-	font-size: 15px;
-	.icon-small {
-		margin-left: 4px;
-	}
-}
-.menu-text-wrapper {
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-}
-.menu-category {
-	> .panel-heading {
-		background-color: $color-fade-light;
-		@include transition(all 0.3s ease);
-		&:hover {
-			background-color: $color-fade-medium;
-		}
-	}
-	.menu-icon-wrapper { line-height: $category-line-height; }
-	.menu-category-link {
-		font-size: 17px;
-		font-weight: normal;
-		color: $color-text-dark;
-		text-decoration: none;
-		line-height: $category-line-height;
-		&:hover {
-			text-decoration: none;
-		}
-	}
-}
-.menu-section {
-	@include transition(all 0.3s ease);
-	&:hover {
-		background-color: $color-light;
-	}
-	.menu-icon-wrapper { line-height: $section-line-height; }
-	.menu-section-link {
-		font-size: 15px;
-		font-weight: 300;
-		color: $color-text-dark;
-		text-decoration: none;
-		line-height: $section-line-height;
-	}
-	&.current {
-		background-color: $color-accent-lightest;
-		&:hover {
-			background-color: $color-accent-lighter;
-		}
-	}
-}
-.menu-new-category {
-	display: block;
-	font-size: 15px;
-	margin-top: 12px !important;
-	.panel-heading {
-		padding: 0;
-	}
-	a {
-		display: block;
-		padding: 10px 15px;
-		line-height: 16px;
-		&:hover {
-			color: $color-accent-dark;
-			.icon-small {
-				color: $color-accent-light;
-			}
-			> span {
-				color: $color-accent;
-			}
-		}
-		> span {
-			font-size: 14px;
-			vertical-align: middle;
-		}
-	}
-}
-
 // Advert
 .adv-wrapper {
 	text-align: center;
@@ -159,17 +56,22 @@ $section-line-height: 24px;
 	margin: 0 0 12px;
 }
 
+.group-nav-wrapper {
+	@extend %clearfix;
+}
 .group-nav {
-	padding: 12px 5px 0;
 	margin-bottom: 6px;
+	float: left;
+	padding-left: 4px;
 }
 .group-nav-item {
 	display: inline-block;
-	font-size: 15px;
+	font-size: 13px;
 	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: -1px;
 	margin-right: 2px;
+	margin-top: 4px;
 	vertical-align: middle;
 	transform: skewX(-14deg);
 	@include transition(all 0.3s ease);
@@ -202,12 +104,11 @@ $section-line-height: 24px;
 .group-all span { line-height: 21px; }
 .group-all:not(.group-nav-current) {
 	.group-name {
+		padding: 4px 24px;
 		&:hover {
 			color: $color-accent-dark;
 			background-color: $color-accent-light;
-		}
-		span {
-			
+			padding: 4px 24px;
 		}
 	}
 }
@@ -249,23 +150,15 @@ $section-line-height: 24px;
 		}
 		.entry-title {
 			float: left;
-			height: $entry-h;
-			line-height: $entry-h;
-			font-size: 21px;
+			padding: 9px 0;
+			font-size: 20px;
+			line-height: 24px;
 			font-weight: 300;
 			color: $color-accent;
 			@include transition(color 0.3s ease);
 			&:hover {
 				color: $color-accent-light;
 			}
-		}
-		.entry-group {
-			line-height: $entry-h;
-			font-size: 11px;
-			font-weight: 300;
-			color: $color-text-light;
-			padding-left: 16px;
-			text-transform: uppercase;
 		}
 		.entry-icon {
 			float: right;
@@ -284,6 +177,14 @@ $section-line-height: 24px;
 			display: inline-block;
 			margin-bottom: 6px;
 		}
+	}
+	.entry-group {
+		display: inline-block;
+		font-size: 12px;
+		font-weight: 300;
+		color: $color-text-medium;
+		padding-right: 16px;
+		text-transform: uppercase;
 	}
 	.tag-list {
 		float: right;
