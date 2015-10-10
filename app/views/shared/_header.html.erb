@@ -25,12 +25,16 @@
 					<% if (@library && (permitted_to? :edit, @library)) || !@library %> 
 						<% if current_user.read? %>
 							<li><%= link_to toggle_edit_path, class: "edit-link", method: :put do %><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="bottom" title="Edit mode"></span><% end %></li>
-						<% else%>
+						<% else %>
 							<li><%= link_to toggle_read_path, class: "read-link", method: :put do %><span class="glyphicon glyphicon-book" data-toggle="tooltip" data-placement="bottom" title="Read mode"></span><% end %></li>
 						<% end %>
 					<% end %>
+				<% end %>
+				<% if current_user %>
 					<li class="user-btn"><%= link_to current_user.email, edit_user_registration_path %>
-						<div class="user-dropdown"><%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %></div>
+						<div class="user-dropdown">
+							<%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %>
+						</div>
 					</li>
 				<% end %>
 	        </ul>

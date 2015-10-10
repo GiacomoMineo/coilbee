@@ -80,9 +80,21 @@ class LibrariesController < ApplicationController
 		@entries = @entries.flatten.select{|e| e.accepted == false}
 	end
 
+	def subscribe
+		@library = Library.find(params[:id])
+		@library.users.push(current_user)
+		redirect_to request.referer || '/'
+	end
+
+	def unsubscribe
+		@library = Library.find(params[:id])
+		@library.update_attributes(users: @library.users - [current_user])
+		redirect_to request.referer || '/'
+	end
+
 	private
 		def library_params
-			params.require(:library).permit(:topic, :description, {:moderator_ids => []})
+			params.require(:library).permit(:topic, :description, :public, {:moderator_ids => []})
 		end
 		def new_library
 			@library = Library.new

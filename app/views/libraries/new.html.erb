@@ -12,5 +12,9 @@
 	      <span class="in-label-content" data-content="Description">Description</span>
 	    </label>
 	</div>
+	<div class="in-row small">
+		<%= f.check_box :public, id: "lib-pub" %>
+		<label for="lib-pub %>"><span><span></span></span>Public</label>
+	</div>
 	<%= f.submit "Submit", class: "btn btn-primary in-submit" %>
 <% end %>

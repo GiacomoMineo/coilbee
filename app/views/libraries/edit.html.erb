@@ -13,12 +13,21 @@
 	      <span class="in-label-content" data-content="Description">Description</span>
 	    </label>
 	</div>
+	<div class="in-row small">
+		<%= f.check_box :public, id: "lib-pub" %>
+		<label for="lib-pub %>"><span><span></span></span>Public</label>
+	</div>
+	<div>
+		Promote subscribers to become moderators:
+	</div>
 	<%= hidden_field_tag 'library[moderator_ids][]', nil %>
-	<% @library_to_edit.subscriptions.each do |subscription| %>
-		<div class="in-row small">
-			<%= check_box_tag "library[moderator_ids][]", subscription.user.id, @library_to_edit.moderators.include?(subscription.user), id: "mod_" + subscription.user.id.to_s %>
-			<label for="mod_<%= subscription.user.id %>"><span><span></span></span><%= subscription.user.user_name %></label>
-		</div>
+	<% @library_to_edit.users.each do |user| %>
+		<% if user != @library_to_edit.creator %>
+			<div class="in-row small">	
+				<%= check_box_tag "library[moderator_ids][]", user.id, @library_to_edit.moderators.include?(user), id: "mod_" + user.id.to_s %>
+				<label for="mod_<%= user.id %>"><span><span></span></span><%= user.user_name %></label>
+			</div>
+		<% end %>
 	<% end %>
   <%= f.submit "Save changes", class: "btn btn-primary in-submit" %>
 <% end %>

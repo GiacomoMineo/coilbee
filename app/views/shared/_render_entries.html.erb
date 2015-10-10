@@ -1,7 +1,11 @@
 <% if @entries.empty? %>
   <div>There seems to be nothing here.</div>
 <% else %>
-  <div class="group-nav-wrapper">
+<div class="group-nav-wrapper">
+  <% if current_user %>
+    <% new_entries = @entries.select{|e| (e.created_at-current_user.last_sign_in_at) > 0} %>
+  <% end %>
+  <div class="entry-group">
     <ul class="group-nav">
       <li class="group-nav-item group-all group-nav-current"><div class="group-name"><span>All</span></div></li>
       <% @groups.each do |group_nav| %>
@@ -9,6 +13,7 @@
       <% end %>
     </ul>
   </div>
+</div>
 <% end %>
 <% @entries.sort! { |a,b| b.rating <=> a.rating } %>
 <% @entries.each do |entry| %>
@@ -35,10 +40,9 @@
       <% if current_user %>
         <div class="menu-icon-wrapper">
           <% if entry.accepted %>
-            <% read_class = (entry.unread? current_user) ? "glyphicon-unchecked" : "glyphicon-check" %>
-            <%= link_to read_entry_path(entry), method: :put, class: "entry-icon" do %>
-              <span class="glyphicon icon-small <%= read_class %>" data-toggle="tooltip" data-placement="top" title="Done" aria-hidden="true"></span>
-            <% end %> 
+            <% if new_entries.include?(entry) %>
+              <span class="glyphicon glyphicon-eye-open"></span>
+            <% end %>
           <% end %>
           <% if current_user.edit? && (permitted_to? :edit, entry) %>
             <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon" do %>

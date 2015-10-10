@@ -1,7 +1,9 @@
 authorization do
 
   role :guest do
-  	has_permission_on :libraries, :to => :show
+  	has_permission_on :libraries, :to => :show do
+  		if_attribute :public => true
+  	end
   	has_permission_on :sections, :to => :read
   	has_permission_on :tags, :to => :read
   end
@@ -11,6 +13,10 @@ authorization do
 
 		#may create new libraries
 		has_permission_on :libraries, :to => [:create, :browse]
+		
+		has_permission_on :libraries, :to => [:subscribe, :unsubscribe] do
+			if_attribute :public => true
+		end
 
 		has_permission_on :libraries, :to => [:manage, :show_suggestions] do
 			if_attribute :moderators => contains {user}
