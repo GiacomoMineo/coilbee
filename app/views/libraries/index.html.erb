@@ -40,6 +40,12 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<%= link_to lib.topic, library_path(lib), class: "panel-title library-title" %>
+				<% if lib.public %>
+					<span class="entry-group">Public Library</span>
+				<% else %>
+					<span class="entry-group">Private Library</span>
+
+				<% end %>
 				<% if current_user && current_user.edit? %>
 					<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
 			      		<span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
@@ -67,6 +73,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<%= link_to lib.topic, library_path(lib), class: "panel-title library-title" %>	
+					<span class="entry-group">Creator: <%= lib.creator.user_name %></span>
 					<% if current_user && current_user.edit? %>
 						<%= link_to library_path(lib), data: {confirm: "Are you sure?"}, :method => :delete, class: "pull-right" do %>
 	      			<span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Unfollow" aria-hidden="true"></span>
