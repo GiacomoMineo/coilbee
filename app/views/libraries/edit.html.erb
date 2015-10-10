@@ -13,6 +13,13 @@
 	      <span class="in-label-content" data-content="Description">Description</span>
 	    </label>
 	</div>
+	<div class="in-row small">
+		<%= f.check_box :public, id: "lib-pub" %>
+		<label for="lib-pub %>"><span><span></span></span>Public</label>
+	</div>
+	<div>
+		Promote subscribers to become moderators:
+	</div>
 	<%= hidden_field_tag 'library[moderator_ids][]', nil %>
 	<% @library_to_edit.subscriptions.each do |subscription| %>
 		<div class="in-row small">

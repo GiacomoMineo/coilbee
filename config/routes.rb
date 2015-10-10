@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   end
 
   get "browse" =>  "libraries#browse", as: :library_browse
+  put "subscribe/:id" =>  "libraries#subscribe", as: :library_subscribe
+  put "unsubscribe/:id" =>  "libraries#unsubscribe", as: :library_unsubscribe
   put 'toggle_edit' => 'toggles#toggle_edit', as: :toggle_edit
   put 'toggle_read' => 'toggles#toggle_read', as: :toggle_read
 

@@ -77,9 +77,10 @@ ActiveRecord::Schema.define(version: 20151008205842) do
   create_table "libraries", force: :cascade do |t|
     t.string   "topic"
     t.text     "description"
+    t.boolean  "public",      default: true
     t.integer  "creator_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "libraries", ["creator_id"], name: "index_libraries_on_creator_id"
