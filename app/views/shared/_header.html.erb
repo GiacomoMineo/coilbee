@@ -14,13 +14,15 @@
     	</div>
 	    <div class="collapse navbar-collapse" id="navbar-main-collapse">
 	        <ul class="nav navbar-nav navbar-right">
-	        	<li>
-					<%= form_tag(tag_search_path, :method => "get", id: "search-form", role: "search") do %>
-						<%= hidden_field_tag :library_id, @library.id %>
-						<%= text_field_tag :search, params[:search], class: "search-field", placeholder: "Search Tag" %>
-						<%= submit_tag "Go", class: "btn btn-default search-submit" %>
-					<% end %>
-				</li>
+	        	<% if @library && @library.topic %>
+		        	<li>
+						<%= form_tag(tag_search_path, :method => "get", id: "search-form", role: "search") do %>
+							<%= hidden_field_tag :library_id, @library.id %>
+							<%= text_field_tag :search, params[:search], class: "search-field", placeholder: "Search Tag" %>
+							<%= submit_tag "Go", class: "btn btn-default search-submit" %>
+						<% end %>
+					</li>
+				<% end %>
 				<% if current_user %>
 					<% if @library && @library.topic %>
 						<% if permitted_to? :edit, @library %> 
