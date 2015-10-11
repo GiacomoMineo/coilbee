@@ -1,43 +1,44 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2 class="in-form-title">Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => 'in-form' }) do |f| %>
   <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :user_name %><br />
-    <%= f.text_field :user_name, autofocus: true %>
+  <div class="in-row">
+    <%= f.text_field :user_name, autofocus: true, class: "in-field", id: "username" %>
+    <label class="in-label" for="username">
+      <span class="in-label-content" data-content="Username">Username</span>
+    </label>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
+  <div class="in-row">
+    <%= f.email_field :email, class: "in-field", id: "useremail" %>
+    <label class="in-label" for="useremail">
+      <span class="in-label-content" data-content="E-mail">E-mail</span>
+    </label>
   </div>
-
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="in-row">
+    <%= f.password_field :password, autocomplete: "off", class: "in-field", id: "userpassword" %>
+    <label class="in-label" for="userpassword">
+      <span class="in-label-content" data-content="Password">Password</span>
+    </label>
+    <span class="in-hint">Leave blank to maintain unchanged</span>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="in-row">
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "in-field", id: "userpasswordconfirm" %>
+    <label class="in-label" for="userpasswordconfirm">
+      <span class="in-label-content" data-content="Confirm Password">Confirm Password</span>
+    </label>
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+  <div class="in-row">
+    <%= f.password_field :current_password, autocomplete: "off", class: "in-field", id: "usercurrentpassword" %>
+    <label class="in-label" for="usercurrentpassword">
+      <span class="in-label-content" data-content="Current Password">Current Password</span>
+    </label>
+    <span class="in-hint">Insert your old password to authorize changes</span>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+  <%= f.submit "Save changes", class:"btn btn-primary in-submit" %>
 <% end %>
 
-<h3>Cancel my account</h3>
+<span class="account-cancel-hint">Unhappy?</span> <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default in-submit account-cancel-btn" %>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

@@ -36,16 +36,19 @@
 	text-align: center;
 	> h1 {
 		font-size: 36px;
-		margin-top: 12px;
+		margin-top: 16px;
 	}
 	.library-intro-desc {
 		font-size: 23px;
 	}
 	.library-intro-suggestion {
-		font-weight: bold;
-		font-size: 13px;
-		font-style: italic;
+		padding-top: 12px;
+		font-weight: normal;
+		font-size: 16px;
 		color: $color-main;
+	}
+	.library-intro-image {
+		max-height: 80px;
 	}
 }
 
@@ -181,8 +184,8 @@
 	.entry-group {
 		display: inline-block;
 		font-size: 12px;
-		font-weight: 300;
-		color: $color-text-medium;
+		font-weight: normal;
+		color: #000;
 		padding-right: 16px;
 		text-transform: uppercase;
 	}
@@ -244,6 +247,7 @@
 			@extend .reject-btn;
 		}
 	}
+	&:last-child .entry-description { border-bottom: none; }
 }
 
 .new-entry-btn {

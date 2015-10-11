@@ -10,7 +10,7 @@
 				color: $color-main-light !important;
 			}
 			&:focus {
-				background-color: transparent !important;
+				background-color: #fff !important;
 			}
 			font-size: 16px;
 		}
@@ -58,4 +58,37 @@
 			
 		}
 	}
+}
+
+#search-form {
+	.search-field {
+		display: inline-block;
+		border: none;
+		outline: none;
+		background-color: $color-light-3;
+		margin-top: 4px;
+		padding: 7px;
+		line-height: 22px;
+		font-size: 14px;
+		font-weight: 300;
+		vertical-align: text-top;
+		&:focus {
+			outline: none;
+			border: none;
+		}
+	}
+	.search-submit {
+		display: inline-block;
+		border: none;
+		margin-top: 4px;
+		margin-left: -2px;
+		padding: 7px 12px;
+		line-height: 22px;
+		font-size: 14px;
+		vertical-align: text-top;
+		&:focus {
+			outline: none;
+			border: none;
+		}
+	}	
 }

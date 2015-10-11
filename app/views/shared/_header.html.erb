@@ -14,6 +14,13 @@
     	</div>
 	    <div class="collapse navbar-collapse" id="navbar-main-collapse">
 	        <ul class="nav navbar-nav navbar-right">
+	        	<li>
+					<%= form_tag(tag_search_path, :method => "get", id: "search-form", role: "search") do %>
+						<%= hidden_field_tag :library_id, @library.id %>
+						<%= text_field_tag :search, params[:search], class: "search-field", placeholder: "Search Tag" %>
+						<%= submit_tag "Go", class: "btn btn-default search-submit" %>
+					<% end %>
+				</li>
 				<% if current_user %>
 					<% if @library && @library.topic %>
 						<% if permitted_to? :edit, @library %> 
@@ -29,8 +36,6 @@
 							<li><%= link_to toggle_read_path, class: "read-link", method: :put do %><span class="glyphicon glyphicon-book" data-toggle="tooltip" data-placement="bottom" title="Read mode"></span><% end %></li>
 						<% end %>
 					<% end %>
-				<% end %>
-				<% if current_user %>
 					<li class="user-btn"><%= link_to current_user.email, edit_user_registration_path %>
 						<div class="user-dropdown">
 							<%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %>
@@ -41,8 +46,5 @@
 	    </div>
     </div>
 	</div>
-	<% if @library && @library.topic %>
-		<%= render 'shared/library_nav' %>
-	<% end %>
 </nav>
 

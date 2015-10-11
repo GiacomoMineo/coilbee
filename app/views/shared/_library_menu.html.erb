@@ -1,4 +1,5 @@
-  <aside>
+  <aside id="menu-aside">
+    <div class="menu-title"><%= link_to @library.topic, library_path(@library) %></div>
     <div id="accordion" role="tablist" aria-multiselectable="true">
       <% @library.categories.includes(:sections).each_with_index do |c, index| %>
         <div class="menu-category">

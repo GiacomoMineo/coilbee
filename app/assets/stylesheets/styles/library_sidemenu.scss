@@ -3,15 +3,16 @@
 $category-line-height: 30px;
 $section-line-height: 24px;
 
-/*.aside-content {
-	position: relative;
-	aside {
-		position: fixed;
-		display: block;
-		width: inherit;
+.menu-title a {
+	padding-left: 16px;
+	font-size: 21px;
+	font-weight: normal;
+	color: $color-main;
+	@include transition(all 0.3s ease);
+	&:hover {
+		color: $color-main-light;
 	}
-}*/
-
+}
 .menu-category-link , .menu-section-link {
 	display: inline-block;
 	text-overflow: ellipsis;

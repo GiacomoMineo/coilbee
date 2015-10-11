@@ -120,11 +120,15 @@
 	color: #fff !important;
 }
 
-.invited-by {
+.user-ref {
+	font-weight: 300;
 	font-size: 12px;
 	padding-left: 16px;
+	color: $color-text-medium;
 	> span {
-		font-weight: bold;
+		font-weight: normal;
+		cursor: default;
+		color: $color-text-medium-alt;
 	}
 }
 

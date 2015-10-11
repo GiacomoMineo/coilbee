@@ -4,6 +4,10 @@ body {
 	padding-top: 80px;
 	margin-bottom: 70px;
 }
+*::selection {
+	background-color: $color-main;
+	color: #fff;
+}
 
 // Anchor reset
 a {
@@ -45,7 +49,7 @@ a {
 		height: 100%;
 	    overflow: hidden;
 	}
-	aside {
+	#menu-aside {
 	    height: 100%;
 	    overflow: auto;
 	    padding-right: 15px;
@@ -98,6 +102,27 @@ $height: 45px;
 	}
 }
 
+// Back button
+.back-btn {
+	display: inline-block;
+}
+
+// Account
+
+.account-cancel-hint {
+	display: block;
+	margin-top: 48px;
+	font-size: 13px;
+	font-weight: 300;
+	color: $color-text-medium;
+}
+.account-cancel-btn {
+	margin: 12px 0 !important;
+	max-width: 120px !important; 
+	font-size: 13px;
+	font-weight: 300 !important;
+	padding: 6px 12px !important;
+}
 
 // Panels
 
@@ -190,7 +215,7 @@ $height: 45px;
 	position: relative;
 	z-index: 1;
 	display: inline-block;
-	margin: 24px 0 8px;
+	margin: 24px 0 12px;
 	max-width: 350px;
 	width: 100%;
 	vertical-align: top;
@@ -318,8 +343,15 @@ $height: 45px;
 		}
 	}
 }
+.in-hint {
+	font-size: 12px;
+	font-weight: 300;
+	color: $color-text-light;
+	padding-bottom: 12px;
+}
 
 .in-form-title {
+	display: inline-block;
 	text-align: center;
 	@include tablet {
 		text-align: left;
@@ -374,4 +406,3 @@ input[type=checkbox]:not(old):checked + label > span:before{
 input[type=checkbox]:not(old):checked + label > span {
 	border-color: $color-accent;
 }
-
