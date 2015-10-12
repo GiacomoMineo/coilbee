@@ -9,7 +9,9 @@
     <ul class="group-nav">
       <li class="group-nav-item group-all group-nav-current"><div class="group-name"><span>All</span></div></li>
       <% @groups.each do |group_nav| %>
+        <% unless @entries.select {|e| e.group == group_nav }.empty? %>
           <li class="group-nav-item" id="group_<%= group_nav.id %>"><div class="group-name"><span><%= group_nav.name %></span></div></li>
+        <% end %>
       <% end %>
     </ul>
   </div>
