@@ -12,7 +12,7 @@ class LibrariesController < ApplicationController
 	end
 
 	def show
-		@library = Library.find(params[:id])
+		@library = Library.friendly.find(params[:id])
 		@categories = @library.categories
 	end
 
@@ -43,11 +43,11 @@ class LibrariesController < ApplicationController
 	end
 
 	def edit
-		@library_to_edit = Library.find(params[:id])
+		@library_to_edit = Library.friendly.find(params[:id])
 	end
 
 	def update
-		@library_to_edit = Library.find(params[:id])
+		@library_to_edit = Library.friendly.find(params[:id])
 		if @library_to_edit.update_attributes(library_params)
 			redirect_to '/', :notice => "The library has been edited"
 		else
@@ -56,7 +56,7 @@ class LibrariesController < ApplicationController
 	end
 
 	def destroy
-		@library = Library.find(params[:id])
+		@library = Library.friendly.find(params[:id])
 		@invitations = Invitation.all.select{ |sug| sug.library == @library}
 
 		@invitations.each do |invite|
@@ -68,7 +68,7 @@ class LibrariesController < ApplicationController
 	end
 
 	def show_suggestions
-		@library = Library.find(params[:id])
+		@library = Library.friendly.find(params[:id])
 
 		@sections = []
 		@library.categories.each {|cat| @sections.push(cat.sections)}
@@ -81,13 +81,13 @@ class LibrariesController < ApplicationController
 	end
 
 	def subscribe
-		@library = Library.find(params[:id])
+		@library = Library.friendly.find(params[:id])
 		@library.users.push(current_user)
 		redirect_to request.referer || '/'
 	end
 
 	def unsubscribe
-		@library = Library.find(params[:id])
+		@library = Library.friendly.find(params[:id])
 		@library.update_attributes(users: @library.users - [current_user])
 		redirect_to request.referer || '/'
 	end
