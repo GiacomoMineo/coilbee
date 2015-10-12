@@ -30,8 +30,9 @@
 				<% end %>
 				<% if current_user %>
 					<% if @library && @library.topic %>
-						<% if permitted_to? :edit, @library %> 
-							<li><%= link_to suggestions_library_path(@library), class: "suggested-link" do %><span class="glyphicon glyphicon-flash" data-toggle="tooltip" data-placement="bottom" title="Suggestions"></span><% end %></li>
+						<% if permitted_to? :edit, @library %>
+								<li><%= link_to suggestions_library_path(@library), class: "suggested-link" do %><span class="glyphicon glyphicon-flash" data-toggle="tooltip" data-placement="bottom" title="Suggestions"></span><% end %></li>
+					
 						<% else %>
 							<li><%= link_to suggest_entry_path(lib: @library), class: "suggest-link" do %><span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="Suggest"></span><% end %></li>
 						<% end %>
