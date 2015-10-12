@@ -1,6 +1,9 @@
 class SectionsController < ApplicationController
 	before_action :new_section, :only => :new
 	filter_resource_access
+
+
+
 	
 	def show
 		@section = Section.find(params[:id])

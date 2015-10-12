@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008205842) do
+ActiveRecord::Schema.define(version: 20151012151922) do
 
   create_table "Entries_Tags", id: false, force: :cascade do |t|
     t.integer "entry_id", null: false
@@ -81,9 +81,11 @@ ActiveRecord::Schema.define(version: 20151008205842) do
     t.integer  "creator_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "slug"
   end
 
   add_index "libraries", ["creator_id"], name: "index_libraries_on_creator_id"
+  add_index "libraries", ["slug"], name: "index_libraries_on_slug"
 
   create_table "read_marks", force: :cascade do |t|
     t.integer  "readable_id"
@@ -110,7 +112,10 @@ ActiveRecord::Schema.define(version: 20151008205842) do
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "sections", ["slug"], name: "index_sections_on_slug"
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "library_id"
