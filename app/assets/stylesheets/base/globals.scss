@@ -50,7 +50,7 @@ a {
 	    overflow: hidden;
 	}
 	#menu-aside {
-	    height: 100%;
+	    height: 80%;
 	    overflow: auto;
 	    padding-right: 15px;
 	}
@@ -156,6 +156,9 @@ $height: 45px;
 	color: $color-main;
 	padding: 4px 8px 0;
 	&:hover {
+		color: $color-main;
+	}
+	&:focus {
 		color: $color-main;
 	}
 	&:after {
@@ -356,6 +359,9 @@ $height: 45px;
 	@include tablet {
 		text-align: left;
 	}
+}
+.in-form-description {
+	display: inline-block;
 }
 
 // Checkboxes

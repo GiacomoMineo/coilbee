@@ -2,7 +2,7 @@
     <div class="menu-title"><%= link_to @library.topic, library_path(@library) %></div>
     <div id="accordion" role="tablist" aria-multiselectable="true">
       <% @library.categories.includes(:sections).each_with_index do |c, index| %>
-        <div class="menu-category">
+        <div class="panel menu-category">
           <div class="menu-category-heading" role="tab" id="heading<%= index %>">
             <h4 class="menu-category-title">
               <div class="row">
@@ -77,8 +77,8 @@
     <% unless current_user %>
       <div class="adv-wrapper">
         <div class="adv">
-          <p class="adv-light">Created with Linkr</p>
           <p class="adv-content">Make your own library and suggest links!</p>
+          <p class="adv-join">Join Linkr</p>
           <div class="adv-cta">
             <div><%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-success signup-btn small', id: "signup-btn" %></div>
             <span>Already have account?</span><%= link_to "Login", new_user_session_path, :class => 'btn login-btn small', id: "login-btn" %>

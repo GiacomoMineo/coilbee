@@ -52,25 +52,38 @@ $(document).on('page:change', function(event) {
 		$(this).blur();
 		$('#signup').slideToggle(300);
 		$('#login').slideUp(300);
-    if($(this).hasClass('clicked')) {
-      $('html, body').animate({
-        scrollTop: $(this).offset().top - 88
-      }, 300);
-    };
+		$('#login-btn').removeClass('clicked');
+	    if($(this).hasClass('clicked')) {
+	      $('html, body').animate({
+	        scrollTop: $(this).offset().top - 88
+	      }, 300);
+	    };
 	});
 	//login panel
 	$('#login-btn.landing').click(function(e) {
+		$btn_element = $(this);
 		e.preventDefault();
 		$('#login').slideToggle(300);
-		$('#signup').slideUp(300);
+		$btn_element.toggleClass('clicked');
 		$('#signup-btn').removeClass('clicked');
+		$('#signup').slideUp(300, function() {
+			if($btn_element.hasClass('clicked')) {
+		      $('html, body').animate({
+		        scrollTop: $btn_element.offset().top - 76
+		      }, 300);
+		    };
+		});
 	});
 	//reset login and signup
 	$('#signup, #login').hide();
 	$('#signup-btn').removeClass('clicked');
 	//inputs
-	$('.in-field').val() != '' ? $('.in-field').parent().addClass('in-filled') : $('.in-field').parent().removeClass('in-filled')
+	$('.in-field').val() != '' ? $('.in-field').parent().addClass('in-filled') : $('.in-field').parent().removeClass('in-filled');
 	$('.in-field').bind("propertychange change click keyup input paste", function(event) {
+	  $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
+	});
+	$('.search-field').val() != '' ? $('.search-field').parent().addClass('in-filled') : $('.search-field').parent().removeClass('in-filled');
+	$('.search-field').bind("propertychange change click keyup input paste", function(event) {
 	  $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
 	});
 

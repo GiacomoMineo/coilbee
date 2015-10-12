@@ -61,21 +61,59 @@
 }
 
 #search-form {
+	.search-input {
+		position: relative;
+		display: inline-block;
+		overflow: hidden;
+		vertical-align: text-top;
+	}
 	.search-field {
+		position: relative;
+		border-radius: 0;
 		display: inline-block;
 		border: none;
 		outline: none;
-		background-color: $color-light-3;
 		margin-top: 4px;
 		padding: 7px;
 		line-height: 22px;
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: 300;
-		vertical-align: text-top;
+		background: transparent;
+		color: $color-text-dark;
 		&:focus {
 			outline: none;
 			border: none;
 		}
+	}
+	.search-label {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		text-align: left;
+		pointer-events: none;
+	}
+	.search-label::before,
+	.search-label::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		border-bottom: 1px solid $color-main;
+	}
+	.search-label::after {
+		margin-top: -1px;
+		border-bottom: 3px solid $color-main;
+		-webkit-transform: translate3d(-100%, 0, 0);
+		transform: translate3d(-100%, 0, 0);
+		-webkit-transition: -webkit-transform 0.3s;
+		transition: transform 0.3s;
+	}
+	.search-field:focus + .search-label::after,
+	.search-input.in-filled .search-label::after {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
 	}
 	.search-submit {
 		display: inline-block;
@@ -86,6 +124,14 @@
 		line-height: 22px;
 		font-size: 14px;
 		vertical-align: text-top;
+		background-color: transparent;
+		> span {
+			color: $color-main;
+			@include transition(color 0.3s ease);
+		}
+		&:hover > span {
+			color: $color-main-light;
+		}
 		&:focus {
 			outline: none;
 			border: none;
