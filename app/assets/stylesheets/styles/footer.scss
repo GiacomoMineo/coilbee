@@ -1,0 +1,38 @@
+/* Footer */
+
+.footer-wrapper {
+	margin-top: 300px;
+	.footer {
+		padding: 14px;
+		color: #fff;
+	}
+	.footer-links {
+		background-color: $color-secondary;
+		ul {
+			padding: 0;
+			margin-bottom: 6px;
+			text-align: center;
+			list-style: none;
+			li {
+				display: inline-block;
+				padding-left: 24px;
+				a {
+					color: #fff;
+					font-size: 13px;
+					font-weight: bold;
+					@include transition(color 0.3s ease);
+					&:hover {
+						color: $color-main;
+					}
+				}
+			}
+		}
+		.footer-company {
+			margin: 0;
+			text-align: center;
+			color: $color-text-light-alt;
+			font-weight: bold;
+			font-size: 12px;
+		}
+	}
+}

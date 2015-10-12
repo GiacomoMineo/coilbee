@@ -2,7 +2,6 @@
 
 body { 
 	padding-top: 80px;
-	margin-bottom: 70px;
 }
 *::selection {
 	background-color: $color-main;
@@ -186,6 +185,10 @@ $height: 45px;
 			display: none;
 		}
 	}
+	&.nav-btn {
+		display: inline-block;
+		margin-top: 3px;
+	}
 }
 
 // Signup
@@ -211,6 +214,54 @@ $height: 45px;
     	font-size: 14px;
     	padding: 8px 18px;
     }
+    &.nav-btn {
+    	display: inline-block;
+    	color: #fff !important;
+    	margin-top: 3px;
+    	&:hover {
+    		color: #fff !important;
+    		background-color: $color-main-dark !important;
+    	}
+    	&:focus {
+    		color: #fff !important;
+    		background-color: $color-main-dark !important;
+    	}
+    }
+}
+
+// Popups
+.overlay {
+	position:fixed;
+    display:none; 
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 3;
+}
+.popup {
+	position: fixed;
+	top: 74px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	max-width: 340px;
+	background-color: #fff;
+	padding: 32px;
+	border: 3px solid $color-main;
+	border-radius: 20px;
+	
+	.close-popup {
+		float: right;
+		color: $color-main;
+		font-size: 19px;
+		cursor: pointer;
+		@include transition(color 0.3s ease);
+		&:hover {
+			color: $color-main-light;
+		}
+	}
 }
 
 // Inputs

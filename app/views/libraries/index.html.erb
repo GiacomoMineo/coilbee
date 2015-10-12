@@ -13,7 +13,7 @@
 <% if @libraries_own.empty? and @libraries_followed.empty? and @invitations.empty? %>
 <div class="empty">
 	<p class="empty-text">You don't have any libraries.</p>
-	<p class="empty-invitation"><%= link_to "Create", new_library_path, class: "empty-link" %> or <%= link_to "Browse", '', class: "empty-link" %> libraries!</p>
+	<p class="empty-invitation"><%= link_to "Create", new_library_path, class: "empty-link" %> or <%= link_to "Browse", library_browse_path, class: "empty-link" %> libraries!</p>
 </div>
 <% else %>
 <ul class="nav nav-tabs library-tabs" role="tablist">
@@ -41,9 +41,9 @@
 			<div class="panel-heading">
 				<%= link_to lib.topic, library_path(lib), class: "panel-title library-title" %>
 				<% if lib.public %>
-					<span class="entry-group">Public Library</span>
+					<span class="library-privacy">Public</span>
 				<% else %>
-					<span class="entry-group">Private Library</span>
+					<span class="library-privacy">Private</span>
 
 				<% end %>
 				<% if current_user && current_user.edit? %>

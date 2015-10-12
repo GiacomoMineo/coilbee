@@ -14,7 +14,7 @@
     	</div>
 	    <div class="collapse navbar-collapse" id="navbar-main-collapse">
 	        <ul class="nav navbar-nav navbar-right">
-	        	<% if @library && @library.topic %>
+	        	<% if @library && @library.topic && 1 > 2 %>
 		        	<li>
 						<%= form_tag(tag_search_path, :method => "get", id: "search-form", role: "search") do %>
 							<%= hidden_field_tag :library_id, @library.id %>
@@ -32,7 +32,6 @@
 					<% if @library && @library.topic %>
 						<% if permitted_to? :edit, @library %>
 								<li><%= link_to suggestions_library_path(@library), class: "suggested-link" do %><span class="glyphicon glyphicon-flash" data-toggle="tooltip" data-placement="bottom" title="Suggestions"></span><% end %></li>
-					
 						<% else %>
 							<li><%= link_to suggest_entry_path(lib: @library), class: "suggest-link" do %><span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="Suggest"></span><% end %></li>
 						<% end %>
@@ -44,10 +43,22 @@
 							<li><%= link_to toggle_read_path, class: "read-link", method: :put do %><span class="glyphicon glyphicon-book" data-toggle="tooltip" data-placement="bottom" title="Read mode"></span><% end %></li>
 						<% end %>
 					<% end %>
-					<li class="user-btn"><%= link_to current_user.email, edit_user_registration_path %>
+					<li class="user-btn"><span class="user-toggle"><%= current_user.user_name %></span>
 						<div class="user-dropdown">
-							<%= link_to "Log out", destroy_user_session_path, method: "delete", class: "user-logout" %>
+							<%= link_to edit_user_registration_path do %>
+								<span class="glyphicon glyphicon-user"></span>
+								<span class="user-dropdown-text">User Info</span>
+							<% end %>
+							<%= link_to destroy_user_session_path, method: "delete", class: "user-logout" do %>
+								<span class="glyphicon glyphicon-log-out"></span>
+								<span class="user-dropdown-text">Log Out</span>
+							<% end %>
 						</div>
+					</li>
+				<% else %>
+					<li>
+						<%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-success signup-btn small nav-btn', id: "signup-btn-header" %>
+						<%= link_to "Login", new_user_session_path, :class => 'btn login-btn small nav-btn', id: "login-btn-header" %>
 					</li>
 				<% end %>
 	        </ul>
@@ -55,4 +66,16 @@
     </div>
 	</div>
 </nav>
+<div class="overlay" id="login-popup">
+	<div class="popup row" >
+		<span class="close-popup glyphicon glyphicon-remove-sign"></span>
+		<%= render 'devise/sessions/new' %>
+	</div>
+</div>
+<div class="overlay" id="signup-popup">
+	<div class="popup row" >
+		<span class="close-popup glyphicon glyphicon-remove-sign"></span>
+		<%= render 'devise/registrations/new' %>
+	</div>
+</div>
 

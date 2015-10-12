@@ -103,6 +103,13 @@
 	border: 1px solid $color-fade-light;
 	border-top: none;
 }
+.library-privacy {
+	font-weight: 300;
+	font-size: 12px;
+	padding-left: 16px;
+	color: $color-text-medium;
+}
+
 .tab-pane > div:last-child {
 	margin-bottom: 0 !important;
 }

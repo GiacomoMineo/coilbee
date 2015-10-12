@@ -22,13 +22,12 @@
   <div class="entry group_<%= entry.group.id %>">
     <div class="entry-header">
       <div class="entry-vote">
-        <% if current_user %>
-          <%= link_to like_entry_path(entry), method: :put, class: "upvote" do %>
-            <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
-          <% end %>
-          <%= link_to dislike_entry_path(entry), method: :put, class: "downvote" do %>
-            <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
-          <% end %>
+        <% current_user ? vote_class = "" : vote_class = "not-logged" %>
+        <%= link_to like_entry_path(entry), method: :put, class: "upvote " + vote_class do %>
+          <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
+        <% end %>
+        <%= link_to dislike_entry_path(entry), method: :put, class: "downvote " + vote_class do %>
+          <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
         <% end %>
         <span class="entry-points"><%= entry.rating %></span>
       </div>

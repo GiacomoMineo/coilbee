@@ -44,6 +44,39 @@ $(function() {
 $(document).on('page:change', function(event) {
 
 	// Initialization
+	//user dropdown
+	$('.user-toggle').click(function(e) {
+		e.stopPropagation();
+		$('.user-dropdown').toggle();
+	});
+	$('html, body').click(function() {
+		$('.user-dropdown').hide();
+	});
+
+	//signup and login buttons
+	$('.signup-btn:not(.landing)').click(function(e) {
+		e.preventDefault();
+		$('#signup-popup').slideDown(300);
+	});
+	$('.login-btn:not(.landing)').click(function(e) {
+		e.preventDefault();
+		$('#login-popup').slideDown(300);
+	});
+	$('.close-popup').click(function() {
+		$('.overlay').hide();
+	});
+	$('.popup').click(function(e) {
+		e.stopPropagation();
+	})
+	$('.overlay').click(function() {
+		$('.overlay').hide();
+	});
+
+	// upvote redirect
+	$('.upvote.not-logged').click(function(e) {
+		e.preventDefault();
+		console.log("ok");
+	});
 
 	//signup panel
 	$('#signup-btn.landing').click(function(e) {
