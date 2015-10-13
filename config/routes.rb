@@ -3,11 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   root :to =>'pages#index'
  
-  resources :libraries
   resources :libraries do
 		member do
 			get "suggestions", to: "libraries#show_suggestions"
-      
+      get "suggest", to: "libraries#suggest_entry"
 		end
     resources :categories, :path => '', :except => [:index]
     resources :categories, :path => '', :only => [] do
@@ -29,7 +28,6 @@ Rails.application.routes.draw do
       put "dislike", to: "entries#downvote"
       put "read", to: "entries#read"
       put "accept", to: "entries#accept"
-      get "suggest", to: "entries#suggest"
     end
   end
 

@@ -23,7 +23,7 @@ authorization do
 		end 
 
 		# may view libraries he is subscribed to...
-		has_permission_on :libraries, :to => :read do
+		has_permission_on :libraries, :to => [:read, :suggest_entry] do
 			if_attribute :users => contains {user}
 		end
 		# ... with all their categories...
@@ -42,8 +42,6 @@ authorization do
 		has_permission_on :entries, :to => [:rate, :read] do
 			if_permitted_to :read, :section
 		end
-		# may suggest new entries
-		has_permission_on :entries, :to => :suggest
 
 
 		

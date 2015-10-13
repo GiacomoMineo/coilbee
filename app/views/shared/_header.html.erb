@@ -33,7 +33,7 @@
 						<% if permitted_to? :edit, @library %>
 								<li><%= link_to suggestions_library_path(@library), class: "suggested-link" do %><span class="glyphicon glyphicon-flash" data-toggle="tooltip" data-placement="bottom" title="Suggestions"></span><% end %></li>
 						<% else %>
-							<li><%= link_to suggest_entry_path(:lib => @library), class: "suggest-link" do %><span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="Suggest"></span><% end %></li>
+							<li><%= link_to suggest_library_path(@library), class: "suggest-link" do %><span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="Suggest"></span><% end %></li>
 						<% end %>
 					<% end %>
 					<% if (@library && (permitted_to? :edit, @library)) || !@library %> 

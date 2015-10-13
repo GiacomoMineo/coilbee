@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-	before_action :new_entry, :only => [:new, :suggest]
+	before_action :new_entry, :only => [:new]
 	#filter_access_to :all#, :attribute_check => true
 	filter_resource_access
 
@@ -26,19 +26,6 @@ class EntriesController < ApplicationController
 		@entry = Entry.find(params[:id])
 		@entry.mark_as_read! :for => current_user
 		redirect_to request.referer || '/' #go back where we came from
-	end
-
-	def suggest
-		@library = Library.friendly.find_by(slug: params[:lib])
-		
-		@sections = []
-		@library.categories.each do |cat|
-			@sections.push(cat.sections)
-		end
-		@sections = @sections.flatten
-		
-		@groups = @library.groups
-		#~ @entry = Entry.new
 	end
 
 	def new
@@ -89,7 +76,5 @@ class EntriesController < ApplicationController
 		end
 		def new_entry
 			@entry = Entry.new
-			@entry.section = Section.find(params[:sec])
-			@section = @entry.section
 		end
 end
