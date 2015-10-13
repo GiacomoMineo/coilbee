@@ -12,8 +12,8 @@ class TagsController < ApplicationController
 
 	def show
 		@tag = Tag.find(params[:id])
-		@entries = @tag.entries.select { |e| e.accepted == true }#.for_user(current_user)
-		@library = @entries.first.section.category.library
+		@entries = @tag.entries.prepare_for(current_user).select { |e| e.accepted == true }
+		@library = @tag.library
 		@groups = @library.groups
 	end
 end
