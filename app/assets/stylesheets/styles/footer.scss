@@ -22,7 +22,7 @@
 					font-weight: bold;
 					@include transition(color 0.3s ease);
 					&:hover {
-						color: $color-main;
+						color: $color-main-light;
 					}
 				}
 			}
