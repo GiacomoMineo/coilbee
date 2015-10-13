@@ -49,14 +49,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-		def load_library
-				@library = Library.find(params[:library_id])
-		end
-		def load_category
-				@category = Category.find(params[:category_id])
-		end
-
-
   def after_sign_in_path_for(resource)
     libraries_path
   end
