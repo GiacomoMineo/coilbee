@@ -29,7 +29,7 @@ class EntriesController < ApplicationController
 	end
 
 	def suggest
-		@library = Library.friendly.find_by(params[:id])
+		@library = Library.friendly.find_by(slug: params[:id])
 		
 		@sections = []
 		@library.categories.each do |cat|
