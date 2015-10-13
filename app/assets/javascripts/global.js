@@ -37,13 +37,29 @@ function menu_selection() {
 
 // Doc ready
 $(function() {
-	
+
 });
 
 // Page change event
 $(document).on('page:change', function(event) {
 
 	// Initialization
+	//inputs
+	$('.in-field').each(function() {
+		$(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled');
+	});
+	$('.in-field').bind("propertychange change click keyup input paste", function(event) {
+	  $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
+	});
+	/*
+	$('.search-field').each(function() {
+		$(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled');
+	});
+	$('.search-field').bind("propertychange change click keyup input paste", function(event) {
+	  $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
+	});
+	*/
+
 	//user dropdown
 	$('.user-toggle').click(function(e) {
 		e.stopPropagation();
@@ -110,15 +126,6 @@ $(document).on('page:change', function(event) {
 	//reset login and signup
 	$('#signup, #login').hide();
 	$('#signup-btn').removeClass('clicked');
-	//inputs
-	$('.in-field').val() != '' ? $('.in-field').parent().addClass('in-filled') : $('.in-field').parent().removeClass('in-filled');
-	$('.in-field').bind("propertychange change click keyup input paste", function(event) {
-	  $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
-	});
-	$('.search-field').val() != '' ? $('.search-field').parent().addClass('in-filled') : $('.search-field').parent().removeClass('in-filled');
-	$('.search-field').bind("propertychange change click keyup input paste", function(event) {
-	  $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
-	});
 
 	bind_group_filter();
 	enable_tooltips();

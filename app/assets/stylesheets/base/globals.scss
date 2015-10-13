@@ -41,7 +41,9 @@ a {
 	.tooltip-inner {
 	}
 }
-
+.main-content {
+	margin-bottom: 120px;
+}
 .aside-content {
 	@include tablet {
 		position: fixed;
