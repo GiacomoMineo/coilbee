@@ -49,11 +49,11 @@ class EntriesController < ApplicationController
 
 	def create
 		@entry = Entry.new(entry_params) 
-		@entry.section = @section
+		@section = Section.friendly.find(entry_params[:section_id])
   		if @entry.save
-			redirect_to section_path(entry_params[:section_id]), :notice => "Entry saved succesfully" 
+			redirect_to library_category_section_path(@section.category.library, @section.category, @section), :notice => "Entry saved succesfully" 
   		else 
-    		render section_path(entry_params[:section_id]), :notice => "Could not save entry" 
+    		render library_category_section_path(@section.category.library, @section.category, @section), :notice => "Could not save entry" 
   		end
 	end
 
@@ -68,9 +68,9 @@ class EntriesController < ApplicationController
 
 		if @entry.update_attributes(entry_params)
 			if @entry.accepted
-				redirect_to section_path(@entry.section), :notice => "The entry has been edited"
+				redirect_to library_category_section_path(@entry.section.category.library, @entry.section.category, @entry.section), :notice => "The entry has been edited"
 			else
-				redirect_to suggestions_library_path(@entry.section.category.library) , :notice => "The entry has been edited"
+				redirect_to library_category_section_path(@entry.section.category.library, @entry.section.category, @entry.section) , :notice => "The entry has been edited"
 			end
 		else
 			render 'edit', :notice => "Could not edit entry" 
