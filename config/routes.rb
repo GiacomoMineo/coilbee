@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
   
   devise_for :users
-  root 'pages#index'
-  
+  root :to =>'pages#index'
+ 
+  resources :libraries
   resources :libraries do
 		member do
 			get "suggestions", to: "libraries#show_suggestions"
       
 		end
-    resources :categories
+    resources :categories, :path => '', :except => [:index]
+    resources :categories, :path => '', :only => [] do
+      resources :sections, :path => '', :except => [:index]
+    end
     
   end
-  resources :sections
+
+
   resources :invitations do
 		member do
 			put "accept", to: "invitations#accept"

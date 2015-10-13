@@ -23,7 +23,7 @@
                       <% end %>
                     <% end %>
                     <% if permitted_to? :create,  Section.new(category: c) %>
-                      <%= link_to new_section_path(:cat => c), class: "menu-icon" do %>
+                      <%= link_to new_library_category_section_path(@library, c), class: "menu-icon" do %>
                         <span class="glyphicon glyphicon-plus icon-small" data-toggle="tooltip" data-placement="top" title="New" aria-hidden="true"></span>
                       <% end %>   
                     <% end %>
@@ -38,16 +38,16 @@
                 <% @section == s ? section_class = "current" : section_class = "" %>
                 <div class="menu-section <%= section_class %>">
                   <div class="row">
-                    <%= link_to s.name, section_path(s), class: "menu-section-link col-xs-9" %>
+                    <%= link_to s.name, library_category_section_path(@library,c,s), class: "menu-section-link col-xs-9" %>
                     <% if current_user && current_user.edit? %>
                       <div class="col-xs-3 menu-icon-wrapper"> 
                         <% if permitted_to? :destroy, s %>        
-                          <%= link_to section_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
+                          <%= link_to library_category_section_path(@library,c,s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
                             <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
                           <% end %>
                         <% end %>
                         <% if permitted_to? :edit, s %>      
-                          <%= link_to edit_section_path(s), class: "menu-icon" do %>
+                          <%= link_to edit_library_category_section_path(@library,c,s), class: "menu-icon" do %>
                             <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
                           <% end %>
                         <% end %>

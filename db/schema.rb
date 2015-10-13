@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012151922) do
+ActiveRecord::Schema.define(version: 20151013133751) do
 
   create_table "Entries_Tags", id: false, force: :cascade do |t|
     t.integer "entry_id", null: false
@@ -28,7 +28,10 @@ ActiveRecord::Schema.define(version: 20151012151922) do
     t.integer  "library_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "categories", ["slug"], name: "index_categories_on_slug"
 
   create_table "entries", force: :cascade do |t|
     t.string   "title"

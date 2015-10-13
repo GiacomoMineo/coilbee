@@ -1,5 +1,6 @@
 class SectionsController < ApplicationController
 	before_action :new_section, :only => :new
+	before_filter :load_category, :load_library
 	filter_resource_access
 
 
@@ -7,9 +8,6 @@ class SectionsController < ApplicationController
 	
 	def show
 		@section = Section.find(params[:id])
-		@library = @section.category.library
-
-		#@entries = @section.enurrent_user).select { |e| e.accepted == true }
 		@entries = @section.entries.select { |e| e.accepted == true }
 	 	@groups = @library.groups
 
@@ -17,8 +15,6 @@ class SectionsController < ApplicationController
 	
 	def new
 		@section = Section.new
-		@category = Category.find_by(id: params[:cat])
-		@library = @category.library
 	end
 	
 	def create
@@ -26,7 +22,7 @@ class SectionsController < ApplicationController
 		@category = Category.find_by(id: params["cat"].first)
 		@section.category = @category
   		if @section.save
-			redirect_to '/sections/' + @section.id.to_s
+			redirect_to library_category_section_path(@library, @category, @section)
   		else 
     		render 'new' 
   		end 
@@ -34,7 +30,6 @@ class SectionsController < ApplicationController
 
 	def edit
 		@section = Section.find(params[:id])
-		@library = @section.category.library
 	end
 
 	def update
@@ -61,4 +56,10 @@ class SectionsController < ApplicationController
 			@section = Section.new
 			@section.category = Category.find_by(id: params[:cat])
 		end
+		def load_library
+      		@library = Library.find(params[:library_id])
+    	end
+    	def load_category
+      		@category = Category.find(params[:category_id])
+    	end
 end

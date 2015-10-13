@@ -3,7 +3,7 @@ class InvitationsController < ApplicationController
 	
 	def new
 		@invitation = Invitation.new
-		@library_to_suggest = Library.find_by(id: params[:lib])
+		@library_to_suggest = Library.find_by(params[:id])
 	end
 
 	def create

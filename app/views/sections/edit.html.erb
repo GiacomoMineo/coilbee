@@ -1,5 +1,5 @@
 <h2 class="in-form-title">Edit section</h2>
-<%= form_for(@section, :html => {:class => 'in-form'}) do |f| %>
+<%= form_for([@library, @category, @section], :html => {:class => 'in-form'}) do |f| %>
 	<div class="in-row">
 		<%= f.text_field :name, class: "in-field", id: "sec-topic" %>
 		<label class="in-label" for="sec-topic">
