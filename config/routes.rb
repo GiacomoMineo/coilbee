@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 			get "suggestions", to: "libraries#show_suggestions"
       
 		end
-	end
-  resources :categories
+    resources :categories
+    
+  end
   resources :sections
   resources :invitations do
 		member do

@@ -3,10 +3,7 @@ class Section < ActiveRecord::Base
 	has_many :entries
 
 	extend FriendlyId
-  	friendly_id :uniqueslug, use: [:slugged, :finders]
+  	friendly_id :name, use: [:slugged, :finders]
 	
-	def uniqueslug
-		"#{category.name}-#{name}"
-	end
 	validates_presence_of :name, :category
 end

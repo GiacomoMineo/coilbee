@@ -13,12 +13,12 @@
                 <% if current_user && current_user.edit? %>
                   <div class="col-xs-4 menu-icon-wrapper">
                     <% if permitted_to? :destroy, c %>
-                      <%= link_to category_path(c), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
+                      <%= link_to library_category_path(@library, c), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
                         <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
                       <% end %>
                     <% end %>
                     <% if permitted_to? :edit, c %>
-                      <%= link_to edit_category_path(c), class: "menu-icon" do %>
+                      <%= link_to edit_library_category_path(@library, c), class: "menu-icon" do %>
                         <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
                       <% end %>
                     <% end %>
@@ -65,7 +65,7 @@
         <div class="menu-category menu-new-category">
           <div class="new-cat" role="tab" id="heading-new">
             <h4>
-              <%= link_to new_category_path(:lib => @library) do %>
+              <%= link_to new_library_category_path(@library) do %>
                 <span>New Category</span>
                 <span class="glyphicon glyphicon-plus pull-right icon-small" aria-hidden="true"></span>
               <% end %>
