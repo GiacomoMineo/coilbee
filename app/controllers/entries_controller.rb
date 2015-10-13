@@ -76,5 +76,7 @@ class EntriesController < ApplicationController
 		end
 		def new_entry
 			@entry = Entry.new
+			@section = Section.find(params[:sec])
+			@entry.section = @section
 		end
 end
