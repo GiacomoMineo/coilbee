@@ -1,10 +1,14 @@
 class Entry < ActiveRecord::Base
-	# prepares the entry for being shown to current_user
-	scope :for_user, ->(user) {
+	# prepares the entry for being shown, including read marks
+	# if user != nil
+	scope :prepare_for, ->(user) do
 		includes(:tags, :group)
-		.with_read_marks_for(user)
 		.order(cached_votes_score: :desc, updated_at: :desc, created_at: :asc)
-	}
+		.possibly_with_read_marks(user)
+	end
+	scope :possibly_with_read_marks, ->(user) do
+		with_read_marks_for(user) if user
+	end
 
 	acts_as_votable
 	acts_as_readable :on => :created_at

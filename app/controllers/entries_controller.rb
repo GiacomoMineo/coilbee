@@ -29,7 +29,7 @@ class EntriesController < ApplicationController
 	end
 
 	def suggest
-		@library = Library.friendly.find_by(slug: params[:id])
+		@library = Library.friendly.find_by(slug: params[:lib])
 		
 		@sections = []
 		@library.categories.each do |cat|
@@ -38,14 +38,13 @@ class EntriesController < ApplicationController
 		@sections = @sections.flatten
 		
 		@groups = @library.groups
-		@entry = Entry.new
+		#~ @entry = Entry.new
 	end
 
 	def new
-		@library = Library.find_by(id: params[:lib])
-		@section = Section.find_by(id: params[:sec])	
+		@library = Library.find(params[:lib])
 		@groups = @library.groups
-		@entry = Entry.new
+		#~ @entry = Entry.new
 	end
 
 	def create
@@ -90,6 +89,7 @@ class EntriesController < ApplicationController
 		end
 		def new_entry
 			@entry = Entry.new
-			@entry.section = Section.find_by(id: params[:sec])
+			@entry.section = Section.find(params[:sec])
+			@section = @entry.section
 		end
 end

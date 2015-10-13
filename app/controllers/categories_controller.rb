@@ -50,8 +50,5 @@ class CategoriesController < ApplicationController
 			@category = Category.new
 			@category.library = Library.find(params[:library_id])
 		end
-		def load_library
-      		@library = Library.find(params[:library_id])
-    	end
 	
 end
