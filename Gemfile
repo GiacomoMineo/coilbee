@@ -41,6 +41,9 @@ gem 'declarative_authorization', github: "stffn/declarative_authorization"
 # pretty URLs
 gem 'friendly_id', '~> 5.1.0'
 
+# factory
+gem 'factory_girl', '~> 4.0'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
