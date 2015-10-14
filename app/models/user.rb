@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   enum mode: [:read, :edit] #read: 0, edit: 1
   
   validates_presence_of :user_name, :email, :password
+  validates_uniqueness_of :user_name, :email
 
 
 
