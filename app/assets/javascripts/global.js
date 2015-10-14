@@ -37,7 +37,7 @@ function menu_selection() {
 
 // Doc ready
 $(function() {
-
+	
 });
 
 // Page change event
