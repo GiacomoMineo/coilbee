@@ -10,6 +10,12 @@ class User < ActiveRecord::Base
   has_many :invitations_created, :class_name => "Invitation", :foreign_key => "creator_id"
   has_many :invitations_received, :class_name => "Invitation", :foreign_key => "receiver_id"
   enum mode: [:read, :edit] #read: 0, edit: 1
+  
+  validates_presence_of :user_name, :email, :password
+
+
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
