@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User, :type => :model do
 	it "is valid with a username, email and password" do
 		user = User.new(
 			user_name: 'Aaron',
@@ -53,7 +53,4 @@ RSpec.describe User, type: :model do
 		expect(user.errors[:email]).to include("has already been taken")
 	end
 
-
-	it "returns a contact's username as a string"
-	it "returns a contact's email as a string"
 end
