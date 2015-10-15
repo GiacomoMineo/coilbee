@@ -59,6 +59,8 @@ group :development, :test do
 	gem 'factory_girl_rails', '~> 4.0'
 	#databasecleaner
 	gem 'database_cleaner'
+  #generate random data
+  gem 'faker'
 end
 
 group :development do
