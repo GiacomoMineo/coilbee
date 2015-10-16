@@ -1,7 +1,12 @@
 /* Global styles */
-
-body { 
+html { height: 100%; }
+body {
+	height: 100%;
 	padding-top: 80px;
+}
+.wrapper {
+	min-height: 100%;
+	position:relative;
 }
 *::selection {
 	background-color: $color-main;
@@ -51,7 +56,7 @@ a {
 	    overflow: hidden;
 	}
 	#menu-aside {
-	    height: 80%;
+	    height: 76%;
 	    overflow: auto;
 	    padding-right: 15px;
 	}
