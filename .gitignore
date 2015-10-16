@@ -2,4 +2,3 @@ tmp/*
 log/*
 *.sqlite3
 *.lock
-bin/*
