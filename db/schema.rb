@@ -16,16 +16,6 @@ ActiveRecord::Schema.define(version: 20151014145824) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "Entries_Tags", id: false, force: :cascade do |t|
-    t.integer "entry_id", null: false
-    t.integer "tag_id",   null: false
-  end
-
-  create_table "Libraries_Users", id: false, force: :cascade do |t|
-    t.integer "library_id", null: false
-    t.integer "user_id",    null: false
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.integer  "library_id"
@@ -55,6 +45,11 @@ ActiveRecord::Schema.define(version: 20151014145824) do
   add_index "entries", ["cached_votes_score"], name: "index_entries_on_cached_votes_score", using: :btree
   add_index "entries", ["cached_votes_total"], name: "index_entries_on_cached_votes_total", using: :btree
   add_index "entries", ["cached_votes_up"], name: "index_entries_on_cached_votes_up", using: :btree
+
+  create_table "entries_tags", id: false, force: :cascade do |t|
+    t.integer "entry_id", null: false
+    t.integer "tag_id",   null: false
+  end
 
   create_table "esuggestions", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -92,6 +87,11 @@ ActiveRecord::Schema.define(version: 20151014145824) do
 
   add_index "libraries", ["creator_id"], name: "index_libraries_on_creator_id", using: :btree
   add_index "libraries", ["slug"], name: "index_libraries_on_slug", using: :btree
+
+  create_table "libraries_users", id: false, force: :cascade do |t|
+    t.integer "library_id", null: false
+    t.integer "user_id",    null: false
+  end
 
   create_table "read_marks", force: :cascade do |t|
     t.integer  "readable_id"
