@@ -56,6 +56,8 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource_or_scope)
     root_path
   end
-
+  def permission_denied
+    redirect_to root_url, :notice => "Sorry, you are not allowed to access that page."
+  end
 
 end
