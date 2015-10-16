@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   root :to =>'pages#index'
  
-  resources :libraries do
+  resources :libraries
+  resources :libraries, :path => '', :only => [] do
 		member do
 			get "suggestions", to: "libraries#show_suggestions"
       get "suggest", to: "libraries#suggest_entry"
