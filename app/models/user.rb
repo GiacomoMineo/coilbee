@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :invitations_received, :class_name => "Invitation", :foreign_key => "receiver_id"
   enum mode: [:read, :edit] #read: 0, edit: 1
   
-  validates_presence_of :user_name, :email, :password
+  validates_presence_of :user_name, :email#, :password
   validates_uniqueness_of :user_name, :email
 
 
