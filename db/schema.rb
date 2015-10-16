@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151014145824) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "Entries_Tags", id: false, force: :cascade do |t|
     t.integer "entry_id", null: false
     t.integer "tag_id",   null: false
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 20151014145824) do
     t.string   "slug"
   end
 
-  add_index "categories", ["slug"], name: "index_categories_on_slug"
+  add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree
 
   create_table "entries", force: :cascade do |t|
     t.string   "title"
@@ -48,10 +51,10 @@ ActiveRecord::Schema.define(version: 20151014145824) do
     t.integer  "cached_votes_down",  default: 0
   end
 
-  add_index "entries", ["cached_votes_down"], name: "index_entries_on_cached_votes_down"
-  add_index "entries", ["cached_votes_score"], name: "index_entries_on_cached_votes_score"
-  add_index "entries", ["cached_votes_total"], name: "index_entries_on_cached_votes_total"
-  add_index "entries", ["cached_votes_up"], name: "index_entries_on_cached_votes_up"
+  add_index "entries", ["cached_votes_down"], name: "index_entries_on_cached_votes_down", using: :btree
+  add_index "entries", ["cached_votes_score"], name: "index_entries_on_cached_votes_score", using: :btree
+  add_index "entries", ["cached_votes_total"], name: "index_entries_on_cached_votes_total", using: :btree
+  add_index "entries", ["cached_votes_up"], name: "index_entries_on_cached_votes_up", using: :btree
 
   create_table "esuggestions", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -73,9 +76,9 @@ ActiveRecord::Schema.define(version: 20151014145824) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "invitations", ["creator_id"], name: "index_invitations_on_creator_id"
-  add_index "invitations", ["library_id"], name: "index_invitations_on_library_id"
-  add_index "invitations", ["receiver_id"], name: "index_invitations_on_receiver_id"
+  add_index "invitations", ["creator_id"], name: "index_invitations_on_creator_id", using: :btree
+  add_index "invitations", ["library_id"], name: "index_invitations_on_library_id", using: :btree
+  add_index "invitations", ["receiver_id"], name: "index_invitations_on_receiver_id", using: :btree
 
   create_table "libraries", force: :cascade do |t|
     t.string   "topic"
@@ -87,8 +90,8 @@ ActiveRecord::Schema.define(version: 20151014145824) do
     t.string   "slug"
   end
 
-  add_index "libraries", ["creator_id"], name: "index_libraries_on_creator_id"
-  add_index "libraries", ["slug"], name: "index_libraries_on_slug"
+  add_index "libraries", ["creator_id"], name: "index_libraries_on_creator_id", using: :btree
+  add_index "libraries", ["slug"], name: "index_libraries_on_slug", using: :btree
 
   create_table "read_marks", force: :cascade do |t|
     t.integer  "readable_id"
@@ -97,7 +100,7 @@ ActiveRecord::Schema.define(version: 20151014145824) do
     t.datetime "timestamp"
   end
 
-  add_index "read_marks", ["user_id", "readable_type", "readable_id"], name: "index_read_marks_on_user_id_and_readable_type_and_readable_id"
+  add_index "read_marks", ["user_id", "readable_type", "readable_id"], name: "index_read_marks_on_user_id_and_readable_type_and_readable_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "title"
@@ -118,7 +121,7 @@ ActiveRecord::Schema.define(version: 20151014145824) do
     t.string   "slug"
   end
 
-  add_index "sections", ["slug"], name: "index_sections_on_slug"
+  add_index "sections", ["slug"], name: "index_sections_on_slug", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "library_id"
@@ -127,8 +130,8 @@ ActiveRecord::Schema.define(version: 20151014145824) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "subscriptions", ["library_id"], name: "index_subscriptions_on_library_id"
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
+  add_index "subscriptions", ["library_id"], name: "index_subscriptions_on_library_id", using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"
@@ -137,8 +140,8 @@ ActiveRecord::Schema.define(version: 20151014145824) do
     t.integer  "library_id"
   end
 
-  add_index "tags", ["library_id"], name: "index_tags_on_library_id"
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+  add_index "tags", ["library_id"], name: "index_tags_on_library_id", using: :btree
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "user_name"
@@ -158,9 +161,9 @@ ActiveRecord::Schema.define(version: 20151014145824) do
     t.boolean  "admin",                  default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"
@@ -174,7 +177,8 @@ ActiveRecord::Schema.define(version: 20151014145824) do
     t.datetime "updated_at"
   end
 
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
+  add_foreign_key "tags", "libraries"
 end
