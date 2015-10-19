@@ -1,33 +1,57 @@
 /* Header */
 
 // Links
+.navbar {
+	min-height: 0 !important;
+}
+.navbar-toggle {
+	margin: 6px 15px 6px 0;
+	border: none;
+	@include transition(background 0.3s ease);
+	> span {
+		background-color: $color-main !important;
+		@include transition(background 0.3s ease);
+	}
+	&:hover {
+		background-color: $color-main !important;
+		> span { background-color: #fff !important; }
+	}
+	&:focus {
+		background-color: $color-main !important;
+		> span { background-color: #fff !important; }
+	}
+}
 .navbar-nav {
-	li {
-		a {
+	background-color: #fff;
+	> li {
+		> a {
 			color: $color-main !important;
+			font-weight: 300;
+			font-size: 13px !important;
+			line-height: 20px !important;
+			padding: 12px 15px !important;
 			&:hover {
-				background-color: transparent !important;
+				background-color: #fff !important;
 				color: $color-main-light !important;
 			}
 			&:focus {
 				background-color: #fff !important;
 			}
-			font-size: 16px;
+			.glyphicon {
+				padding-right: 6px;
+			}
 		}
 	}
 }
-
-.suggest-link {
-
-}
-.suggested-link {
-
-}
-.edit-link {
-	
-}
-.read-link {
-
+.navbar-collapse {
+	background-color: #fff;
+	border: 1px solid $color-fade;
+	border-top: none;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	@include tablet {
+		border: none;
+	}
 }
 
 // Username and dropdown
@@ -38,8 +62,8 @@
 		color: $color-main !important;
 		font-weight: normal;
     	font-size: 15px;
-    	line-height: 21px;
-    	padding: 10px 15px;
+    	line-height: 20px !important;
+    	padding: 12px 15px;
     	cursor: pointer;
     	@include transition(color 0.3s ease);
     	@include tablet {
@@ -58,7 +82,7 @@
 		min-width: 120px;
 		z-index: 2;
 		padding: 8px;
-		border-radius: 6px;
+		border-radius: 3px;
 		margin-top: 11px;
 		background-color: $bg;
 		box-shadow: 0px 1px 1px $color-light-dark;
@@ -81,7 +105,7 @@
 			font-size: 13px;
    			font-weight: normal;
    			line-height: 18px;
-   			color: $color-text-dark;
+   			color: $color-main;
    			border-top: none;
    			border-radius: 4px;
    			@include transition(all 0.3s ease);

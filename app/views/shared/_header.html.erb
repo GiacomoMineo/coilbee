@@ -1,6 +1,7 @@
 <nav class="navbar navbar-fixed-top navbar-default header" id="custom-nav">
 	<div class="container-fluid">
-	<div class="col-lg-10 col-lg-offset-1 col-xs-12">
+	<div class="row">
+	<div class="col-sm-12 col-lg-10 col-lg-offset-1">
 		<div class="navbar-header">
       		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main-collapse" aria-expanded="false">
 		        <span class="sr-only">Toggle navigation</span>
@@ -31,16 +32,16 @@
 				<% if current_user %>
 					<% if @library && @library.topic %>
 						<% if permitted_to? :edit, @library %>
-								<li><%= link_to suggestions_library_path(@library), class: "suggested-link" do %><span class="glyphicon glyphicon-flash" data-toggle="tooltip" data-placement="bottom" title="Suggestions"></span><% end %></li>
+								<li><%= link_to suggestions_library_path(@library) do %><span class="glyphicon glyphicon-flash"></span>Suggestions<% end %></li>
 						<% else %>
-							<li><%= link_to suggest_library_path(@library), class: "suggest-link" do %><span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="Suggest"></span><% end %></li>
+							<li><%= link_to suggest_library_path(@library) do %><span class="glyphicon glyphicon-plus"></span>Suggest<% end %></li>
 						<% end %>
 					<% end %>
 					<% if (@library && (permitted_to? :edit, @library)) || !@library %> 
 						<% if current_user.read? %>
-							<li><%= link_to toggle_edit_path, class: "edit-link", method: :put do %><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="bottom" title="Edit mode"></span><% end %></li>
+							<li><%= link_to toggle_edit_path, method: :put do %><span class="glyphicon glyphicon-edit"></span>Edit mode<% end %></li>
 						<% else %>
-							<li><%= link_to toggle_read_path, class: "read-link", method: :put do %><span class="glyphicon glyphicon-book" data-toggle="tooltip" data-placement="bottom" title="Read mode"></span><% end %></li>
+							<li><%= link_to toggle_read_path, method: :put do %><span class="glyphicon glyphicon-book"></span>Read Mode<% end %></li>
 						<% end %>
 					<% end %>
 					<li class="user-btn"><span class="user-toggle"><%= current_user.user_name %></span>
@@ -63,6 +64,7 @@
 				<% end %>
 	        </ul>
 	    </div>
+    </div>
     </div>
 	</div>
 </nav>

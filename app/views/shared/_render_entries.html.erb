@@ -20,17 +20,17 @@
 <% @entries.sort! { |a,b| b.rating <=> a.rating } %>
 <% @entries.each do |entry| %>
   <div class="entry group_<%= entry.group.id %>">
+     <div class="entry-vote">
+      <% current_user ? vote_class = "" : vote_class = "not-logged" %>
+      <%= link_to like_entry_path(entry), method: :put, class: "upvote " + vote_class do %>
+        <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
+      <% end %>
+      <%= link_to dislike_entry_path(entry), method: :put, class: "downvote " + vote_class do %>
+        <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
+      <% end %>
+      <span class="entry-points"><%= entry.rating %></span>
+    </div>
     <div class="entry-header">
-      <div class="entry-vote">
-        <% current_user ? vote_class = "" : vote_class = "not-logged" %>
-        <%= link_to like_entry_path(entry), method: :put, class: "upvote " + vote_class do %>
-          <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
-        <% end %>
-        <%= link_to dislike_entry_path(entry), method: :put, class: "downvote " + vote_class do %>
-          <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
-        <% end %>
-        <span class="entry-points"><%= entry.rating %></span>
-      </div>
       <a target="_blank" href="<%= entry.link %>" class="entry-title" target="_blank"><%= entry.title %></a>
       <% if !entry.accepted %>
         <div class="entry-options">

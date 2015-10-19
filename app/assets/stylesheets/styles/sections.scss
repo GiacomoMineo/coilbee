@@ -25,11 +25,18 @@
 
 // Nav
 .section-title {
-	margin: 0 0 12px;
+	margin: 32px 0 12px;
+	@include tablet {
+		margin: 0 0 12px;
+	}
 }
 
 .group-nav-wrapper {
+	margin: 6px 0 12px;
 	@extend %clearfix;
+	@include tablet {
+		margin: 0;
+	}
 }
 .group-nav {
 	margin-bottom: 6px;
@@ -90,43 +97,14 @@
 .entry {
 	$entry-h: 42px;
 	.entry-header {
-		height: $entry-h;
-		padding: 0 16px 0 0;
-		@extend %clearfix;
-		.entry-vote {
-			position: relative;
-			float: left;
-			width: 64px;
-			height: $entry-h;
-			padding: 8px 16px;
-			.upvote, .downvote {
-				position: absolute;
-				height: 15px;
-				font-size: 13px;
-				@include transition(color 0.3s ease);
-				&:hover {
-					color: $color-accent-light;
-				}
-			}
-			.upvote { top: 4px; }
-			.downvote { bottom: 6px; }
-			 .entry-points {
-				float: right;
-				margin-top: 3px;
-				line-height: 20px;
-				font-size: 14px;
-				font-weight: bold;
-				color: $color-accent;
-				cursor: default;
-			}
-		}
+		padding: 9px 16px 9px 0;
+		clear: none;
 		.entry-title {
-			float: left;
-			padding: 9px 0;
 			font-size: 20px;
 			line-height: 24px;
 			font-weight: 300;
 			color: $color-accent;
+			clear: none;
 			@include transition(color 0.3s ease);
 			&:hover {
 				color: $color-accent-light;
@@ -200,6 +178,34 @@
 					border-right: $triangle-size solid $color-accent-dark;
 				}
 			}
+		}
+	}
+	.entry-vote {
+		position: relative;
+		clear: none;
+		float: left;
+		width: 64px;
+		height: $entry-h;
+		padding: 9px 16px;
+		.upvote, .downvote {
+			position: absolute;
+			height: 15px;
+			font-size: 13px;
+			@include transition(color 0.3s ease);
+			&:hover {
+				color: $color-accent-light;
+			}
+		}
+		.upvote { top: 4px; }
+		.downvote { bottom: 6px; }
+		 .entry-points {
+			float: right;
+			margin-top: 3px;
+			line-height: 20px;
+			font-size: 14px;
+			font-weight: bold;
+			color: $color-accent;
+			cursor: default;
 		}
 	}
 	.entry-options {

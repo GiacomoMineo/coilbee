@@ -11,7 +11,7 @@ function enable_tooltips() {
 
 function bind_group_filter() {
 	//filter by group
-	$('.group-nav-item').click(function(event) {
+	$('.group-nav-item').click(function() {
 		filter_by_group($(this));
 	});
 };
@@ -29,7 +29,7 @@ function filter_by_group(group_element) {
 	}
 };
 
-function menu_selection() {
+function menu_current_selection() {
 	if($('#accordion').length) {
 		$($('#collapse_current').attr('href')).collapse();
 	};
@@ -51,14 +51,6 @@ $(document).on('page:change', function(event) {
 	$('.in-field').bind("propertychange change click keyup input paste", function(event) {
 	  $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
 	});
-	/*
-	$('.search-field').each(function() {
-		$(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled');
-	});
-	$('.search-field').bind("propertychange change click keyup input paste", function(event) {
-	  $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
-	});
-	*/
 
 	//user dropdown
 	$('.user-toggle').click(function(e) {
@@ -69,14 +61,16 @@ $(document).on('page:change', function(event) {
 		$('.user-dropdown').hide();
 	});
 
-	//signup and login buttons
+	//signup and login button popups
 	$('.signup-btn:not(.landing)').click(function(e) {
 		e.preventDefault();
-		$('#signup-popup').slideDown(300);
+		$('.overlay').hide();
+		$('#signup-popup').fadeIn(200);
 	});
 	$('.login-btn:not(.landing)').click(function(e) {
 		e.preventDefault();
-		$('#login-popup').slideDown(300);
+		$('.overlay').hide();
+		$('#login-popup').fadeIn(200);
 	});
 	$('.close-popup').click(function() {
 		$('.overlay').hide();
@@ -88,7 +82,7 @@ $(document).on('page:change', function(event) {
 		$('.overlay').hide();
 	});
 
-	// upvote redirect
+	// upvote redirect TODO
 	$('.upvote.not-logged').click(function(e) {
 		e.preventDefault();
 		console.log("ok");
@@ -129,5 +123,5 @@ $(document).on('page:change', function(event) {
 
 	bind_group_filter();
 	enable_tooltips();
-	menu_selection();
+	menu_current_selection();
 });
