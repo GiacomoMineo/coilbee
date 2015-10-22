@@ -7,7 +7,9 @@
 		<div class="footer-links">
 			<div class="col-md-8 col-md-offset-2 col-xs-12 col-xs-offset-0">
 				<ul>
-					<li><a href="/">Create your own</a></li>
+					<% if @library && @library.topic %>
+						<li><a href="/">Create your own</a></li>
+					<% end %>
 					<li><a href="#feedback">Send Feedback</a></li>
 					<% if @library && @library.topic %>
 						<li><a href="#social">Share collection</li>

@@ -5,8 +5,10 @@ $section-line-height: 24px;
 
 .menu-title a {
 	padding-left: 16px;
-	font-size: 21px;
-	font-weight: normal;
+	font-family: 'Raleway', sans-serif;
+	font-size: 27px;
+	font-weight: 900;
+	letter-spacing: -1px;
 	color: $color-main;
 	@include transition(all 0.3s ease);
 	&:hover {

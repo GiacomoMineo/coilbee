@@ -146,7 +146,8 @@ $height: 45px;
 //header
 .panel-heading {
 	.panel-title {
-		font-size: 21px;
+		font-family: 'Raleway', sans-serif;
+		font-size: 23px;
 		font-weight: 300;
 		color: $color-accent;
 		@include transition(color 0.3s ease);
@@ -482,6 +483,7 @@ input[type=radio]:not(old){
 	margin: 0;
 	padding: 0;
 	opacity: 0;
+	vertical-align: middle;
 }
 //position label
 input[type=checkbox]:not(old) + label,
@@ -490,6 +492,7 @@ input[type=radio]:not(old) + label{
 	line-height: $size;
 	font-size: $font;
 	text-transform: capitalize;
+	vertical-align: middle;
 }
 //unchecked graphics
 input[type=checkbox]:not(old) + label > span,
@@ -497,8 +500,8 @@ input[type=radio]:not(old) + label > span{
   display: inline-block;
   width: $size;
   height: $size;
-  margin-left: -$size;
-  margin-right: 8px;
+  margin-left: -$size - 3;
+  margin-right: 6px;
   border: $offset solid transparent;
   border-radius: 1px;
   background: $color-fade-light;
