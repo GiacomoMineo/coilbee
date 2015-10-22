@@ -83,9 +83,11 @@ $(document).on('page:change', function(event) {
 	});
 
 	// upvote redirect TODO
-	$('.upvote.not-logged').click(function(e) {
+	$('.upvote.not-logged, .downvote.not-logged').click(function(e) {
+		e.stopImmediatePropagation();
 		e.preventDefault();
-		console.log("ok");
+		$('.overlay').hide();
+		$('#prompt-popup').fadeIn(200);
 	});
 
 	//signup panel

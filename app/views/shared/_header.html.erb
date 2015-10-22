@@ -71,15 +71,20 @@
 	</div>
 </nav>
 <div class="overlay" id="login-popup">
-	<div class="popup row" >
+	<div class="popup row">
 		<span class="close-popup glyphicon glyphicon-remove-sign"></span>
 		<%= render 'devise/sessions/new' %>
 	</div>
 </div>
 <div class="overlay" id="signup-popup">
-	<div class="popup row" >
+	<div class="popup row">
 		<span class="close-popup glyphicon glyphicon-remove-sign"></span>
 		<%= render 'devise/registrations/new' %>
 	</div>
 </div>
-
+<div class="overlay" id="prompt-popup">
+	<div class="popup row">
+		<span class="close-popup glyphicon glyphicon-remove-sign"></span>
+		<%= render 'shared/prompt' %>
+	</div>
+</div>

@@ -106,39 +106,3 @@ $section-line-height: 24px;
 		}
 	}
 }
-
-
-// Advert
-.adv-wrapper {
-	text-align: center;
-	.adv {
-		.adv-content {
-			cursor: default;
-			font-weight: 300;
-			font-size: 15px;
-			margin: 12px 0 2px;
-			color: $color-text-medium-alt;
-		}
-		.adv-join {
-			cursor: default;
-			font-weight: normal;
-			font-size: 14px;
-			color: $color-text-dark;
-			margin-bottom: 12px;
-		}
-		.adv-cta {
-			> span {
-				font-size: 11px;
-				color: $color-text-light-alt;
-				vertical-align: middle;
-			}
-			> a {
-				display: inline-block;
-				vertical-align: middle;
-			}
-			> div {
-				margin-bottom: 2px;
-			}
-		}
-	}
-}

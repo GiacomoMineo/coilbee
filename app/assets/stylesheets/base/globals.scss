@@ -58,7 +58,7 @@ a {
 	}
 }
 .main-content {
-	margin-bottom: 120px;
+	margin-bottom: 140px;
 }
 .aside-content {
 	@include tablet {
@@ -270,6 +270,7 @@ $height: 45px;
 	padding: 32px;
 	border: 3px solid $color-main;
 	border-radius: 20px;
+	text-align: center;
 }
 .close-popup {
 	float: right;
@@ -279,6 +280,41 @@ $height: 45px;
 	@include transition(color 0.3s ease);
 	&:hover {
 		color: $color-main-light;
+	}
+}
+
+// Advert
+.adv-wrapper {
+	text-align: center;
+	.adv {
+		.adv-content {
+			cursor: default;
+			font-weight: 300;
+			font-size: 14px;
+			margin: 12px 0;
+			color: $color-text-medium-alt;
+		}
+		.adv-join {
+			cursor: default;
+			font-weight: normal;
+			font-size: 14px;
+			color: $color-text-dark;
+			margin-bottom: 12px;
+		}
+		.adv-cta {
+			> span {
+				font-size: 11px;
+				color: $color-text-light-alt;
+				vertical-align: middle;
+			}
+			> a {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			> div {
+				margin-bottom: 2px;
+			}
+		}
 	}
 }
 
