@@ -5,11 +5,49 @@
 	height: 71px;
 	bottom: 0;
 	.footer {
+		position: relative;
 		padding: 14px;
+		background-color: $color-secondary;
 		color: #fff;
 	}
+	.footer-panel {
+		position: absolute;
+		bottom: 71px;
+		left: 0;
+		right: 0;
+		width: 100%;
+		background-color: $color-secondary-light;
+		text-align: center;
+		.footer-panel-inner {
+			padding: 14px;
+		}
+		.share-buttons {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			> li {
+				display: inline-block;
+				a {
+					color: #fff;
+					padding: 0 4px;
+					@include transition(color 0.3s ease);
+					&:hover {
+						color: $color-main-light;
+					}
+				}
+			}
+		}
+		.close-popup {
+			color: #fff;
+			position: absolute;
+			top: 14px;
+			right: 14px;
+			&:hover {
+				color: $color-main-light;
+			}
+		}
+	}
 	.footer-links {
-		background-color: $color-secondary;
 		ul {
 			padding: 0;
 			margin-bottom: 6px;

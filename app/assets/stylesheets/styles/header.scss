@@ -24,6 +24,8 @@
 .navbar-nav {
 	background-color: #fff;
 	> li {
+		padding-left: 12px;
+		@include tablet { padding-left: 0; }
 		> a {
 			color: $color-main !important;
 			font-weight: 300;
@@ -43,6 +45,7 @@
 		}
 	}
 }
+#signup-btn-header { margin-top: 4px; }
 .navbar-collapse {
 	background-color: #fff;
 	border: 1px solid $color-fade;

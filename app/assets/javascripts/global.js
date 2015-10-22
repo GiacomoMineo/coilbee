@@ -121,6 +121,26 @@ $(document).on('page:change', function(event) {
 	$('#signup, #login').hide();
 	$('#signup-btn').removeClass('clicked');
 
+	//footer
+	$('#feedback, #social').hide();
+	$('.footer-links a').click(function(event) {
+		id = $(this).attr('href')
+		if(id == '#social' ||
+		   id == '#feedback') {
+		   	event.stopPropagation();
+		    event.preventDefault();
+		   	$('.footer-panel > div:not(' + id + ')').hide();
+		   	$(id).slideToggle(200);
+		} else {
+			event.stopPropagation();
+		}
+	});
+	$('.footer-panel').click(function(e) { e.stopPropagation(); });
+	$('.footer-panel .close-popup').click(function() { $('.footer-panel > div').hide(); });
+	$('body,html').click(function() {
+		$('.footer-panel > div').hide();
+	});
+
 	bind_group_filter();
 	enable_tooltips();
 	menu_current_selection();

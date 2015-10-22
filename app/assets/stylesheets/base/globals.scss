@@ -270,16 +270,15 @@ $height: 45px;
 	padding: 32px;
 	border: 3px solid $color-main;
 	border-radius: 20px;
-	
-	.close-popup {
-		float: right;
-		color: $color-main;
-		font-size: 19px;
-		cursor: pointer;
-		@include transition(color 0.3s ease);
-		&:hover {
-			color: $color-main-light;
-		}
+}
+.close-popup {
+	float: right;
+	color: $color-main;
+	font-size: 19px;
+	cursor: pointer;
+	@include transition(color 0.3s ease);
+	&:hover {
+		color: $color-main-light;
 	}
 }
 
