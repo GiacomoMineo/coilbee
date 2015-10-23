@@ -1,3 +1,6 @@
+
+
+<% @feedback = Feedback.new %>
 <%= form_for(@feedback, :html => {:class => 'in-form'}) do |f| %>
   <% if @feedback.errors.any? %>
     <div id="error_explanation">
