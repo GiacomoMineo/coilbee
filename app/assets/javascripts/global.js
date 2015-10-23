@@ -44,6 +44,38 @@ $(function() {
 $(document).on('page:change', function(event) {
 
 	// Initialization
+
+	//user ajax
+	$(document).ajaxComplete(function(event, xhr, settings) {
+		// Login
+		if(settings.url == '/users/sign_in') {
+			//Success
+			if(xhr.status == '201') {
+				$('#login_form .in-submit').addClass('success').attr('value', 'Success!');
+				window.location.reload();
+			}
+			//Error
+			if(xhr.status == '401') {
+				$('#login_form .in-error').html(xhr.responseText);
+			}
+		}
+		// Signup
+		if(settings.url == '/users') {
+			// Success
+			if(xhr.status == '201') {
+				$('#signup_form .in-submit').addClass('success').attr('value', 'Success!');
+				window.location.reload();
+			}
+			// Error
+			if(xhr.status == '422') {
+				errorText = "";
+				$.each(jQuery.parseJSON(xhr.responseText).errors, function(key, value) {
+					errorText += "<span>" + key + " " + value + "</span>";
+				})
+				$('#signup_form .in-error').html(errorText);
+			}
+		}
+	});
 	//inputs
 	$('.in-field').each(function() {
 		$(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled');
