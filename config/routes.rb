@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
+  devise_for :users, :controllers => {sessions: 'users/sessions', registrations: 'users/registrations'}
   resources :feedbacks
-  devise_for :users
   root :to =>'pages#index'
  
  # resources :libraries

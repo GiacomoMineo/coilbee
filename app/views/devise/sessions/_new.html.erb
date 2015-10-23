@@ -1,6 +1,6 @@
 <!-- Login -->
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {:id => 'login_form'}, format: :json, remote: true) do |f| %>
   <div class="in-row">
     <%= f.email_field :email, autofocus: true, class: "in-field", id: "in-email-usr" %>
     <label class="in-label" for="in-email-usr">
@@ -20,6 +20,7 @@
       <label for="remember-me"><span><span></span></span>Remember me</label>
     </div>
   <% end -%>
+  <div class="in-error"></div>
 
   <%= f.submit "Login", class: "btn btn-primary in-submit" %>
 <% end %>

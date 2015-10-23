@@ -430,6 +430,11 @@ $height: 45px;
 	padding: 12px;
 	margin: 24px auto 8px;
 	font-weight: bold;
+	&.success {
+		background-color: $color-main;
+		outline: none;
+		border-color: $color-main;
+	}
 }
 
 .in-form {
@@ -450,6 +455,14 @@ $height: 45px;
 		@include tablet {
 			display: inline-block;
 		}
+	}
+}
+.in-error {
+	color: $color-red;
+	font-size: 13px;
+	> span {
+		display: block;
+		text-transform: capitalize;
 	}
 }
 .in-hint {
