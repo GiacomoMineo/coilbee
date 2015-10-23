@@ -2,7 +2,3 @@ tmp/*
 log/*
 *.sqlite3
 *.lock
-Gemfile
-Gemfile.lock
-config/database.yml
-development
