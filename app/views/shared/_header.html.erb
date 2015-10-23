@@ -59,6 +59,8 @@
 				<% else %>
 					<li>
 						<%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-success signup-btn small nav-btn', id: "signup-btn-header" %>
+					</li>
+					<li>
 						<%= link_to "Login", new_user_session_path, :class => 'btn login-btn small nav-btn', id: "login-btn-header" %>
 					</li>
 				<% end %>
@@ -69,15 +71,20 @@
 	</div>
 </nav>
 <div class="overlay" id="login-popup">
-	<div class="popup row" >
+	<div class="popup row">
 		<span class="close-popup glyphicon glyphicon-remove-sign"></span>
 		<%= render 'devise/sessions/new' %>
 	</div>
 </div>
 <div class="overlay" id="signup-popup">
-	<div class="popup row" >
+	<div class="popup row">
 		<span class="close-popup glyphicon glyphicon-remove-sign"></span>
 		<%= render 'devise/registrations/new' %>
 	</div>
 </div>
-
+<div class="overlay" id="prompt-popup">
+	<div class="popup row">
+		<span class="close-popup glyphicon glyphicon-remove-sign"></span>
+		<%= render 'shared/prompt' %>
+	</div>
+</div>

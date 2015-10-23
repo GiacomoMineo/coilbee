@@ -1,12 +1,22 @@
 <div class="col-xs-12 footer-wrapper">
-	<div class="row footer footer-links">
-		<div class="col-md-8 col-md-offset-2 col-xs-12 col-xs-offset-0">
-			<ul>
-				<li><a href="/">Create your own</a></li>
-				<li><a href="#feedback">Send Feedback</a></li>
-				<li><a href="#share">Share</a></li>
-			</ul>
-			<p class="footer-company">&copy; 2015 Linkr</p>
+	<div class="footer row">
+		<div class="footer-panel">
+			<div id="feedback"><div class="footer-panel-inner"><%= render 'shared/feedback' %></div><span class="close-popup glyphicon glyphicon-remove-sign"></span></div>
+			<div id="social"><div class="footer-panel-inner"><%= render 'shared/social' %></div><span class="close-popup glyphicon glyphicon-remove-sign"></span></div>
+		</div>
+		<div class="footer-links">
+			<div class="col-md-8 col-md-offset-2 col-xs-12 col-xs-offset-0">
+				<ul>
+					<% if @library && @library.topic %>
+						<li><a href="/">Create your own</a></li>
+					<% end %>
+					<li><a href="#feedback">Send Feedback</a></li>
+					<% if @library && @library.topic %>
+						<li><a href="#social">Share collection</a></li>
+					<% end %>
+				</ul>
+				<p class="footer-company">&copy; 2015 Linkr</p>
+			</div>
 		</div>
 	</div>
 </div>

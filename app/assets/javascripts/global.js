@@ -83,9 +83,11 @@ $(document).on('page:change', function(event) {
 	});
 
 	// upvote redirect TODO
-	$('.upvote.not-logged').click(function(e) {
+	$('.upvote.not-logged, .downvote.not-logged').click(function(e) {
+		e.stopImmediatePropagation();
 		e.preventDefault();
-		console.log("ok");
+		$('.overlay').hide();
+		$('#prompt-popup').fadeIn(200);
 	});
 
 	//signup panel
@@ -120,6 +122,26 @@ $(document).on('page:change', function(event) {
 	//reset login and signup
 	$('#signup, #login').hide();
 	$('#signup-btn').removeClass('clicked');
+
+	//footer
+	$('#feedback, #social').hide();
+	$('.footer-links a').click(function(event) {
+		id = $(this).attr('href')
+		if(id == '#social' ||
+		   id == '#feedback') {
+		   	event.stopPropagation();
+		    event.preventDefault();
+		   	$('.footer-panel > div:not(' + id + ')').hide();
+		   	$(id).slideToggle(200);
+		} else {
+			event.stopPropagation();
+		}
+	});
+	$('.footer-panel').click(function(e) { e.stopPropagation(); });
+	$('.footer-panel .close-popup').click(function() { $('.footer-panel > div').hide(); });
+	$('body,html').click(function() {
+		$('.footer-panel > div').hide();
+	});
 
 	bind_group_filter();
 	enable_tooltips();

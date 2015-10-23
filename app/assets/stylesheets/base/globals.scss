@@ -58,7 +58,7 @@ a {
 	}
 }
 .main-content {
-	margin-bottom: 120px;
+	margin-bottom: 140px;
 }
 .aside-content {
 	@include tablet {
@@ -146,7 +146,8 @@ $height: 45px;
 //header
 .panel-heading {
 	.panel-title {
-		font-size: 21px;
+		font-family: 'Raleway', sans-serif;
+		font-size: 23px;
 		font-weight: 300;
 		color: $color-accent;
 		@include transition(color 0.3s ease);
@@ -270,15 +271,50 @@ $height: 45px;
 	padding: 32px;
 	border: 3px solid $color-main;
 	border-radius: 20px;
-	
-	.close-popup {
-		float: right;
-		color: $color-main;
-		font-size: 19px;
-		cursor: pointer;
-		@include transition(color 0.3s ease);
-		&:hover {
-			color: $color-main-light;
+	text-align: center;
+}
+.close-popup {
+	float: right;
+	color: $color-main;
+	font-size: 19px;
+	cursor: pointer;
+	@include transition(color 0.3s ease);
+	&:hover {
+		color: $color-main-light;
+	}
+}
+
+// Advert
+.adv-wrapper {
+	text-align: center;
+	.adv {
+		.adv-content {
+			cursor: default;
+			font-weight: 300;
+			font-size: 14px;
+			margin: 12px 0;
+			color: $color-text-medium-alt;
+		}
+		.adv-join {
+			cursor: default;
+			font-weight: normal;
+			font-size: 14px;
+			color: $color-text-dark;
+			margin-bottom: 12px;
+		}
+		.adv-cta {
+			> span {
+				font-size: 11px;
+				color: $color-text-light-alt;
+				vertical-align: middle;
+			}
+			> a {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			> div {
+				margin-bottom: 2px;
+			}
 		}
 	}
 }
@@ -447,6 +483,7 @@ input[type=radio]:not(old){
 	margin: 0;
 	padding: 0;
 	opacity: 0;
+	vertical-align: middle;
 }
 //position label
 input[type=checkbox]:not(old) + label,
@@ -455,6 +492,7 @@ input[type=radio]:not(old) + label{
 	line-height: $size;
 	font-size: $font;
 	text-transform: capitalize;
+	vertical-align: middle;
 }
 //unchecked graphics
 input[type=checkbox]:not(old) + label > span,
@@ -462,8 +500,8 @@ input[type=radio]:not(old) + label > span{
   display: inline-block;
   width: $size;
   height: $size;
-  margin-left: -$size;
-  margin-right: 8px;
+  margin-left: -$size - 3;
+  margin-right: 6px;
   border: $offset solid transparent;
   border-radius: 1px;
   background: $color-fade-light;
