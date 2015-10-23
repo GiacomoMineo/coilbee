@@ -1,0 +1,39 @@
+<%= form_for(@feedback, :html => {:class => 'in-form'}) do |f| %>
+  <% if @feedback.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
+
+      <ul>
+      <% @feedback.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="in-row">
+    <%= f.text_field :name, class: "in-field", id: "feedback-name"  %>
+    <label class="in-label" for="feedback-name">
+      <span class="in-label-content" data-content="Name">Name</span>
+    </label>
+  </div>
+  <div class="in-row">
+    <%= f.text_field :email, class: "in-field", id:"feedback-email" %>
+    <label class="in-label" for="feedback-email">
+      <span class="in-label-content" data-content="Email">  Email</span>
+    </label>
+  </div>
+  <div class="in-row">
+    <%= f.text_field :subject, class: "in-field", id: "feedback-subject" %>
+    <label class="in-label" for="feedback-subject">
+      <span class="in-label-content" data-content="Subject">Subject</span>
+    </label>
+  </div>
+  <div class="in-row">
+    <%= f.text_area :content, class: "in-field", id: "feedback-content"  %>
+    <label class="in-label" for="feedback-content">
+      <span class="in-label-content" data-content="Content">Content</span>
+    </label>
+  </div>
+  <%= f.submit "Send", class: "btn btn-primary in-submit" %>
+<% end %>
