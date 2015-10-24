@@ -56,6 +56,9 @@ $(document).on('page:change', function(event) {
 		$(this).prop("disabled", true);
 		$(this).parents('form').submit();
 	});
+	//reset login and signup
+	$('#signup, #login').hide();
+	$('#signup-btn').removeClass('clicked');
 
 	//user dropdown
 	$('.user-toggle').click(function(e) {
@@ -102,7 +105,7 @@ $(document).on('page:change', function(event) {
 		$(this).blur();
 		$('#signup').slideToggle(300);
 		$('#login').slideUp(300);
-		$('#login-btn').removeClass('clicked');
+		$('#login-btn.landing').removeClass('clicked');
 	    if($(this).hasClass('clicked')) {
 	      $('html, body').animate({
 	        scrollTop: $(this).offset().top - 88
@@ -111,22 +114,18 @@ $(document).on('page:change', function(event) {
 	});
 	//login panel
 	$('#login-btn.landing').click(function(e) {
-		$btn_element = $(this);
 		e.preventDefault();
+		$(this).toggleClass('clicked');
 		$('#login').slideToggle(300);
-		$btn_element.toggleClass('clicked');
-		$('#signup-btn').removeClass('clicked');
+		$('#signup-btn.landing').removeClass('clicked');
 		$('#signup').slideUp(300, function() {
-			if($btn_element.hasClass('clicked')) {
+			if($(this).hasClass('clicked')) {
 		      $('html, body').animate({
 		        scrollTop: $btn_element.offset().top - 76
 		      }, 300);
 		    };
 		});
 	});
-	//reset login and signup
-	$('#signup, #login').hide();
-	$('#signup-btn').removeClass('clicked');
 
 	//footer
 	$('#feedback, #social').hide();

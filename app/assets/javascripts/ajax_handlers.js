@@ -14,20 +14,26 @@ $(document).ajaxComplete(function(event, xhr, settings) {
 			$('#login_form .in-error').html(xhr.responseText);
 		}
 	};
-	// Signup
+	// Signup and edit
 	if(settings.url == '/users') {
 		// Success
-		if(xhr.status == '201') {
+		if(xhr.status == '201' || xhr.status == '204') {
 			$('#signup_form .in-submit').addClass('success').attr('value', 'Success!');
-			window.location.reload();
+			$('#user_edit_form .in-submit').addClass('success').attr('value', 'Success!');
+			if(xhr.status == '204') {
+				window.location.replace("/");
+			} else {
+				window.location.reload();
+			}
 		}
 		// Error
 		if(xhr.status == '422') {
 			errorText = "";
 			$.each(jQuery.parseJSON(xhr.responseText).errors, function(key, value) {
 				errorText += "<span>" + key + " " + value + "</span>";
-			})
+			});
 			$('#signup_form .in-error').html(errorText);
+			$('#user_edit_form .in-error').html(errorText);
 		}
 	};
 	// Feedback
