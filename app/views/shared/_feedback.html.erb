@@ -1,20 +1,6 @@
-
-
 <% @feedback = Feedback.new %>
-<%= form_for(@feedback, :html => {:class => 'in-form'}) do |f| %>
-  <% if @feedback.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
-
-      <ul>
-      <% @feedback.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="in-row">
+<%= form_for(@feedback, :html => {:class => 'in-form', :id => 'feedback_form'}, format: :json, remote: true) do |f| %>
+  <div class="in-row small">
     <%= f.text_field :name, class: "in-field", id: "feedback-name"  %>
     <label class="in-label" for="feedback-name">
       <span class="in-label-content" data-content="Name">Name</span>
@@ -38,5 +24,7 @@
       <span class="in-label-content" data-content="Content">Content</span>
     </label>
   </div>
+  <div class="in-error"></div>
+
   <%= f.submit "Send", class: "btn btn-primary in-submit" %>
 <% end %>

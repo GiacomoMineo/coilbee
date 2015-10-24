@@ -331,6 +331,9 @@ $height: 45px;
 	&.small {
 		margin: 8px 0 2px;
 	}
+	&.large {
+		margin-top: 48px;
+	}
 	.in-field {
 		position: relative;
 		display: block;
@@ -409,8 +412,8 @@ $height: 45px;
 }
 .in-field:focus + .in-label,
 .in-filled .in-label {
-	-webkit-transform: translate3d(0, 0, 0);
-	transform: translate3d(0, 0, 0);
+	-webkit-transform: translate3d(0, 4px, 0);
+	transform: translate3d(0, 4px, 0);
 }
 .in-field:focus + .in-label .in-label-content,
 .in-filled .in-label .in-label-content {
@@ -471,7 +474,10 @@ $height: 45px;
 	color: $color-text-light;
 	padding-bottom: 12px;
 }
-
+.in-action {
+	display: block;
+	font-size: 13px;
+}
 .in-form-title {
 	display: inline-block;
 	text-align: center;

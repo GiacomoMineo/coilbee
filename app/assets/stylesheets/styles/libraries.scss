@@ -83,6 +83,8 @@
 		    padding: 14px 32px;
 		    text-decoration: none;
 		    text-transform: uppercase;
+		    border: 1px solid $color-light-3;
+		    color: $color-text-light-alt;
 		    @include transition(all 0.3s ease);
 		    > i {
 		    	line-height: 0;
@@ -93,6 +95,7 @@
 		}
 		&.active {
 			a {
+				color: $color-text-dark;
 			}
 		}
 	}
