@@ -44,38 +44,6 @@ $(function() {
 $(document).on('page:change', function(event) {
 
 	// Initialization
-
-	//user ajax
-	$(document).ajaxComplete(function(event, xhr, settings) {
-		// Login
-		if(settings.url == '/users/sign_in') {
-			//Success
-			if(xhr.status == '201') {
-				$('#login_form .in-submit').addClass('success').attr('value', 'Success!');
-				window.location.reload();
-			}
-			//Error
-			if(xhr.status == '401') {
-				$('#login_form .in-error').html(xhr.responseText);
-			}
-		}
-		// Signup
-		if(settings.url == '/users') {
-			// Success
-			if(xhr.status == '201') {
-				$('#signup_form .in-submit').addClass('success').attr('value', 'Success!');
-				window.location.reload();
-			}
-			// Error
-			if(xhr.status == '422') {
-				errorText = "";
-				$.each(jQuery.parseJSON(xhr.responseText).errors, function(key, value) {
-					errorText += "<span>" + key + " " + value + "</span>";
-				})
-				$('#signup_form .in-error').html(errorText);
-			}
-		}
-	});
 	//inputs
 	$('.in-field').each(function() {
 		$(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled');
@@ -83,6 +51,14 @@ $(document).on('page:change', function(event) {
 	$('.in-field').bind("propertychange change click keyup input paste", function(event) {
 	  $(this).val() != '' ? $(this).parent().addClass('in-filled') : $(this).parent().removeClass('in-filled')
 	});
+	//disable ajax buttons before firing
+	$('#login_form, #signup_form, #feedback_form').find('.in-submit').click(function() {
+		$(this).prop("disabled", true);
+		$(this).parents('form').submit();
+	});
+	//reset login and signup
+	$('#signup, #login').hide();
+	$('#signup-btn').removeClass('clicked');
 
 	//user dropdown
 	$('.user-toggle').click(function(e) {
@@ -114,7 +90,7 @@ $(document).on('page:change', function(event) {
 		$('.overlay').hide();
 	});
 
-	// upvote redirect TODO
+	// upvote login prompt
 	$('.upvote.not-logged, .downvote.not-logged').click(function(e) {
 		e.stopImmediatePropagation();
 		e.preventDefault();
@@ -129,7 +105,7 @@ $(document).on('page:change', function(event) {
 		$(this).blur();
 		$('#signup').slideToggle(300);
 		$('#login').slideUp(300);
-		$('#login-btn').removeClass('clicked');
+		$('#login-btn.landing').removeClass('clicked');
 	    if($(this).hasClass('clicked')) {
 	      $('html, body').animate({
 	        scrollTop: $(this).offset().top - 88
@@ -138,22 +114,18 @@ $(document).on('page:change', function(event) {
 	});
 	//login panel
 	$('#login-btn.landing').click(function(e) {
-		$btn_element = $(this);
 		e.preventDefault();
+		$(this).toggleClass('clicked');
 		$('#login').slideToggle(300);
-		$btn_element.toggleClass('clicked');
-		$('#signup-btn').removeClass('clicked');
+		$('#signup-btn.landing').removeClass('clicked');
 		$('#signup').slideUp(300, function() {
-			if($btn_element.hasClass('clicked')) {
+			if($(this).hasClass('clicked')) {
 		      $('html, body').animate({
 		        scrollTop: $btn_element.offset().top - 76
 		      }, 300);
 		    };
 		});
 	});
-	//reset login and signup
-	$('#signup, #login').hide();
-	$('#signup-btn').removeClass('clicked');
 
 	//footer
 	$('#feedback, #social').hide();
@@ -170,9 +142,13 @@ $(document).on('page:change', function(event) {
 		}
 	});
 	$('.footer-panel').click(function(e) { e.stopPropagation(); });
-	$('.footer-panel .close-popup').click(function() { $('.footer-panel > div').hide(); });
+	$('.footer-panel .close-popup').click(function() {
+		$('.footer-panel > div').hide();
+		$('#feedback_form .in-error').html("");
+	});
 	$('body,html').click(function() {
 		$('.footer-panel > div').hide();
+		$('#feedback_form .in-error').html("");
 	});
 
 	bind_group_filter();

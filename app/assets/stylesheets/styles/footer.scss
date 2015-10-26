@@ -76,3 +76,53 @@
 		}
 	}
 }
+
+// Feedback
+#feedback_form {
+	.in-row {
+		margin: 24px auto 12px;
+		&.small {
+			margin-top: 0;
+		}
+	}
+	.in-field {
+		font-size: 13px;
+		padding: 6px;
+		-webkit-transform: translate3d(0, 10px, 0);
+		transform: translate3d(0, 10px, 0);
+	}
+	.in-label {
+		font-size: 12px;
+		.in-label-content {
+			padding: 0;
+			&::after {
+				padding: 0;
+				color: $color-accent-light;
+				font-size: 12px;
+			}
+		}
+	}
+	.in-submit {
+		padding: 8px;
+		margin: 16px auto 4px;
+		font-size: 13px;
+	}
+	.in-error > span {
+		display: block;
+		margin: 0 auto;
+		padding-top: 8px;
+		font-size: 12px;
+		max-width: 420px;
+	}
+	.in-field:focus,
+	.in-filled .in-field {
+		background-color: #fff;
+		border-color: $color-accent-light;
+	}
+	.in-field:focus + .in-label,
+	.in-filled .in-label {
+		-webkit-transform: translate3d(0, 8px, 0);
+		transform: translate3d(0, 8px, 0);
+	}
+
+}

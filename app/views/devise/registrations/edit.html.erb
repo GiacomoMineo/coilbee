@@ -1,6 +1,6 @@
 <h2 class="in-form-title">Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => 'in-form' }, format: :json, remote: true) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => 'in-form', :id => 'user_edit_form' }, format: :json, remote: true) do |f| %>
   <%= devise_error_messages! %>
   <div class="in-row">
     <%= f.text_field :user_name, autofocus: true, class: "in-field", id: "username" %>
@@ -30,13 +30,15 @@
       <span class="in-label-content" data-content="Confirm Password">Confirm Password</span>
     </label>
   </div>
-  <div class="in-row">
+  <div class="in-row large">
     <%= f.password_field :current_password, autocomplete: "off", class: "in-field", id: "usercurrentpassword" %>
     <label class="in-label" for="usercurrentpassword">
       <span class="in-label-content" data-content="Current Password">Current Password</span>
     </label>
     <span class="in-hint">Insert your old password to authorize changes</span>
   </div>
+  <div class="in-error"></div>
+  
   <%= f.submit "Save changes", class:"btn btn-primary in-submit" %>
 <% end %>
 
