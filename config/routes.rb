@@ -6,8 +6,13 @@ Rails.application.routes.draw do
  
  # resources :libraries
   resources :libraries do#, :path => '', :only => [] do
+		collection do
+			get "browse", to: "libraries#browse"
+		end
 		member do
 			get "suggestions", to: "libraries#show_suggestions"
+			put "subscribe", to: "libraries#subscribe"
+			put "unsubscribe", to: "libraries#unsubscribe"
 		end
     #resources :categories
     resources :categories do#, :path => '', :only => [] do
@@ -31,21 +36,17 @@ Rails.application.routes.draw do
 			put "accept", to: "invitations#accept"
 		end
 	end
-  
 
-  get "browse" =>  "libraries#browse", as: :library_browse
-  put "subscribe/:id" =>  "libraries#subscribe", as: :library_subscribe
-  put "unsubscribe/:id" =>  "libraries#unsubscribe", as: :library_unsubscribe
   put 'toggle_edit' => 'toggles#toggle_edit', as: :toggle_edit
   put 'toggle_read' => 'toggles#toggle_read', as: :toggle_read
 
-  get '/tag/:id'  => 'tags#show', as: :tag
-  get '/tags' => 'tags#index', as: :tag_search
+  #~ get '/tag/:id'  => 'tags#show', as: :tag
+  #~ get '/tags' => 'tags#index', as: :tag_search
   
   #get '/signup' => 'users#new'
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  delete '/logout' => 'sessions#destroy'
+  #~ get '/login' => 'sessions#new'
+  #~ post '/login' => 'sessions#create'
+  #~ delete '/logout' => 'sessions#destroy'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

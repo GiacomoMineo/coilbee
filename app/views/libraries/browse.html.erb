@@ -4,9 +4,9 @@
 			<div class="panel-heading">
 				<%= link_to lib.topic, library_path(lib), class: "panel-title library-title" %>
 				<% if lib.users.include?(current_user) %>
-					<%= link_to "Unfollow", library_unsubscribe_path(lib), :method => :put, data: {confirm: "Are you sure?"}, class: 'btn btn-danger pull-right reject-btn' %>
+					<%= link_to "Unfollow", unsubscribe_library_path(lib), :method => :put, data: {confirm: "Are you sure?"}, class: 'btn btn-danger pull-right reject-btn' %>
 				<% else %>
-				<%= link_to "Follow", library_subscribe_path(lib), :method => :put,  class: 'btn btn-success pull-right follow-btn'  %>
+				<%= link_to "Follow", subscribe_library_path(lib), :method => :put,  class: 'btn btn-success pull-right follow-btn'  %>
 				<% end %>
 					
 			    

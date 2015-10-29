@@ -4,7 +4,7 @@
 		<i class="glyphicon glyphicon-plus"></i>
 		<span>New</span>
 	<% end %>
-	<%= link_to library_browse_path, class: "btn btn-default browse-btn" do %>
+	<%= link_to browse_libraries_path, class: "btn btn-default browse-btn" do %>
 		<i class="glyphicon glyphicon-th"></i>
 		<span>Browse</span>
 	<% end %>
@@ -76,7 +76,7 @@
 				<div class="panel-heading">
 					<%= link_to lib.topic, library_path(lib), class: "panel-title library-title" %><span class="user-ref">by <span><%= lib.creator.user_name %></span></span>
 					<% if current_user %>
-						<%= link_to library_unsubscribe_path(lib), :method => :put, data: {confirm: "Are you sure?"}, class: "pull-right" do %>
+						<%= link_to unsubscribe_library_path(lib), :method => :put, data: {confirm: "Are you sure?"}, class: "pull-right" do %>
 	      					<span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Unfollow" aria-hidden="true"></span>
 		        		<% end %>
 					    <% if permitted_to?(:edit, lib) && current_user.edit? %>
