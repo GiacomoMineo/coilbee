@@ -1,7 +1,7 @@
 /* Landing page, Login, Sign up */
 
 // Jumbotron
-.linkr-jumbotron {
+.main-jumbotron {
 	padding: 16px 0;
 	@include tablet {
 		padding: 32px 0;
@@ -35,7 +35,7 @@
 }
 
 // Signup
-.linkr-account {
+.landing-account {
 	padding: 24px 0;
 	text-align: center;
 }
@@ -62,7 +62,7 @@
 }
 
 // Descriptions
-.linkr-description {
+.landing-description {
 	padding: 0 54px;
 	.image {
 		display: inline-block;
@@ -86,14 +86,14 @@
 		cursor: default;
 	}
 }
-.linkr-description-wrapper { margin-top: 24px; }
+.landing-description-wrapper { margin-top: 24px; }
 
 // Header
 .landing-header {
 	$size: 48px;
 	$height: 76px;
 	height: $height;
-	.linkr-logo {
+	.main-logo {
 		margin: 14px 0;
 		text-align: center;
 		height: $size;
