@@ -23,14 +23,14 @@ class FeedbacksController < ApplicationController
 
   # POST /feedbacks
   # POST /feedbacks.json
-  def create
+  def create #TODO Fix this pile of mess at some point
     @feedback = Feedback.new(feedback_params)
 
     respond_to do |format|
       if @feedback.save
         FeedbackMailer.send_feedback(@feedback).deliver_now
         format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
-        format.json { render :show, status: :created, location: @feedback }
+        format.json { render :show, status: :created}
       else
         format.html { render :new }
         format.json { render json: @feedback.errors, status: :unprocessable_entity }
