@@ -1,13 +1,19 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   clear_respond_to
   respond_to :json
+  respond_to :html, :only => [:new]
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+	def new
+		respond_to do |format|
+			# as the signup form is displayed on the root page, redirect there
+			# if the user accesses /users/sign_up directly
+			format.html {redirect_to root_path}
+			format.json {super}
+		end
+	end
 
   # POST /resource
   # def create
