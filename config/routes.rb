@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root :to =>'pages#index'
  
  # resources :libraries
-  resources :libraries do#, :path => '', :only => [] do
+  resources :libraries, shallow: true do
 		collection do
 			get "browse", to: "libraries#browse"
 		end
@@ -15,8 +15,8 @@ Rails.application.routes.draw do
 			put "unsubscribe", to: "libraries#unsubscribe"
 		end
     #resources :categories
-    resources :categories do#, :path => '', :only => [] do
-      resources :sections do#, :path => '', :except => [:index] do
+    resources :categories, :except => [:index] do
+      resources :sections, :except => [:index] do
 				resources :entries do
 					member do
 						put "like", to: "entries#upvote"

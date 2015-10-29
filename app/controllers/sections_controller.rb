@@ -1,37 +1,31 @@
 class SectionsController < ApplicationController
-	before_filter :set_category, :set_library
-	before_action :new_section, :only => :new
+	before_action :new_section
 	filter_resource_access
 
 	
 	def show
-		@section = Section.find(params[:id])
 		@entries = @section.entries.select { |e| e.accepted == true }
-	 	@groups = @library.groups
+	 	@groups = @section.category.library.groups
 
 	end
 	
 	def new
-		@section = Section.new
 	end
 	
 	def create
-		@section = Section.new(section_params) 
-		@category = Category.find_by(id: params["cat"].first)
+		@section = Section.new(section_params)
 		@section.category = @category
-  		if @section.save
-			redirect_to library_category_section_path(@library, @category, @section)
+  	if @section.save
+			redirect_to section_path(@section)
   		else 
     		render 'new' 
   		end 
 	end
 
 	def edit
-		@section = Section.find(params[:id])
 	end
 
 	def update
-		@section = Section.find(params[:id])
 		if @section.update_attributes(section_params)
 			redirect_to library_path(@section.category.library), :notice => "The section has been edited"
 		else
@@ -40,8 +34,6 @@ class SectionsController < ApplicationController
 	end
 
 	def destroy
-		@section = Section.find(params[:id])#TODO delete recursively all entries
-		@library = @section.category.library
 		@section.destroy 
 		redirect_to library_path(@library), :notice => "The section has been deleted"
 	end
@@ -52,7 +44,21 @@ class SectionsController < ApplicationController
 		end
 		
 		def new_section
-			@section = Section.new
-			@section.category = @category
+			if params[:id] then
+				@section = Section.find(params[:id])
+			else 
+				@section = Section.new
+			end
+			
+			if @section.category then
+				@category = @section.category
+			elsif params[:category_id] then
+				@category = Category.find(params[:category_id])
+				@section.category = @category
+			end
+			
+			if @category && @category.library then
+				@library = @category.library
+			end
 		end
 end

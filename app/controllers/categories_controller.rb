@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
-	before_action :new_category, :only => :new
-	before_filter :set_library
+	before_action :new_category
 	filter_resource_access
 
 	def index
@@ -21,19 +20,15 @@ class CategoriesController < ApplicationController
 	end
 
 	def destroy
-		@category = Category.find(params[:id]) #TODO delete recursively all sections and entries
-		#@library = @category.library
 		@category.destroy
 		redirect_to library_path(@library), :notice => "The category has been deleted"
 	end
 
 	def edit
-		@category = Category.find(params[:id])
 		@library = @category.library
 	end
 
 	def update
-		@category = Category.find(params[:id])
 		if @category.update_attributes(category_params)
 			redirect_to library_path(@category.library), :notice => "The library has been edited"
 		else
@@ -47,7 +42,16 @@ class CategoriesController < ApplicationController
 		end
 		
 		def new_category
-			@category = Category.new
-			@category.library = Library.find(params[:library_id])
+			if params[:id] then
+				@category = Category.find(params[:id])
+			else 
+				@category = Category.new
+			end
+			
+			if @category.library then
+				@library = @category.library
+			elsif params[:library_id] then
+				@library = Library.find(params[:library_id])
+			end
 		end
 end

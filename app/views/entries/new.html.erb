@@ -1,5 +1,5 @@
 <h1 class="in-form-title">Add a new link</h1>
-<%= form_for([@library, @category, @section, @entry], :html => {:class => 'in-form'}) do |f| %>
+<%= form_for([@section, @entry], :html => {:class => 'in-form'}) do |f| %>
 	<div class="in-row">
 		<%= f.text_field :title, class: "in-field", id: "entry-title" %>
 		<label class="in-label" for="entry-title">
@@ -22,7 +22,5 @@
 		<%= label_tag 'entry[group_id]', "Type" %>
 		<%= f.collection_select(:group_id, @groups, :id, :name, {prompt: true}, {class: "form-control"}) %>
 	</div>
-	<%= f.hidden_field :accepted, :value => true %>
-	<%= f.hidden_field :section_id, :value => @section.id %>
 	<%= f.submit "Submit", class: "btn btn-primary in-submit" %>
 <% end %>
