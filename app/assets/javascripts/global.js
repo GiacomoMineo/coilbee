@@ -115,14 +115,15 @@ $(document).on('page:change', function(event) {
 	//login panel
 	$('#login-btn.landing').click(function(e) {
 		e.preventDefault();
-		$(this).toggleClass('clicked');
+		$btn_element = $(this);
+		$btn_element.toggleClass('clicked');
 		$('#login').slideToggle(300);
 		$('#signup-btn.landing').removeClass('clicked');
 		$('#signup').slideUp(300, function() {
-			if($(this).hasClass('clicked')) {
-		      $('html, body').animate({
-		        scrollTop: $btn_element.offset().top - 76
-		      }, 300);
+			if($btn_element.hasClass('clicked')) {
+			    $('html, body').animate({
+			    	scrollTop: $btn_element.offset().top - 76
+			    }, 300);
 		    };
 		});
 	});
