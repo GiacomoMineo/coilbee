@@ -12,7 +12,7 @@ authorization do
 		includes :guest
 
 		#may create new libraries
-		has_permission_on :libraries, :to => [:create, :browse]
+		has_permission_on :libraries, :to => [:create, :browse, :suggest_entry]
 		
 		has_permission_on :libraries, :to => [:subscribe, :unsubscribe] do
 			if_attribute :public => true
@@ -23,7 +23,7 @@ authorization do
 		end 
 
 		# may view libraries he is subscribed to...
-		has_permission_on :libraries, :to => [:read, :suggest_entry] do
+		has_permission_on :libraries, :to => [:read] do
 			if_attribute :users => contains {user}
 		end
 		# ... with all their categories...
