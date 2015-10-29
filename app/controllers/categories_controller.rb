@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
 	before_action :new_category, :only => :new
-	before_filter :load_library
+	before_filter :set_library
 	filter_resource_access
 
 	def index
@@ -50,8 +50,4 @@ class CategoriesController < ApplicationController
 			@category = Category.new
 			@category.library = Library.find(params[:library_id])
 		end
-		def load_library
-				@library = Library.find(params[:library_id])
-		end
-	
 end

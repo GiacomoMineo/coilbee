@@ -22,10 +22,10 @@
   <div class="entry group_<%= entry.group.id %>">
      <div class="entry-vote">
       <% current_user ? vote_class = "" : vote_class = "not-logged" %>
-      <%= link_to like_entry_path(entry), method: :put, class: "upvote " + vote_class do %>
+      <%= link_to like_library_category_section_entry_path(entry.section.category.library, entry.section.category, entry.section, entry), method: :put, class: "upvote " + vote_class do %>
         <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
       <% end %>
-      <%= link_to dislike_entry_path(entry), method: :put, class: "downvote " + vote_class do %>
+      <%= link_to dislike_library_category_section_entry_path(entry.section.category.library, entry.section.category, entry.section, entry), method: :put, class: "downvote " + vote_class do %>
         <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
       <% end %>
       <span class="entry-points"><%= entry.rating %></span>
@@ -34,8 +34,8 @@
       <a target="_blank" href="<%= entry.link %>" class="entry-title" target="_blank"><%= entry.title %></a>
       <% if !entry.accepted %>
         <div class="entry-options">
-          <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-entry-btn' %>
-          <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right accept-entry-btn',method: :put   %>
+          <%= link_to "Reject", library_category_section_entry_path(entry.section.category.library, entry.section.category, entry.section, entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-entry-btn' %>
+          <%= link_to "Accept", accept_library_category_section_entry_path(entry.section.category.library, entry.section.category, entry.section, entry), class: 'btn btn-success pull-right accept-entry-btn',method: :put   %>
         </div>
       <% end %>
       <% if current_user %>

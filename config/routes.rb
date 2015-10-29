@@ -11,7 +11,16 @@ Rails.application.routes.draw do
 		end
     #resources :categories
     resources :categories do#, :path => '', :only => [] do
-      resources :sections#, :path => '', :except => [:index]
+      resources :sections do#, :path => '', :except => [:index] do
+				resources :entries do
+					member do
+						put "like", to: "entries#upvote"
+						put "dislike", to: "entries#downvote"
+						put "read", to: "entries#read"
+						put "accept", to: "entries#accept"
+					end
+				end
+			end
     end
     
   end
@@ -23,14 +32,6 @@ Rails.application.routes.draw do
 		end
 	end
   
-  resources :entries do
-    member do
-      put "like", to: "entries#upvote"
-      put "dislike", to: "entries#downvote"
-      put "read", to: "entries#read"
-      put "accept", to: "entries#accept"
-    end
-  end
 
   get "browse" =>  "libraries#browse", as: :library_browse
   put "subscribe/:id" =>  "libraries#subscribe", as: :library_subscribe

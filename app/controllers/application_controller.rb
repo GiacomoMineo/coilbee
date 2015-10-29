@@ -67,5 +67,16 @@ class ApplicationController < ActionController::Base
 		 response.headers["Pragma"] = "no-cache"
 		 response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
 	end
+	
+	def set_library
+		@library = Library.find(params[:library_id])
+	end
+	def set_category
+		@category = Category.find(params[:category_id])
+	end
+	def set_section
+		@section = Section.find(params[:section_id])
+	end
+
 
 end

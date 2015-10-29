@@ -1,4 +1,5 @@
 class EntriesController < ApplicationController
+	before_action :set_library, :set_category, :set_section
 	before_action :new_entry, :only => [:new]
 	#filter_access_to :all#, :attribute_check => true
 	filter_resource_access
@@ -29,9 +30,7 @@ class EntriesController < ApplicationController
 	end
 
 	def new
-		@library = Library.find(params[:lib])
 		@groups = @library.groups
-		#~ @entry = Entry.new
 	end
 
 	def create
@@ -39,10 +38,10 @@ class EntriesController < ApplicationController
 		@entry.accepted = permitted_to? :accept, @entry
 		@section = Section.friendly.find(entry_params[:section_id])
   		if @entry.save
-			redirect_to library_category_section_path(@section.category.library, @section.category, @section), :notice => "Entry saved succesfully" 
-  		else 
-    		render library_category_section_path(@section.category.library, @section.category, @section), :notice => "Could not save entry" 
-  		end
+				redirect_to library_category_section_path(@library, @category, @section), :notice => "Entry saved succesfully" 
+			else 
+				redirect_to library_category_section_path(@library, @category, @section), :notice => "Could not save entry" 
+			end
 	end
 
 	def edit
@@ -53,21 +52,21 @@ class EntriesController < ApplicationController
 
 	def update
 		@entry = Entry.find(params[:id])
-
 		if @entry.update_attributes(entry_params)
 			if @entry.accepted
-				redirect_to library_category_section_path(@entry.section.category.library, @entry.section.category, @entry.section), :notice => "The entry has been edited"
+				redirect_to library_category_section_path(@library, @category, @section), :notice => "The entry has been edited"
 			else
-				redirect_to library_category_section_path(@entry.section.category.library, @entry.section.category, @entry.section) , :notice => "The entry has been edited"
+				redirect_to library_category_section_path(@library, @category, @section) , :notice => "Could not edit entry"
 			end
 		else
 			render 'edit', :notice => "Could not edit entry" 
 		end
 	end
+	
 	def destroy
 		@entry = Entry.find(params[:id])
-  		@entry.destroy
-    	redirect_to request.referer || '/' #go back where we came from
+		@entry.destroy
+		redirect_to request.referer || '/' #go back where we came from
 	end
 
 	
@@ -77,7 +76,6 @@ class EntriesController < ApplicationController
 		end
 		def new_entry
 			@entry = Entry.new
-			@section = Section.find(params[:sec])
 			@entry.section = @section
 		end
 end

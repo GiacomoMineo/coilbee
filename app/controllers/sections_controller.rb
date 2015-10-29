@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-	before_filter :load_category, :load_library
+	before_filter :set_category, :set_library
 	before_action :new_section, :only => :new
 	filter_resource_access
 
@@ -50,16 +50,9 @@ class SectionsController < ApplicationController
 		def section_params
 			params.require(:section).permit(:name, :category_id)
 		end
+		
 		def new_section
 			@section = Section.new
 			@section.category = @category
-		end
-		
-
-		def load_library
-				@library = Library.find(params[:library_id])
-		end
-		def load_category
-				@category = Category.find(params[:category_id])
 		end
 end

@@ -8,7 +8,7 @@
 				'Suggest Entry' 
 			end 
 	%>
-	<%= link_to caption, new_entry_path(lib: @library, sec: @section), class: 'btn btn-success btn-success new-entry-btn' %>
+	<%= link_to caption, new_library_category_section_entry_path(@library, @category, @section), class: 'btn btn-success btn-success new-entry-btn' %>
 <% end %>
 <div class="entry-group">
   <%= render "shared/render_entries" %>
