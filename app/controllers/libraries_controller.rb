@@ -66,19 +66,6 @@ class LibrariesController < ApplicationController
     	@library.destroy
     	redirect_to '/', :notice => "The library has been deleted"
 	end
-	
-	def suggest_entry
-		@library = Library.friendly.find(params[:id])
-		
-		@sections = []
-		@library.categories.each do |cat|
-			@sections.push(cat.sections)
-		end
-		@sections = @sections.flatten
-		
-		@groups = @library.groups
-		@entry = Entry.new
-	end
 
 	def show_suggestions
 		@library = Library.friendly.find(params[:id])

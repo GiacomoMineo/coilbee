@@ -1,6 +1,14 @@
 <h2 class="section-title"><%= @section.name %></h2>
-<% if current_user && current_user.edit? && (permitted_to? :edit, Entry.new(section: @section)) %>
-	<%= link_to "New Entry", new_entry_path(lib: @library, sec: @section), class: 'btn btn-success btn-success new-entry-btn'  %>
+<% if current_user && (permitted_to? :create, Entry.new(section: @section)) %>
+	<% 
+		caption = 
+			if permitted_to? :accept, Entry.new(section: @section) then 
+				'New Entry' 
+			else 
+				'Suggest Entry' 
+			end 
+	%>
+	<%= link_to caption, new_entry_path(lib: @library, sec: @section), class: 'btn btn-success btn-success new-entry-btn' %>
 <% end %>
 <div class="entry-group">
   <%= render "shared/render_entries" %>

@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :libraries do#, :path => '', :only => [] do
 		member do
 			get "suggestions", to: "libraries#show_suggestions"
-      get "suggest", to: "libraries#suggest_entry"
 		end
     #resources :categories
     resources :categories do#, :path => '', :only => [] do

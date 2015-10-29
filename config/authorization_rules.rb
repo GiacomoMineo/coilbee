@@ -12,7 +12,7 @@ authorization do
 		includes :guest
 
 		#may create new libraries
-		has_permission_on :libraries, :to => [:create, :browse, :suggest_entry]
+		has_permission_on :libraries, :to => [:create, :browse]
 		
 		has_permission_on :libraries, :to => [:subscribe, :unsubscribe] do
 			if_attribute :public => true
@@ -38,8 +38,9 @@ authorization do
 		has_permission_on :tags, :to => :read do
 			if_permitted_to :read, :library
 		end
-		# may rate entries and mark them as read
-		has_permission_on :entries, :to => [:rate, :read] do
+		# may rate entries, mark them as read
+		# and suggest new entries
+		has_permission_on :entries, :to => [:rate, :read, :create] do
 			if_permitted_to :read, :section
 		end
 

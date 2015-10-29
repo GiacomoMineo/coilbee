@@ -36,6 +36,7 @@ class EntriesController < ApplicationController
 
 	def create
 		@entry = Entry.new(entry_params) 
+		@entry.accepted = permitted_to? :accept, @entry
 		@section = Section.friendly.find(entry_params[:section_id])
   		if @entry.save
 			redirect_to library_category_section_path(@section.category.library, @section.category, @section), :notice => "Entry saved succesfully" 
