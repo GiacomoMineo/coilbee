@@ -22,5 +22,16 @@
 		<%= label_tag 'entry[group_id]', "Type" %>
 		<%= f.collection_select(:group_id, @groups, :id, :name, {prompt: true}, {class: "form-control"}) %>
 	</div>
+		<div class="in-row">
+		<%= label_tag 'section[category_id]', "Move to section" %>
+		<%
+			categories = @library.categories.includes(:sections)
+			sections = []
+			categories.each do |c|
+				sections.concat(c.sections)
+			end
+		%>
+		<%= f.collection_select(:section_id, sections, :id, lambda {|s| s.category.name + "/" + s.name}, {prompt: true}, {class: "form-control"}) %>
+	</div>
 	<%= f.submit "Save changes", class: "btn btn-primary in-submit" %>
 <% end %>
