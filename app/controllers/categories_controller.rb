@@ -52,6 +52,7 @@ class CategoriesController < ApplicationController
 				@library = @category.library
 			elsif params[:library_id] then
 				@library = Library.find(params[:library_id])
+				@category.library = @library
 			end
 		end
 end
