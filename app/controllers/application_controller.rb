@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_categories_for_menu
   before_filter :configure_devise_permitted_parameters, if: :devise_controller?
   helper_method :current_user 
+  # prevent caching
+	before_filter :set_cache_buster
 
   private
 
@@ -59,5 +61,11 @@ class ApplicationController < ActionController::Base
   def permission_denied
     redirect_to root_url, :notice => "Sorry, you are not allowed to access that page."
   end
+  
+	def set_cache_buster
+		 response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+		 response.headers["Pragma"] = "no-cache"
+		 response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+	end
 
 end
