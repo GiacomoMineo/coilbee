@@ -46,10 +46,10 @@
             <% end %>
           <% end %>
           <% if current_user.edit? && (permitted_to? :edit, entry) %>
-            <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon" do %>
+            <%= link_to library_category_section_entry_path(entry.section.category.library, entry.section.category, entry.section, entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon" do %>
               <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
             <% end %>         
-            <%= link_to edit_entry_path(entry), class: "entry-icon" do %>
+            <%= link_to edit_library_category_section_entry_path(entry.section.category.library, entry.section.category, entry.section, entry), class: "entry-icon" do %>
               <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
             <% end %>
           <% end %>
