@@ -6,9 +6,6 @@ Rails.application.routes.draw do
  
  # resources :libraries
   resources :libraries, shallow: true do
-		collection do
-			get "browse", to: "libraries#browse"
-		end
 		member do
 			get "suggestions", to: "libraries#show_suggestions"
 			put "subscribe", to: "libraries#subscribe"
@@ -27,18 +24,18 @@ Rails.application.routes.draw do
 				end
 			end
     end
-    
   end
-
 
   resources :invitations do
 		member do
 			put "accept", to: "invitations#accept"
 		end
 	end
+	
+	get "browse_libraries" => "libraries#browse"
 
-  put 'toggle_edit' => 'toggles#toggle_edit', as: :toggle_edit
-  put 'toggle_read' => 'toggles#toggle_read', as: :toggle_read
+  put 'toggle_edit' => 'toggles#toggle_edit'
+  put 'toggle_read' => 'toggles#toggle_read'
 
   #~ get '/tag/:id'  => 'tags#show', as: :tag
   #~ get '/tags' => 'tags#index', as: :tag_search
