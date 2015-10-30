@@ -34,7 +34,7 @@ class EntriesController < ApplicationController
   		if @entry.save
 				redirect_to section_path(@section), :notice => "Entry saved succesfully" 
 			else 
-				redirect_to section_path(@section), :notice => "Could not save entry" 
+				redirect_to new_section_entry_path(@section), :notice => "Could not save entry" 
 			end
 	end
 
