@@ -66,7 +66,9 @@ $(document).on('page:change', function(event) {
 		$('.user-dropdown').toggle();
 	});
 	$('html, body').click(function() {
-		$('.user-dropdown').hide();
+		if($(window).width()>768){
+			$('.user-dropdown').hide();
+		};
 	});
 
 	//signup and login button popups

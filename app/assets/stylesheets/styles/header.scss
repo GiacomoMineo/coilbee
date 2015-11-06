@@ -79,28 +79,34 @@
 	}
 	.user-dropdown {
 		$bg: $color-light-3;
-		display: none;
-		position: absolute;
-		right: 0;
-		min-width: 120px;
-		z-index: 2;
-		padding: 8px;
-		border-radius: 3px;
-		margin-top: 11px;
-		background-color: $bg;
-		box-shadow: 0px 1px 1px $color-light-dark;
+		display: block;
+		
 		@extend %clearfix;
-		&::before {
+		@include tablet {
+			display: none;
 			position: absolute;
-			right: 12px;
-			top: -8px;
-			content: '';
-			width: 0; 
-			height: 0;
-			border-bottom: 8px solid $bg;
-			border-left: 10px solid transparent;
-			border-right: 10px solid transparent;
-			z-index: 3;
+			right: 0;
+			min-width: 120px;
+			z-index: 2;
+			padding: 8px;
+			border-radius: 3px;
+			margin-top: 11px;
+			background-color: $bg;
+			box-shadow: 0px 1px 1px $color-light-dark;
+		}
+		&::before {
+			@include tablet {
+				position: absolute;
+				right: 12px;
+				top: -8px;
+				content: '';
+				width: 0; 
+				height: 0;
+				border-bottom: 8px solid $bg;
+				border-left: 10px solid transparent;
+				border-right: 10px solid transparent;
+				z-index: 3;
+			}
 		}
 		a {
 			display: block;

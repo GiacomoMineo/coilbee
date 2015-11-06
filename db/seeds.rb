@@ -28,7 +28,7 @@ user3.roles << [Role.find_by(title: 'user')]
 
 l1 = Library.create(
 	topic: "Start Up", 
-	description: "This is a library about everything regarding start ups!", 
+	description: "You will find around 400 handpicked links from the web that cover the main aspects of starting a business. You can suggest new links to be added to the collection by hitting ‘suggest’ in the above menu.", 
 	creator_id: user3.id)
 
 read = Group.create(name: "read", library_id: l1.id)

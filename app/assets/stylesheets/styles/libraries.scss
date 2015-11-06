@@ -11,6 +11,7 @@
 
 // Buttons
 .browse-btn, .new-btn {
+	position: relative;
 	display: inline-block;
     font-weight: 300;
     font-size: 17px;
@@ -75,6 +76,10 @@
 	li {
 		display: inline-block;
 		float: none;
+		min-width: 100%;
+		@include tablet {
+			min-width: 0;
+		}
 		a {
 			font-family: 'Raleway', sans-serif;
 			font-weight: 300;
@@ -122,11 +127,26 @@
 	margin-left: 6px;
 }
 .follow-btn, .reject-btn {
+	float: none;
 	font-size: 13px;
 	line-height: 26px !important;
-	padding: 4px 16px;
-	margin-left: 4px;
+	padding: 2px 12px;
 	color: #fff !important;
+	@include tablet {
+		padding: 4px 16px;
+		margin-right: 4px;
+		float: right;
+	}
+}
+.follow-selection {
+	@extend %clearfix;
+	display: block;
+	margin-top: 6px;
+	text-align: center;
+	@include tablet {
+		margin-top: 0;
+		float: right;
+	}
 }
 
 .user-ref {

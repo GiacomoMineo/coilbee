@@ -20,8 +20,10 @@ $(document).ajaxComplete(function(event, xhr, settings) {
 		if(xhr.status == '201' || xhr.status == '204') {
 			$('#signup_form .in-submit').addClass('success').attr('value', 'Success!');
 			$('#user_edit_form .in-submit').addClass('success').attr('value', 'Success!');
+			// Edit
 			if(xhr.status == '204') {
-				window.location.replace("/");
+				window.location.replace("/libraries/start-up");
+			// Signup
 			} else {
 				window.location.reload();
 			}
@@ -30,6 +32,15 @@ $(document).ajaxComplete(function(event, xhr, settings) {
 		if(xhr.status == '422') {
 			errorText = "";
 			$.each(jQuery.parseJSON(xhr.responseText).errors, function(key, value) {
+				/*switch(key) {
+					case "user_name": errorText += "<span>User name ";
+						switch(value) {
+							case "can't be blank": errorText += " is required."
+								break;
+							default: errorText += value + "</span>"
+						};
+					default: errorText += "<span>" + key + " " + value + "</span>";
+				};*/
 				errorText += "<span>" + key + " " + value + "</span>";
 			});
 			$('#signup_form .in-error').html(errorText);
