@@ -1,11 +1,11 @@
-<span>Invite user to </span><h2 class="in-form-title share-title"><%= @library_to_suggest.topic %></h2>
-<%= form_tag "/invitations", class: "in-form" do %>
-	<div class="in-row">
-		<%= email_field_tag :email, nil , class: "in-field", id: "share-email" %>
-	  	<label class="in-label" for="share-email">
-	    	<span class="in-label-content" data-content="E-mail">E-mail</span>
-	    </label>
-	    <span class="in-hint">Insert a valid e-mail to share this library</span>
+<span>Invite user to </span><h2 class="in-form-title share-title"><%= @library.topic %></h2>
+  <%= form_for([@library, @invitation], :html => {:class => 'in-form'}) do |f| %>
+    <div class="in-row">
+      <%= f.email_field :receiver_email, class: "in-field", id: "share-email" %>
+      <label class="in-label" for="share-email">
+        <span class="in-label-content" data-content="E-mail">E-mail</span>
+      </label>
+      <span class="in-hint">Insert a valid e-mail to share this library</span>
     </div>
-  	<%= submit_tag "Invite", :name => "lib[#{@library_to_suggest.id}]", class: "btn btn-primary in-submit"  %>
+    <%= f.submit "Submit", class: "btn btn-primary in-submit" %>
 <% end %>

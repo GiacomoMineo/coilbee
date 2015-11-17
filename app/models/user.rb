@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :libraries, through: :subscriptions
   has_many :libraries_created, :class_name => "Library", :foreign_key => "creator_id"
   has_many :invitations_created, :class_name => "Invitation", :foreign_key => "creator_id"
-  has_many :invitations_received, :class_name => "Invitation", :foreign_key => "receiver_id"
+  has_many :invitations_received, :class_name => 'Invitation', :primary_key => 'email', :foreign_key => 'receiver_email'
   enum mode: [:read, :edit] #read: 0, edit: 1
   
   validates_presence_of :user_name, :email#, :password

@@ -12,6 +12,11 @@ Rails.application.routes.draw do
 			put "unsubscribe", to: "libraries#unsubscribe"
 		end
     #resources :categories
+		resources :invitations, :except => [:index] do
+			member do
+				put "accept", to: "invitations#accept"
+			end
+		end
     resources :categories, :except => [:index] do
       resources :sections, :except => [:index] do
 				resources :entries do
@@ -26,11 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :invitations do
-		member do
-			put "accept", to: "invitations#accept"
-		end
-	end
+
 	
 	get "browse_libraries" => "libraries#browse"
 
