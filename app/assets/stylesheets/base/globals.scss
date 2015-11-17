@@ -91,6 +91,8 @@ $height: 45px;
 	height: $size;
 	line-height: $size;
 	margin: 0;
+	display: inline-block;
+	vertical-align: text-top;
 	a {
 		height: $size;
 		line-height: $size;

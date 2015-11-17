@@ -21,6 +21,30 @@
 		> span { background-color: #fff !important; }
 	}
 }
+.navbar-header-link {
+	$size: 44px;
+	height: $size;
+	display: inline-block;
+	vertical-align: text-top;
+	> span {
+		color: $color-main;
+		line-height: $size;
+		@include tablet {
+			padding-right: 6px;
+		}
+		&:hover {
+			color: $color-main;
+		}
+	}
+	.text {
+		display: none;
+		font-weight: 400;
+		font-size: 13px !important;
+		@include tablet {
+			display: inline-block;
+		}
+	}
+}
 .navbar-nav {
 	background-color: #fff;
 	> li {
@@ -132,6 +156,12 @@
 	}
 }
 
+// Landing
+.landing-header {
+	text-align: center;
+}
+
+// Search input
 #search-form {
 	.search-input {
 		position: relative;

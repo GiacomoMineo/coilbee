@@ -35,7 +35,6 @@ function menu_current_selection() {
 	};
 };
 
-//TODO doesn't work after back button is clicked
 ready = function() {
 
 	// Initialization
