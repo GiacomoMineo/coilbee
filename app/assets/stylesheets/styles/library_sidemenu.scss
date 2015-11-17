@@ -23,14 +23,21 @@ $section-line-height: 24px;
 	padding-right: 0;
 }
 .menu-icon-wrapper {
+	vertical-align: middle;	
 	padding-left: 0;
-	float: right;
+	display: inline-block;
+	&.entry-menu {
+		padding-left: 16px;
+	}
 }
 .menu-icon {
 	float: right;
 	font-size: 14px;
 	.icon-small {
 		margin-left: 4px;
+	}
+	&.chevron .icon-small:hover {
+		color: $color-accent;
 	}
 }
 .menu-text-wrapper {
