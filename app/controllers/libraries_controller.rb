@@ -35,7 +35,7 @@ class LibrariesController < ApplicationController
 
 
   		if @library_new.save 
-				redirect_to '/' 
+				redirect_to library_path(@library_new) 
   		else 
     		render 'new' 
   		end 
