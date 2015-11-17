@@ -28,13 +28,17 @@
                       <% end %>   
                     <% end %>
                   </div>
+                <% else %>
+                  <div class="col-xs-4 menu-icon-wrapper">
+                    <div class="menu-icon chevron"><span class="glyphicon glyphicon-chevron-down icon-small"></span></div>
+                  </div>
                 <% end %>
               </div>
             </h4>
           </div>
           <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
             <% c.sections.each do |s| %>
-              <% unless s.entries.empty? && !(current_user && current_user.edit?) %>
+              <% unless s.entries.empty? && (current_user && current_user.edit?) %>
                 <% @section == s ? section_class = "current" : section_class = "" %>
                 <div class="menu-section <%= section_class %>">
                   <div class="row">

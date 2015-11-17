@@ -539,3 +539,36 @@ input[type=checkbox]:not(old):checked + label > span:before{
 input[type=checkbox]:not(old):checked + label > span {
 	border-color: $color-accent;
 }
+
+// Suggestion
+.suggestion {
+	$bg: $color-light-3;
+	position: absolute;
+	right: 0;
+	max-width: 240px;
+	z-index: 2;
+	padding: 8px;
+	border-radius: 3px;
+	margin-top: 11px;
+	background-color: $bg;
+	box-shadow: 0px 1px 1px $color-light-dark;
+	cursor: default;
+	@include tablet {
+			
+	}
+	&::before {
+		position: absolute;
+		right: 12px;
+		top: -8px;
+		content: '';
+		width: 0; 
+		height: 0;
+		border-bottom: 8px solid $bg;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		z-index: 3;
+		@include tablet {
+			
+		}
+	}
+}
