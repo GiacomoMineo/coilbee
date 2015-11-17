@@ -25,7 +25,15 @@
                   </span>
               <% end %>
             <% end %>
-			  </h1>
+			</h1>
+			<% if @library && @library.topic && current_user && current_user.edit? %>
+				<%= link_to edit_library_path(@library), class: "navbar-header-link" do %>
+		        	<span class="glyphicon icon-small glyphicon-edit"></span><span class="text">Edit</span>
+		        <% end %>
+		        <%= link_to library_path(@library), data: {confirm: "Are you sure?"}, :method => :delete, class: "navbar-header-link" do %>
+		      		<span class="glyphicon icon-small glyphicon-remove"></span><span class="text">Delete</span>
+		        <% end %>
+		    <% end %>
     	</div>
 	    <div class="collapse navbar-collapse" id="navbar-main-collapse">
 	        <ul class="nav navbar-nav navbar-right">

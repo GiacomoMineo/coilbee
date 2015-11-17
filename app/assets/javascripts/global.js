@@ -35,13 +35,7 @@ function menu_current_selection() {
 	};
 };
 
-// Doc ready
-$(function() {
-	
-});
-
-// Page change event
-$(document).on('page:change', function(event) {
+ready = function() {
 
 	// Initialization
 	//inputs
@@ -157,4 +151,8 @@ $(document).on('page:change', function(event) {
 	bind_group_filter();
 	enable_tooltips();
 	menu_current_selection();
-});
+};
+
+// Doc ready
+$(document).ready(ready);
+$(document).on('page:load', ready);
