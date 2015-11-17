@@ -21,6 +21,11 @@ user1 = User.create(user_name: 'user1', email: 'user1@gmail.com', password: 'pas
 user2 = User.create(user_name: 'user2', email: 'user2@gmail.com', password: 'password')
 user3 = User.create(user_name: 'sharingiscaring', email: 'bhg3110@yahoo.de', password: 'password')
 
+admin.confirm
+user1.confirm
+user2.confirm
+user3.confirm
+
 admin.roles << [Role.find_by(title: 'admin')]
 user1.roles << [Role.find_by(title: 'user')]
 user2.roles << [Role.find_by(title: 'user')]

@@ -10,8 +10,22 @@
 		        <span class="icon-bar"></span>
 		    </button>
 		    <h1 class="main-logo">
-				<a href="/"><span class="logo-glyph"></span><span class="logo-type">Coilbee</span></a>
-			</h1>
+            <% if @library && @library.topic %>
+              <%= link_to library_path(@library) do %>
+                  <span class="logo-glyph"></span>
+                  <span class="logo-type">
+                    <%= @library.topic %>
+                  </span>
+              <% end %>
+            <% else %>
+              <%= link_to root_path do %>
+                  <span class="logo-glyph"></span>
+                  <span class="logo-type">
+                    Coilbee
+                  </span>
+              <% end %>
+            <% end %>
+			  </h1>
     	</div>
 	    <div class="collapse navbar-collapse" id="navbar-main-collapse">
 	        <ul class="nav navbar-nav navbar-right">
