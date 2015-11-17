@@ -49,7 +49,7 @@ class LibrariesController < ApplicationController
 	def update
 		@library_to_edit = @library
 		if @library_to_edit.update_attributes(library_params)
-			redirect_to '/', :notice => "The library has been edited"
+			redirect_to library_path(@library_to_edit), :notice => "The library has been edited"
 		else
 			render 'edit'
 		end
