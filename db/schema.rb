@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023142003) do
+ActiveRecord::Schema.define(version: 20151117152844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,15 +74,15 @@ ActiveRecord::Schema.define(version: 20151023142003) do
 
   create_table "invitations", force: :cascade do |t|
     t.integer  "creator_id"
-    t.integer  "receiver_id"
     t.integer  "library_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "receiver_email"
   end
 
   add_index "invitations", ["creator_id"], name: "index_invitations_on_creator_id", using: :btree
   add_index "invitations", ["library_id"], name: "index_invitations_on_library_id", using: :btree
-  add_index "invitations", ["receiver_id"], name: "index_invitations_on_receiver_id", using: :btree
+  add_index "invitations", ["receiver_email"], name: "index_invitations_on_receiver_email", unique: true, using: :btree
 
   create_table "libraries", force: :cascade do |t|
     t.string   "topic"

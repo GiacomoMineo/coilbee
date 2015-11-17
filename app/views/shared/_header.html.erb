@@ -56,7 +56,7 @@
 						<% if permitted_to? :edit, @library %>
 								<li><%= link_to suggestions_library_path(@library) do %><span class="glyphicon glyphicon-flash"></span>Suggestions<% end %></li>
 						<% end %>
-						<li><%= link_to new_invitation_path(@library), class: "share-link" do %>
+						<li><%= link_to new_library_invitation_path(@library), class: "share-link" do %>
 							<span class="glyphicon glyphicon-share-alt"></span>Share<% end %></li>
 					<% end %>
 					<% if (@library && (permitted_to? :edit, @library)) || !@library %> 

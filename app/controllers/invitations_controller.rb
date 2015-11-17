@@ -1,41 +1,52 @@
 class InvitationsController < ApplicationController
+	before_action :new_invitation
 	filter_resource_access
 	
 	def new
-		@invitation = Invitation.new
-		@library_to_suggest = Library.find_by(params[:id])
 	end
 
 	def create
-		@invitation = Invitation.new
+		@invitation = Invitation.new(invitation_params)
+		@invitation.library = @library
 		@invitation.creator = current_user
-		@invitation.library = Library.find_by(id: params["lib"].first)
-		@receiver = User.find_by(email: params[:email])
-		@invitation.receiver = @receiver 
 
-		if @invitation.receiver
-			if @invitation.save
-				redirect_to '/'
-			else
-				render 'new', :notice => "Couldn't find user with this email address!"
-			end
+		if @invitation.save
+			redirect_to '/'
 		else
-			@library_to_suggest = Library.find_by(id: params["lib"].first)
-			render 'new', :notice => "Couldn't find user with this email address!"
-		end 
+			render 'new', :notice => "Could not create invitation."
+		end
 	end
 
 	def destroy
-		@invitation = Invitation.find(params[:id])
-  		@invitation.destroy
-    	redirect_to root_path
+		@invitation.destroy
+		redirect_to root_path
 	end
 
 	def accept
-		@invitation = Invitation.find(params[:id])
-		current_user.libraries.push(@invitation.library)
+		@library = @invitation.library
+		current_user.libraries.push(@library)
 		@invitation.destroy
-			redirect_to '/'
+		redirect_to library_path(@library)
+	end
+
+
+	def invitation_params
+		params.require(:invitation).permit(:receiver_email)
+	end
+
+	def new_invitation
+		if params[:id] then
+			@invitation = Invitation.find(params[:id])
+		else
+			@invitation = Invitation.new
+		end
+
+		if @invitation.library then
+			@library = @invitation.library
+		elsif params[:library_id] then
+			@library = Library.find(params[:library_id])
+			@invitation.library = @library
+		end
 	end
 end
 
