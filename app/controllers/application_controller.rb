@@ -58,9 +58,9 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource_or_scope)
     root_path
   end
-  def permission_denied
-    redirect_to root_url, :notice => "Sorry, you are not allowed to access that page."
-  end
+  #def permission_denied
+  #  redirect_to root_path, :notice => "Sorry, you are not allowed to access that page."
+  #end
   
 	def set_cache_buster
 		 response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
