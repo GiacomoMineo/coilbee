@@ -66,7 +66,12 @@
 					<% end %>
 					<% if (@library && (permitted_to? :edit, @library)) || !@library %> 
 						<% if current_user.read? %>
-							<li><%= link_to toggle_edit_path, method: :put do %><span class="glyphicon glyphicon-edit"></span>Edit mode<% end %></li>
+							<li><%= link_to toggle_edit_path, method: :put do %><span class="glyphicon glyphicon-edit"></span>Edit mode<% end %>
+								<div class="tip" id="tip-user-editmode">
+									<span class="glyphicon glyphicon-info-sign"></span><span class="tip-content">Here you can toggle the buttons to edit, delete and add items.</span>
+									<div class="tip-done"><span class="glyphicon glyphicon-ok"></span></div>
+								</div>
+							</li>
 						<% else %>
 							<li><%= link_to toggle_read_path, method: :put do %><span class="glyphicon glyphicon-book"></span>Read Mode<% end %></li>
 						<% end %>

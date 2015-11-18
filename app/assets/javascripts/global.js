@@ -129,20 +129,27 @@ ready = function() {
 	});
 
 	//suggestions
-	//TODO show and close suggestions based on cookies
 	// Filter out cookied suggestions
-	$('.tip').each(function() { $(this).hide(); });
-	$('.tip').each(function() {
-		if(typeof(Cookies.get($(this).attr('id'))) == 'undefined') {
-			$(this).show();
-		};
-	});
+	function filterTips() {
+		$('.tip').each(function() { $(this).hide(); });
+		$('.tip').each(function() {
+			one = true;
+			if(typeof(Cookies.get($(this).attr('id'))) == 'undefined') {
+				$(this).show();
+				one = false;
+			};
+			return one;
+		});
+	};
+	
 	// Bind new tips
 	$('.tip-done').click(function() {
 		$popup = $(this).parent();
 		Cookies.set($popup.attr('id'), true);
-		$popup.fadeOut(300);
+		$popup.fadeOut(300, function() { filterTips(); });
 	});
+
+	filterTips();
 
 	function setCookie () {
 	  var argc = arguments.length, bImplGlob = typeof arguments[argc - 1] === "string";
