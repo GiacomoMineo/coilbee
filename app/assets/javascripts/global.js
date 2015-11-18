@@ -5,10 +5,12 @@ function scrollToAnchor(id_selector){
   $('html,body').animate({ scrollTop: id_selector.offset().top - 52 }, 300);
 };
 
+// Tooltip enabler
 function enable_tooltips() {
 	$('[data-toggle="tooltip"]').tooltip();
 };
 
+// Group filter binder
 function bind_group_filter() {
 	//filter by group
 	$('.group-nav-item').click(function() {
@@ -16,6 +18,7 @@ function bind_group_filter() {
 	});
 };
 
+// Group filter renderer
 function filter_by_group(group_element) {
 	group_id = group_element.attr('id');
 	// Current filter?
@@ -29,6 +32,7 @@ function filter_by_group(group_element) {
 	}
 };
 
+// Expand accordion on current selection
 function menu_current_selection() {
 	if($('#accordion').length) {
 		$($('#collapse_current').attr('href')).collapse();
@@ -123,6 +127,35 @@ ready = function() {
 		    };
 		});
 	});
+
+	//suggestions
+	//TODO show and close suggestions based on cookies
+	// Filter out cookied suggestions
+	$('.tip').each(function() { $(this).hide(); });
+	$('.tip').each(function() {
+		if(typeof(Cookies.get($(this).attr('id'))) == 'undefined') {
+			$(this).show();
+		};
+	});
+	// Bind new tips
+	$('.tip-done').click(function() {
+		$popup = $(this).parent();
+		Cookies.set($popup.attr('id'), true);
+		$popup.fadeOut(300);
+	});
+
+	function setCookie () {
+	  var argc = arguments.length, bImplGlob = typeof arguments[argc - 1] === "string";
+	  if (bImplGlob) { argc++; }
+	  if (argc < 3) { throw new TypeError("executeOnce - not enough arguments"); }
+	  var fExec = arguments[0], sKey = arguments[argc - 2];
+	  if (typeof fExec !== "function") { throw new TypeError("executeOnce - first argument must be a function"); }
+	  if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { throw new TypeError("executeOnce - invalid identifier"); }
+	  if (decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) === "1") { return false; }
+	  fExec.apply(argc > 3 ? arguments[1] : null, argc > 4 ? Array.prototype.slice.call(arguments, 2, argc - 2) : []);
+	  document.cookie = encodeURIComponent(sKey) + "=1; expires=Fri, 31 Dec 9999 23:59:59 GMT" + (bImplGlob || !arguments[argc - 1] ? "; path=/" : "");
+	  return true;
+	}
 
 	//footer
 	$('#feedback, #social').hide();

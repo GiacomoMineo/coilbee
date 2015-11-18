@@ -54,7 +54,12 @@
 				<% if current_user %>
 					<% if @library && @library.topic %>
 						<% if permitted_to? :edit, @library %>
-								<li><%= link_to suggestions_library_path(@library) do %><span class="glyphicon glyphicon-flash"></span>Suggestions<% end %></li>
+								<li><%= link_to suggestions_library_path(@library) do %><span class="glyphicon glyphicon-flash"></span>Suggestions<% end %>
+									<div class="tip" id="tip-admin-suggestions">
+										<span class="glyphicon glyphicon-info-sign"></span><span class="tip-content">People who visit your library can recommend links they find relevant. You can review them here!</span>
+										<div class="tip-done"><span class="glyphicon glyphicon-ok"></span></div>
+									</div>
+								</li>
 						<% end %>
 						<li><%= link_to new_library_invitation_path(@library), class: "share-link" do %>
 							<span class="glyphicon glyphicon-share-alt"></span>Share<% end %></li>
@@ -91,9 +96,6 @@
     </div>
     </div>
 	</div>
-	<!--<div class="suggestion">
-		<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-	</div>-->
 </nav>
 <div class="overlay" id="login-popup">
 	<div class="popup row">

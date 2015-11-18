@@ -40,6 +40,13 @@ $section-line-height: 24px;
 		color: $color-accent;
 	}
 }
+/*
+.menu-category-link.collapsed + .menu-icon-wrapper .menu-icon.chevron {
+	display: block;
+}
+.menu-category-link:not(.collapsed) + .menu-icon-wrapper .menu-icon.chevron {
+	display: none;
+}*/
 .menu-text-wrapper {
 	text-overflow: ellipsis;
 	white-space: nowrap;
