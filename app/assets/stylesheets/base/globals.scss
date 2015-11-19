@@ -270,7 +270,7 @@ $height: 45px;
 	margin: 0 auto;
 	max-width: 340px;
 	background-color: #fff;
-	padding: 32px;
+	padding: 24px 32px;
 	border: 3px solid $color-main;
 	border-radius: 20px;
 	text-align: center;
@@ -467,7 +467,7 @@ $height: 45px;
 	font-size: 13px;
 	> span {
 		display: block;
-		text-transform: capitalize;
+		//text-transform: capitalize;
 	}
 }
 .in-hint {

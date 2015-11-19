@@ -32,16 +32,41 @@ $(document).ajaxComplete(function(event, xhr, settings) {
 		if(xhr.status == '422') {
 			errorText = "";
 			$.each(jQuery.parseJSON(xhr.responseText).errors, function(key, value) {
-				/*switch(key) {
+				console.log(value[0])
+				switch(key) {
 					case "user_name": errorText += "<span>User name ";
-						switch(value) {
-							case "can't be blank": errorText += " is required."
+						switch(value[0]) {
+							case "can't be blank": errorText += " is required.</span>";
 								break;
-							default: errorText += value + "</span>"
+							default: errorText += value + "</span>";
 						};
+						break;
+					case "email": errorText += "<span>Email ";
+						switch(value[0]) {
+							case "can't be blank": errorText += " is required.</span>";
+								break;
+							default: errorText += value + "</span>";
+						};
+						break;
+					case "password": errorText += "<span>Password ";
+						switch(value[0]) {
+							case "can't be blank": errorText += " is required.</span>";
+								break;
+							case "is too short (minimum is 8 characters)": errorText += " must be at least 8 characters long.</span>"
+								break;
+							default: errorText += value + "</span>";
+						};
+						break;
+					case "password_confirmation": errorText += "<span>Password confirmation ";
+						switch(value[0]) {
+							case "doesn't match Password": errorText += "doesn't match.</span>";
+								break;
+							default: errorText += value + "</span>";
+						};
+						break;
 					default: errorText += "<span>" + key + " " + value + "</span>";
-				};*/
-				errorText += "<span>" + key + " " + value + "</span>";
+				};
+				//errorText += "<span>" + key + " " + value + "</span>";
 			});
 			$('#signup_form .in-error').html(errorText);
 			$('#user_edit_form .in-error').html(errorText);
