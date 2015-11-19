@@ -1,4 +1,4 @@
-<h1 class="in-form-title">Add a new link</h1>
+<h1 class="in-form-title"><%= permitted_to?(:accept, @entry) ? "Add" : "Suggest" %> a new link</h1>
 <%= form_for([@section, @entry], :html => {:class => 'in-form'}) do |f| %>
 	<div class="in-row">
 		<%= f.text_field :title, class: "in-field", id: "entry-title" %>
