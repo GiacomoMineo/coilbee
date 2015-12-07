@@ -1,12 +1,13 @@
 /* Footer */
+$footer-height: 58px;
 
 .footer-wrapper {
 	position: absolute;
-	height: 64px;
+	height: $footer-height;
 	bottom: 0;
 	.footer {
 		position: relative;
-		padding: 14px;
+		padding: 12px;
 		background-color: $color-secondary;
 		color: #fff;
 	}
@@ -50,7 +51,7 @@
 	.footer-links {
 		ul {
 			padding: 0;
-			margin-bottom: 2px;
+			margin: 0;
 			text-align: center;
 			list-style: none;
 			li {
@@ -58,7 +59,7 @@
 				padding: 0 12px;
 				a {
 					color: #fff;
-					font-size: 13px;
+					font-size: 12px;
 					font-weight: bold;
 					@include transition(color 0.3s ease);
 					&:hover {

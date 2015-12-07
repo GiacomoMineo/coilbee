@@ -15,7 +15,7 @@ body {
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
-@import url(https://fonts.googleapis.com/css?family=Raleway:900,300);
+@import url(https://fonts.googleapis.com/css?family=Raleway:500,300,900);
 * {
 	font-family: 'Open Sans', 'Helvetica', sans-serif;
 }
@@ -150,7 +150,7 @@ $height: 45px;
 	.panel-title {
 		font-family: 'Raleway', sans-serif;
 		font-size: 23px;
-		font-weight: 300;
+		font-weight: 500;
 		color: $color-accent;
 		@include transition(color 0.3s ease);
 		&:hover {

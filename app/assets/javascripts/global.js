@@ -32,13 +32,6 @@ function filter_by_group(group_element) {
 	}
 };
 
-// Expand accordion on current selection
-/*function menu_current_selection() {
-	if($('#accordion').length) {
-		$($('#collapse_current').attr('href')).collapse();
-	};
-};*/
-
 ready = function() {
 
 	// Initialization
@@ -190,7 +183,6 @@ ready = function() {
 
 	bind_group_filter();
 	enable_tooltips();
-	//menu_current_selection();
 };
 
 // Doc ready

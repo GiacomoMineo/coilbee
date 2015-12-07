@@ -71,7 +71,7 @@ $section-line-height: 24px;
 	.menu-category-link {
 		font-family: 'Raleway', sans-serif;
 		font-size: 16px;
-		font-weight: normal;
+		font-weight: 500;
 		text-decoration: none;
 		text-transform: uppercase;
 		line-spacing: -1px;
@@ -93,7 +93,6 @@ $section-line-height: 24px;
 	.menu-icon-wrapper { line-height: $section-line-height; }
 	.menu-section-link {
 		font-size: 14px;
-		font-weight: 300;
 		color: $color-text-dark;
 		text-decoration: none;
 		line-height: $section-line-height;
