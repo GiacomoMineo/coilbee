@@ -29,8 +29,6 @@
 	.jumbotron-image {
 		width: 100%;
 		height: $height;
-		background: url('jumbotron.jpg') no-repeat center center;
-		background-size: auto 100%;
 	}
 }
 
@@ -79,11 +77,13 @@
 		&.desc-img-2 { background: url('desc-2.png') no-repeat center center }
 		&.desc-img-3 { background: url('desc-3.png') no-repeat center center }
 	}
-	h3 {
+	h2 {
 		display: inline-block;
 		vertical-align: middle;
 		line-height: 24px;
 		margin: 16px 0;
+		font-size: 19px;
+		font-weight: bold;
 		cursor: default;
 	}
 	p {

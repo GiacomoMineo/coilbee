@@ -120,7 +120,27 @@ $height: 45px;
 		margin-left: -6px;
 	}
 }
-
+.directory-btn-wrapper {
+	text-align: center;
+}
+.directory-btn {
+	float: none !important;
+	position: relative !important;
+	display: inline-block !important;
+}
+.link-directory {
+	cursor: default;
+	color: transparent;
+	position: absolute;
+	top: 0;
+	right: 0;
+	&:hover {
+		color: transparent;
+	}
+}
+.jumbotron-image-wrapper {
+	position: relative;
+}
 // Back button
 .back-btn {
 	display: inline-block;
