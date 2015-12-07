@@ -1,6 +1,7 @@
 authorization do
 
   role :guest do
+  	has_permission_on :libraries, :to => :browse
   	has_permission_on :libraries, :to => :show do
   		if_attribute :public => true
   	end
