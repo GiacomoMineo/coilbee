@@ -23,8 +23,10 @@ $(document).ajaxComplete(function(event, xhr, settings) {
 			// Edit
 			if(xhr.status == '204') {
 				window.location.replace("/libraries/start-up");
-			// Signup
+			// New Signup
 			} else {
+				// Raise google analytics event
+				ga('send', 'event', 'Registration', 'success')
 				window.location.reload();
 			}
 		}

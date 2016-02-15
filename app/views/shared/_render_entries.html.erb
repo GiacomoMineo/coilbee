@@ -38,21 +38,19 @@
           <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right accept-entry-btn',method: :put   %>
         </div>
       <% end %>
-      <% if current_user %>
+      <% if current_user && current_user.edit? && (permitted_to? :edit, entry)%>
         <div class="menu-icon-wrapper entry-menu">
           <% if entry.accepted %>
             <% if new_entries.include?(entry) %>
               <!--span class="glyphicon glyphicon-eye-open"></span-->
             <% end %>
           <% end %>
-          <% if current_user.edit? && (permitted_to? :edit, entry) %>
             <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon" do %>
               <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
             <% end %>         
             <%= link_to edit_entry_path(entry), class: "entry-icon" do %>
               <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
             <% end %>
-          <% end %>
         </div>
       <% end %>
     </div>

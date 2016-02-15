@@ -5,7 +5,6 @@ $section-line-height: 24px;
 
 .menu-title a {
 	padding-left: 16px;
-	font-family: 'Raleway', sans-serif;
 	font-size: 27px;
 	font-weight: 900;
 	letter-spacing: -1px;
@@ -27,7 +26,10 @@ $section-line-height: 24px;
 	padding-left: 0;
 	display: inline-block;
 	&.entry-menu {
-		padding-left: 16px;
+		line-height: 24px;
+		.icon-small {
+			line-height: 24px;
+		}
 	}
 }
 .menu-icon {
@@ -69,7 +71,6 @@ $section-line-height: 24px;
 	}
 	.menu-icon-wrapper { line-height: $category-line-height; }
 	.menu-category-link {
-		font-family: 'Raleway', sans-serif;
 		font-size: 16px;
 		font-weight: 500;
 		text-decoration: none;
@@ -97,10 +98,19 @@ $section-line-height: 24px;
 		text-decoration: none;
 		line-height: $section-line-height;
 	}
-	&.current {
-		.menu-section-link {
-			color: $color-main;
+	.menu-section-count {
+		float: right;
+		padding-left: 4px;
+		font-size: 11px;
+		> span {
+			color: $color-text-light;
+			padding-left: 4px;
 		}
+	}
+	&.current {
+		.menu-section-link { color: $color-main; }
+		.menu-section-count { color: $color-main; }
+		.menu-section-count > span { color: $color-main; }
 	}
 }
 .menu-new-category {

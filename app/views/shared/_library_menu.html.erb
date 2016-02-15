@@ -43,20 +43,21 @@
                       <% if (@section == s) %><span class="glyphicon glyphicon-triangle-right"></span><% end %>
                       <%= s.name %>
                     <% end %>
-                    <% if current_user && current_user.edit? %>
-                      <div class="col-xs-3 menu-icon-wrapper"> 
-                        <% if permitted_to? :destroy, s %>        
-                          <%= link_to section_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
-                            <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+                      <div class="col-xs-3 menu-icon-wrapper">
+                        <div class="menu-section-count"><%= s.entries.count %><span class="glyphicon glyphicon-link"></span></div>
+                        <% if current_user && current_user.edit? %>
+                          <% if permitted_to? :destroy, s %>        
+                            <%= link_to section_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
+                              <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+                            <% end %>
+                          <% end %>
+                          <% if permitted_to? :edit, s %>      
+                            <%= link_to edit_section_path(s), class: "menu-icon" do %>
+                              <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+                            <% end %>
                           <% end %>
                         <% end %>
-                        <% if permitted_to? :edit, s %>      
-                          <%= link_to edit_section_path(s), class: "menu-icon" do %>
-                            <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
-                          <% end %>
-                        <% end %>
-                      </div> 
-                    <% end %>
+                      </div>
                   </div> 
                 </div>
               <% end %>

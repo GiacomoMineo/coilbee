@@ -14,10 +14,11 @@ body {
 }
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
-@import url(https://fonts.googleapis.com/css?family=Raleway:500,300,900);
+@include font-face(Montserrat, Montserrat-Regular, 400, normal, otf);
+@include font-face(Montserrat, Montserrat-Light, 300, normal, otf);
+@include font-face(Montserrat, Montserrat-Bold, 700, normal, otf);
 * {
-	font-family: 'Open Sans', 'Helvetica', sans-serif;
+	font-family: 'Montserrat', 'Helvetica', sans-serif;
 }
 
 h1, h2, h3 {
@@ -87,7 +88,7 @@ $height: 45px;
     height: 45px;
 }
 .main-logo {
-	$size: 32px;
+	$size: 26px;
 	height: $size;
 	line-height: $size;
 	margin: 0;
@@ -102,8 +103,8 @@ $height: 45px;
 	// Logo Icon
 	.logo-glyph {
 		display: inline-block;
-		width: $size;
-		height: $size;
+		width: $size + 6;
+		height: $size + 6;
 		background: url('logo.png') no-repeat center center;
 		background-size: 100%;
 		vertical-align: middle;
@@ -111,7 +112,6 @@ $height: 45px;
 	// Logo name
 	.logo-type {
 		display: inline-block;
-		font-family: 'Raleway', sans-serif;
 		color: $color-main;
 		font-weight: 900;
 		font-size: 26px;
@@ -127,16 +127,6 @@ $height: 45px;
 	float: none !important;
 	position: relative !important;
 	display: inline-block !important;
-}
-.link-directory {
-	cursor: default;
-	color: transparent;
-	position: absolute;
-	top: 0;
-	right: 0;
-	&:hover {
-		color: transparent;
-	}
 }
 .jumbotron-image-wrapper {
 	position: relative;
@@ -168,9 +158,7 @@ $height: 45px;
 //header
 .panel-heading {
 	.panel-title {
-		font-family: 'Raleway', sans-serif;
 		font-size: 23px;
-		font-weight: 500;
 		color: $color-accent;
 		@include transition(color 0.3s ease);
 		&:hover {
@@ -192,7 +180,6 @@ $height: 45px;
 .login-btn {
 	position: relative;
 	display: inline-block;
-	font-family: 'Raleway', sans-serif;
 	font-size: 19px;
 	color: $color-main;
 	padding: 4px 8px 0;
@@ -236,7 +223,6 @@ $height: 45px;
 // Signup
 .signup-btn {
 	display: inline-block;
-    font-family: 'Raleway', sans-serif;
     font-weight: 300;
     font-size: 17px;
     letter-spacing: 1px;
@@ -363,7 +349,6 @@ $height: 45px;
 		padding: 12px;
 		border-radius: 3px;
 		color: $color-text-dark;
-		font-family: 'Open Sans', sans-serif;
 		-webkit-appearance: none;
 
 		width: 100%;
@@ -510,6 +495,12 @@ $height: 45px;
 .in-form-description {
 	display: inline-block;
 }
+// iphone zoom
+input[type='text'],
+input[type='number'],
+textarea {
+  font-size: 16px;
+}
 
 // Checkboxes
 
@@ -580,7 +571,7 @@ input[type=checkbox]:not(old):checked + label > span {
 		border-radius: 3px;
 		width: 200%;
 	}
-	.tip-content { font-family: 'Raleway', sans-serif; }
+	.tip-content { font-size: 12px; }
 	> span:first-child { padding-right: 6px; padding-bottom: 6px; }
 	.tip-done {
 		width: 100%;

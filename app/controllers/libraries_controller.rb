@@ -6,6 +6,7 @@ class LibrariesController < ApplicationController
 		@libraries_own = current_user.libraries_created
 		@libraries_followed = current_user.libraries.select { |lib| lib.creator != current_user}
 		@invitations = current_user.invitations_received
+		
 	end
 
 	def browse
@@ -13,6 +14,13 @@ class LibrariesController < ApplicationController
 
 	def show
 		@categories = @library.categories
+		tot = 0
+		@library.categories.each do |c|
+			c.sections.each do |s|
+				tot += s.entries.count
+			end
+		end
+		@total_entries = tot
 	end
 
 	def new
