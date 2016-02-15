@@ -46,9 +46,12 @@
 	}
 }
 .group-nav {
+	text-align: center;
 	margin-bottom: 6px;
-	float: left;
 	padding-left: 4px;
+	@include tablet {
+		text-align: left;
+	}
 }
 .group-nav-item {
 	display: inline-block;
@@ -232,8 +235,11 @@
 	&:last-child .entry-description { border-bottom: none; }
 }
 
+.section-controls {
+	text-align: center;
+}
 .new-entry-btn {
-	float: right;
+	display: inline-block;
     font-size: 13px;
     line-height: 20px;
     letter-spacing: 1.3px;
@@ -242,4 +248,7 @@
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
+    @include tablet {
+    	float: right;
+    }
 }
