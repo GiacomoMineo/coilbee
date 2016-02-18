@@ -26,7 +26,7 @@
               <% end %>
             <% end %>
 			</h1>
-			<% if @library && @library.topic && current_user && current_user.edit? %>
+			<% if @library && @library.topic && current_user && current_user.edit? && permitted_to?(:edit, @library) %>
 				<%= link_to edit_library_path(@library), class: "navbar-header-link" do %>
 		        	<span class="glyphicon icon-small glyphicon-edit"></span><span class="text">Edit</span>
 		        <% end %>
