@@ -36,12 +36,11 @@ l1 = Library.create(
 	description: "You will find around 400 handpicked links from the web that cover the main aspects of starting a business. You can suggest new links to be added to the collection by hitting ‘suggest’ in the above menu.", 
 	creator_id: user3.id)
 
-read = Group.create(name: "read", library_id: l1.id)
-watch = Group.create(name: "watch", library_id: l1.id)
-learn = Group.create(name: "learn", library_id: l1.id)
-make = Group.create(name: "make", library_id: l1.id)
-paris = Group.create(name: "paris", library_id: l1.id)
-world = Group.create(name: "world", library_id: l1.id)
+read = Group.create(name: "Read", library_id: l1.id)
+watch = Group.create(name: "Watch", library_id: l1.id)
+learn = Group.create(name: "Online Course", library_id: l1.id)
+make = Group.create(name: "Toolbox", library_id: l1.id)
+meet = Group.create(name: "Meet", library_id: l1.id)
 
 c1 = Category.create(name: "Entrepreneurship", library_id: l1.id)
 c2 = Category.create(name: "Getting Started", library_id: l1.id)
@@ -245,7 +244,7 @@ e10401 = Entry.create(
 	link: "http://mystartup.paris.fr/", 
 	description: "Community of 3,000 Parisian startups and 36 incubators.",  
 	section_id: s104.id, 
-	group_id: paris.id,
+	group_id: meet.id,
 	accepted: true)
 
 e10402 = Entry.create(
@@ -253,7 +252,7 @@ e10402 = Entry.create(
 	link: "http://frenchstartups.io/", 
 	description: "French Slack community for founders, developpers and growth hackers around networking, advice, and beta testing.",  
 	section_id: s104.id, 
-	group_id: paris.id,
+	group_id: meet.id,
 	accepted: true)
 
 e10403 = Entry.create(
@@ -261,7 +260,7 @@ e10403 = Entry.create(
 	link: "http://www.hec.fr/incubateur-hec/", 
 	description: "The HEC Paris incubator.",  
 	section_id: s104.id, 
-	group_id: paris.id,
+	group_id: meet.id,
 	accepted: true)
 
 e10404 = Entry.create(
@@ -269,7 +268,7 @@ e10404 = Entry.create(
 	link: "http://www.thefamily.co/#welcome", 
 	description: "The Family nurtures entrepreneurs through education, unfair advantages, and capital.",  
 	section_id: s104.id, 
-	group_id: paris.id,
+	group_id: meet.id,
 	accepted: true)
 
 e10405 = Entry.create(
@@ -277,7 +276,7 @@ e10405 = Entry.create(
 	link: "https://angel.co/", 
 	description: "The online reference where you can find & post job offers, see who's trending, and get funding for your startup.",  
 	section_id: s104.id, 
-	group_id: world.id,
+	group_id: meet.id,
 	accepted: true)
 
 e10406 = Entry.create(
@@ -285,7 +284,7 @@ e10406 = Entry.create(
 	link: "http://www.producthunt.com/", 
 	description: "Curation of the best new products, every day.",  
 	section_id: s104.id, 
-	group_id: world.id,
+	group_id: meet.id,
 	accepted: true)
 
 e10407 = Entry.create(
@@ -293,7 +292,7 @@ e10407 = Entry.create(
 	link: "http://betalist.com/", 
 	description: "Discover tomorrow's startups, today.",  
 	section_id: s104.id, 
-	group_id: world.id,
+	group_id: meet.id,
 	accepted: true)
 
 e10408 = Entry.create(
@@ -301,7 +300,7 @@ e10408 = Entry.create(
 	link: "http://launchingnext.com/", 
 	description: "The world's most promising startups.",  
 	section_id: s104.id, 
-	group_id: world.id,
+	group_id: meet.id,
 	accepted: true)
 
 
