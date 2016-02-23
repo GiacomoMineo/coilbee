@@ -12,9 +12,9 @@ class Library < ActiveRecord::Base
 	has_and_belongs_to_many :moderators, :class_name => "User"
 
 
-  validates_presence_of :topic
-  def should_generate_new_friendly_id?
-    topic_changed? || super
-  end
+	validates_presence_of :topic
+	def should_generate_new_friendly_id?
+		topic_changed? || super
+	end
 
 end
