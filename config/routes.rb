@@ -31,7 +31,11 @@ Rails.application.routes.draw do
     end
   end
 
-
+  namespace :api do
+    namespace :v1 do
+      resources :libraries, only: [:index, :create, :show, :update, :destroy]
+    end
+  end
 	
 	get "browse_libraries" => "libraries#browse"
 
