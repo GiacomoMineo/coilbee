@@ -38,21 +38,22 @@
           <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right accept-entry-btn',method: :put   %>
         </div>
       <% end %>
-      <% if current_user && current_user.edit? && (permitted_to? :edit, entry)%>
-        <div class="menu-icon-wrapper entry-menu">
+      <div class="menu-icon-wrapper entry-menu">
+        <% if current_user && current_user.edit? && (permitted_to? :edit, entry)%>
           <% if entry.accepted %>
             <% if new_entries.include?(entry) %>
               <!--span class="glyphicon glyphicon-eye-open"></span-->
             <% end %>
           <% end %>
-            <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon" do %>
-              <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
-            <% end %>         
-            <%= link_to edit_entry_path(entry), class: "entry-icon" do %>
-              <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
-            <% end %>
-        </div>
-      <% end %>
+          <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon" do %>
+            <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+          <% end %>         
+          <%= link_to edit_entry_path(entry), class: "entry-icon" do %>
+            <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+          <% end %>
+        <% end %>
+        <a href="#" class="share entry-icon"><span class="glyphicon glyphicon-share icon-small" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"></span></a>
+      </div>
     </div>
     <div class="entry-description">      
       <p><span class="entry-group"><%= entry.group.name %></span><%= entry.description %></p>
