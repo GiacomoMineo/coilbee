@@ -144,19 +144,6 @@ ready = function() {
 
 	filterTips();
 
-	function setCookie () {
-	  var argc = arguments.length, bImplGlob = typeof arguments[argc - 1] === "string";
-	  if (bImplGlob) { argc++; }
-	  if (argc < 3) { throw new TypeError("executeOnce - not enough arguments"); }
-	  var fExec = arguments[0], sKey = arguments[argc - 2];
-	  if (typeof fExec !== "function") { throw new TypeError("executeOnce - first argument must be a function"); }
-	  if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { throw new TypeError("executeOnce - invalid identifier"); }
-	  if (decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) === "1") { return false; }
-	  fExec.apply(argc > 3 ? arguments[1] : null, argc > 4 ? Array.prototype.slice.call(arguments, 2, argc - 2) : []);
-	  document.cookie = encodeURIComponent(sKey) + "=1; expires=Fri, 31 Dec 9999 23:59:59 GMT" + (bImplGlob || !arguments[argc - 1] ? "; path=/" : "");
-	  return true;
-	}
-
 	//footer
 	$('#feedback, #social').hide();
 	$('.footer-links a').click(function(event) {
@@ -179,6 +166,25 @@ ready = function() {
 	$('body,html').click(function() {
 		$('.footer-panel > div').hide();
 		$('#feedback_form .in-error').html("");
+	});
+
+	// Library buttons
+	$('.library-buttons #menu-toggle').click(function(element) {
+		$('.aside-content').stop();
+		if($('.aside-content').hasClass('shrunk')) {
+			$('.aside-content').animate({ left: '0'}, 300);
+		} else {
+			$('.aside-content').animate({ left: '-100%'}, 300);
+		}
+		$('.aside-content').toggleClass('shrunk')
+		if($('.main-content').hasClass('expanded')) {
+			$('.main-content').addClass('col-lg-7 col-lg-offset-4 col-sm-9 col-sm-offset-3 col-xs-12');
+			$('.main-content').removeClass('col-lg-10 col-lg-offset-1 col-xs-12');
+		} else {
+			$('.main-content').removeClass('col-lg-7 col-lg-offset-4 col-sm-9 col-sm-offset-3 col-xs-12');
+			$('.main-content').addClass('col-lg-10 col-lg-offset-1 col-xs-12');
+		}
+		$('.main-content').toggleClass('expanded');
 	});
 
 	bind_group_filter();

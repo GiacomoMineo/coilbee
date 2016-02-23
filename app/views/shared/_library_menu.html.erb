@@ -1,98 +1,99 @@
-  <aside id="menu-aside">
-    <div id="accordion" role="tablist" aria-multiselectable="true">
-      <% @library.categories.includes(:sections).each_with_index do |c, index| %>
-        <div class="panel menu-category">
-          <div class="menu-category-heading" role="tab" id="heading<%= index %>">
-            <h4 class="menu-category-title">
-              <div class="row">
-                <a href="#collapse<%= index %>" class="sidebar-header col-xs-8 menu-category-link" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="<%= (defined?(@section) && (@section.category == c)) ? "true" : "false" %>" aria-controls="collapse<%= index %>">
-                  <%= c.name %>
-                </a>
-                <% if current_user && current_user.edit? %>
-                  <div class="col-xs-4 menu-icon-wrapper">
-                    <% if permitted_to? :destroy, c %>
-                      <%= link_to category_path(c), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
-                        <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
-                      <% end %>
+<aside id="menu-aside">
+  <div id="accordion" role="tablist" aria-multiselectable="true">
+    <% @library.categories.includes(:sections).each_with_index do |c, index| %>
+      <div class="panel menu-category">
+        <div class="menu-category-heading" role="tab" id="heading<%= index %>">
+          <h4 class="menu-category-title">
+            <div class="row">
+              <a href="#collapse<%= index %>" class="sidebar-header col-xs-8 menu-category-link" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="<%= (defined?(@section) && (@section.category == c)) ? "true" : "false" %>" aria-controls="collapse<%= index %>">
+                <%= c.name %>
+              </a>
+              <% if current_user && current_user.edit? %>
+                <div class="col-xs-4 menu-icon-wrapper">
+                  <% if permitted_to? :destroy, c %>
+                    <%= link_to category_path(c), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
+                      <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
                     <% end %>
-                    <% if permitted_to? :edit, c %>
-                      <%= link_to edit_category_path(c), class: "menu-icon" do %>
-                        <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
-                      <% end %>
+                  <% end %>
+                  <% if permitted_to? :edit, c %>
+                    <%= link_to edit_category_path(c), class: "menu-icon" do %>
+                      <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
                     <% end %>
-                    <% if permitted_to? :create,  Section.new(category: c) %>
-                      <%= link_to new_category_section_path(c), class: "menu-icon" do %>
-                        <span class="glyphicon glyphicon-plus icon-small" data-toggle="tooltip" data-placement="top" title="New" aria-hidden="true"></span>
-                      <% end %>   
-                    <% end %>
-                  </div>
-                <% else %>
-                  <div class="col-xs-4 menu-icon-wrapper">
-                    <div class="menu-icon chevron"><span class="glyphicon glyphicon-chevron-down icon-small"></span><span class="glyphicon glyphicon-chevron-up icon-small"></span></div>
-                  </div>
-                <% end %>
-              </div>
-            </h4>
-          </div>
-          <div id="collapse<%= index %>" class="panel-collapse collapse <%= (defined?(@section) && (@section.category == c)) ? "in" : "" %>" role="tabpanel" aria-labelledby="heading<%= index %>">
-            <% c.sections.each do |s| %>
-              <% if !s.entries.empty? || (current_user && current_user.edit?) %>
-                <div class="menu-section <%= @section == s ? "current" : "" %>">
-                  <div class="row">
-                    <%= link_to section_path(s), class: "menu-section-link col-xs-9" do %>
-                      <% if (@section == s) %><span class="glyphicon glyphicon-triangle-right"></span><% end %>
-                      <%= s.name %>
-                    <% end %>
-                      <div class="col-xs-3 menu-icon-wrapper">
-                        <div class="menu-section-count"><%= s.entries.count %><span class="glyphicon glyphicon-link"></span></div>
-                        <% if current_user && current_user.edit? %>
-                          <% if permitted_to? :destroy, s %>        
-                            <%= link_to section_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
-                              <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
-                            <% end %>
-                          <% end %>
-                          <% if permitted_to? :edit, s %>      
-                            <%= link_to edit_section_path(s), class: "menu-icon" do %>
-                              <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
-                            <% end %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                  </div> 
+                  <% end %>
+                  <% if permitted_to? :create,  Section.new(category: c) %>
+                    <%= link_to new_category_section_path(c), class: "menu-icon" do %>
+                      <span class="glyphicon glyphicon-plus icon-small" data-toggle="tooltip" data-placement="top" title="New" aria-hidden="true"></span>
+                    <% end %>   
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="col-xs-4 menu-icon-wrapper">
+                  <div class="menu-icon chevron"><span class="glyphicon glyphicon-chevron-down icon-small"></span><span class="glyphicon glyphicon-chevron-up icon-small"></span></div>
                 </div>
               <% end %>
-            <% end %> 
-          </div>  
+            </div>
+          </h4>
         </div>
-      <% end %>
-      <!-- NEW CATEGORY MENU ITEM -->
-      <% if current_user && current_user.edit? && (permitted_to? :create, @library.categories) %>
-        <div class="menu-category menu-new-category">
-          <div class="new-cat" role="tab" id="heading-new">
-            <h4>
-              <%= link_to new_library_category_path(@library) do %>
-                <span>New Category</span>
-                <span class="glyphicon glyphicon-plus pull-right icon-small" aria-hidden="true"></span>
-              <% end %>
-            </h4>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <% unless current_user %>
-      <!-- SIGNUP ADVERT
-      <div class="adv-wrapper">
-        <div class="adv">
-          <p class="adv-content">Make your own library and suggest links!</p>
-          <p class="adv-join">Join Coilbee</p>
-          <div class="adv-cta">
-            <div><%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-success signup-btn small', id: "signup-btn" %></div>
-            <span>Already have account?</span><%= link_to "Login", new_user_session_path, :class => 'btn login-btn small', id: "login-btn" %>
-          </div>
+        <div id="collapse<%= index %>" class="panel-collapse collapse <%= (defined?(@section) && (@section.category == c)) ? "in" : "" %>" role="tabpanel" aria-labelledby="heading<%= index %>">
+          <% c.sections.each do |s| %>
+            <% if !s.entries.empty? || (current_user && current_user.edit?) %>
+              <div class="menu-section <%= @section == s ? "current" : "" %>">
+                <div class="row">
+                  <%= link_to section_path(s), class: "menu-section-link col-xs-9" do %>
+                    <% if (@section == s) %><span class="glyphicon glyphicon-triangle-right"></span><% end %>
+                    <%= s.name %>
+                  <% end %>
+                    <div class="col-xs-3 menu-icon-wrapper">
+                      <% if current_user && current_user.edit? %>
+                        <% if permitted_to? :destroy, s %>        
+                          <%= link_to section_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: "menu-icon" do %>
+                            <span class="glyphicon glyphicon-remove icon-small" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
+                          <% end %>
+                        <% end %>
+                        <% if permitted_to? :edit, s %>      
+                          <%= link_to edit_section_path(s), class: "menu-icon" do %>
+                            <span class="glyphicon glyphicon-edit icon-small" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+                          <% end %>
+                        <% end %>
+                      <% else %>
+                        <div class="menu-section-count"><%= s.entries.count %><span class="glyphicon glyphicon-link"></span></div>
+                      <% end %>
+                    </div>
+                </div> 
+              </div>
+            <% end %>
+          <% end %> 
+        </div>  
+      </div>
+    <% end %>
+    <!-- NEW CATEGORY MENU ITEM -->
+    <% if current_user && current_user.edit? && (permitted_to? :create, @library.categories) %>
+      <div class="menu-category menu-new-category">
+        <div class="new-cat" role="tab" id="heading-new">
+          <h4>
+            <%= link_to new_library_category_path(@library) do %>
+              <span>New Category</span>
+              <span class="glyphicon glyphicon-plus pull-right icon-small" aria-hidden="true"></span>
+            <% end %>
+          </h4>
         </div>
       </div>
-      -->
     <% end %>
-  </aside>
+  </div>
+  <% unless current_user %>
+    <!-- SIGNUP ADVERT
+    <div class="adv-wrapper">
+      <div class="adv">
+        <p class="adv-content">Make your own library and suggest links!</p>
+        <p class="adv-join">Join Coilbee</p>
+        <div class="adv-cta">
+          <div><%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-success signup-btn small', id: "signup-btn" %></div>
+          <span>Already have account?</span><%= link_to "Login", new_user_session_path, :class => 'btn login-btn small', id: "login-btn" %>
+        </div>
+      </div>
+    </div>
+    -->
+  <% end %>
+</aside>
       
 

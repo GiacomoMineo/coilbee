@@ -53,6 +53,7 @@ a {
 
 // Tooltips
 .tooltip {
+	z-index: 5;
 	.tooltip-arrow {
 	}
 	.tooltip-inner {
@@ -60,6 +61,7 @@ a {
 }
 .main-content {
 	margin-bottom: 140px;
+	@include transition(all 0.3s ease);
 }
 .aside-content {
 	@include tablet {
@@ -82,10 +84,11 @@ nav li a {
 // Header
 $height: 45px;
 .header {
+	z-index: 2;
 	background-color: #fff;
 	border-bottom: 1px solid #d0d4d9;
     box-shadow: 0px 1px 1px #d0d4d9;
-    height: 45px;
+    height: $height;
 }
 .main-logo {
 	$size: 26px;
