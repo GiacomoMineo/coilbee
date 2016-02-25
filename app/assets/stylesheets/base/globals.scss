@@ -44,7 +44,6 @@ a {
 // Icons
 .icon-small {
 	color: $color-accent;
-	margin-left: 8px;
 	@include transition(all 0.3s ease);
 	&:hover {
 		color: $color-accent-light;

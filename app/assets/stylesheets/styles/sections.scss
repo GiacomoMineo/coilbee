@@ -123,7 +123,20 @@
 		}
 		.entry-icon {
 			float: right;
-			
+			margin-left: 8px;
+		}
+	}
+	.entry-share {
+		display: none;
+		.share-buttons {
+			padding-bottom: 7px;
+			padding-left: 9px;
+			> li a {
+				color: $color-accent;
+				&:hover {
+					color: $color-accent-light;
+				}
+			}
 		}
 	}
 	.entry-description {
