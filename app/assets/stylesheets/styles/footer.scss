@@ -22,22 +22,6 @@ $footer-height: 58px;
 		.footer-panel-inner {
 			padding: 14px;
 		}
-		.share-buttons {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			> li {
-				display: inline-block;
-				a {
-					color: #fff;
-					padding: 0 4px;
-					@include transition(color 0.3s ease);
-					&:hover {
-						color: $color-main-light;
-					}
-				}
-			}
-		}
 		.close-popup {
 			color: #fff;
 			position: absolute;
@@ -73,6 +57,23 @@ $footer-height: 58px;
 			text-align: center;
 			color: $color-text-light-alt;
 			font-size: 10px;
+		}
+	}
+}
+
+.share-buttons {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	> li {
+		display: inline-block;
+		a {
+			color: #fff;
+			padding: 0 4px;
+			@include transition(color 0.3s ease);
+			&:hover {
+				color: $color-main-light;
+			}
 		}
 	}
 }

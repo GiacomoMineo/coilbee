@@ -183,6 +183,8 @@ ready = function() {
 
 	bind_group_filter();
 	enable_tooltips();
+
+	share_resource();
 };
 
 // Doc ready
