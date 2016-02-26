@@ -1,4 +1,22 @@
 class Entry < ActiveRecord::Base
+	include PgSearch
+	pg_search_scope :search_full_text, :against => {:title => 'A',
+															 :link => 'C',
+															 :description => 'B'},
+									:using => {
+											:tsearch => {
+													:any_word => true,
+													:prefix => true
+											},
+											:trigram => {
+													:only => [:title]
+											},
+											:dmetaphone => {
+													:any_word => true
+											}
+									},
+									:ignoring => :accents
+
 	# prepares the entry for being shown, including read marks
 	# if user != nil
 	scope :prepare_for, ->(user) do
