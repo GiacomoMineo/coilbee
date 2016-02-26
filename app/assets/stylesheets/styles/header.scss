@@ -4,162 +4,203 @@
 .navbar {
 	min-height: 0 !important;
 }
-.navbar-toggle {
-	margin: 6px 15px 6px 0;
-	border: none;
-	@include transition(background 0.3s ease);
-	> span {
-		background-color: $color-main !important;
+$height: 45px;
+.header {
+	background-color: #fff;
+	border-bottom: 1px solid #d0d4d9;
+    box-shadow: 0px 1px 1px #d0d4d9;
+    height: 45px;
+	.navbar-toggle {
+		margin: 6px 15px 6px 0;
+		border: none;
 		@include transition(background 0.3s ease);
-	}
-	&:hover {
-		background-color: $color-main !important;
-		> span { background-color: #fff !important; }
-	}
-	&:focus {
-		background-color: $color-main !important;
-		> span { background-color: #fff !important; }
-	}
-}
-.navbar-header-link {
-	$size: 42px;
-	height: $size;
-	display: inline-block;
-	vertical-align: text-top;
-	margin-left: 8px;
-	> span {
-		color: $color-main;
-		line-height: $size;
-		@include tablet {
-			padding-right: 6px;
+		> span {
+			background-color: $color-main !important;
+			@include transition(background 0.3s ease);
 		}
 		&:hover {
+			background-color: $color-main !important;
+			> span { background-color: #fff !important; }
+		}
+		&:focus {
+			background-color: $color-main !important;
+			> span { background-color: #fff !important; }
+		}
+	}
+	.navbar-header-link {
+		$size: 44px;
+		height: $size;
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 8px;
+		&:hover > span {
+			color: $color-main-light;
+		}
+		> span {
 			color: $color-main;
-		}
-	}
-	.text {
-		display: none;
-		font-weight: 400;
-		font-size: 13px !important;
-		@include tablet {
-			display: inline-block;
-		}
-	}
-}
-.navbar-nav {
-	background-color: #fff;
-	> li {
-		padding-left: 12px;
-		@include tablet { padding-left: 0; }
-		> a {
-			color: $color-main !important;
-			font-weight: 400;
-			font-size: 13px !important;
-			line-height: 20px !important;
-			padding: 12px 15px !important;
-			&:hover {
-				background-color: #fff !important;
-				color: $color-main-light !important;
-			}
-			&:focus {
-				background-color: #fff !important;
-			}
-			.glyphicon {
+			line-height: $size;
+			@include transition(color 0.3s ease);
+			@include tablet {
 				padding-right: 6px;
 			}
 		}
-	}
-}
-#signup-btn-header { margin-top: 4px; }
-.navbar-collapse {
-	background-color: #fff;
-	border: 1px solid $color-fade;
-	border-top: none;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-	@include tablet {
-		border: none;
-	}
-}
-
-// Username and dropdown
-.user-btn {
-	position: relative;
-	.user-toggle {
-		display: inline-block;
-		color: $color-main !important;
-		font-weight: normal;
-    	font-size: 15px;
-    	line-height: 20px !important;
-    	padding: 12px 15px;
-    	cursor: pointer;
-    	@include transition(color 0.3s ease);
-    	@include tablet {
-    		padding-left: 12px;
-    		padding-right: 12px;
-    	}
-    	&:hover {
-    		color: $color-main-light !important;
-    	}
-	}
-	.user-dropdown {
-		$bg: $color-light-3;
-		display: block;
-		
-		@extend %clearfix;
-		@include tablet {
+		.text {
 			display: none;
-			position: absolute;
-			right: 0;
-			min-width: 120px;
-			z-index: 2;
-			padding: 8px;
-			border-radius: 3px;
-			margin-top: 11px;
-			background-color: $bg;
-			box-shadow: 0px 1px 1px $color-light-dark;
-		}
-		&::before {
+			font-weight: 400;
+			font-size: 13px !important;
 			@include tablet {
-				position: absolute;
-				right: 12px;
-				top: -8px;
-				content: '';
-				width: 0; 
-				height: 0;
-				border-bottom: 8px solid $bg;
-				border-left: 10px solid transparent;
-				border-right: 10px solid transparent;
-				z-index: 3;
+				display: inline-block;
 			}
 		}
-		a {
-			display: block;
-			padding: 6px 12px;
-			font-size: 13px;
-   			font-weight: normal;
-   			line-height: 18px;
-   			color: $color-main;
-   			border-top: none;
-   			border-radius: 4px;
-   			@include transition(all 0.3s ease);
-   			&:hover {
-   				color: #fff !important;
-   				background-color: $color-light-dark !important;
-   			}
-		}
-		.user-dropdown-text {
-			padding-left: 6px;
-		}
-		.user-logout {
-			
+	}
+	.navbar-nav {
+		background-color: #fff;
+		> li {
+			padding-left: 12px;
+			@include tablet { padding-left: 0; }
+			> a {
+				color: $color-main !important;
+				font-weight: 400;
+				font-size: 13px !important;
+				line-height: 20px !important;
+				padding: 12px 15px !important;
+				&:hover {
+					background-color: #fff !important;
+					color: $color-main-light !important;
+				}
+				&:focus {
+					background-color: #fff !important;
+				}
+				.glyphicon {
+					padding-right: 6px;
+				}
+			}
 		}
 	}
-}
+	.main-logo {
+		display: inline-block;
+		$size: 26px;
+		height: $height - 1;
+		line-height: $height - 1;
+		margin: 0;
+		vertical-align: middle;
+		a {
+			display: block;
+			height: $height - 1;
+			line-height: $height - 1;
+			> span {
+				display: inline-block;
+				vertical-align: text-top;
+			}
+		}
+		// Logo Icon
+		.logo-glyph {
+			display: inline-block;
+			width: $size + 6;
+			height: $height - 1;
+			background: url('logo.png') no-repeat center center;
+			background-size: 100%;
+		}
+		// Logo name
+		.logo-type {
+			display: inline-block;
+			color: $color-main;
+			font-weight: 900;
+			font-size: 26px;
+			letter-spacing: -1px;
+			margin-left: -6px;
+		}
+	}
+	#signup-btn-header {
+		margin-top: 4px;
+		padding: 8px 15px !important;
+		color: #fff !important;
+		&:hover {
+			background-color: $color-main-light !important;
+		}
+	}
+	.navbar-collapse {
+		background-color: #fff;
+		border: 1px solid $color-fade-light;
+		border-top: none;
+		border-bottom-left-radius: 3px;
+		border-bottom-right-radius: 3px;
+		@include tablet {
+			border: none;
+		}
+	}
 
-// Landing
-.landing-header {
-	text-align: center;
+	// Username and dropdown
+	.user-btn {
+		position: relative;
+		.user-toggle {
+			display: inline-block;
+			color: $color-main !important;
+			font-weight: normal;
+	    	font-size: 15px;
+	    	line-height: 20px !important;
+	    	padding: 12px 15px;
+	    	cursor: pointer;
+	    	@include transition(color 0.3s ease);
+	    	@include tablet {
+	    		padding-left: 12px;
+	    		padding-right: 12px;
+	    	}
+	    	&:hover {
+	    		color: $color-main-light !important;
+	    	}
+		}
+		.user-dropdown {
+			$bg: $color-light-3;
+			display: block;
+			
+			@extend %clearfix;
+			@include tablet {
+				display: none;
+				position: absolute;
+				right: 0;
+				min-width: 120px;
+				z-index: 2;
+				padding: 8px;
+				border-radius: 3px;
+				margin-top: 11px;
+				background-color: $bg;
+				box-shadow: 0px 1px 1px $color-light-dark;
+			}
+			&::before {
+				@include tablet {
+					position: absolute;
+					right: 12px;
+					top: -8px;
+					content: '';
+					width: 0; 
+					height: 0;
+					border-bottom: 8px solid $bg;
+					border-left: 10px solid transparent;
+					border-right: 10px solid transparent;
+					z-index: 3;
+				}
+			}
+			a {
+				display: block;
+				padding: 6px 12px;
+				font-size: 13px;
+	   			font-weight: normal;
+	   			line-height: 18px;
+	   			color: $color-main;
+	   			border-top: none;
+	   			border-radius: 4px;
+	   			@include transition(all 0.3s ease);
+	   			&:hover {
+	   				color: #fff !important;
+	   				background-color: $color-light-dark !important;
+	   			}
+			}
+			.user-dropdown-text {
+				padding-left: 6px;
+			}
+		}
+	}
 }
 
 // Search input

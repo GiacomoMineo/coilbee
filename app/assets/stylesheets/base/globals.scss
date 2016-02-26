@@ -2,16 +2,17 @@
 html { height: 100%; }
 body {
 	height: 100%;
-	padding-top: 80px;
 }
 .wrapper {
 	min-height: 100%;
 	position:relative;
 }
+/*
 *::selection {
 	background-color: $color-main;
 	color: #fff;
 }
+*/
 
 // Fonts
 @include font-face(Montserrat, Montserrat-Regular, 400, normal, otf);
@@ -50,6 +51,11 @@ a {
 	}
 }
 
+// Text
+.text-important {
+	color: $color-hype;
+}
+
 // Tooltips
 .tooltip {
 	.tooltip-arrow {
@@ -58,9 +64,11 @@ a {
 	}
 }
 .main-content {
+	padding-top: 80px;
 	margin-bottom: 140px;
 }
 .aside-content {
+	padding-top: 80px;
 	@include tablet {
 		position: fixed;
 		height: 100%;
@@ -78,47 +86,6 @@ nav li a {
 	@include transition(all 0.3s ease);
 }
 
-// Header
-$height: 45px;
-.header {
-	background-color: #fff;
-	border-bottom: 1px solid #d0d4d9;
-    box-shadow: 0px 1px 1px #d0d4d9;
-    height: 45px;
-}
-.main-logo {
-	$size: 26px;
-	height: $size;
-	line-height: $size;
-	margin: 0;
-	display: inline-block;
-	vertical-align: text-top;
-	a {
-		height: $size;
-		line-height: $size;
-		display: inline-block;
-		padding: 3px;
-	}
-	// Logo Icon
-	.logo-glyph {
-		display: inline-block;
-		width: $size + 6;
-		height: $size + 6;
-		background: url('logo.png') no-repeat center center;
-		background-size: 100%;
-		vertical-align: middle;
-	}
-	// Logo name
-	.logo-type {
-		display: inline-block;
-		color: $color-main;
-		font-weight: 900;
-		font-size: 26px;
-		letter-spacing: -1px;
-		vertical-align: middle;
-		margin-left: -6px;
-	}
-}
 .directory-btn-wrapper {
 	text-align: center;
 }

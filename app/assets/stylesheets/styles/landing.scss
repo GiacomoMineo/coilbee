@@ -1,34 +1,259 @@
 /* Landing page, Login, Sign up */
 
-// Jumbotron
-.main-jumbotron {
-	padding: 16px 0;
-	@include tablet {
-		padding: 32px 0;
+// Landing
+.hero {
+	color: #000;
+	padding: 0;
+	h1, h2 {
+		font-weight: 500;
 	}
-	$height: 280px;
-	.jumbotron-text {
+	h1 {
 		text-align: center;
-		margin: 0;
-		padding: 0 16px 24px;
-		cursor: default;
-		font-size: 36px;
-		line-height: 52px;
-		font-weight: 300;
-		color: $color-text-light;
-		@include tablet {
-			padding: 56px 16px 0;
-			font-size: 42px;
-			text-align: left;
+		font-size: 48px;
+	}
+	h2 {
+		font-size: 24px;
+	}
+	.lp-block {
+		padding: 75px 0;
+	}
+}
+
+$height: 90px;
+$type: 40px;
+.hero-wrapper {
+	position: relative;
+	background-color: $color-fade;
+	min-height: 100vh;
+	#hero-image {
+		z-index: 1;
+		display: block;
+		position: absolute;
+		top: 0;
+		height: 100vh;
+		width: 100%;
+		background:
+			linear-gradient(
+				rgba(0,0,0,0.4),
+				rgba(0,0,0,0.4)
+			),
+			url('hero.jpg');
+		background-size: cover;
+	}
+	.hero-top {
+		z-index: 2;
+		position: relative;
+		padding: ($height - $type) / 2 0 0 0;
+		@include desktop {
+			padding: ($height - $type) / 2 0 0 0 ;
 		}
-		@include laptop {
-			padding: 64px 16px 0;
-			font-size: 50px;
+		.hero-cta {
+			padding-bottom: 50px;
 		}
 	}
-	.jumbotron-image {
+}
+
+// Header
+.landing-header {
+	height: $type;
+	line-height: $type;
+	margin-bottom: ($height - $type) / 2;
+	background: transparent;
+	border: none;
+	.navbar-header {
+		background-color: transparent;
+		margin-bottom: 25px;
+		.landing-logo {
+			margin: 0 0 0 15px;
+			height: $type;
+			> a {
+				display: block;
+				line-height: $type;
+				color: #fff;
+				font-size: 28px;
+				font-weight: normal;
+				&:hover {
+					color: #fff;
+				}
+			}
+			@include tablet { margin: 0; }
+		}
+		@include tablet {
+			margin-bottom: 0;
+		}
+	}
+	.navbar-toggle {
+		padding: 9px;
+		margin: 4px 15px;
+		border: none;
+		@include transition(background 0.3s ease);
+		> span {
+			background-color: $color-text-fade !important;
+			@include transition(background 0.3s ease);
+		}
+		&:hover {
+			background-color: transparent !important;
+			> span { background-color: #fff !important; }
+		}
+		&:focus {
+			background-color: transparent !important;
+			> span { background-color: #fff !important; }
+		}
+	}
+	.navbar-collapse {
 		width: 100%;
-		height: $height;
+		background-color: $color-fade;
+		border-bottom: 1px solid #fff;
+		@include tablet {
+			background-color: transparent;
+			border-bottom: none;
+		}
+	}
+	.navbar-nav {
+		background-color: transparent;
+		margin: 15px 0;
+		> li {
+			line-height: $type;
+			> a {
+				display: inline-block;
+				padding: 12px;
+				font-size: 14px;
+				font-weight: 700px;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: $color-text-fade !important;
+				@include tablet {
+					padding: 0 0 0 25px;
+				}
+				&:hover { color: #fff !important; }
+				&:active { color: #fff !important; }
+			}
+		}
+		@include tablet {
+			margin: 0 0 0 25px;
+		}
+	}
+	.landing-login-btn {
+		height: $type;
+		> a {
+			color: $color-text-fade;
+			border: 1px solid $color-text-fade;
+			line-height: $type - 4;
+			padding: 0 28px;
+			text-transform: uppercase;
+			border-radius: 10px;
+			&:hover {
+				color: #fff;
+				border: 1px solid #fff;
+			}
+		}
+	}
+}
+.hero-text {
+	margin-top: 25px;
+	@include tablet {
+		margin-top: 95px;
+	}
+	h1, h2 {
+		color: #FFF;
+		display: inline-block;
+		width: 100%;
+	}
+	h2 {
+		line-height: 32px;
+		text-align: center;
+	}
+}
+.dropdown {
+	display: inline-block;
+	#heroDropdown {
+		color: #FFF;
+		font-size: 24px;
+		background-color: rgba(0,0,0,0);
+		border: 1px dashed #FFF;
+		> a {
+			color: #fff;
+		}
+	}
+}
+
+.hero-cta {
+	width: 100%;
+	text-align: center;
+	margin-top: 35px;
+	@include tablet {
+		margin-top: 75px;
+	}
+	.hero-cta-btn {
+		padding: 15px 40px 15px 40px;
+		display: inline-block;
+		background-color: $color-hype;
+		color: #FFF;
+		font-size: 18px;
+		font-weight: 700;
+		border: 1px solid $color-hype;
+		border-radius: 10px;
+		box-shadow: 1px 1px 3px #000;
+	}
+	.hero-cta-subtitle {
+		display: block;
+		margin-top: 18px;
+		color: #e6e6e6;
+		font-size: 12px;
+	}
+}
+
+// How it works
+.hiw-content {
+	margin-top: 25px;
+	.hiw-block {
+		margin-top: 25px;
+	}
+	.hiw-icon {
+		> img {
+			margin-top: 20px;
+			width: 100%;
+		}
+	}
+	.hiw-text {
+		p {
+			font-size: 18px;
+		}
+	}
+}
+
+// Track cards
+.track-list-wrapper {
+	background-color: $color-text-fade;
+}
+.track-card {
+	background-color: #fff;
+	padding: 24px;
+	text-align: center;
+	margin-top: 50px;
+	h3 {
+
+	}
+	img {
+		display: block;
+		width: 100%;
+		margin: 20px 0;
+	}
+	p {
+		margin-bottom: 15px;
+	}
+	a {
+		display: inline-block;
+		color: $color-text-medium;
+		border: 1px solid $color-text-medium;
+		padding: 6px 12px;
+		border-radius: 4px;
+		margin: 20px 0;
+		@include transition(all 0.3s ease);
+		&:hover {
+			color: #000;
+			border-color: #000;
+		}
 	}
 }
 
@@ -48,73 +273,6 @@
 	}
 }
 
-.landing-panel {
-	display: inline-block;
-	border-top: 3px solid $color-main;
-	border-bottom: 3px solid $color-main;
-	padding: 32px 0;
-	@include tablet {
-		padding: 32px;
-		border: 3px solid $color-main;
-		border-radius: 20px;
-	}
-}
-
 .in-remember {
 	margin: 4px 0;
-}
-
-// Descriptions
-.landing-description {
-	padding: 0 54px;
-	.image {
-		display: inline-block;
-		width: 24px;
-		height: 24px;
-		margin-right: 12px;
-		vertical-align: middle;
-		&.desc-img-1 { background: url('desc-1.png') no-repeat center center }
-		&.desc-img-2 { background: url('desc-2.png') no-repeat center center }
-		&.desc-img-3 { background: url('desc-3.png') no-repeat center center }
-	}
-	h2 {
-		display: inline-block;
-		vertical-align: middle;
-		line-height: 24px;
-		margin: 16px 0;
-		font-size: 17px;
-		font-weight: bold;
-		cursor: default;
-	}
-	p {
-		text-align: justify;
-		cursor: default;
-	}
-}
-.landing-description-wrapper { margin-top: 24px; }
-
-// Header
-.landing-header {
-	$size: 48px;
-	$height: 76px;
-	height: $height;
-	.main-logo {
-		margin: 14px 0;
-		text-align: center;
-		height: $size;
-		a {
-			height: $height;
-		}
-		.logo-glyph {
-			width: $size;
-			height: $size;
-		}
-		.logo-type {
-			height: $size;
-			line-height: $size;
-			font-size: 32px;
-			cursor: default;
-			margin-left: 0;
-		}
-	}
 }

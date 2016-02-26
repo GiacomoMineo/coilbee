@@ -3,5 +3,7 @@ class PagesController < ApplicationController
 		if user_signed_in?
 			redirect_to libraries_path
 		end
+
+		@landing = true
 	end
 end

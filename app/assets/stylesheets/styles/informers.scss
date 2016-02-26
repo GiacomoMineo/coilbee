@@ -1,0 +1,20 @@
+/* Coming soon page */
+
+.coming-soon {
+	.email-form {
+		text-align: center;
+		.in-row {
+			margin: 24px auto 12px;
+			.in-field:focus {
+				background-color: #fff;
+			}
+			&.in-filled .in-field {
+				background-color: #fff;
+			}
+		}
+	}
+	.email-success {
+		margin-top: 25px;
+		display: none;
+	}
+}

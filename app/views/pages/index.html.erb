@@ -1,52 +1,146 @@
-<nav class="navbar navbar-fixed-top navbar-default header landing-header">
-	<div class="main-logo">
-		<span class="logo-glyph"></span><span class="logo-type">Coilbee</span>
-	</div>
-</nav>
-<div class="row main-jumbotron">
-	<div class="col-sm-10 col-sm-offset-1">
-		<div class="col-sm-7">
-			<h1 class="jumbotron-text">Discover, create and share thematic link directories</h1>
-		</div>
-		<div class="col-sm-5 jumbotron-image-wrapper">
-			<%= image_tag("jumbotron.jpg", class: "jumbotron-image", alt: "Link Directory") %>
-		</div>
-	</div>
-</div>
-<div class="row landing-account">
-	<div class="signup-block">
-		<%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-success signup-btn landing', id: "signup-btn" %>
-		<div id="signup">
-			<div class="landing-panel">
-				<%= render 'devise/registrations/new' %>
+<div class="hero-wrapper">
+	<div id="hero-image"></div>
+	<div class="hero-top">
+		<nav class="navbar navbar-default landing-header">
+			<div class="container-fluid">
+			<div class="row">
+			<div class="col-sm-12 col-lg-10 col-lg-offset-1">
+				<div class="navbar-header pull-left">
+				    <h1 class="landing-logo">
+				    	<a href="/" class="logo-type">Coilbee</a>
+					</h1>
+		    	</div>
+		    	<div class="navbar-header pull-right">
+		    		<div class="landing-login-btn pull-left">
+			    		<%= link_to "Login", new_user_session_path, :class => 'btn login-btn small', id: "login-btn" %>
+			    	</div>
+			    	<button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-main-collapse" aria-expanded="false">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				    </button>
+		    	</div>
+			    <div class="collapse navbar-collapse" id="navbar-main-collapse">
+			        <ul class="nav navbar-nav navbar-left">
+			        	<li><a href="/informers/new">Learn</a></li>
+			        	<li><a href="/informers/new">Tracks</a></li>
+			        	<li><a href="/libraries/startup">Library</a></li>
+			        	<li><a href="/informers/new">About</a></li>
+			        </ul>
+			    </div>
+			</div>
+			</div>
+			</div>
+		</nav>
+		<div class="hero-text">
+			<h1>Learn from the best, <br>adjusted to your schedule.</h1>
+			<h2>I want to learn how to 
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" id="heroDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a href="">find my first users<span class="caret"></span></a>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="heroDropdown">
+						<li><a href="">build my first MVP</a></li>
+						<li><a href="">grow my user base</a></li>
+					</ul>
+				</div>
+			</h2>
+			<div class="hero-cta">
+				<a href="/track" class="hero-cta-btn">Get started!</a>
+				<span class="hero-cta-subtitle">It's all for <em>free.</em></span>
 			</div>
 		</div>
 	</div>
-	<div class="login-block">
-		<span class="login-text">Already have an account?</span>
-		<%= link_to "Login", new_user_session_path, :class => 'btn login-btn landing', id: "login-btn" %>
-		<div id="login">
-			<div class="landing-panel">
-				<%= render 'devise/sessions/new' %>
+</div>
+<div class="col-xs-12 hiw-wrapper">
+	<div class="col-xs-12 col-lg-8 col-lg-offset-2 lp-block">
+		<h1>How it works</h1>
+		<div class="hiw-content">
+			<div class="row">
+				<div class=" hiw-block">
+					<div class="col-xs-12 col-lg-8 hiw-text">
+						<h2>This is the first step</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat.</p>
+					</div>
+					<div class="col-xs-12 col-lg-3 col-lg-offset-1 hiw-icon">
+						<img src="hiw-icon-1.jpg">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="hiw-block">
+					<div class="col-xs-12 col-lg-3 hiw-icon">
+						<img src="hiw-icon-2.jpg">
+					</div>
+					<div class="col-xs-12 col-lg-8 col-lg-offset-1 hiw-text">
+						<h2>This is the second step</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="hiw-block">
+					<div class="col-xs-12 col-lg-8 hiw-text">
+						<h2>This is the third step</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat.</p>
+					</div>
+					<div class="col-xs-12 col-lg-3 col-lg-offset-1 hiw-icon">
+						<img src="hiw-icon-3.jpg">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="hero-cta">
+					<a href="/track" class="hero-cta-btn">Get started!</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="row landing-description-wrapper">
-	<div class="col-md-4 landing-description">
-		<div class="image desc-img-1"></div>
-		<h2>Organize Directories</h2>
-		<p>Collect all your links to resources, videos, books and articles in a categorized directory. Give each link its place inside categories and sections. Tag the entries to quickly search and group them. Start creating your own personalized directory or contribute to existing ones!</p>
+<div class="col-xs-12 track-list-wrapper">
+	<div class="col-xs-12 col-lg-8 col-lg-offset-2 lp-block">
+		<h1>Our <span class="text-important">amazing</span> tracks</h1>
+		<div class="col-xs-10 col-xs-offset-1 col-lg-4 col-lg-offset-0">
+			<div class="track-card">
+				<h3>Track #1</h3>
+				<img src="">
+				<p>Insert description text here that will explain why that specific track will change your life. You got a bright future behind you, baby.</p>
+				<a href="#">Learn more</a>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-lg-4 col-lg-offset-0">
+			<div class="track-card">
+				<h3>Track #2</h3>
+				<img src="">
+				<p>Insert description text here that will explain why that specific track will change your life. You got a bright future behind you, baby.</p>
+				<a href="#">Learn more</a>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-lg-4 col-lg-offset-0">
+			<div class="track-card">
+				<h3>Track #3</h3>
+				<img src="">
+				<p>Insert description text here that will explain why that specific track will change your life. You got a bright future behind you, baby.</p>
+				<a href="#">Learn more</a>
+			</div>
+		</div>
 	</div>
-	<div class="col-md-4 landing-description">
-		<div class="image desc-img-2"></div>
-		<h2>Learn</h2>
-		<p>Quickly become informed and proficient in any subject. Following the semantic organization of links you can obtain knowledge about a specific field or easily access useful resources. Use the group filter to choose your preferred type of learning or see entries from a specific geographic area.</p>
-	</div>
-	<div class="col-md-4 landing-description">
-		<div class="image desc-img-3"></div>
-		<h2>Share Link Directories</h2>
-		<p>Collaborate with co-workers, classmates or friends by sharing directories of interest. Assign moderators to the libraries you created to have them help you maintain and expand the repository. Make your directories public to share with the world the organized knowledge you created.</p>
+</div>
+
+<div class="overlay" id="login-popup">
+	<div class="popup row">
+		<span class="close-popup glyphicon glyphicon-remove-sign"></span>
+		<%= render 'devise/sessions/new' %>
 	</div>
 </div>
 

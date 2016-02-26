@@ -1,0 +1,9 @@
+<%= form_for(@informer, :remote => true, :html => {:class => 'in-form', :'data-type' => 'json'}) do |f| %>
+  <div class="in-row">
+    <%= f.text_field :email, class: "in-field", id: "email" %>
+    <label class="in-label" for="email">
+      <span class="in-label-content" data-content="Email">Email</span>
+    </label>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primary in-submit" %>
+<% end %>

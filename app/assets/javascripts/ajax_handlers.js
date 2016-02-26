@@ -66,6 +66,15 @@ $(document).ajaxComplete(function(event, xhr, settings) {
 			$('#feedback_form .in-error').html(errorText);
 		}
 	}
+	// Informers
+	if(settings.url == '/informers') {
+		console.log("Email saved!");
+		// Success
+		if(xhr.status == '201') {
+			$('.email-form').hide();
+			$('.email-success').show();
+		}
+	}
 });
 
 function parseError(key, value) {

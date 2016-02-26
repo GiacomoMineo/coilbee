@@ -1,0 +1,47 @@
+<div class="hero-wrapper coming-soon">
+	<div id="hero-image"></div>
+	<div class="hero-top">
+		<nav class="navbar navbar-default landing-header">
+			<div class="container-fluid">
+			<div class="row">
+			<div class="col-sm-12 col-lg-10 col-lg-offset-1">
+				<div class="navbar-header pull-left">
+				    <h1 class="landing-logo">
+				    	<a href="/" class="logo-type">Coilbee</a>
+					</h1>
+		    	</div>
+		    	<div class="navbar-header pull-right">
+		    		<div class="landing-login-btn pull-left">
+			    		<%= link_to "Login", new_user_session_path, :class => 'btn login-btn small', id: "login-btn" %>
+			    	</div>
+			    	<button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-main-collapse" aria-expanded="false">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				    </button>
+		    	</div>
+			    <div class="collapse navbar-collapse" id="navbar-main-collapse">
+			        <ul class="nav navbar-nav navbar-left">
+			        	<li><a href="/informers/new">Learn</a></li>
+			        	<li><a href="/informers/new">Tracks</a></li>
+			        	<li><a href="/libraries/startup">Library</a></li>
+			        	<li><a href="/informers/new">About</a></li>
+			        </ul>
+			    </div>
+			</div>
+			</div>
+			</div>
+		</nav>
+		<div class="hero-text">
+			<h1>Content coming soon</h1>
+			<h2>Leave us your email to be informed when the service expands</h2>
+			<div class="email-form">
+				<%= render 'form' %>
+			</div>
+			<div class="email-success">
+				<h2>Thank you!</h2>
+			</div>
+		</div>
+	</div>
+</div
