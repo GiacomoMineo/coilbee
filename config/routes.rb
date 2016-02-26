@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :groups
   devise_for :users, :controllers => {sessions: 'users/sessions', registrations: 'users/registrations'}
   resources :feedbacks, :only => [:new, :create]
   root :to =>'pages#index'
