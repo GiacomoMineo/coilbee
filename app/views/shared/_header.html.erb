@@ -39,7 +39,7 @@
 	        <ul class="nav navbar-nav navbar-right">
 	        	<% if @library && @library.topic %>
 		        	<li>
-						<%= form_tag(search_library_path, :method => "get", id: "search-form", role: "search") do %>
+						<%= form_tag(search_library_path(@library), :method => "get", id: "search-form", role: "search") do %>
 							<div class="search-input">
 								<%= text_field_tag :q, params[:q], class: "search-field", placeholder: "Search", id: "search-tag" %>
 								<label class="search-label" for="search-tag"></label>
