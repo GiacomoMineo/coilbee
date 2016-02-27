@@ -17,7 +17,6 @@
   </div>
 </div>
 <% end %>
-<% @entries.sort! { |a,b| b.rating <=> a.rating } %>
 <% @entries.each do |entry| %>
   <div class="entry group_<%= entry.group.id %>">
      <div class="entry-vote">

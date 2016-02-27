@@ -43,6 +43,8 @@ gem 'declarative_authorization', github: "stffn/declarative_authorization"
 # pretty URLs
 gem 'friendly_id', '~> 5.1.0'
 
+# search function
+gem 'pg_search'
 
 
 # Use Unicorn as the app server
