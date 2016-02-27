@@ -74,6 +74,13 @@ class LibrariesController < ApplicationController
     	redirect_to '/', :notice => "The library has been deleted"
 	end
 
+	def search
+		@categories = @library.categories
+		@groups = @library.groups
+		@query = params[:q]
+		@entries = Entry.in_library(@library).search_full_text(@query).flatten
+	end
+
 	def show_suggestions
 		@sections = []
 		@library.categories.each {|cat| @sections.push(cat.sections)}

@@ -3,7 +3,7 @@ authorization do
   role :guest do
   	has_permission_on :libraries, :to => :browse
     # my read public libraries
-  	has_permission_on :libraries, :to => :show do
+  	has_permission_on :libraries, :to => [:show, :search] do
   		if_attribute :public => true
   	end
 		# ... with all their categories...
@@ -35,7 +35,7 @@ authorization do
 		end 
 
 		# may view libraries he is subscribed to...
-		has_permission_on :libraries, :to => [:read] do
+		has_permission_on :libraries, :to => [:read, :search] do
 			if_attribute :users => contains {user}
 		end
 		# may rate entries, mark them as read
