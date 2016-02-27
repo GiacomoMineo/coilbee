@@ -2,11 +2,22 @@ authorization do
 
   role :guest do
   	has_permission_on :libraries, :to => :browse
+    # my read public libraries
   	has_permission_on :libraries, :to => :show do
   		if_attribute :public => true
   	end
-  	has_permission_on :sections, :to => :read
-  	has_permission_on :tags, :to => :read
+		# ... with all their categories...
+		has_permission_on :categories, :to => :read do
+			if_permitted_to :show, :library
+		end
+		# ... and sections
+		has_permission_on :sections, :to => :read do
+			if_permitted_to :read, :category
+		end
+		# ... and tags
+		has_permission_on :tags, :to => :read do
+			if_permitted_to :read, :library
+		end
   end
   
   role :user do
@@ -26,18 +37,6 @@ authorization do
 		# may view libraries he is subscribed to...
 		has_permission_on :libraries, :to => [:read] do
 			if_attribute :users => contains {user}
-		end
-		# ... with all their categories...
-		has_permission_on :categories, :to => :read do
-			if_permitted_to :read, :library
-		end
-		# ... and sections
-		has_permission_on :sections, :to => :read do
-			if_permitted_to :read, :category
-		end
-		# ... and tags
-		has_permission_on :tags, :to => :read do
-			if_permitted_to :read, :library
 		end
 		# may rate entries, mark them as read
 		# and suggest new entries
