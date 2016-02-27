@@ -1,21 +1,26 @@
 class Entry < ActiveRecord::Base
+
+	# enable search for entries
 	include PgSearch
-	pg_search_scope :search_full_text, :against => {:title => 'A',
-															 :link => 'C',
-															 :description => 'B'},
+	pg_search_scope :search_full_text,
+									:against => {
+											:title => 'A', # priorities: title first, then description, then url
+											:link => 'C',
+											:description => 'B'
+									},
 									:using => {
-											:tsearch => {
+											:tsearch => { # full text search
 													:any_word => true,
 													:prefix => true
 											},
-											:trigram => {
+											:trigram => { # trigram search for spelling mistakes, etc.
 													:only => [:title]
 											},
-											:dmetaphone => {
+											:dmetaphone => { # metaphone search for similar-sounding results
 													:any_word => true
 											}
 									},
-									:ignoring => :accents
+									:ignoring => :accents # search without accents, i.e. "pina colada instead of "piña colada"
 
 	# prepares the entry for being shown, including read marks
 	# if user != nil
@@ -26,6 +31,11 @@ class Entry < ActiveRecord::Base
 	end
 	scope :possibly_with_read_marks, ->(user) do
 		with_read_marks_for(user) if user
+	end
+
+	# scope for all entries in a certain library
+	scope :in_library, ->(library) do
+		where('section_id IN (?)',	Section.in_library(library).select(:id))
 	end
 
 	acts_as_votable
