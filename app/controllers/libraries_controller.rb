@@ -75,10 +75,9 @@ class LibrariesController < ApplicationController
 	end
 
 	def search
-		@categories = @library.categories
 		@groups = @library.groups
 		@query = params[:q]
-		@entries = Entry.in_library(@library).search_full_text(@query).flatten
+		@entries = @library.entries.where(:accepted => true).includes(:group, :tags).search_full_text(@query)
 	end
 
 	def show_suggestions

@@ -3,6 +3,8 @@ class Library < ActiveRecord::Base
   	friendly_id :topic, use: [:slugged, :finders]
 
 	has_many :categories
+	has_many :sections, :through => :categories
+	has_many :entries, :through => :sections
 	has_many :groups
 	has_many :invitations
 	has_many :tags

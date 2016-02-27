@@ -1,9 +1,10 @@
 class Section < ActiveRecord::Base
 	belongs_to :category
 	has_many :entries
+	has_one :library, :through => :category
 
 	scope :in_library, ->(library) do
-		where('category_id IN (?)', library.categories.select(:id))
+		where(:category => library.categories)
 	end
 
 	extend FriendlyId
