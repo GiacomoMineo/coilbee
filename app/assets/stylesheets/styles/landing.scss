@@ -201,6 +201,13 @@ $type: 40px;
 		color: #e6e6e6;
 		font-size: 12px;
 	}
+	&.track {
+		margin-bottom: 75px;
+		text-align: left;
+		.hero-cta-btn {
+			padding: 10px 30px 10px 30px;
+		}
+	}
 }
 
 // How it works
@@ -253,6 +260,50 @@ $type: 40px;
 		&:hover {
 			color: #000;
 			border-color: #000;
+		}
+	}
+}
+
+// Track temp page
+.track-back {
+	display: inline-block;
+	padding: 6px 12px;
+	margin: 15px;
+	font-size: 24px;
+}
+.track-container {
+	h1 {
+		text-align: left;
+	}
+	h3 {
+		font-size: 18px;
+		font-weight: 500;
+	}
+	.track-description {
+		margin-top: 75px;
+		h2 {
+			margin: 50px 0 25px;
+		}
+		p {
+			font-weight: 400;
+		}
+	}
+	ul {
+		padding: 0;
+		margin: 0 0 15px;
+		list-style: none;
+		li {
+			.li-header {
+				font-weight: bold;
+				margin: 20px 0 2px;
+			}
+		}
+	}
+	.learning-goals {
+		margin: 5px 0 15px;
+		span {
+			display: inline-block;
+			padding-left: 6px;
 		}
 	}
 }
