@@ -19,6 +19,18 @@
 	    </label>
 	</div>
 	<div class="in-row">
+		<%= f.text_field :author, class: "in-field", id: "entry-author"  %>
+		<label class="in-label" for="entry-author">
+	      <span class="in-label-content" data-content="Author">Author</span>
+	    </label>
+	</div>
+	<div class="in-row">
+		<%= f.text_field :readingtime, class: "in-field", id: "entry-readingtime"  %>
+		<label class="in-label" for="entry-readingtime">
+	      <span class="in-label-content" data-content="Reading Time">Reading Time</span>
+	    </label>
+	</div>
+	<div class="in-row">
 		<%= label_tag 'entry[group_id]', "Type" %>
 		<%= f.collection_select(:group_id, @groups, :id, :name, {prompt: true}, {class: "form-control"}) %>
 	</div>
