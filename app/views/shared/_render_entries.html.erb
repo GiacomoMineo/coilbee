@@ -30,7 +30,7 @@
       <span class="entry-points"><%= entry.rating %></span>
     </div>
     <div class="entry-header">
-      <a target="_blank" href="<%= entry.link %>" class="entry-title" target="_blank"><%= entry.title %></a>
+      <a target="_blank" href="<%= entry.link %>" class="entry-title" target="_blank"><%= entry.title %><% if entry.author != "" %> - <%= entry.author %><% end %></a>
       <% if !entry.accepted %>
         <div class="entry-options">
           <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-entry-btn' %>
@@ -63,7 +63,7 @@
       </ul>
     </div>
     <div class="entry-description">      
-      <p><span class="entry-group"><%= entry.group.name %></span><%= entry.description %></p>
+      <p><span class="entry-group"><%= entry.group.name %></span><% if entry.readingtime != 0 %><span class="entry-readingtime"><%= entry.readingtime %> m</span><% end %><%= entry.description %></p>
       <div class="tag-list">
         <% entry.tags.each do |t| %>
           <%= link_to t.name, tag_path(t), class: "tag" %>
