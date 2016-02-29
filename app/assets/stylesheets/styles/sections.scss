@@ -136,11 +136,52 @@
 			padding-bottom: 7px;
 			padding-left: 9px;
 			> li a {
+				display: inline-block;
+				vertical-align: middle;
 				color: $color-accent;
 				&:hover {
 					color: $color-accent-light;
 				}
 			}
+		}
+		.share-link {
+			position: relative;
+			display: inline-block;
+			i {
+				display: inline-block;
+				width: 24px;
+				height: 24px;
+				margin: 1px 0 3px;
+				text-align: center;
+				line-height: 24px;
+				background-color: $color-accent;
+				color: #fff;
+				border-radius: 4px;
+				@include transition(background 0.3s ease);
+			}
+			&:hover {
+				i {
+					background-color: $color-accent-light;
+				}
+			}
+		}
+		.share-link-alert {
+			display: none;
+			padding-left: 5px;
+			color: $color-text-dark;
+		}
+	}
+	.entry-share-link {
+		display: none;
+		padding: 0 13px 5px 13px;
+		margin-bottom: 10px;
+		> input {
+			width: 100%;
+			padding: 2px 7px;
+			font-weight: 300;
+			font-size: 12px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
 		}
 	}
 	.entry-description {
