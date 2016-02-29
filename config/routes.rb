@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'intro/show'
+  get 'comingsoon' => 'informers#new'
   resources :informers
   devise_for :users, :controllers => {sessions: 'users/sessions', registrations: 'users/registrations'}
   resources :feedbacks, :only => [:new, :create]

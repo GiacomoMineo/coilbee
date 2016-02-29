@@ -38,7 +38,7 @@
 	    <div class="collapse navbar-collapse" id="navbar-main-collapse">
 	        <ul class="nav navbar-nav navbar-right">
 	        	<% if @library && @library.topic %>
-		        	<li>
+		        	<li class="search-bar">
 						<%= form_tag(search_library_path(@library), :method => "get", id: "search-form", role: "search") do %>
 							<div class="search-input">
 								<%= text_field_tag :q, params[:q], class: "search-field", placeholder: "Search", id: "search-tag" %>

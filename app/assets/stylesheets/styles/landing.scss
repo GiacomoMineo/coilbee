@@ -9,7 +9,10 @@
 	}
 	h1 {
 		text-align: center;
-		font-size: 48px;
+		font-size: 42px;
+		@include tablet {
+			font-size: 48px;
+		}
 	}
 	h2 {
 		font-size: 24px;
@@ -60,7 +63,9 @@ $type: 40px;
 	margin-bottom: ($height - $type) / 2;
 	background: transparent;
 	border: none;
+	position: relative;
 	.navbar-header {
+		display: inline-block;
 		background-color: transparent;
 		margin-bottom: 25px;
 		.landing-logo {
@@ -150,6 +155,7 @@ $type: 40px;
 	}
 }
 .hero-text {
+	padding: 0 15px;
 	margin-top: 25px;
 	@include tablet {
 		margin-top: 95px;
@@ -194,6 +200,10 @@ $type: 40px;
 		border: 1px solid $color-hype;
 		border-radius: 10px;
 		box-shadow: 1px 1px 3px #000;
+		@include transition(all 0.3s ease);
+		&:hover {
+			background-color: $color-hype-light;
+		}
 	}
 	.hero-cta-subtitle {
 		display: block;
@@ -206,6 +216,20 @@ $type: 40px;
 		text-align: left;
 		.hero-cta-btn {
 			padding: 10px 30px 10px 30px;
+		}
+	}
+}
+.landing-login-btn {
+	text-align: right;
+	.user-toggle {
+		display: inline-block;
+		line-height: 20px;
+		padding: 10px 15px;
+		color: $color-text-fade;
+		cursor: pointer;
+		@include transition(color 0.3s ease);
+		&:hover {
+			color: #fff;
 		}
 	}
 }

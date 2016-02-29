@@ -103,7 +103,11 @@
 }
 
 // Entries
-
+.entries {
+	h1 {
+		overflow: hidden;
+	}
+}
 .entry {
 	$entry-h: 42px;
 	.entry-header {
