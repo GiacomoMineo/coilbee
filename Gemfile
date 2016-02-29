@@ -46,6 +46,11 @@ gem 'friendly_id', '~> 5.1.0'
 # search function
 gem 'pg_search'
 
+# bootstrap
+gem 'bootstrap-sass'
+
+# font awesome
+gem 'font-awesome-sass'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
