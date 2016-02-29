@@ -1,5 +1,6 @@
 class Category < ActiveRecord::Base	
 	has_many :sections
+	has_many :entries, :through => :sections
 	belongs_to :library
 	
 	extend FriendlyId

@@ -1,13 +1,49 @@
 class Entry < ActiveRecord::Base
-	# prepares the entry for being shown, including read marks
-	# if user != nil
-	scope :prepare_for, ->(user) do
-		includes(:tags, :group)
+
+	# enable search for entries
+	include PgSearch
+	pg_search_scope :search_full_text,
+									:associated_against => {
+											:section => {:name => 'C'},
+											:category => {:name => 'D'}
+									},
+									:against => {
+											:title => 'A', # priorities: title first, then description, then section, category
+											:description => 'B',
+									},
+									:using => {
+											:tsearch => { # full text search
+													:any_word => true,
+													:prefix => true,
+											},
+											:trigram => { # trigram search for spelling mistakes, etc.
+													:only => [:title]
+											},
+											:dmetaphone => { # metaphone search for similar-sounding results
+													:any_word => true,
+													:only => [:title]
+											}
+									},
+									:ignoring => :accents # search without accents, i.e. "pina colada instead of "piña colada"
+
+
+	# prepares the entry for being shown,
+	scope :prepare, ->() do
+		includes(:group, :tags)
 		.order(cached_votes_score: :desc, updated_at: :desc, created_at: :asc)
-		.possibly_with_read_marks(user)
+	end
+
+  # includes read marks if user != nil
+	scope :prepare_for, ->(user) do
+		prepare.possibly_with_read_marks(user)
 	end
 	scope :possibly_with_read_marks, ->(user) do
 		with_read_marks_for(user) if user
+	end
+
+	# scope for all entries in a certain library
+	scope :in_library, ->(library) do
+		where(:section => Section.in_library(library))
 	end
 
 	acts_as_votable
@@ -15,6 +51,8 @@ class Entry < ActiveRecord::Base
 
 	belongs_to :group
 	belongs_to :section
+	has_one :category, :through => :section
+	has_one :library, :through => :section
 	has_and_belongs_to_many :tags
 	
 	validates_presence_of :section, :title, :link, :description, :group

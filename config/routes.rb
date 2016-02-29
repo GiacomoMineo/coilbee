@@ -9,6 +9,7 @@ Rails.application.routes.draw do
  # resources :libraries
   resources :libraries, shallow: true do
 		member do
+      get "search", to: "libraries#search"
 			get "suggestions", to: "libraries#show_suggestions"
 			put "subscribe", to: "libraries#subscribe"
 			put "unsubscribe", to: "libraries#unsubscribe"

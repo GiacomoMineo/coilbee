@@ -4,7 +4,7 @@ class SectionsController < ApplicationController
 
 	
 	def show
-		@entries = @section.entries.select { |e| e.accepted == true }
+		@entries = @section.entries.prepare.where(accepted: true)
 	 	@groups = @section.category.library.groups
 
 	end
