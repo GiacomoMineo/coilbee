@@ -6,29 +6,21 @@
     <% new_entries = @entries.select{|e| (e.created_at-current_user.last_sign_in_at) > 0} %>
   <% end %>
   <div class="entry-group">
-    <ul class="group-nav">
-      <li class="group-nav-item group-all group-nav-current"><div class="group-name"><span>All</span></div></li>
-      <% @groups.each do |group_nav| %>
-        <% unless @entries.select {|e| e.group == group_nav }.empty? %>
-          <li class="group-nav-item" id="group_<%= group_nav.id %>"><div class="group-name"><span><%= group_nav.name %></span></div></li>
+    <% unless @entries.distinct.count('group_id') == 1 %>
+      <ul class="group-nav">
+        <li class="group-nav-item group-all group-nav-current"><div class="group-name"><span>All</span></div></li>
+        <% @groups.each do |group_nav| %>
+          <% unless @entries.select {|e| e.group == group_nav }.empty? %>
+            <li class="group-nav-item" id="group_<%= group_nav.id %>"><div class="group-name"><span><%= group_nav.name %></span></div></li>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
+      </ul>
+    <% end %>
   </div>
 </div>
 <% end %>
 <% @entries.each do |entry| %>
   <div class="entry group_<%= entry.group.id %>">
-     <div class="entry-vote">
-      <% current_user ? vote_class = "" : vote_class = "not-logged" %>
-      <%= link_to like_entry_path(entry), method: :put, class: "upvote " + vote_class do %>
-        <span class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" data-placement="top" title="Upvote" aria-hidden="true"></span>
-      <% end %>
-      <%= link_to dislike_entry_path(entry), method: :put, class: "downvote " + vote_class do %>
-        <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="top" title="Downvote" aria-hidden="true"></span>
-      <% end %>
-      <span class="entry-points"><%= entry.rating %></span>
-    </div>
     <div class="entry-header">
       <a target="_blank" href="<%= entry.link %>" class="entry-title" target="_blank"><%= entry.title %><% if entry.author != "" %> - <%= entry.author %><% end %></a>
       <% if !entry.accepted %>
@@ -37,38 +29,47 @@
           <%= link_to "Accept", accept_entry_path(entry), class: 'btn btn-success pull-right accept-entry-btn',method: :put   %>
         </div>
       <% end %>
-      <div class="menu-icon-wrapper entry-menu">
-        <% if current_user && current_user.edit? && (permitted_to? :edit, entry)%>
-          <% if entry.accepted %>
-            <% if new_entries.include?(entry) %>
-              <!--span class="glyphicon glyphicon-eye-open"></span-->
-            <% end %>
-          <% end %>
-          <%= link_to entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: "entry-icon" do %>
-            <span class="glyphicon icon-small glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Delete" aria-hidden="true"></span>
-          <% end %>         
-          <%= link_to edit_entry_path(entry), class: "entry-icon" do %>
-            <span class="glyphicon icon-small glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
-          <% end %>
-        <% end %>
-        <a href="#" class="share entry-icon"><span class="glyphicon glyphicon-share-alt icon-small" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"></span></a>
-      </div>
     </div>
-    <div class="entry-share">
-      <ul class="share-buttons">
-        <li><a href="https://www.facebook.com/sharer/sharer.php?u=<%= entry.link %>&t=Coilbee" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-        <li><a href="https://twitter.com/intent/tweet?source=<%= entry.link %>&text=Coilbee:<%= entry.link %>" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-2x"></i></a></li>
-        <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=<%= entry.link %>&title=Coilbee&summary=&source=<%= entry.link %>" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-        <li><a href="mailto:?subject=Coilbee&body=:%20<%= entry.link %>" target="_blank" title="Email"><i class="fa fa-envelope-square fa-2x"></i></a></li>
-      </ul>
+    <div class="entry-info">
+      <% if entry.author != "" %><span class="entry-author">by <%= entry.author %> / </span><% end %>
+      <span class="entry-group"><%= entry.group.name %></span>
+      <% if entry.readingtime != 0 %><span class="entry-readingtime">/ <%= entry.readingtime %> minutes</span><% end %>
     </div>
     <div class="entry-description">      
-      <p><span class="entry-group"><%= entry.group.name %></span><% if entry.readingtime != 0 %><span class="entry-readingtime"><%= entry.readingtime %> m</span><% end %><%= entry.description %></p>
-      <div class="tag-list">
-        <% entry.tags.each do |t| %>
-          <%= link_to t.name, tag_path(t), class: "tag" %>
-        <% end %>   
-      </div> 
+      <p><%= entry.description %></p>
+    </div>
+    <div class="entry-menu">
+      <!-- vote -->
+      <% current_user ? vote_class = "" : vote_class = "not-logged" %>
+      <%= link_to like_entry_path(entry), { method: :put, :class => "entry-menu-icon entry-vote" + vote_class, 'data-toggle' => "tooltip", 'data-placement' => "top", 'title' => "Upvote", 'aria-hidden' => "true" } do %>
+        <span class="glyphicon glyphicon-triangle-top"></span><span class="counter"><%= entry.rating %></span>
+      <% end %>
+      <!-- share -->
+      <!--<a href="#" class="entry-menu-icon entry-share" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"><span class="glyphicon glyphicon-share-alt icon-small"></span></a>
+      <div class="entry-share-popup">
+        <ul class="share-buttons">
+          <li><a href="https://www.facebook.com/sharer/sharer.php?u=<%= entry.link %>&t=Coilbee" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+          <li><a href="https://twitter.com/intent/tweet?source=<%= entry.link %>&text=Coilbee:<%= entry.link %>" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+          <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=<%= entry.link %>&title=Coilbee&summary=&source=<%= entry.link %>" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+          <li><a href="mailto:?subject=Coilbee&body=:%20<%= entry.link %>" target="_blank" title="Email"><i class="fa fa-envelope-square fa-2x"></i></a></li>
+        </ul>
+      </div>-->
+      <!-- comment -->
+
+      <!-- admin commands -->
+      <% if current_user && current_user.edit? && (permitted_to? :edit, entry)%>
+        <% if entry.accepted %>
+          <% if new_entries.include?(entry) %>
+            <!--span class="glyphicon glyphicon-eye-open"></span-->
+          <% end %>
+        <% end %>        
+        <%= link_to edit_entry_path(entry), { :class => "entry-menu-icon", 'data-toggle' => "tooltip", 'data-placement' => "top", 'title' => "Edit", 'aria-hidden' => "true" } do %>
+          <span class="glyphicon glyphicon-edit"></span>
+        <% end %>
+        <%= link_to entry_path(entry), { method: :delete, :class => "entry-menu-icon", 'data-confirm' => 'Are you sure?', 'data-toggle' => "tooltip", 'data-placement' => "top", 'title' => "Delete", 'aria-hidden' => "True" } do %>
+          <span class="glyphicon glyphicon-remove"></span>
+        <% end %> 
+      <% end %>
     </div>
   </div>
 <% end %>
