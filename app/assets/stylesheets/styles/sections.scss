@@ -103,6 +103,11 @@
 }
 
 // Entries
+.entries {
+	h1 {
+		overflow: hidden;
+	}
+}
 
 $entry-spacing: 8px;
 .entry {
@@ -136,6 +141,7 @@ $entry-spacing: 8px;
 		.entry-readingtime {
 
 		}
+		
 	}
 	.entry-description {
 		padding: $entry-spacing 0;
@@ -152,6 +158,7 @@ $entry-spacing: 8px;
 			margin-right: 5px;
 			padding: 3px 10px;
 			border: 1px solid $color-light-2;
+			vertical-align: middle;
 			@include transition(background 0.3s ease);
 			> span {
 				color: $color-fade-dark;
@@ -169,17 +176,60 @@ $entry-spacing: 8px;
 				color: #000;
 			}
 		}
+		.entry-share, .entry-comment {
+			cursor: pointer;
+		}
+		.entry-share-link {
+			display: none;
+			margin-bottom: 10px;
+			> input {
+				width: 100%;
+				padding: 2px 7px;
+				font-weight: 300;
+				font-size: 12px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+			}
+		}
 		.entry-share-popup {
 			display: none;
+			padding-top: $entry-spacing;
 			.share-buttons {
-				padding-bottom: 7px;
-				padding-left: 9px;
 				> li a {
-					color: $color-accent;
+					display: inline-block;
+					vertical-align: middle;
+					color: $color-fade;
 					&:hover {
-						color: $color-accent-light;
+						color: #000;
 					}
 				}
+			}
+			.share-link {
+				position: relative;
+				display: inline-block;
+				vertical-align: middle;
+				i {
+					display: inline-block;
+					width: 24px;
+					height: 24px;
+					margin: 1px 0 3px;
+					text-align: center;
+					line-height: 24px;
+					background-color: $color-fade;
+					color: #fff;
+					border-radius: 4px;
+					@include transition(background 0.3s ease);
+				}
+				&:hover {
+					i {
+						background-color: #000;
+					}
+				}
+			}
+			.share-link-alert {
+				display: none;
+				padding-left: 5px;
+				color: $color-text-dark;
 			}
 		}
 	}
@@ -214,5 +264,6 @@ $entry-spacing: 8px;
     overflow: hidden;
     @include tablet {
     	float: right;
+    	margin: 0;
     }
 }

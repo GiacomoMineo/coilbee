@@ -45,17 +45,9 @@
         <span class="glyphicon glyphicon-triangle-top"></span><span class="counter"><%= entry.rating %></span>
       <% end %>
       <!-- share -->
-      <!--<a href="#" class="entry-menu-icon entry-share" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"><span class="glyphicon glyphicon-share-alt icon-small"></span></a>
-      <div class="entry-share-popup">
-        <ul class="share-buttons">
-          <li><a href="https://www.facebook.com/sharer/sharer.php?u=<%= entry.link %>&t=Coilbee" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-          <li><a href="https://twitter.com/intent/tweet?source=<%= entry.link %>&text=Coilbee:<%= entry.link %>" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-2x"></i></a></li>
-          <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=<%= entry.link %>&title=Coilbee&summary=&source=<%= entry.link %>" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-          <li><a href="mailto:?subject=Coilbee&body=:%20<%= entry.link %>" target="_blank" title="Email"><i class="fa fa-envelope-square fa-2x"></i></a></li>
-        </ul>
-      </div>-->
+      <div class="entry-menu-icon entry-share" data-toggle="tooltip" data-placement="top" title="Share" aria-hidden="true"><span class="glyphicon glyphicon-share-alt"></span></div>
       <!-- comment -->
-
+      <div class="entry-menu-icon entry-comment" data-toggle="tooltip" data-placement="top" title="Coming Soon" aria-hidden="true"><span class="glyphicon glyphicon-comment"></span></div>
       <!-- admin commands -->
       <% if current_user && current_user.edit? && (permitted_to? :edit, entry)%>
         <% if entry.accepted %>
@@ -70,6 +62,19 @@
           <span class="glyphicon glyphicon-remove"></span>
         <% end %> 
       <% end %>
+
+      <div class="entry-share-popup">
+        <ul class="share-buttons">
+          <li><a href="https://www.facebook.com/sharer/sharer.php?u=<%= entry.link %>&t=Coilbee" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+          <li><a href="https://twitter.com/intent/tweet?source=<%= entry.link %>&text=Coilbee:<%= entry.link %>" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+          <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=<%= entry.link %>&title=Coilbee&summary=&source=<%= entry.link %>" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+          <li><a href="mailto:?subject=Coilbee&body=:%20<%= entry.link %>" target="_blank" title="Email"><i class="fa fa-envelope-square fa-2x"></i></a></li>
+          <li><a href="#" class="share-link" title="Link"><i class="fa fa-link"></i></a><span class="share-link-alert">Link copied to clipboard!</span></li>
+        </ul>
+        <div class="entry-share-link">
+          <input type="text" readonly value="<%= entry.link %>">
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
