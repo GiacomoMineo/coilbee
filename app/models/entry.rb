@@ -5,10 +5,11 @@ class Entry < ActiveRecord::Base
 	pg_search_scope :search_full_text,
 									:associated_against => {
 											:section => {:name => 'C'},
-											:category => {:name => 'D'}
+											:category => {:name => 'C'}
 									},
 									:against => {
 											:title => 'A', # priorities: title first, then description, then section, category
+											:author => 'A',
 											:description => 'B',
 									},
 									:using => {
