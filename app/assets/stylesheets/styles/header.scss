@@ -328,5 +328,16 @@ $height: 45px;
 			outline: none;
 			border: none;
 		}
-	}	
+	}
+	&.search-welcome {
+		display: inline-block;
+		@include tablet {
+			width: 50%;
+		}
+		.search-input {
+			@include tablet {
+				width: 100%;
+			}
+		}
+	}
 }

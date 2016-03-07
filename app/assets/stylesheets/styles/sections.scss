@@ -108,180 +108,125 @@
 		overflow: hidden;
 	}
 }
+
+$entry-spacing: 8px;
 .entry {
-	$entry-h: 42px;
+	padding-top: 24px;
 	.entry-header {
-		padding: 9px 16px 9px 0;
+		padding: $entry-spacing 0;
 		clear: none;
 		.entry-title {
-			font-size: 20px;
-			line-height: 24px;
-			font-weight: 300;
-			color: $color-accent;
-			clear: none;
-			vertical-align: middle;
-			@include transition(color 0.3s ease);
-			&:hover {
-				color: $color-accent-light;
-			}
-		}
-		.entry-icon {
-			float: right;
-			margin-left: 8px;
-		}
-	}
-	.entry-share {
-		display: none;
-		.share-buttons {
-			padding-bottom: 7px;
-			padding-left: 9px;
-			> li a {
-				display: inline-block;
-				vertical-align: middle;
-				color: $color-accent;
-				&:hover {
-					color: $color-accent-light;
-				}
-			}
-		}
-		.share-link {
-			position: relative;
-			display: inline-block;
-			i {
-				display: inline-block;
-				width: 24px;
-				height: 24px;
-				margin: 1px 0 3px;
-				text-align: center;
-				line-height: 24px;
-				background-color: $color-accent;
-				color: #fff;
-				border-radius: 4px;
-				@include transition(background 0.3s ease);
-			}
-			&:hover {
-				i {
-					background-color: $color-accent-light;
-				}
-			}
-		}
-		.share-link-alert {
-			display: none;
-			padding-left: 5px;
-			color: $color-text-dark;
-		}
-	}
-	.entry-share-link {
-		display: none;
-		padding: 0 13px 5px 13px;
-		margin-bottom: 10px;
-		> input {
-			width: 100%;
-			padding: 2px 7px;
-			font-weight: 300;
-			font-size: 12px;
-			border: 1px solid #ddd;
-			border-radius: 4px;
-		}
-	}
-	.entry-description {
-		@extend %clearfix;
-		color: $color-text-medium-alt;
-		font-weight: 300;
-		font-size: 14px;
-		padding: 0 16px 8px;
-		border-bottom: 1px solid $color-fade-light;
-		> p {
-			display: inline-block;
-			margin-bottom: 6px;
-		}
-	}
-	.entry-group {
-		display: inline-block;
-		font-size: 12px;
-		font-weight: normal;
-		color: #000;
-		padding-right: 16px;
-		text-transform: uppercase;
-	}
-	.entry-readingtime {
-		display: inline-block;
-		font-size: 12px;
-		font-style: italic;
-		color: #000;
-		padding-right: 16px;
-		text-transform: uppercase;
-	}
-	.tag-list {
-		float: right;
-		$triangle-size: 12px;
-		.tag {
-			display: inline-block;
-			position: relative;
-			padding: 2px 8px;
-			margin-left: $triangle-size + 4px;
-			font-size: 12px;
-			color: #fff;
-			background-color: $color-fade-medium;
-			vertical-align: middle;
-			@include transition(all 0.3s ease);
-			&::before {
-				position: absolute;
-				left: -$triangle-size;
-				top: 0;
-				content: '';
-				width: 0; 
-				height: 0; 
-				border-top: 10px solid transparent;
-				border-bottom: 10px solid transparent;
-				border-right: $triangle-size solid $color-fade-medium;
-				@include transition(all 0.3s ease);
-			}
-			&::after {
-				content: '.';
-				position: absolute;
-				left: -2px;
-				top: 3px;
-				color: #fff;
-				font-weight: bold;
-				font-size: 22px;
-				line-height: 0px;
-				vertical-align: middle;
-			}
-			&:hover {
-				background-color: $color-accent-dark;
-				&::before {
-					border-right: $triangle-size solid $color-accent-dark;
-				}
-			}
-		}
-	}
-	.entry-vote {
-		position: relative;
-		clear: none;
-		float: left;
-		width: 64px;
-		height: $entry-h;
-		padding: 9px 16px;
-		.upvote, .downvote {
-			position: absolute;
-			height: 15px;
-			font-size: 13px;
-			@include transition(color 0.3s ease);
-			&:hover {
-				color: $color-accent-light;
-			}
-		}
-		.upvote { top: 4px; }
-		.downvote { bottom: 6px; }
-		 .entry-points {
-			float: right;
-			margin-top: 3px;
-			line-height: 20px;
-			font-size: 14px;
+			font-size: 16px;
 			font-weight: bold;
 			color: $color-accent;
-			cursor: default;
+			@include transition(color 0.3s ease);
+			&:hover {
+				color: $color-accent-light;
+			}
+		}
+	}
+	.entry-info {
+		> span {
+			display: inline-block;
+			font-size: 14px;
+			font-style: italic;
+			color: $color-fade-dark;
+		}
+		.entry-author {
+
+		}
+		.entry-group {
+			font-weight: bold;
+		}
+		.entry-readingtime {
+
+		}
+		
+	}
+	.entry-description {
+		padding: $entry-spacing 0;
+		> p {
+			margin: 0;
+			font-size: 14px;
+			color: #000;
+		}
+	}
+	.entry-menu {
+		position: relative;
+		.entry-menu-icon {
+			display: inline-block;
+			margin-right: 5px;
+			padding: 3px 10px;
+			border: 1px solid $color-light-2;
+			@include transition(background 0.3s ease);
+			> span {
+				color: $color-fade-dark;
+				&.counter {
+					padding-left: 4px;
+				}
+			}
+			&:hover {
+				background-color: $color-light-3;
+			}
+		}
+		.entry-vote {
+			> span {
+				font-weight: bold;
+				color: #000;
+			}
+		}
+		.entry-share-link {
+			display: none;
+			margin-bottom: 10px;
+			> input {
+				width: 100%;
+				padding: 2px 7px;
+				font-weight: 300;
+				font-size: 12px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+			}
+		}
+		.entry-share-popup {
+			display: none;
+			padding-top: $entry-spacing;
+			.share-buttons {
+				> li a {
+					display: inline-block;
+					vertical-align: middle;
+					color: $color-fade;
+					&:hover {
+						color: #000;
+					}
+				}
+			}
+			.share-link {
+				position: relative;
+				display: inline-block;
+				vertical-align: middle;
+				i {
+					display: inline-block;
+					width: 24px;
+					height: 24px;
+					margin: 1px 0 3px;
+					text-align: center;
+					line-height: 24px;
+					background-color: $color-fade;
+					color: #fff;
+					border-radius: 4px;
+					@include transition(background 0.3s ease);
+				}
+				&:hover {
+					i {
+						background-color: #000;
+					}
+				}
+			}
+			.share-link-alert {
+				display: none;
+				padding-left: 5px;
+				color: $color-text-dark;
+			}
 		}
 	}
 	.entry-options {
@@ -298,7 +243,6 @@
 			@extend .reject-btn;
 		}
 	}
-	&:last-child .entry-description { border-bottom: none; }
 }
 
 .section-controls {
@@ -316,5 +260,6 @@
     overflow: hidden;
     @include tablet {
     	float: right;
+    	margin: 0;
     }
 }
