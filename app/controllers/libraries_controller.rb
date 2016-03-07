@@ -81,14 +81,8 @@ class LibrariesController < ApplicationController
 	end
 
 	def show_suggestions
-		@sections = []
-		@library.categories.each {|cat| @sections.push(cat.sections)}
-		@sections.flatten!
-
-		@entries = []
-		@sections.each {|sec| @entries.push(sec.entries) }
 		@groups = @library.groups
-		@entries = @entries.flatten.select{|e| e.accepted == false}
+		@entries = @library.entries.where(:accepted => false).includes(:group, :tags)
 	end
 
 	def subscribe
