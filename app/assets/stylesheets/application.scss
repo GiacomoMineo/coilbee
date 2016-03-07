@@ -10,8 +10,21 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require main
- *= require_self
  */
 
-/* General*/
+/* Bootstrap*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import "base/variables";
+@import "base/mixins";
+@import "base/globals";
+
+@import "styles/header";
+@import "styles/footer";
+@import "styles/library_sidemenu";
+@import "styles/landing";
+@import "styles/libraries";
+@import "styles/sections";
