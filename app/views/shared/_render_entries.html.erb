@@ -22,7 +22,7 @@
 <% @entries.each do |entry| %>
   <div class="entry group_<%= entry.group.id %>">
     <div class="entry-header">
-      <a target="_blank" href="<%= entry.link %>" class="entry-title" target="_blank"><%= entry.title %><% if entry.author != "" %> - <%= entry.author %><% end %></a>
+      <a target="_blank" href="<%= entry.link %>" class="entry-title" target="_blank"><%= entry.title %></a>
       <% if !entry.accepted %>
         <div class="entry-options">
           <%= link_to "Reject", entry_path(entry), data: {confirm: "Are you sure?"}, :method => :delete, class: 'btn btn-danger pull-right reject-entry-btn' %>
