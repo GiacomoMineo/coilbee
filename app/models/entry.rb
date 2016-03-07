@@ -8,7 +8,7 @@ class Entry < ActiveRecord::Base
 											:category => {:name => 'C'}
 									},
 									:against => {
-											:title => 'A', # priorities: title first, then description, then section, category
+											:title => 'A', # priorities: title/author first, then description, then section/category
 											:author => 'A',
 											:description => 'B',
 									},
@@ -18,11 +18,11 @@ class Entry < ActiveRecord::Base
 													:prefix => true,
 											},
 											:trigram => { # trigram search for spelling mistakes, etc.
-													:only => [:title]
+													:only => [:title, :author]
 											},
-											:dmetaphone => { # metaphone search for similar-sounding results
+											:dmetaphone => { # double metaphone search for similar-sounding results
 													:any_word => true,
-													:only => [:title]
+													:only => [:title, :author]
 											}
 									},
 									:ignoring => :accents # search without accents, i.e. "pina colada instead of "piña colada"
